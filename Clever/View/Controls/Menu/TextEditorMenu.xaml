@@ -1,0 +1,174 @@
+﻿<UserControl x:Class="Clever.View.Controls.Menu.TextEditorMenu"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Clever.View.Controls.Menu"
+             mc:Ignorable="d" 
+             d:DesignHeight="{StaticResource te_menu_height_all}" d:DesignWidth="{StaticResource te_menu_width}">
+    <UserControl.Resources>
+        <Style TargetType="{x:Type Grid}" x:Key="xGrid">
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="true">
+                    <Setter Property="Background" Value="{StaticResource pnl_bgd_mot}"/>
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="false">
+                    <Setter Property="Background" Value="{StaticResource pnl_bgd_mof}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    <Grid Background="{StaticResource pnl_bgd_mof}">
+        <StackPanel>
+            <Grid Style="{DynamicResource xGrid}" Width="{StaticResource te_menu_width}" Height="{StaticResource te_menu_height_one}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="{StaticResource te_menu_c0_width}"/>
+                    <ColumnDefinition Width="{StaticResource te_menu_c1_width}"/>
+                    <ColumnDefinition Width="{StaticResource te_menu_c2_width}"/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="1" Height="{StaticResource te_menu_height_one}" Width="{StaticResource te_menu_label_width}">
+                    <Hyperlink TextDecorations="None" Command="{Binding Path=EditUndoCommand}">
+                        <TextBlock Text="{Binding Path=GetLocalization[tUndo]}" VerticalAlignment="Center" Width="{StaticResource te_menu_text_width}" FontFamily="{StaticResource te_menu_fontfamily}" FontSize="{StaticResource te_menu_fontsize}" Foreground="{StaticResource te_menu_foreground}"/>
+                    </Hyperlink>
+                </Label>
+                <TextBlock Text="Ctrl+Z" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="2" FontFamily="{StaticResource te_menu_fontfamily}" FontSize="{StaticResource te_menu_fontsize}" Foreground="{StaticResource te_menu_foreground}"/>
+            </Grid>
+            <Grid Style="{DynamicResource xGrid}" Width="{StaticResource te_menu_width}" Height="{StaticResource te_menu_height_one}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="{StaticResource te_menu_c0_width}"/>
+                    <ColumnDefinition Width="{StaticResource te_menu_c1_width}"/>
+                    <ColumnDefinition Width="{StaticResource te_menu_c2_width}"/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="1" Height="{StaticResource te_menu_height_one}" Width="{StaticResource te_menu_label_width}">
+                    <Hyperlink TextDecorations="None" Command="{Binding Path=EditRedoCommand}">
+                        <TextBlock Text="{Binding Path=GetLocalization[tRedo]}" VerticalAlignment="Center" Width="{StaticResource te_menu_text_width}" FontFamily="{StaticResource te_menu_fontfamily}" FontSize="{StaticResource te_menu_fontsize}" Foreground="{StaticResource te_menu_foreground}"/>
+                    </Hyperlink>
+                </Label>
+                <TextBlock Text="Ctrl+Y" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="2" FontFamily="{StaticResource te_menu_fontfamily}" FontSize="{StaticResource te_menu_fontsize}" Foreground="{StaticResource te_menu_foreground}"/>
+            </Grid>
+            <Separator/>
+            <Grid Style="{DynamicResource xGrid}" Width="{StaticResource te_menu_width}" Height="{StaticResource te_menu_height_one}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="{StaticResource te_menu_c0_width}"/>
+                    <ColumnDefinition Width="{StaticResource te_menu_c1_width}"/>
+                    <ColumnDefinition Width="{StaticResource te_menu_c2_width}"/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="1" Height="{StaticResource te_menu_height_one}" Width="{StaticResource te_menu_label_width}">
+                    <Hyperlink TextDecorations="None" Command="{Binding Path=EditCopyCommand}">
+                        <TextBlock Text="{Binding Path=GetLocalization[tCopy]}" VerticalAlignment="Center" Width="{StaticResource te_menu_text_width}" FontFamily="{StaticResource te_menu_fontfamily}" FontSize="{StaticResource te_menu_fontsize}" Foreground="{StaticResource te_menu_foreground}"/>
+                    </Hyperlink>
+                </Label>
+                <TextBlock Text="Ctrl+C" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="2" FontFamily="{StaticResource te_menu_fontfamily}" FontSize="{StaticResource te_menu_fontsize}" Foreground="{StaticResource te_menu_foreground}"/>
+            </Grid>
+            <Grid Style="{DynamicResource xGrid}" Width="{StaticResource te_menu_width}" Height="{StaticResource te_menu_height_one}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="{StaticResource te_menu_c0_width}"/>
+                    <ColumnDefinition Width="{StaticResource te_menu_c1_width}"/>
+                    <ColumnDefinition Width="{StaticResource te_menu_c2_width}"/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="1" Height="{StaticResource te_menu_height_one}" Width="{StaticResource te_menu_label_width}">
+                    <Hyperlink TextDecorations="None" Command="{Binding Path=EditCutCommand}">
+                        <TextBlock Text="{Binding Path=GetLocalization[tCut]}" VerticalAlignment="Center" Width="{StaticResource te_menu_text_width}" FontFamily="{StaticResource te_menu_fontfamily}" FontSize="{StaticResource te_menu_fontsize}" Foreground="{StaticResource te_menu_foreground}"/>
+                    </Hyperlink>
+                </Label>
+                <TextBlock Text="Ctrl+X" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="2" FontFamily="{StaticResource te_menu_fontfamily}" FontSize="{StaticResource te_menu_fontsize}" Foreground="{StaticResource te_menu_foreground}"/>
+            </Grid>
+            <Grid Style="{DynamicResource xGrid}" Width="{StaticResource te_menu_width}" Height="{StaticResource te_menu_height_one}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="{StaticResource te_menu_c0_width}"/>
+                    <ColumnDefinition Width="{StaticResource te_menu_c1_width}"/>
+                    <ColumnDefinition Width="{StaticResource te_menu_c2_width}"/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="1" Height="{StaticResource te_menu_height_one}" Width="{StaticResource te_menu_label_width}">
+                    <Hyperlink TextDecorations="None" Command="{Binding Path=EditPasteCommand}">
+                        <TextBlock Text="{Binding Path=GetLocalization[tPaste]}" VerticalAlignment="Center" Width="{StaticResource te_menu_text_width}" FontFamily="{StaticResource te_menu_fontfamily}" FontSize="{StaticResource te_menu_fontsize}" Foreground="{StaticResource te_menu_foreground}"/>
+                    </Hyperlink>
+                </Label>
+                <TextBlock Text="Ctrl+V" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="2" FontFamily="{StaticResource te_menu_fontfamily}" FontSize="{StaticResource te_menu_fontsize}" Foreground="{StaticResource te_menu_foreground}"/>
+            </Grid>
+            <Separator/>
+            <Grid Style="{DynamicResource xGrid}" Width="{StaticResource te_menu_width}" Height="{StaticResource te_menu_height_one}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="{StaticResource te_menu_c0_width}"/>
+                    <ColumnDefinition Width="{StaticResource te_menu_c1_width}"/>
+                    <ColumnDefinition Width="{StaticResource te_menu_c2_width}"/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="1" Height="{StaticResource te_menu_height_one}" Width="{StaticResource te_menu_label_width}">
+                    <Hyperlink TextDecorations="None" Command="{Binding Path=EditSelectAllCommand}">
+                        <TextBlock Text="{Binding Path=GetLocalization[tSelectAll]}" VerticalAlignment="Center" Width="{StaticResource te_menu_text_width}" FontFamily="{StaticResource te_menu_fontfamily}" FontSize="{StaticResource te_menu_fontsize}" Foreground="{StaticResource te_menu_foreground}"/>
+                    </Hyperlink>
+                </Label>
+                <TextBlock Text="Ctrl+A" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="2" FontFamily="{StaticResource te_menu_fontfamily}" FontSize="{StaticResource te_menu_fontsize}" Foreground="{StaticResource te_menu_foreground}"/>
+            </Grid>
+            <Separator/>
+            <Grid Style="{DynamicResource xGrid}" Width="{StaticResource te_menu_width}" Height="{StaticResource te_menu_height_one}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="{StaticResource te_menu_c0_width}"/>
+                    <ColumnDefinition Width="{StaticResource te_menu_c1_width}"/>
+                    <ColumnDefinition Width="{StaticResource te_menu_c2_width}"/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="1" Height="{StaticResource te_menu_height_one}" Width="{StaticResource te_menu_label_width}">
+                    <Hyperlink TextDecorations="None" Command="{Binding Path=EditCommentCommand}">
+                        <TextBlock Text="{Binding Path=GetLocalization[tComment]}" VerticalAlignment="Center" Width="{StaticResource te_menu_text_width}" FontFamily="{StaticResource te_menu_fontfamily}" FontSize="{StaticResource te_menu_fontsize}" Foreground="{StaticResource te_menu_foreground}"/>
+                    </Hyperlink>
+                </Label>
+                <TextBlock Text="Ctrl+Q" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="2" FontFamily="{StaticResource te_menu_fontfamily}" FontSize="{StaticResource te_menu_fontsize}" Foreground="{StaticResource te_menu_foreground}"/>
+            </Grid>
+            <Grid Style="{DynamicResource xGrid}" Width="{StaticResource te_menu_width}" Height="{StaticResource te_menu_height_one}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="{StaticResource te_menu_c0_width}"/>
+                    <ColumnDefinition Width="{StaticResource te_menu_c1_width}"/>
+                    <ColumnDefinition Width="{StaticResource te_menu_c2_width}"/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="1" Height="{StaticResource te_menu_height_one}" Width="{StaticResource te_menu_label_width}">
+                    <Hyperlink TextDecorations="None" Command="{Binding Path=EditUnCommentCommand}">
+                        <TextBlock Text="{Binding Path=GetLocalization[tUnComment]}" VerticalAlignment="Center" Width="{StaticResource te_menu_text_width}" FontFamily="{StaticResource te_menu_fontfamily}" FontSize="{StaticResource te_menu_fontsize}" Foreground="{StaticResource te_menu_foreground}"/>
+                    </Hyperlink>
+                </Label>
+                <TextBlock Text="Ctrl+W" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="2" FontFamily="{StaticResource te_menu_fontfamily}" FontSize="{StaticResource te_menu_fontsize}" Foreground="{StaticResource te_menu_foreground}"/>
+            </Grid>
+            <Separator/>
+            <Grid Style="{DynamicResource xGrid}" Width="{StaticResource te_menu_width}" Height="{StaticResource te_menu_height_one}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="{StaticResource te_menu_c0_width}"/>
+                    <ColumnDefinition Width="{StaticResource te_menu_c1_width}"/>
+                    <ColumnDefinition Width="{StaticResource te_menu_c2_width}"/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="1" Height="{StaticResource te_menu_height_one}" Width="{StaticResource te_menu_label_width}">
+                    <Hyperlink TextDecorations="None" Command="{Binding Path=EditFoldAllCommand}">
+                        <TextBlock Text="{Binding Path=GetLocalization[tFoldAll]}" VerticalAlignment="Center" Width="{StaticResource te_menu_text_width}" FontFamily="{StaticResource te_menu_fontfamily}" FontSize="{StaticResource te_menu_fontsize}" Foreground="{StaticResource te_menu_foreground}"/>
+                    </Hyperlink>
+                </Label>
+                <TextBlock Text="Ctrl+G" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="2" FontFamily="{StaticResource te_menu_fontfamily}" FontSize="{StaticResource te_menu_fontsize}" Foreground="{StaticResource te_menu_foreground}"/>
+            </Grid>
+            <Grid Style="{DynamicResource xGrid}" Width="{StaticResource te_menu_width}" Height="{StaticResource te_menu_height_one}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="{StaticResource te_menu_c0_width}"/>
+                    <ColumnDefinition Width="{StaticResource te_menu_c1_width}"/>
+                    <ColumnDefinition Width="{StaticResource te_menu_c2_width}"/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="1" Height="{StaticResource te_menu_height_one}" Width="{StaticResource te_menu_label_width}">
+                    <Hyperlink TextDecorations="None" Command="{Binding Path=EditUnFoldAllCommand}">
+                        <TextBlock Text="{Binding Path=GetLocalization[tUnFoldAll]}" VerticalAlignment="Center" Width="{StaticResource te_menu_text_width}" FontFamily="{StaticResource te_menu_fontfamily}" FontSize="{StaticResource te_menu_fontsize}" Foreground="{StaticResource te_menu_foreground}"/>
+                    </Hyperlink>
+                </Label>
+                <TextBlock Text="Ctrl+G" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="2" FontFamily="{StaticResource te_menu_fontfamily}" FontSize="{StaticResource te_menu_fontsize}" Foreground="{StaticResource te_menu_foreground}"/>
+            </Grid>
+            <Separator/>
+            <Grid Style="{DynamicResource xGrid}" Width="{StaticResource te_menu_width}" Height="{StaticResource te_menu_height_one}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="{StaticResource te_menu_c0_width}"/>
+                    <ColumnDefinition Width="{StaticResource te_menu_c1_width}"/>
+                    <ColumnDefinition Width="{StaticResource te_menu_c2_width}"/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="1" Height="{StaticResource te_menu_height_one}" Width="{StaticResource te_menu_label_width}">
+                    <Hyperlink TextDecorations="None" Command="{Binding Path=EditFormatCommand}">
+                        <TextBlock Text="{Binding Path=GetLocalization[tFormat]}" VerticalAlignment="Center" Width="{StaticResource te_menu_text_width}" FontFamily="{StaticResource te_menu_fontfamily}" FontSize="{StaticResource te_menu_fontsize}" Foreground="{StaticResource te_menu_foreground}"/>
+                    </Hyperlink>
+                </Label>
+                <TextBlock Text="Ctrl+F" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="2" FontFamily="{StaticResource te_menu_fontfamily}" FontSize="{StaticResource te_menu_fontsize}" Foreground="{StaticResource te_menu_foreground}"/>
+            </Grid>
+        </StackPanel>
+        <Border Margin="0" BorderThickness="1" BorderBrush="{StaticResource pnl_bgd_mot}"/>
+    </Grid>
+</UserControl>

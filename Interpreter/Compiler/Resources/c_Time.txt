@@ -1,0 +1,140 @@
+﻿// ------------------------------------------ EV3 MODULE: TIME -------------------------------------------------
+DATA32 timeMC1
+DATA32 timeMC2
+DATA32 timeMC3
+DATA32 timeMC4
+DATA32 timeMC5
+DATA32 timeMC6
+DATA32 timeMC7
+DATA32 timeMC8
+DATA32 timeMC9
+DATA32 timeMC1tmp
+DATA32 timeMC2tmp
+DATA32 timeMC3tmp
+DATA32 timeMC4tmp
+DATA32 timeMC5tmp
+DATA32 timeMC6tmp
+DATA32 timeMC7tmp
+DATA32 timeMC8tmp
+DATA32 timeMC9tmp
+
+init
+{
+	MOVE32_32 0 timeMC1
+	MOVE32_32 0 timeMC2
+	MOVE32_32 0 timeMC3
+	MOVE32_32 0 timeMC4
+	MOVE32_32 0 timeMC5
+	MOVE32_32 0 timeMC6
+	MOVE32_32 0 timeMC7
+	MOVE32_32 0 timeMC8
+	MOVE32_32 0 timeMC9
+}
+
+inline TIME.GET1 // F
+{
+	TIMER_READ timeMC1tmp
+	SUB32 timeMC1tmp timeMC1 timeMC1tmp
+	MOVE32_F timeMC1tmp :0
+}
+
+inline TIME.GET2 // F
+{
+	TIMER_READ timeMC2tmp
+	SUB32 timeMC2tmp timeMC2 timeMC2tmp
+	MOVE32_F timeMC2tmp :0
+}
+
+inline TIME.GET3 // F
+{
+	TIMER_READ timeMC3tmp
+	SUB32 timeMC3tmp timeMC3 timeMC3tmp
+	MOVE32_F timeMC3tmp :0
+}
+
+inline TIME.GET4 // F
+{
+	TIMER_READ timeMC4tmp
+	SUB32 timeMC4tmp timeMC4 timeMC4tmp
+	MOVE32_F timeMC4tmp :0
+}
+
+inline TIME.GET5 // F
+{
+	TIMER_READ timeMC5tmp
+	SUB32 timeMC5tmp timeMC5 timeMC5tmp
+	MOVE32_F timeMC5tmp :0
+}
+
+inline TIME.GET6 // F
+{
+	TIMER_READ timeMC6tmp
+	SUB32 timeMC6tmp timeMC6 timeMC6tmp
+	MOVE32_F timeMC6tmp :0
+}
+
+inline TIME.GET7 // F
+{
+	TIMER_READ timeMC7tmp
+	SUB32 timeMC7tmp timeMC7 timeMC7tmp
+	MOVE32_F timeMC7tmp :0
+}
+
+inline TIME.GET8 // F
+{
+	TIMER_READ timeMC8tmp
+	SUB32 timeMC8tmp timeMC8 timeMC8tmp
+	MOVE32_F timeMC8tmp :0
+}
+
+inline TIME.GET9 // F
+{
+	TIMER_READ timeMC9tmp
+	SUB32 timeMC9tmp timeMC9 timeMC9tmp
+	MOVE32_F timeMC9tmp :0
+}
+
+inline TIME.RESET1 // V
+{
+	TIMER_READ timeMC1
+}
+
+inline TIME.RESET2 // V
+{
+	TIMER_READ timeMC2
+}
+
+inline TIME.RESET3 // V
+{
+	TIMER_READ timeMC3
+}
+
+inline TIME.RESET4 // V
+{
+	TIMER_READ timeMC4
+}
+
+inline TIME.RESET5 // V
+{
+	TIMER_READ timeMC5
+}
+
+inline TIME.RESET6 // V
+{
+	TIMER_READ timeMC6
+}
+
+inline TIME.RESET7 // V
+{
+	TIMER_READ timeMC7
+}
+
+inline TIME.RESET8 // V
+{
+	TIMER_READ timeMC8
+}
+
+inline TIME.RESET9 // V
+{
+	TIMER_READ timeMC9
+}

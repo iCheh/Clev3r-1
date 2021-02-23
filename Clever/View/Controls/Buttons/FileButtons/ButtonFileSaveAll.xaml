@@ -1,0 +1,39 @@
+﻿<UserControl x:Class="Clever.View.Controls.Buttons.FileButtons.ButtonFileSaveAll"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Clever.View.Controls.Buttons.FileButtons"
+             mc:Ignorable="d" 
+             d:DesignHeight="{StaticResource pnl_but_height}" d:DesignWidth="{StaticResource pnl_but_height}">
+    <UserControl.Resources>
+        <Style x:Key="file_save" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border BorderBrush="{StaticResource tpr_bgd}" BorderThickness="0" Name="border">
+                            <ContentPresenter RecognizesAccessKey="True" Margin="{TemplateBinding Padding}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="{StaticResource tpr_bgd}"/>
+                                <Setter Property="Content" Value="{StaticResource file_save_all_mot}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="false">
+                                <Setter TargetName="border" Property="Background" Value="{StaticResource tpr_bgd}"/>
+                                <Setter Property="Content" Value="{StaticResource file_save_all_mof}"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="{StaticResource tpr_bgd}"/>
+                                <Setter Property="Content" Value="{StaticResource file_save_all_clc}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Button Style="{StaticResource file_save}" Height="{StaticResource pnl_but_height}" Width="{StaticResource pnl_but_height}" ToolTip="{Binding Path=GetLocalization[tSaveAll]}" Command="{Binding Path=FileSaveAllCommand}"/>
+    </Grid>
+</UserControl>

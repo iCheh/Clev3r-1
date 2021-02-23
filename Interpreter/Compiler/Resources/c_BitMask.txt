@@ -1,0 +1,17 @@
+﻿Motors	Binary Bit Field	Base-10 Integer
+ 
+A only			0001			1
+B only			0010			2
+C only			0100			4
+D only			1000			8
+A and B			0011			3
+A and C			0101			5
+A and D			1001			9
+B and C			0110			6
+B and D			1010			10
+C and D			1100			12
+A, B and C		0111			7
+A, B and D		1011			11
+A, C and D		1101			13
+B, C and D		1110			14
+A, B, C and D	1111			15

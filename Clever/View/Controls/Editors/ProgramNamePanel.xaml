@@ -1,0 +1,91 @@
+﻿<UserControl x:Class="Clever.View.Controls.Editors.ProgramNamePanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Clever.View.Controls.Editors"
+             mc:Ignorable="d" 
+             d:DesignHeight="26" d:DesignWidth="180">
+    <UserControl.Resources>
+        <Style TargetType="{x:Type Label}" x:Key="TextLabel1">
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="4"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+        </Style>
+        <Style TargetType="{x:Type Label}" x:Key="TextLabel2">
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="BorderBrush" Value="#00FFFFFF"/>
+            <Setter Property="Padding" Value="8"/>
+        </Style>
+        <Style TargetType="{x:Type Grid}" x:Key="xGrid">
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="true">
+                    <Setter Property="Background" Value="{StaticResource pnl_bgd_mot}"/>
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="false">
+                    <Setter Property="Background" Value="{StaticResource pnl_bgd_mof}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    <Grid Margin="0" VerticalAlignment="Center" x:Name="HeaderGrid" Style="{DynamicResource xGrid}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="160"/>
+            <ColumnDefinition Width="20"/>
+        </Grid.ColumnDefinitions>
+
+        <Label Style="{StaticResource TextLabel1}" Margin="0" Grid.Column="0" Height="26" x:Name="nameLabel">
+            <TextBlock x:Name="hdrText" Text="Program" FontFamily="Calibri" FontSize="14" Grid.Column="0" Width="156" Height="26" Foreground="Black"/>
+        </Label>
+        <Label x:Name="lClose" Margin="0" Style="{StaticResource TextLabel2}" Width="20" Height="26" HorizontalAlignment="Right" Grid.Column="1">
+            <Hyperlink TextDecorations="None" Click="Hyperlink_Click" Command="{Binding Path=CloseProgramCommand}">
+                <StackPanel x:Name="spClose">
+                    <StackPanel.Triggers>
+                        <EventTrigger RoutedEvent="StackPanel.MouseMove" SourceName="spClose">
+                            <EventTrigger.Actions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="gd" Storyboard.TargetProperty="(GeometryDrawing.Brush)">
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <SolidColorBrush Color="{StaticResource cross_bgd_mot}"/>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger.Actions>
+                        </EventTrigger>
+                        <EventTrigger RoutedEvent="StackPanel.MouseLeave" SourceName="spClose">
+                            <EventTrigger.Actions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="gd" Storyboard.TargetProperty="(GeometryDrawing.Brush)">
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <SolidColorBrush Color="{StaticResource cross_bgd_mof}"/>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger.Actions>
+                        </EventTrigger>
+                    </StackPanel.Triggers>
+                    <Canvas Width="10" Height="10" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <Canvas.Background>
+                            <DrawingBrush>
+                                <DrawingBrush.Drawing>
+                                    <DrawingGroup ClipGeometry="M0,0 V30 H30 V0 H0 Z">
+                                        <GeometryDrawing x:Name="gd" Brush="{StaticResource cross_bgd}" Geometry="F1 M30,30z M0,0z M18.2,15L29.3,3.9C30.2,3 30.2,1.6 29.3,0.7 28.4,-0.2 27,-0.2 26.1,0.7L15,11.8 3.9,0.7C3,-0.2 1.6,-0.2 0.7,0.7 -0.2,1.6 -0.2,3 0.7,3.9L11.8,15 0.7,26.1C0.3,26.5 0,27.1 0,27.7 0,28.3 0.2,28.9 0.7,29.4 1.2,29.8 1.7,30 2.2,30 2.7,30 3.4,29.7 3.8,29.4L14.9,18.3 26,29.3C26.4,29.7 27,29.9 27.6,29.9 28.1,29.9 28.8,29.6 29.2,29.3 29.6,28.9 29.9,28.3 29.9,27.7 29.9,27.1 29.7,26.5 29.2,26.1L18.2,15z" />
+                                    </DrawingGroup>
+                                </DrawingBrush.Drawing>
+                            </DrawingBrush>
+                        </Canvas.Background>
+                    </Canvas>
+                </StackPanel>
+            </Hyperlink>
+        </Label>
+        <Border x:Name="xBorder" Grid.Column="0" Grid.ColumnSpan="2" Margin="0" BorderThickness="0,0.5,0,0.5" BorderBrush="{StaticResource border_bgd}"/>
+    </Grid>
+</UserControl>

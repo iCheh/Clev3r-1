@@ -1,0 +1,102 @@
+﻿<UserControl x:Class="Clever.View.Controls.Buttons.HomeButton"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Clever.View.Controls.Buttons"
+             xmlns:home_but="clr-namespace:Clever.View.Controls.Buttons.HomeButtons"
+             mc:Ignorable="d" 
+             d:DesignHeight="30" d:DesignWidth="1000">
+    <Grid>
+        <WrapPanel x:Name="filePanel" VerticalAlignment="Center" Margin="5,0,0,0">
+            <home_but:hButtonFileNew Margin="0,0,10,0" Visibility="{Binding Path=FileNewV}"/>
+            <home_but:hButtonFileOpen Margin="0,0,10,0" Visibility="{Binding Path=FileOpenV}"/>
+            <home_but:hButtonFileCloseAll Margin="0,0,10,0" Visibility="{Binding Path=FileCloseAllV}"/>
+            <home_but:hButtonFileSave Margin="0,0,10,0" Visibility="{Binding Path=FileSaveV}"/>
+            <home_but:hButtonFileSaveAll Margin="0,0,10,0" Visibility="{Binding Path=FileSaveAllV}"/>
+            <home_but:hButtonFileSaveAs Margin="0,0,10,0" Visibility="{Binding Path=FileSaveAsV}"/>
+            <Canvas Width="2" Height="{StaticResource pnl_but_height}" Margin="0,0,10,0" Visibility="{Binding Path=FileDV}">
+                <Canvas.Background>
+                    <DrawingBrush>
+                        <DrawingBrush.Drawing>
+                            <DrawingGroup ClipGeometry="M0,0 V27 H2 V0 H0 Z">
+                                <DrawingGroup Opacity="1">
+                                    <GeometryDrawing Brush="{StaticResource delimeter}" Geometry="F1 M2,27z M0,0z M1,27C0.5,27,0,26.626,0,26L0,1C0,0.5 0.375,0 1,0 1.625,0 2,0.375 2,1L2,26C2,26.626,1.5,27,1,27z" />
+                                </DrawingGroup>
+                            </DrawingGroup>
+                        </DrawingBrush.Drawing>
+                    </DrawingBrush>
+                </Canvas.Background>
+            </Canvas>
+            <home_but:hButtonEditSelectAll Margin="0,0,10,0" Visibility="{Binding Path=EditSelectAllV}"/>
+            <home_but:hButtonEditCopy Margin="0,0,10,0" Visibility="{Binding Path=EditCopyV}"/>
+            <home_but:hButtonEditCut Margin="0,0,10,0" Visibility="{Binding Path=EditCutV}"/>
+            <home_but:hButtonEditPaste Margin="0,0,10,0" Visibility="{Binding Path=EditPasteV}"/>
+            <Canvas Width="2" Height="{StaticResource pnl_but_height}" Margin="0,0,10,0" Visibility="{Binding Path=EditDV4}">
+                <Canvas.Background>
+                    <DrawingBrush>
+                        <DrawingBrush.Drawing>
+                            <DrawingGroup ClipGeometry="M0,0 V27 H2 V0 H0 Z">
+                                <DrawingGroup Opacity="1">
+                                    <GeometryDrawing Brush="{StaticResource delimeter}" Geometry="F1 M2,27z M0,0z M1,27C0.5,27,0,26.626,0,26L0,1C0,0.5 0.375,0 1,0 1.625,0 2,0.375 2,1L2,26C2,26.626,1.5,27,1,27z" />
+                                </DrawingGroup>
+                            </DrawingGroup>
+                        </DrawingBrush.Drawing>
+                    </DrawingBrush>
+                </Canvas.Background>
+            </Canvas>
+            <home_but:hButtonEditUndo Margin="0,0,10,0" Visibility="{Binding Path=EditUndoV}"/>
+            <home_but:hButtonEditRedo Margin="0,0,10,0" Visibility="{Binding Path=EditRedoV}"/>
+            <Canvas Width="2" Height="{StaticResource pnl_but_height}" Margin="0,0,10,0" Visibility="{Binding Path=EditDV1}">
+                <Canvas.Background>
+                    <DrawingBrush>
+                        <DrawingBrush.Drawing>
+                            <DrawingGroup ClipGeometry="M0,0 V27 H2 V0 H0 Z">
+                                <DrawingGroup Opacity="1">
+                                    <GeometryDrawing Brush="{StaticResource delimeter}" Geometry="F1 M2,27z M0,0z M1,27C0.5,27,0,26.626,0,26L0,1C0,0.5 0.375,0 1,0 1.625,0 2,0.375 2,1L2,26C2,26.626,1.5,27,1,27z" />
+                                </DrawingGroup>
+                            </DrawingGroup>
+                        </DrawingBrush.Drawing>
+                    </DrawingBrush>
+                </Canvas.Background>
+            </Canvas>
+            <home_but:hButtonEditShowNumber Margin="0,0,10,0" Visibility="{Binding Path=EditShowNumberV}"/>
+            <home_but:hButtonEditWrap Margin="0,0,10,0" Visibility="{Binding Path=EditWrapV}"/>
+            <home_but:hButtonEditFormat Margin="0,0,10,0" Visibility="{Binding Path=EditFormatV}"/>
+            <home_but:hButtonEditShowLine Margin="0,0,10,0" Visibility="{Binding Path=EditShowLineV}"/>
+            <home_but:hButtonEditShowSpace Margin="0,0,10,0" Visibility="{Binding Path=EditShowSpaceV}"/>
+            <Canvas Width="2" Height="{StaticResource pnl_but_height}" Margin="0,0,10,0" Visibility="{Binding Path=EditDV2}">
+                <Canvas.Background>
+                    <DrawingBrush>
+                        <DrawingBrush.Drawing>
+                            <DrawingGroup ClipGeometry="M0,0 V27 H2 V0 H0 Z">
+                                <DrawingGroup Opacity="1">
+                                    <GeometryDrawing Brush="{StaticResource delimeter}" Geometry="F1 M2,27z M0,0z M1,27C0.5,27,0,26.626,0,26L0,1C0,0.5 0.375,0 1,0 1.625,0 2,0.375 2,1L2,26C2,26.626,1.5,27,1,27z" />
+                                </DrawingGroup>
+                            </DrawingGroup>
+                        </DrawingBrush.Drawing>
+                    </DrawingBrush>
+                </Canvas.Background>
+            </Canvas>
+            <home_but:hFind Margin="0,0,10,0" Visibility="{Binding Path=EditFindV}"/>
+            <Canvas Width="2" Height="{StaticResource pnl_but_height}" Margin="0,0,10,0" Visibility="{Binding Path=EditDV}">
+                <Canvas.Background>
+                    <DrawingBrush>
+                        <DrawingBrush.Drawing>
+                            <DrawingGroup ClipGeometry="M0,0 V27 H2 V0 H0 Z">
+                                <DrawingGroup Opacity="1">
+                                    <GeometryDrawing Brush="{StaticResource delimeter}" Geometry="F1 M2,27z M0,0z M1,27C0.5,27,0,26.626,0,26L0,1C0,0.5 0.375,0 1,0 1.625,0 2,0.375 2,1L2,26C2,26.626,1.5,27,1,27z" />
+                                </DrawingGroup>
+                            </DrawingGroup>
+                        </DrawingBrush.Drawing>
+                    </DrawingBrush>
+                </Canvas.Background>
+            </Canvas>
+            <home_but:hButtonConnect Margin="0,0,10,0" Visibility="{Binding Path=ConnectV}"/>
+            <home_but:hButtonCompile Margin="0,0,10,0" Visibility="{Binding Path=CompileV}"/>
+            <home_but:hButtonCompileAndRun Margin="0,0,10,0" Visibility="{Binding Path=CompileAndRunV}"/>
+            <home_but:hButtonStop Margin="0,0,10,0" Visibility="{Binding Path=StopV}"/>
+            <home_but:hButtonDownload Margin="0,0,10,0" Visibility="{Binding Path=DownloadV}"/>
+        </WrapPanel>
+    </Grid>
+</UserControl>

@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="Clever.View.Controls.Buttons.BrickButtons.BrickFolderUp2"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Clever.View.Controls.Buttons.BrickButtons"
+             mc:Ignorable="d" 
+             d:DesignHeight="15" d:DesignWidth="20">
+    <UserControl.Resources>
+        <Style x:Key="BrickFolderUp2" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border BorderBrush="{StaticResource tpr_bgd}" BorderThickness="0" Name="border">
+                            <ContentPresenter RecognizesAccessKey="True" Margin="{TemplateBinding Padding}"></ContentPresenter>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="{StaticResource tpr_bgd}"></Setter>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="false">
+                                <Setter TargetName="border" Property="Background" Value="{StaticResource tpr_bgd}"></Setter>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="{StaticResource tpr_bgd}"></Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <Grid Width="20" Height="16">
+        <Button Style="{StaticResource BrickFolderUp2}" Content="  ..." ToolTip="{Binding Path=GetLocalization[tBrkFolderUp]}" Foreground="{StaticResource text_current_path}"/>
+    </Grid>
+</UserControl>

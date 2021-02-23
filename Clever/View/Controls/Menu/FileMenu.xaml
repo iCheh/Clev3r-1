@@ -1,0 +1,181 @@
+﻿<UserControl x:Class="Clever.View.Controls.Menu.FileMenu"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Clever.View.Controls.Menu"
+             mc:Ignorable="d" 
+             d:DesignHeight="{StaticResource file_menu_height_all}" d:DesignWidth="{StaticResource file_menu_width}">
+    <UserControl.Resources>
+        <Style TargetType="{x:Type Grid}" x:Key="xGrid">
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="true">
+                    <Setter Property="Background" Value="{StaticResource pnl_bgd_mot}"/>
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="false">
+                    <Setter Property="Background" Value="{StaticResource pnl_bgd_mof}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="FocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle Margin="2" SnapsToDevicePixels="true" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" StrokeThickness="1" StrokeDashArray="1 2"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="OptionMarkFocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle Margin="14,0,0,0" SnapsToDevicePixels="true" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" StrokeThickness="1" StrokeDashArray="1 2"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <SolidColorBrush x:Key="OptionMark.MouseOver.Glyph" Color="#FF424859"/>
+        <SolidColorBrush x:Key="markBackGround_MouseOver" Color="#FFFFFFFF"/>
+        <SolidColorBrush x:Key="OptionMark.Disabled.Glyph" Color="#FF424859"/>
+        <SolidColorBrush x:Key="OptionMark.Pressed.Glyph" Color="#FF424859"/>
+        <SolidColorBrush x:Key="OptionMark.Static.Glyph" Color="#FF424859"/>
+        <SolidColorBrush x:Key="markBackGround_Static" Color="#00FFFFFF"/>
+        <Style x:Key="CheckBoxMenuStyle" TargetType="{x:Type CheckBox}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type CheckBox}">
+                        <Grid x:Name="templateRoot" Background="Transparent" SnapsToDevicePixels="True">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Border x:Name="checkBoxBorder" BorderBrush="#00FFFFFF" BorderThickness="0" Background="#00FFFFFF" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="0" VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                                <Grid x:Name="markGrid" Height="15" Width="15"> 
+                                    <Path Data="F1 M15,15z M0,0z M12.1,15L2.9,15C1.3,15,0,13.7,0,12.1L0,2.9C0,1.3,1.3,0,2.9,0L12.1,0C13.7,0,15,1.3,15,2.9L15,12.1C15,13.7,13.7,15,12.1,15z M2.9,1C1.9,1,1,1.9,1,2.9L1,12.1C1,13.1,1.8,14,2.9,14L12.1,14C13.1,14,14,13.2,14,12.1L14,2.9C14,1.9,13.2,1,12.1,1L2.9,1z" Fill="#FFBCC3D4"/>
+                                    <Path x:Name="markBackGround" Data="F1 M15,15z M0,0z M12,14.5L3,14.5C1.6,14.5,0.5,13.4,0.5,12L0.5,3C0.5,1.6,1.6,0.5,3,0.5L12,0.5C13.4,0.5,14.5,1.6,14.5,3L14.5,12C14.5,13.4,13.4,14.5,12,14.5z"/>
+                                    <Path x:Name="optionMark" Data="F1 M15,15z M0,0z M7.5,11L7.5,11C5.6,11,4,9.4,4,7.5L4,7.5C4,5.6,5.6,4,7.5,4L7.5,4C9.4,4,11,5.6,11,7.5L11,7.5C11,9.4,9.4,11,7.5,11z" Fill="{StaticResource OptionMark.Static.Glyph}" Margin="0" Opacity="0" Stretch="None"/>
+                                </Grid>
+                            </Border>
+                            <ContentPresenter x:Name="contentPresenter" Grid.Column="1" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="HasContent" Value="true">
+                                <Setter Property="FocusVisualStyle" Value="{StaticResource OptionMarkFocusVisual}"/>
+                                <Setter Property="Padding" Value="4,-1,0,0"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Fill" TargetName="optionMark" Value="{StaticResource OptionMark.MouseOver.Glyph}"/>
+                                <Setter Property="Fill" TargetName="markBackGround" Value="{StaticResource markBackGround_MouseOver}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="false">
+                                <Setter Property="Fill" TargetName="markBackGround" Value="{StaticResource markBackGround_Static}"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Fill" TargetName="optionMark" Value="{StaticResource OptionMark.Disabled.Glyph}"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Fill" TargetName="optionMark" Value="{StaticResource OptionMark.Pressed.Glyph}"/>
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="true">
+                                <Setter Property="Opacity" TargetName="optionMark" Value="1"/>
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="{x:Null}">
+                                <Setter Property="Opacity" TargetName="optionMark" Value="0"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <Grid Background="{StaticResource pnl_bgd_mof}">
+        <StackPanel>
+            <Grid Style="{DynamicResource xGrid}" Width="{StaticResource file_menu_width}" Height="{StaticResource file_menu_height_one}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="{StaticResource file_menu_c0_width}"/>
+                    <ColumnDefinition Width="{StaticResource file_menu_c1_width}"/>
+                    <ColumnDefinition Width="{StaticResource file_menu_c2_width}"/>
+                </Grid.ColumnDefinitions>
+                <CheckBox Grid.Column="0" Background="#00FFFFFF" Width="16" Height="16" VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="fileNewCB" Click="fileNewCB_Click" ToolTip="{Binding Path=GetLocalization[AddButton]}" Style="{DynamicResource CheckBoxMenuStyle}"/>
+                <Label Grid.Column="1" Height="{StaticResource file_menu_height_one}" Width="{StaticResource file_menu_label_width}">
+                    <Hyperlink TextDecorations="None" Command="{Binding Path=FileNewCommand}">
+                        <TextBlock Text="{Binding Path=GetLocalization[tNew]}" VerticalAlignment="Center" Width="{StaticResource file_menu_text_width}" FontFamily="{StaticResource file_menu_fontfamily}" FontSize="{StaticResource file_menu_fontsize}" Foreground="{StaticResource file_menu_foreground}"/>
+                    </Hyperlink>
+                </Label>
+                <TextBlock Text="Ctrl+N" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="2" FontFamily="{StaticResource file_menu_fontfamily}" FontSize="{StaticResource file_menu_fontsize}" Foreground="{StaticResource file_menu_foreground}"/>
+            </Grid>
+            <Grid Style="{DynamicResource xGrid}" Width="{StaticResource file_menu_width}" Height="{StaticResource file_menu_height_one}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="{StaticResource file_menu_c0_width}"/>
+                    <ColumnDefinition Width="{StaticResource file_menu_c1_width}"/>
+                    <ColumnDefinition Width="{StaticResource file_menu_c2_width}"/>
+                </Grid.ColumnDefinitions>
+                <CheckBox Grid.Column="0" Background="#00FFFFFF" Width="16" Height="16" VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="fileOpenCB" Click="fileOpenCB_Click" ToolTip="{Binding Path=GetLocalization[AddButton]}" Style="{DynamicResource CheckBoxMenuStyle}"/>
+                <Label Grid.Column="1" Height="{StaticResource file_menu_height_one}" Width="{StaticResource file_menu_label_width}">
+                    <Hyperlink TextDecorations="None" Command="{Binding Path=FileOpenCommand}">
+                        <TextBlock Text="{Binding Path=GetLocalization[tOpen]}" VerticalAlignment="Center" Width="{StaticResource file_menu_text_width}" FontFamily="{StaticResource file_menu_fontfamily}" FontSize="{StaticResource file_menu_fontsize}" Foreground="{StaticResource file_menu_foreground}"/>
+                    </Hyperlink>
+                </Label>
+                <TextBlock Text="Ctrl+O" VerticalAlignment="Center"  HorizontalAlignment="Center" Grid.Column="2" FontFamily="{StaticResource file_menu_fontfamily}" FontSize="{StaticResource file_menu_fontsize}" Foreground="{StaticResource file_menu_foreground}"/>
+            </Grid>
+            <Grid Style="{DynamicResource xGrid}" Width="{StaticResource file_menu_width}" Height="{StaticResource file_menu_height_one}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="{StaticResource file_menu_c0_width}"/>
+                    <ColumnDefinition Width="{StaticResource file_menu_c1_width}"/>
+                    <ColumnDefinition Width="{StaticResource file_menu_c2_width}"/>
+                </Grid.ColumnDefinitions>
+                <CheckBox Grid.Column="0" Background="#00FFFFFF" Width="16" Height="16" VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="fileCloseAllCB" Click="fileCloseAllCB_Click"  ToolTip="{Binding Path=GetLocalization[AddButton]}" Style="{DynamicResource CheckBoxMenuStyle}"/>
+                <Label Grid.Column="1" Height="{StaticResource file_menu_height_one}" Width="{StaticResource file_menu_label_width}">
+                    <Hyperlink TextDecorations="None" Command="{Binding Path=FileCloseAllCommand}">
+                        <TextBlock Text="{Binding Path=GetLocalization[tCloseAll]}" VerticalAlignment="Center" Width="{StaticResource file_menu_text_width}" FontFamily="{StaticResource file_menu_fontfamily}" FontSize="{StaticResource file_menu_fontsize}" Foreground="{StaticResource file_menu_foreground}"/>
+                    </Hyperlink>
+                </Label>
+            </Grid>
+            <Separator/>
+            <Grid Style="{DynamicResource xGrid}" Width="{StaticResource file_menu_width}" Height="{StaticResource file_menu_height_one}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="{StaticResource file_menu_c0_width}"/>
+                    <ColumnDefinition Width="{StaticResource file_menu_c1_width}"/>
+                    <ColumnDefinition Width="{StaticResource file_menu_c2_width}"/>
+                </Grid.ColumnDefinitions>
+                <CheckBox Grid.Column="0" Background="#00FFFFFF" Width="16" Height="16" VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="fileSaveCB" Click="fileSaveCB_Click" ToolTip="{Binding Path=GetLocalization[AddButton]}" Style="{DynamicResource CheckBoxMenuStyle}"/>
+                <Label Grid.Column="1" Height="{StaticResource file_menu_height_one}" Width="{StaticResource file_menu_label_width}">
+                    <Hyperlink TextDecorations="None" Command="{Binding Path=FileSaveCommand}">
+                        <TextBlock Text="{Binding Path=GetLocalization[tSave]}" VerticalAlignment="Center" Width="{StaticResource file_menu_text_width}" FontFamily="{StaticResource file_menu_fontfamily}" FontSize="{StaticResource file_menu_fontsize}" Foreground="{StaticResource file_menu_foreground}"/>
+                    </Hyperlink>
+                </Label>
+                <TextBlock Text="Ctrl+S" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="2" FontFamily="{StaticResource file_menu_fontfamily}" FontSize="{StaticResource file_menu_fontsize}" Foreground="{StaticResource file_menu_foreground}"/>
+            </Grid>
+            <Grid Style="{DynamicResource xGrid}" Width="{StaticResource file_menu_width}" Height="{StaticResource file_menu_height_one}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="{StaticResource file_menu_c0_width}"/>
+                    <ColumnDefinition Width="{StaticResource file_menu_c1_width}"/>
+                    <ColumnDefinition Width="{StaticResource file_menu_c2_width}"/>
+                </Grid.ColumnDefinitions>
+                <CheckBox Grid.Column="0" Background="#00FFFFFF" Width="16" Height="16" VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="fileSaveAllCB" Click="fileSaveAllCB_Click" ToolTip="{Binding Path=GetLocalization[AddButton]}" Style="{DynamicResource CheckBoxMenuStyle}"/>
+                <Label Grid.Column="1" Height="{StaticResource file_menu_height_one}" Width="{StaticResource file_menu_label_width}">
+                    <Hyperlink TextDecorations="None" Command="{Binding Path=FileSaveAllCommand}">
+                        <TextBlock Text="{Binding Path=GetLocalization[tSaveAll]}" VerticalAlignment="Center" Width="{StaticResource file_menu_text_width}" FontFamily="{StaticResource file_menu_fontfamily}" FontSize="{StaticResource file_menu_fontsize}" Foreground="{StaticResource file_menu_foreground}"/>
+                    </Hyperlink>
+                </Label>
+            </Grid>
+            <Grid Style="{DynamicResource xGrid}" Width="{StaticResource file_menu_width}" Height="{StaticResource file_menu_height_one}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="{StaticResource file_menu_c0_width}"/>
+                    <ColumnDefinition Width="{StaticResource file_menu_c1_width}"/>
+                    <ColumnDefinition Width="{StaticResource file_menu_c2_width}"/>
+                </Grid.ColumnDefinitions>
+                <CheckBox Grid.Column="0" Background="#00FFFFFF" Width="16" Height="16" VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="fileSaveAsCB" Click="fileSaveAsCB_Click" ToolTip="{Binding Path=GetLocalization[AddButton]}" Style="{DynamicResource CheckBoxMenuStyle}"/>
+                <Label Grid.Column="1" Height="{StaticResource file_menu_height_one}" Width="{StaticResource file_menu_label_width}">
+                    <Hyperlink TextDecorations="None" Command="{Binding Path=FileSaveAsCommand}">
+                        <TextBlock Text="{Binding Path=GetLocalization[tSaveAs]}" VerticalAlignment="Center" Width="{StaticResource file_menu_text_width}" FontFamily="{StaticResource file_menu_fontfamily}" FontSize="{StaticResource file_menu_fontsize}" Foreground="{StaticResource file_menu_foreground}"/>
+                    </Hyperlink>
+                </Label>
+            </Grid>
+        </StackPanel>
+        <Border Margin="0" BorderThickness="1" BorderBrush="{StaticResource pnl_bgd_mot}"/>
+    </Grid>
+</UserControl>

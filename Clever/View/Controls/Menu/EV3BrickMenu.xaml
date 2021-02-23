@@ -1,0 +1,38 @@
+﻿<UserControl x:Class="Clever.View.Controls.Menu.EV3BrickMenu"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Clever.View.Controls.Menu"
+             mc:Ignorable="d" 
+             d:DesignHeight="{StaticResource brk_menu_height_all}" d:DesignWidth="{StaticResource brk_menu_width}">
+    <UserControl.Resources>
+        <Style TargetType="{x:Type Grid}" x:Key="xGrid">
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="true">
+                    <Setter Property="Background" Value="{StaticResource pnl_bgd_mot}"/>
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="false">
+                    <Setter Property="Background" Value="{StaticResource pnl_bgd_mof}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    <Grid Background="{StaticResource pnl_bgd_mof}">
+        
+        <StackPanel>
+            <Grid Style="{DynamicResource xGrid}" Width="{StaticResource brk_menu_width}" Height="{StaticResource brk_menu_height_one}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="{StaticResource brk_menu_c0_width}"/>
+                    <ColumnDefinition Width="{StaticResource brk_menu_c1_width}"/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="1" Height="{StaticResource brk_menu_height_one}" Width="{StaticResource brk_menu_label_width}">
+                    <Hyperlink TextDecorations="None" Click="Menu_Click">
+                        <TextBlock Text="{Binding Path=GetLocalization[brkRefresh]}" VerticalAlignment="Stretch"  FontFamily="{StaticResource brk_menu_fontfamily}" FontSize="{StaticResource brk_menu_fontsize}" Foreground="{StaticResource brk_menu_foreground}" Height="26" Width="{StaticResource brk_menu_text_width}"/>
+                    </Hyperlink>
+                </Label>
+            </Grid>
+        </StackPanel>
+        <Border Margin="0" BorderThickness="1" BorderBrush="{StaticResource pnl_bgd_mot}"/>
+    </Grid>
+</UserControl>

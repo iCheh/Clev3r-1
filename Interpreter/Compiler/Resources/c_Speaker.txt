@@ -1,0 +1,76 @@
+// ------------------------------------------ EV3 MODULE: SPEAKER -------------------------------------------------
+
+inline SPEAKER.STOP      // V
+{
+	SOUND BREAK
+}
+
+subcall SPEAKER.TONE      // FFFV
+{
+	IN_F volume
+	IN_F tone
+	IN_F duration
+	
+	DATA8 vol
+	DATA16 tne
+	DATA16 dur
+	MOVEF_8 volume vol
+	MOVEF_16 tone tne
+	MOVEF_16 duration dur
+	
+	SOUND TONE vol tne dur
+}
+
+subcall SPEAKER.NOTE      // FSFV
+{
+	IN_F volume
+	IN_S note 8
+	IN_F duration
+	
+	DATA8 vol
+	DATA16 tne
+	DATA16 dur
+	MOVEF_8 volume vol
+	NOTE_TO_FREQ note tne
+	MOVEF_16 duration dur
+	
+	SOUND TONE vol tne dur
+}
+
+subcall SPEAKER.PLAY    // FSV 
+{
+	IN_F volume
+	IN_S filename 252	
+
+	// prepend a path to really reach the target file from the current working directory
+	DATA8 vol 
+	DATAS fullname 300
+	MOVEF_8 volume vol
+
+	STRINGS ADD '../../../..' filename fullname  // when using absolute path, go to file system top from the VM directory and then back down
+	JR_EQ8 filename 47 absolutepath               // filename begins with a '/' - using absolute path
+	STRINGS ADD '../prjs/' filename fullname      // by default use path relative to prjs folder (must go from the current VM directory to there)
+absolutepath:
+	
+	SOUND PLAY vol fullname
+}
+
+subcall SPEAKER.ISBUSY     // S
+{
+	OUT_S result 8
+	
+	DATA8 busy
+	SOUND_TEST busy
+	JR_EQ8 busy 0 notbusy
+	STRINGS DUPLICATE 'True' result
+	RETURN
+notbusy:
+	STRINGS DUPLICATE 'False' result
+	RETURN
+}
+
+inline SPEAKER.WAIT     // V
+{
+	SOUND_READY
+}
+

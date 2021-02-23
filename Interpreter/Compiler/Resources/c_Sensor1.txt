@@ -1,0 +1,26 @@
+﻿// ------------------------------------------ EV3 MODULE: SENSOR1 ----------------------------------------------
+
+DATA32 s1out1
+DATA32 s1out2
+DATA32 s1out3
+
+init
+{
+	MOVE32_32 0 s1out1
+	MOVE32_32 0 s1out2
+	MOVE32_32 0 s1out3
+}
+
+inline SENSOR1.RAW1    // F
+{
+	INPUT_READEXT 0 0 0 -1 18 1 s1out1
+	MOVE32_F s1out1 :0
+}
+
+inline SENSOR1.RAW3    // FFFV
+{
+	INPUT_READEXT 0 0 0 -1 18 3 s1out1 s1out2 s1out3
+	MOVE32_F s1out1 :0
+	MOVE32_F s1out2 :1
+	MOVE32_F s1out3 :2
+}

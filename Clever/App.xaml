@@ -1,0 +1,25 @@
+﻿<Application x:Class="Clever.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Clever"
+             Startup="Aplication_StartUp">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Dictionary/Brushes.xaml"/>
+                <ResourceDictionary Source="Dictionary/Icons.xaml"/>
+                <ResourceDictionary Source="Dictionary/BrickIcons.xaml"/>
+                <ResourceDictionary Source="Dictionary/FileIcons.xaml"/>
+                <ResourceDictionary Source="Dictionary/FindIcons.xaml"/>
+                <ResourceDictionary Source="Dictionary/EditIcons.xaml"/>
+                <ResourceDictionary Source="Dictionary/HomeIcons.xaml"/>
+                <ResourceDictionary Source="Dictionary/CompileIcons.xaml"/>
+                <ResourceDictionary Source="Dictionary/EV3Icon.xaml"/>
+                <ResourceDictionary Source="Dictionary/RestIcons.xaml"/>
+                <ResourceDictionary Source="Dictionary/Dimensions.xaml"/>
+                <ResourceDictionary Source="Dictionary/TabItemStyle.xaml"/>
+                <ResourceDictionary Source="Dictionary/TreeViewItemStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

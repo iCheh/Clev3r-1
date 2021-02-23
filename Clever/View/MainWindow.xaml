@@ -1,0 +1,48 @@
+﻿<Window x:Class="Clever.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Clever"
+        xmlns:vm="clr-namespace:Clever.ViewModel"
+        xmlns:control="clr-namespace:Clever.View.Controls"
+        xmlns:menu="clr-namespace:Clever.View.Controls.Menu"
+        xmlns:panel="clr-namespace:Clever.View.Panels"
+        xmlns:config="clr-namespace:Clever.CommonData"
+        mc:Ignorable="d"
+        Title="CLEVƎR v1.6.7.0" 
+        Height="{Binding Source={x:Static config:Configurations.Get}, Path=Window_Height, Mode=TwoWay}"
+        MinHeight="440"
+        Width="{Binding Source={x:Static config:Configurations.Get}, Path=Window_Width, Mode=TwoWay}"
+        MinWidth="650"
+        Top="{Binding Source={x:Static config:Configurations.Get}, Path=Window_Top, Mode=TwoWay}"
+        Left="{Binding Source={x:Static config:Configurations.Get}, Path=Window_Left, Mode=TwoWay}"
+        WindowState="{Binding Source={x:Static config:Configurations.Get}, Path=Window_State, Mode=TwoWay}"
+        Closing="Window_Closing" 
+        PreviewKeyDown="WindowWPF_PreviewKeyDown">
+    <Grid x:Name="mainGrid" Background="#414659">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" MinHeight="65"/>
+            <RowDefinition Height="{Binding Source={x:Static config:Configurations.Get}, Path=Grid_Row1, Mode=TwoWay}" MinHeight="300"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="{Binding Source={x:Static config:Configurations.Get}, Path=Grid_Row3, Mode=TwoWay}" MinHeight="30"/>
+        </Grid.RowDefinitions>
+
+        <control:ButtonsPanel Grid.Row="0" Margin="0,0,0,0"/>
+
+        <DockPanel x:Name="dockPanel" Grid.Row="1" Margin="0,0,0,0" Background="#7A8193">
+            <Grid x:Name="docGrid">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="{Binding Source={x:Static config:Configurations.Get}, Path=Grid_Column0, Mode=TwoWay}" MinWidth="400"/>
+                    <ColumnDefinition Width="4"/>
+                    <ColumnDefinition Width="{Binding Source={x:Static config:Configurations.Get}, Path=Grid_Column2, Mode=TwoWay}" MinWidth="330"/>
+                </Grid.ColumnDefinitions>
+                <control:EditorPanel Grid.Column="0" Margin="2,0,0,0" SizeChanged="EditorPanel_SizeChanged"/>
+                <control:HelpPanel Grid.Column="2" Margin="0,0,1,0"/>
+                <GridSplitter Grid.Column="1" Width="4" VerticalAlignment="Stretch" HorizontalAlignment="Center" Margin="0,29,0,0" BorderThickness="0" BorderBrush="White" Background="#7a8193"/>
+            </Grid>
+        </DockPanel>
+        <GridSplitter Grid.Row="2" Height="10" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="5,0,5,0" BorderThickness="0" BorderBrush="White" Background="#414659"/>
+        <panel:StatusPanel Grid.Row="3" Margin="0"/>
+    </Grid>
+</Window>

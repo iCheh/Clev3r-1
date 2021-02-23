@@ -1,0 +1,39 @@
+﻿<UserControl x:Class="Clever.View.Controls.Menu.PreviewMenu"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Clever.View.Controls.Menu"
+             mc:Ignorable="d" 
+            d:DesignHeight="{StaticResource preview_menu_height_one}" d:DesignWidth="{StaticResource preview_menu_width}">
+    <UserControl.Resources>
+        <Style TargetType="{x:Type Grid}" x:Key="xGrid">
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="true">
+                    <Setter Property="Background" Value="{StaticResource pnl_bgd_mot}"/>
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="false">
+                    <Setter Property="Background" Value="{StaticResource pnl_bgd_mof}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    <Grid Background="{StaticResource pnl_bgd_mof}">
+        <StackPanel>
+            <Grid Style="{DynamicResource xGrid}" Width="{StaticResource preview_menu_width}" Height="{StaticResource preview_menu_height_one}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="{StaticResource preview_menu_c0_width}"/>
+                    <ColumnDefinition Width="{StaticResource preview_menu_c1_width}"/>
+                    <ColumnDefinition Width="{StaticResource preview_menu_c2_width}"/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="1" Height="{StaticResource preview_menu_height_one}" Width="{StaticResource preview_menu_label_width}">
+                    <Hyperlink TextDecorations="None" Click="Copy_Click">
+                        <TextBlock Text="{Binding Path=GetLocalization[tCopy]}" VerticalAlignment="Center" Width="{StaticResource preview_menu_text_width}" FontFamily="{StaticResource preview_menu_fontfamily}" FontSize="{StaticResource preview_menu_fontsize}" Foreground="{StaticResource preview_menu_foreground}"/>
+                    </Hyperlink>
+                </Label>
+                <TextBlock Text="Ctrl+C" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="2" FontFamily="{StaticResource preview_menu_fontfamily}" FontSize="{StaticResource preview_menu_fontsize}" Foreground="{StaticResource preview_menu_foreground}"/>
+            </Grid>
+        </StackPanel>
+        <Border Margin="0" BorderThickness="1" BorderBrush="{StaticResource pnl_bgd_mot}"/>
+    </Grid>
+</UserControl>

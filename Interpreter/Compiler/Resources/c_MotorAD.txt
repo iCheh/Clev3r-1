@@ -1,0 +1,44 @@
+﻿// ------------------------------------------ EV3 MODULE: MOTORAD ----------------------------------------------
+
+inline MOTORAD.OFF // V
+{
+	OUTPUT_POWER 0 9 0
+	OUTPUT_STOP 0 9 0
+}
+
+inline MOTORAD.OFFANDBRAKE // V
+{
+	OUTPUT_POWER 0 9 0
+	OUTPUT_STOP 0 9 1
+}
+
+inline MOTORAD.SETSPEED    // FV
+{
+	MOVEF_8 :0 setSpeedA
+	OUTPUT_SPEED 0 9 setSpeedA
+}
+
+inline MOTORAD.SETPOWER   // FV
+{
+	MOVEF_8 :0 setPowerA
+	OUTPUT_POWER 0 9 setPowerA
+}
+
+inline MOTORAD.STARTSPEED    // FV
+{
+	MOVEF_8 :0 setSpeedA
+	OUTPUT_SPEED 0 9 setSpeedA
+	OUTPUT_START 0 9
+}
+
+inline MOTORAD.STARTPOWER   // FV
+{
+	MOVEF_8 :0 setPowerA
+	OUTPUT_POWER 0 9 setPowerA
+	OUTPUT_START 0 9
+}
+
+inline MOTORAD.START   // V
+{
+	OUTPUT_START 0 9
+}

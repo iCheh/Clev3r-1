@@ -1,0 +1,70 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Clever.View.Controls"
+             xmlns:editor="clr-namespace:Clever.View.Controls.Editors"
+             xmlns:wf="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
+             xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2" 
+             x:Class="Clever.View.Controls.EditorPanel"
+             xmlns:brick_but="clr-namespace:Clever.View.Controls.Buttons.BrickButtons"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="600">
+    <UserControl.Resources>
+        <Style x:Key="prg_name" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border BorderBrush="{StaticResource pnl_data}" BorderThickness="0" Name="border">
+                            <ContentPresenter RecognizesAccessKey="True" Margin="{TemplateBinding Padding}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="{StaticResource pnl_data}"/>
+                                <Setter Property="Content" Value="{StaticResource prg_n_mot}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="false">
+                                <Setter TargetName="border" Property="Background" Value="{StaticResource pnl_data}"/>
+                                <Setter Property="Content" Value="{StaticResource prg_n_mof}"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="{StaticResource pnl_data}"/>
+                                <Setter Property="Content" Value="{StaticResource prg_n_clc}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <TabControl x:Name="EditorTabControl" BorderBrush="#ECEDF1" BorderThickness="1" Background="#ECEDF1" ItemsSource="{Binding ProgramNameList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding CurrentProgram, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+            <TabControl.Template>
+                <ControlTemplate TargetType="{x:Type TabControl}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <StackPanel Orientation="Horizontal" Grid.Row="0">
+                            <TabPanel x:Name="HeaderPanel" IsItemsHost="True"/>
+                        </StackPanel>
+                        <Border HorizontalAlignment="Right" VerticalAlignment="Center" Width="20" Height="28" BorderThickness="0" BorderBrush="#00FFFFFF">
+                            <Button x:Name="namesButton" Style="{StaticResource prg_name}" Height="16" Width="16" Margin="0,0,2,0"  Command="{Binding Path=GetProgramNamesCommand}" Visibility="{Binding Path=HiddenProgramButton}"/>
+                        </Border>
+                        
+                        <ContentPresenter x:Name="PART_SelectedContentHost" ContentSource="SelectedContent" Grid.Row="1"/>
+                    </Grid>
+                </ControlTemplate>
+            </TabControl.Template>
+        </TabControl>
+        <TextBlock Text="{Binding Path=GetLocalization[tStartScreen]}" VerticalAlignment="Center" HorizontalAlignment="Center" TextWrapping="Wrap" FontFamily="Calibri" FontSize="14" Foreground="Black" Margin="15"/>
+        <Popup x:Name="PopUp"
+               PlacementTarget="{Binding ElementName=EditorTabControl}"
+               StaysOpen="False" Placement="Right"
+               VerticalOffset="28" HorizontalOffset="-180"
+               MaxWidth="200"
+               MaxHeight="520"/>
+    </Grid>
+</UserControl>

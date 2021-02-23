@@ -1,0 +1,31 @@
+﻿namespace Interpreter.Enums
+{
+    internal enum Tokens
+    {
+        METHOD,
+        STRING,
+        VARIABLE,
+        EQU,
+        SUBNAME,
+        NUMBER,
+        KEYWORD,
+        LABEL,
+        LABELNAME,
+        MATHOPERATOR,
+        MODULEMETHOD,
+        MODULEPROPERTY,
+        DOUBLEMATH,
+        EQUMATH,
+        BOOLOPERATOR,
+        BRACKETLEFT,
+        BRACKETRIGHT,
+        BRACKETLEFTARRAY,
+        BRACKETRIGHTARRAY,
+        DOUBLEBRACKET,
+        DOUBLEBRACKETARRAY,
+        COMMA,
+        FUNCNAME,
+        PREPROCESSOR,
+        NON
+    }
+}

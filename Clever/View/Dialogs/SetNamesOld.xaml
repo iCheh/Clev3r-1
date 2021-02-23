@@ -1,0 +1,76 @@
+﻿<Window x:Class="Clever.View.Dialogs.SetNamesOld"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Clever.View.Dialogs"
+        mc:Ignorable="d"
+        Title="" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Width="500" Height="260">
+    <Window.Resources>
+        <Style x:Key="close_button" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border BorderBrush="{StaticResource dialog_but_border}" BorderThickness="1" Name="border" CornerRadius="3">
+                            <ContentPresenter RecognizesAccessKey="True" Margin="{TemplateBinding Padding}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="{StaticResource dialog_but_mot}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="false">
+                                <Setter TargetName="border" Property="Background" Value="{StaticResource dialog_but_mof}"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="{StaticResource dialog_but_clc}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid Margin="0" Background="{StaticResource about_bgd}">
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+            <Grid  Margin="10,10,10,10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="24"/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="24"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="24"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="390"/>
+                    <ColumnDefinition Width="70"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Grid.Row="0" Name="txtToolTip" Text="Choose file type" FontFamily="Calibri" FontSize="14" Foreground="#000000" Height="22" Width="300" Padding="4" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+                <TextBlock Grid.Column="0" Grid.Row="2" Name="txtProgramName" Text="Program name:" FontFamily="Calibri" FontSize="14" Foreground="#000000" Height="22" Width="300" Padding="4" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+                <TextBox Grid.Column="0" Grid.Row="3" Margin="2,0,0,0" Name="programName" Text="Ansver" FontFamily="Calibri" FontSize="12" Foreground="#000000" Padding="1" Height="20" Width="360" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                <Button Grid.Column="1" Grid.Row="3" x:Name="butCreatePrg" Style="{StaticResource close_button}" Click="butCreatePrg_Click" VerticalAlignment="Center" HorizontalAlignment="Right" Width="70" Height="20">
+                    <Button.Content>
+                        <TextBlock x:Name="butTextPrg" Text="Create" FontFamily="Calibri" FontSize="12" Foreground="#000000" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </Button.Content>
+                </Button>
+
+                <TextBlock Grid.Column="0" Grid.Row="5" Name="txtIncludeName" Text="Include name:" FontFamily="Calibri" FontSize="14" Foreground="#000000" Height="22" Width="300" Padding="4" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+                <TextBox Grid.Column="0" Grid.Row="6" Margin="2,0,0,0" Name="includeName" Text="Ansver" FontFamily="Calibri" FontSize="12" Foreground="#000000" Padding="1" Height="20" Width="360" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                <Button Grid.Column="1" Grid.Row="6" x:Name="butCreateInc" Style="{StaticResource close_button}" Click="butCreateInc_Click" VerticalAlignment="Center" HorizontalAlignment="Right" Width="70" Height="20">
+                    <Button.Content>
+                        <TextBlock x:Name="butTextMod" Text="Create" FontFamily="Calibri" FontSize="12" Foreground="#000000" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </Button.Content>
+                </Button>
+
+                <Button Grid.Column="1" Grid.Row="8" x:Name="butClose" Style="{StaticResource close_button}" Click="butClose_Click" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="70" Height="20">
+                    <Button.Content>
+                        <TextBlock x:Name="butTextClose" Text="Close" FontFamily="Calibri" FontSize="12" Foreground="#000000" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </Button.Content>
+                </Button>
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+</Window>

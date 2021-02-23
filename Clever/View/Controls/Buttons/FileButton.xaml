@@ -1,0 +1,20 @@
+﻿<UserControl x:Class="Clever.View.Controls.Buttons.FileButton"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Clever.View.Controls.Buttons"
+             xmlns:file_but="clr-namespace:Clever.View.Controls.Buttons.FileButtons"
+             mc:Ignorable="d" 
+             d:DesignHeight="30" d:DesignWidth="1000">
+    <Grid>
+        <StackPanel Orientation="Horizontal">
+            <file_but:ButtonFileNew Margin="5,0,0,0"/>
+            <file_but:ButtonFileOpen Margin="10,0,0,0"/>
+            <file_but:ButtonFileCloseAll Margin="10,0,0,0"/>
+            <file_but:ButtonFileSave Margin="10,0,0,0"/>
+            <file_but:ButtonFileSaveAll Margin="10,0,0,0"/>
+            <file_but:ButtonFileSaveAs Margin="10,0,0,0"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

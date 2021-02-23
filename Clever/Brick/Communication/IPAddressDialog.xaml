@@ -1,0 +1,45 @@
+﻿<Window 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" x:Name="window" 
+    Title="" Height="165" Width="280"
+    x:Class="Clever.Brick.Communication.IPAddressDialog" ResizeMode="NoResize"  WindowStartupLocation="CenterScreen">
+
+    <Window.Resources>
+        <Style x:Key="win_button" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border BorderBrush="{StaticResource dialog_but_border}" BorderThickness="1" Name="border" CornerRadius="3">
+                            <ContentPresenter RecognizesAccessKey="True" Margin="{TemplateBinding Padding}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="{StaticResource dialog_but_mot}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="false">
+                                <Setter TargetName="border" Property="Background" Value="{StaticResource dialog_but_mof}"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="{StaticResource dialog_but_clc}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid  Margin="0" Background="{StaticResource about_bgd}">
+        <Grid Margin="10">
+            <TextBlock x:Name="headerText" Text="Enter IP-Address of EV3 Brick:" FontFamily="Calibri" FontSize="14" Foreground="#000000" VerticalAlignment="Top" Height="25"/>
+            <Button Style="{StaticResource win_button}" Click="CancelButton_clicked" HorizontalAlignment="Right" Margin="0" VerticalAlignment="Bottom" Width="70" Height="20"  IsCancel="True">
+                <TextBlock x:Name="butCancel" Text="Cancel" FontFamily="Calibri" FontSize="12" Foreground="#000000" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            </Button>
+            <Button Style="{StaticResource win_button}" Click="RetryButton_clicked" HorizontalAlignment="Right" Margin="0,0,80,0" VerticalAlignment="Bottom" Width="70" Height="20" IsCancel="True">
+                <TextBlock x:Name="butConnect" Text="Connect" FontFamily="Calibri" FontSize="12" Foreground="#000000" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            </Button>
+            <TextBox x:Name="address" KeyDown="address_keydown" HorizontalAlignment="Left" Height="25" Margin="0,30,0,0" TextWrapping="Wrap" Padding="3" Text="" VerticalAlignment="Top" Width="243" FontFamily="Calibri" FontSize="14" Foreground="#000000" Background="{StaticResource about_bgd}"/>
+        </Grid>
+    </Grid>
+</Window>
+    

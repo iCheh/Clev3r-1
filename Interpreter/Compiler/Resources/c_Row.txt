@@ -1,0 +1,46 @@
+﻿// ------------------------------------------ EV3 MODULE: ROW -----------------------------------------------
+DATA16 newArray1d
+DATA32 newSize1d
+DATA32 newIndex1d
+
+inline ROW.INIT    // FFF
+{
+	MOVEF_32 :0 newSize1d
+	ARRAY CREATEF newSize1d newArray1d
+	ARRAY FILL newArray1d :1
+	MOVE16_F newArray1d :2
+}
+
+inline ROW.DELETE // FV
+{
+	MOVEF_16 :0 newArray1d
+	ARRAY DELETE newArray1d
+}
+
+inline ROW.READ // FFF
+{
+	MOVEF_16 :0 newArray1d
+	MOVEF_32 :1 newIndex1d
+	ARRAY_READ newArray1d newIndex1d :2
+}
+
+inline ROW.WRITE // FFFV
+{
+	MOVEF_16 :0 newArray1d
+	MOVEF_32 :1 newIndex1d
+	ARRAY_WRITE newArray1d newIndex1d :2
+}
+
+inline ROW.SIZE // FF
+{
+	MOVEF_16 :0 newArray1d
+	ARRAY SIZE newArray1d newSize1d
+	MOVE32_F newSize1d :1
+}
+
+inline ROW.RESIZE // FFV
+{
+	MOVEF_16 :0 newArray1d
+	MOVEF_32 :1 newSize1d
+	ARRAY RESIZE newArray1d newSize1d
+}

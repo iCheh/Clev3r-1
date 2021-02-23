@@ -1,0 +1,608 @@
+// -------------------------------------------------- EV3 MODULE: SENSOR -----------------------------------
+
+init
+{
+	INPUT_DEVICE CLR_ALL -1
+}
+
+subcall SENSOR.GETNAME		// FS
+{
+	IN_F port
+	OUT_S result 32
+	
+	DATA8 layer
+	DATA8 no
+	
+	MOVEF_8 port no
+	SUB8 no 1 no
+	DIV8 no 4 layer
+	MATH MOD8 no 4 no
+	
+	INPUT_DEVICE GET_NAME layer no 32 result
+	STRINGS STRIP result result
+}
+
+subcall SENSOR.GETTYPE		// FF
+{
+	IN_F port
+	OUT_F result
+	
+	DATA8 layer
+	DATA8 no
+	DATA8 type
+	DATA8 mode
+	
+	MOVEF_8 port no
+	SUB8 no 1 no
+	DIV8 no 4 layer
+	MATH MOD8 no 4 no
+	
+	INPUT_DEVICE GET_TYPEMODE layer no type mode
+	MOVE8_F type result
+}
+
+subcall SENSOR.GETMODE		// FF
+{
+	IN_F port
+	OUT_F result
+	
+	DATA8 layer
+	DATA8 no
+	DATA8 type
+	DATA8 mode
+	
+	MOVEF_8 port no
+	SUB8 no 1 no
+	DIV8 no 4 layer
+	MATH MOD8 no 4 no
+	
+	INPUT_DEVICE GET_TYPEMODE layer no type mode
+	MOVE8_F mode result
+}
+
+subcall SENSOR.GETDATAFORMAT    // FS
+{
+	IN_F port
+	OUT_S result 252
+
+	DATA8 layer
+	DATA8 no
+	DATA8 datasets
+	DATA8 format
+	DATA8 modes
+	DATA8 view
+	DATA16 tmp16
+	DATAS tmps 20
+	
+	MOVEF_8 port no
+	SUB8 no 1 no
+	DIV8 no 4 layer
+	MATH MOD8 no 4 no
+
+	INPUT_DEVICE GET_FORMAT layer no datasets format modes view
+	
+	MOVE8_16 datasets tmp16
+	STRINGS NUMBER_TO_STRING tmp16 1 result
+	
+	MOVE8_16 format tmp16
+	STRINGS NUMBER_TO_STRING tmp16 1 tmps	
+	STRINGS ADD result ',' result
+	STRINGS ADD result tmps result
+
+	MOVE8_16 modes tmp16
+	STRINGS NUMBER_TO_STRING tmp16 1 tmps	
+	STRINGS ADD result ',' result
+	STRINGS ADD result tmps result
+}
+
+inline SENSOR.SETMODE		// FFV
+{
+	DATA8 layer:#
+	DATA8 no:#
+	DATA8 mode8:#
+	
+	MOVEF_8 :0 no:#
+	SUB8 no:# 1 no:#
+	DIV8 no:# 4 layer:#
+	MATH MOD8 no:# 4 no:#
+
+	MOVEF_8 :1 mode8:#
+	
+	INPUT_DEVICE READY_RAW layer:# no:# 0 mode8:# 0
+}
+
+subcall SENSOR.ISBUSY       // FS
+{
+	IN_F port
+	OUT_S result 8
+	
+	DATA8 layer
+	DATA8 no
+	DATA8 busy
+	
+	MOVEF_8 port no
+	SUB8 no 1 no
+	DIV8 no 4 layer
+	MATH MOD8 no 4 no
+
+	INPUT_TEST layer no busy
+	
+	JR_EQ8 busy 0 notbusy
+	STRINGS DUPLICATE 'True' result
+	RETURN
+notbusy:	
+	STRINGS DUPLICATE 'False' result
+}
+
+inline SENSOR.WAIT       // FV
+{
+	DATA8 layer:#
+	DATA8 no:#	
+	MOVEF_8 :0 no:#
+	SUB8 no:# 1 no:#
+	DIV8 no:# 4 layer:#
+	MATH MOD8 no:# 4 no:# 
+	INPUT_READY layer:# no:#
+}
+
+
+subcall SENSOR.READPERCENT       // FF
+{
+	IN_F port
+	OUT_F result
+
+	DATA8 layer
+	DATA8 no
+	DATA8 percentage
+
+	MOVEF_8 port no
+	SUB8 no 1 no
+	DIV8 no 4 layer
+	MATH MOD8 no 4 no
+
+	INPUT_READ layer no 0 -1 percentage
+	JR_LT8 percentage 0 novalue
+	
+	MOVE8_F percentage result
+	RETURN
+novalue:	
+	MOVE8_F 0 result
+}
+
+subcall SENSOR.READRAW            // FFA
+{
+	IN_F port
+	IN_F values
+	IN_16 resultarray
+	
+	DATA8 layer
+	DATA8 no
+	DATA32 values32
+		
+	MOVEF_8 port no
+	SUB8 no 1 no
+	DIV8 no 4 layer
+	MATH MOD8 no 4 no
+
+	MOVEF_32 values values32
+
+	JR_LTEQ32 values32 0 arrayempty
+	ARRAY RESIZE resultarray values32
+
+	DATA32 rawvalue0
+	DATA32 rawvalue1
+	DATA32 rawvalue2
+	DATA32 rawvalue3
+	DATA32 rawvalue4
+	DATA32 rawvalue5
+	DATA32 rawvalue6
+	DATA32 rawvalue7
+	INPUT_READEXT layer no 0 -1 18 8 rawvalue0 rawvalue1 rawvalue2 rawvalue3 rawvalue4 rawvalue5 rawvalue6 rawvalue7
+	
+	DATA32 i
+	DATA32 rawtmp
+	MOVE32_32 0 i
+loop:
+	DATA8 tmp8
+	DATAF tmpf
+
+	MOVEF_F 0.0 tmpf
+	JR_GTEQ32 i 8 nomoredata
+
+	MOVE32_8 i tmp8
+	READ32 rawvalue0 tmp8 rawtmp
+	JR_LT32 rawtmp -1000000000 nomoredata
+	MOVE32_F rawtmp tmpf
+
+nomoredata:	
+	ARRAY_WRITE resultarray i tmpf
+
+	ADD32 i 1 i
+	JR_LT32 i values32 loop
+	RETURN
+
+arrayempty:
+	ARRAY RESIZE resultarray 0
+}
+
+subcall SENSOR.READRAWVALUE            // FFF
+{
+	IN_F port
+	IN_F index
+	OUT_F result
+
+	DATA8 layer
+	DATA8 no
+	DATA8 index8
+		
+	MOVEF_8 port no
+	SUB8 no 1 no
+	DIV8 no 4 layer
+	MATH MOD8 no 4 no
+
+	MOVEF_8 index index8
+	JR_LT8 index8 0 outofbounds
+	JR_GT8 index8 7 outofbounds
+
+	DATA32 rawvalue0
+	DATA32 rawvalue1
+	DATA32 rawvalue2
+	DATA32 rawvalue3
+	DATA32 rawvalue4
+	DATA32 rawvalue5
+	DATA32 rawvalue6
+	DATA32 rawvalue7
+	INPUT_READEXT layer no 0 -1 18 8 rawvalue0 rawvalue1 rawvalue2 rawvalue3 rawvalue4 rawvalue5 rawvalue6 rawvalue7
+	
+	DATA32 rawtmp
+	READ32 rawvalue0 index8 rawtmp
+
+	JR_LT32 rawtmp -1000000000 nomoredata
+	MOVE32_F rawtmp result
+	RETURN
+
+nomoredata:
+outofbounds:
+	MOVEF_F 0.0 result
+}
+
+subcall SENSOR.COMMUNICATEI2C     // FFFFAA
+{
+	IN_F port
+	IN_F address
+	IN_F writebytes
+	IN_F readbytes
+	IN_16 writedata
+	IN_16 resultarray
+
+	DATA8 layer
+	DATA8 no
+	DATA8 adr
+	DATA32 wrt
+	DATA32 rd
+	DATA32 writedatalength
+	ARRAY8 outdata 32
+	ARRAY8 indata 32
+
+	MOVEF_8 port no
+	SUB8 no 1 no
+	DIV8 no 4 layer
+	MATH MOD8 no 4 no
+	MOVEF_8 address adr
+	MOVEF_32 writebytes wrt
+	MOVEF_32 readbytes rd
+
+	JR_GTEQ32 wrt 0 wrtnottoless
+	MOVE32_32 0 wrt
+wrtnottoless:
+	JR_LTEQ32 wrt 32 wrtnottomuch
+	MOVE32_32 32 wrt
+wrtnottomuch:
+	JR_GTEQ32 rd 1 rdnottoless
+	MOVE32_32 1 rd
+rdnottoless:
+	JR_LTEQ32 rd 32 rdnottomuch
+	MOVE32_32 32 rd
+rdnottomuch:
+
+	ARRAY SIZE writedata writedatalength
+
+	WRITE8 adr 0 outdata		// put adress in first byte of output buffer
+
+	// decode float values from array and put in outdata buffer
+	DATA32 i
+	DATA8 i8
+	MOVE32_32 0 i
+	JR_GTEQ32 i wrt endwritecopy
+writecopyloop:
+	JR_GTEQ32 i writedatalength addzeroelements
+	DATAF v
+	DATA32 v32
+	DATA8 v8
+	ARRAY_READ writedata i v 
+	MOVEF_32 v v32
+	EXTRACTLOWBYTE v32 v8
+	ADD32 i 1 i
+	MOVE32_8 i i8
+	WRITE8 v8 i8 outdata
+	JR_LT32 i wrt writecopyloop
+	JR endwritecopy
+addzeroelements:
+	ADD32 i 1 i 
+	MOVE32_8 i i8
+	WRITE8 0 i8 outdata
+	JR_LT32 i wrt addzeroelements	
+endwritecopy:
+
+	// do the communciation
+	DATA8 wrt8
+	MOVE32_8 wrt wrt8
+	ADD8 wrt8 1 wrt8
+	DATA8 rd8
+	MOVE32_8 rd rd8
+	INPUT_DEVICE SETUP layer no 1 0 wrt8 outdata rd8 indata 
+
+	// decode response
+	ARRAY RESIZE resultarray rd
+	MOVE32_32 0 i
+readcopy:
+	DATA32 tmp32
+	SUB32 rd i tmp32
+	SUB32 tmp32 1 tmp32
+	MOVE32_8 tmp32 i8
+	READ8 indata i8 v8
+	MOVE8_32 0 tmp32
+	INJECTLOWBYTE v8 tmp32
+	MOVE32_F tmp32 v
+	ARRAY_WRITE resultarray i v
+	ADD32 i 1 i
+	JR_LT32 i rd readcopy
+}
+
+subcall SENSOR.READI2CREGISTER     // FFFF
+{
+	IN_F port
+	IN_F address
+	IN_F registernumber
+	OUT_F result
+
+	DATA8 layer
+	DATA8 no
+	DATA8 adr
+	ARRAY8 outdata 2
+	ARRAY8 indata 1
+	DATA8 tmp8
+	DATA32 tmp32
+
+	MOVEF_8 port no
+	SUB8 no 1 no
+	DIV8 no 4 layer
+	MATH MOD8 no 4 no          
+
+	MOVEF_8 address tmp8
+	WRITE8 tmp8 0 outdata
+	MOVEF_8 registernumber tmp8
+	WRITE8 tmp8 1 outdata
+	WRITE8 0 0 indata
+
+	// do the communciation
+	INPUT_DEVICE SETUP layer no 1 0 2 outdata 1 indata 
+
+	// decode response
+	MOVE8_32 0 tmp32
+	INJECTLOWBYTE indata tmp32
+	MOVE32_F tmp32 result
+}
+
+subcall SENSOR.READI2CREGISTERS     // FFFFA
+{
+	IN_F port
+	IN_F address
+	IN_F registernumber
+	IN_F readbytes
+	IN_16 resultarray
+
+	DATA8 layer
+	DATA8 no
+	DATA8 adr
+	DATA32 rd
+	ARRAY8 outdata 2
+	ARRAY8 indata 32
+	DATA8 tmp8
+
+	MOVEF_8 port no
+	SUB8 no 1 no
+	DIV8 no 4 layer
+	MATH MOD8 no 4 no
+
+	MOVEF_32 readbytes rd
+	JR_GTEQ32 rd 1 rdnottoless
+	MOVE32_32 1 rd
+rdnottoless:
+	JR_LTEQ32 rd 32 rdnottomuch
+	MOVE32_32 32 rd
+rdnottomuch:
+
+	MOVEF_8 address tmp8
+	WRITE8 tmp8 0 outdata
+	MOVEF_8 registernumber tmp8
+	WRITE8 tmp8 1 outdata
+
+	// do the communciation
+	MOVE32_8 rd tmp8
+	INPUT_DEVICE SETUP layer no 1 0 2 outdata tmp8 indata 
+
+	// decode response
+	DATA32 i
+	DATAF v
+	ARRAY RESIZE resultarray rd
+	MOVE32_32 0 i
+readcopy:
+	DATA32 tmp32
+	SUB32 rd i tmp32
+	SUB32 tmp32 1 tmp32
+	MOVE32_8 tmp32 tmp8
+	READ8 indata tmp8 tmp8
+	MOVE8_32 0 tmp32
+	INJECTLOWBYTE tmp8 tmp32
+	MOVE32_F tmp32 v
+	ARRAY_WRITE resultarray i v
+	ADD32 i 1 i
+	JR_LT32 i rd readcopy
+}
+
+subcall SENSOR.WRITEI2CREGISTER     // FFFFV
+{
+	IN_F port
+	IN_F address
+	IN_F registernumber
+	IN_F value
+
+	DATA8 layer
+	DATA8 no
+	DATA8 tmp8
+	ARRAY8 outdata 3
+	ARRAY8 indata 1
+
+	MOVEF_8 port no
+	SUB8 no 1 no
+	DIV8 no 4 layer
+	MATH MOD8 no 4 no
+
+	MOVEF_8 address tmp8
+	WRITE8 tmp8 0 outdata
+	MOVEF_8 registernumber tmp8
+	WRITE8 tmp8 1 outdata
+	MOVEF_8 value tmp8
+	WRITE8 tmp8 2 outdata
+
+	INPUT_DEVICE SETUP layer no 1 0 3 outdata 1 indata 
+}
+
+subcall SENSOR.WRITEI2CREGISTERS     // FFFFAV
+{
+	IN_F port
+	IN_F address
+	IN_F registernumber
+	IN_F writebytes
+	IN_16 writedata
+
+	DATA8 layer
+	DATA8 no
+	DATA32 wrt
+	DATA32 writedatalength
+	ARRAY8 outdata 32
+	ARRAY8 indata 1
+	DATA8 tmp8
+
+	MOVEF_8 port no
+	SUB8 no 1 no
+	DIV8 no 4 layer
+	MATH MOD8 no 4 no
+
+	MOVEF_8 address tmp8
+	WRITE8 tmp8 0 outdata
+	MOVEF_8 registernumber tmp8
+	WRITE8 tmp8 1 outdata
+
+	MOVEF_32 writebytes wrt
+	JR_GTEQ32 wrt 0 wrtnottoless
+	MOVE32_32 0 wrt
+wrtnottoless:
+	JR_LTEQ32 wrt 32 wrtnottomuch
+	MOVE32_32 32 wrt
+wrtnottomuch:
+
+	ARRAY SIZE writedata writedatalength
+
+	// decode float values from array and put in outdata buffer
+	DATA32 i
+	MOVE32_32 0 i
+	JR_GTEQ32 i wrt endwritecopy
+writecopyloop:
+	JR_GTEQ32 i writedatalength addzeroelements
+	DATAF v
+	DATA32 v32
+	DATA8 v8
+	ARRAY_READ writedata i v 
+	MOVEF_32 v v32
+	EXTRACTLOWBYTE v32 v8
+	ADD32 i 1 i
+	MOVE32_8 i tmp8
+	ADD8 tmp8 1 tmp8
+	WRITE8 v8 tmp8 outdata
+	JR_LT32 i wrt writecopyloop
+	JR endwritecopy
+addzeroelements:
+	ADD32 i 1 i 
+	MOVE32_8 i tmp8
+	ADD8 tmp8 1 tmp8
+	WRITE8 0 tmp8 outdata
+	JR_LT32 i wrt addzeroelements	
+endwritecopy:
+
+	// do the communciation
+	MOVE32_8 wrt tmp8
+	ADD8 tmp8 2 tmp8
+	INPUT_DEVICE SETUP layer no 1 0 tmp8 outdata 1 indata 
+}
+
+
+subcall SENSOR.SENDUARTDATA     // FFAV
+{
+	IN_F port
+	IN_F writebytes
+	IN_16 writedata
+
+	DATA8 layer
+	DATA8 no
+	DATA32 wrt
+	DATA32 writedatalength
+	ARRAY8 outdata 32
+
+	MOVEF_8 port no
+	SUB8 no 1 no
+	DIV8 no 4 layer
+	MATH MOD8 no 4 no
+
+	MOVEF_32 writebytes wrt
+	JR_GTEQ32 wrt 0 wrtnottoless
+	MOVE32_32 0 wrt
+wrtnottoless:
+	JR_LTEQ32 wrt 32 wrtnottomuch
+	MOVE32_32 32 wrt
+wrtnottomuch:
+
+	ARRAY SIZE writedata writedatalength
+
+	// decode float values from array and put in outdata buffer
+	DATA32 i
+	DATA8 i8
+	DATA32 tmp
+	MOVE32_32 0 i
+	JR_GTEQ32 i wrt endwritecopy
+writecopyloop:
+	JR_GTEQ32 i writedatalength addzeroelements
+	DATAF v
+	DATA8 v8
+	ARRAY_READ writedata i v 
+	MOVEF_32 v tmp
+	EXTRACTLOWBYTE tmp v8
+	ADD32 i 1 i
+	WRITE8 v8 i8 outdata
+	MOVE32_8 i i8
+	JR_LT32 i wrt writecopyloop
+	JR endwritecopy
+addzeroelements:
+	ADD32 i 1 i 
+	MOVE32_8 i i8
+	WRITE8 0 i8 outdata
+	JR_LT32 i wrt addzeroelements	
+endwritecopy:
+
+	// finally send data
+	DATA8 wrt8
+	MOVE32_8 wrt wrt8
+	INPUT_WRITE layer no wrt8 outdata
+}
+

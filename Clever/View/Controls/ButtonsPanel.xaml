@@ -1,0 +1,98 @@
+﻿<UserControl x:Class="Clever.View.Controls.ButtonsPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Clever.View.Controls"
+             xmlns:buttons="clr-namespace:Clever.View.Controls.Buttons"
+             xmlns:menu="clr-namespace:Clever.View.Controls.Menu"
+             mc:Ignorable="d" 
+             d:DesignHeight="62" d:DesignWidth="800">
+    <UserControl.Resources>
+        <Style x:Key="RoundedTabItemBut" TargetType="TabItem" BasedOn="{StaticResource {x:Type TabItem}}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TabItem">
+                        <Border Name="Border" BorderThickness="0,0,0,3" BorderBrush="{StaticResource buttons_panel_bgd}" Margin="0">
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center" ContentSource="Header" Margin="2,2"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter TargetName="Border" Property="Background" Value="{StaticResource buttons_panel_bgd}" />
+                                <Setter TargetName="Border" Property="BorderBrush" Value="{StaticResource buttons_panel_border_yes}" />
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="false">
+                                <Setter TargetName="Border" Property="Background" Value="{StaticResource buttons_panel_bgd}" />
+                                <Setter TargetName="Border" Property="BorderBrush" Value="{StaticResource buttons_panel_bgd}" />
+                            </Trigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsMouseOver" Value="True" />
+                                    <Condition Property="IsSelected" Value="false" />
+                                </MultiTrigger.Conditions>
+                                <MultiTrigger.Setters>
+                                    <Setter TargetName="Border" Property="Background" Value="{StaticResource buttons_panel_bgd}"/>
+                                    <Setter TargetName="Border" Property="BorderBrush" Value="{StaticResource buttons_panel_border_no}" />
+                                </MultiTrigger.Setters>
+                            </MultiTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="{x:Type Grid}" x:Key="xGrid">
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="true">
+                    <Setter Property="Background" Value="{StaticResource pnl_bgd_mot}"/>
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="false">
+                    <Setter Property="Background" Value="{StaticResource pnl_bgd_mof}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    <Grid Background="{StaticResource buttons_panel_bgd}">
+        <TabControl BorderBrush="{StaticResource tce_bgb}" BorderThickness="1" Background="{StaticResource tce_bgb}">
+            <TabItem x:Name="home" Style="{StaticResource RoundedTabItemBut}" Margin="-6,0,-2,0" Height="26" Width="70"  FontFamily="Calibri" FontSize="14" VerticalAlignment="Bottom">
+                <TabItem.Header>
+                    <TextBlock Text="{Binding Path=GetLocalization[Home]}" FontFamily="Calibri" FontSize="14" VerticalAlignment="Bottom" PreviewMouseRightButtonUp="Home_PreviewMouseRightButtonUp"/>
+                </TabItem.Header>
+                <buttons:HomeButton/>
+            </TabItem>
+            <TabItem x:Name="file" Style="{StaticResource RoundedTabItemBut}" Margin="-6,0,-2,0" Height="26" Width="70" FontFamily="Calibri" FontSize="14" VerticalAlignment="Bottom">
+                <TabItem.Header>
+                    <TextBlock Text="{Binding Path=GetLocalization[File]}" FontFamily="Calibri" FontSize="14" VerticalAlignment="Bottom" PreviewMouseRightButtonUp="File_PreviewMouseRightButtonUp"/>
+                </TabItem.Header>
+                <buttons:FileButton/>
+            </TabItem>
+            <TabItem x:Name="edit" Style="{StaticResource RoundedTabItemBut}" Margin="-6,0,-2,0" Height="26" Width="70" FontFamily="Calibri" FontSize="14" VerticalAlignment="Bottom">
+                <TabItem.Header>
+                    <TextBlock Text="{Binding Path=GetLocalization[Edit]}" FontFamily="Calibri" FontSize="14" VerticalAlignment="Bottom" PreviewMouseRightButtonUp="Edit_PreviewMouseRightButtonUp"/>
+                </TabItem.Header>
+                <buttons:EditButton/>
+            </TabItem>
+            <TabItem x:Name="compile" Style="{StaticResource RoundedTabItemBut}" Margin="-6,0,-2,0" Height="26" Width="70" FontFamily="Calibri" FontSize="14" VerticalAlignment="Bottom">
+                <TabItem.Header>
+                    <TextBlock Text="{Binding Path=GetLocalization[Brick]}" FontFamily="Calibri" FontSize="14" VerticalAlignment="Bottom" PreviewMouseRightButtonUp="Brick_PreviewMouseRightButtonUp"/>
+                </TabItem.Header>
+                <buttons:CompileButton/>
+            </TabItem>
+        </TabControl>
+        <Popup PlacementTarget="{Binding ElementName=home}" x:Name="homePopup" StaysOpen="False" Placement="Right" VerticalOffset="26" HorizontalOffset="-70" Width="{StaticResource home_menu_width}" Height="{StaticResource home_menu_height_all}">
+            <menu:HomeMenu/>
+        </Popup>
+        
+        <Popup PlacementTarget="{Binding ElementName=file}" x:Name="filePopup" StaysOpen="False" Placement="Right" VerticalOffset="26" HorizontalOffset="-70" Width="{StaticResource file_menu_width}" Height="{StaticResource file_menu_height_all}">
+            <menu:FileMenu/>
+        </Popup>
+
+        <Popup PlacementTarget="{Binding ElementName=edit}" x:Name="editPopup" StaysOpen="False" Placement="Right" VerticalOffset="26" HorizontalOffset="-70" Width="{StaticResource edit_menu_width}" Height="{StaticResource edit_menu_height_all}">
+            <menu:EditMenu/>
+        </Popup>
+
+        <Popup PlacementTarget="{Binding ElementName=compile}" x:Name="compilePopup" StaysOpen="False" Placement="Right" VerticalOffset="26" HorizontalOffset="-70" Width="{StaticResource com_menu_width}" Height="{StaticResource com_menu_height_all}">
+            <menu:CompileMenu/>
+        </Popup>
+
+    </Grid>
+</UserControl>

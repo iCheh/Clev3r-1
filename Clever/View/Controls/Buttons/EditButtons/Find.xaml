@@ -1,0 +1,17 @@
+﻿<UserControl x:Class="Clever.View.Controls.Buttons.EditButtons.Find"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Clever.View.Controls.Buttons.EditButtons"
+             xmlns:find_but="clr-namespace:Clever.View.Controls.Buttons.FindButtons"
+             mc:Ignorable="d" 
+             d:DesignHeight="50" d:DesignWidth="200">
+    <Grid Height="22">
+        <Rectangle Height="22" Fill="White" Width="175" RadiusX="3" RadiusY="3" HorizontalAlignment="Left"/>
+        <StackPanel Orientation="Horizontal" Margin="5,0,0,0">
+            <TextBox x:Name="FindFile" Background="White" BorderThickness="0" BorderBrush="White" Height="20" Width="149" Margin="0" FontFamily="Consolas" FontSize="12" Padding="3" KeyDown="FindFile_KeyDown" Text="{Binding Path=TextFind, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+            <find_but:ButtonFind Margin="2,0,0,0"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

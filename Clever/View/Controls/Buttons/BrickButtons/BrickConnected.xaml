@@ -1,0 +1,66 @@
+﻿<UserControl x:Class="Clever.View.Controls.Buttons.BrickButtons.BrickConnected"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Clever.View.Controls.Buttons.BrickButtons"
+             mc:Ignorable="d" 
+             d:DesignHeight="25" d:DesignWidth="25">
+    <UserControl.Resources>
+        <Style x:Key="brick_connect" TargetType="ToggleButton" BasedOn="{StaticResource {x:Type ToggleButton}}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ToggleButton">
+                        <Border BorderBrush="{StaticResource tpr_bgd}" BorderThickness="0" Name="border">
+                            <ContentPresenter RecognizesAccessKey="True" Margin="{TemplateBinding Padding}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsMouseOver" Value="True" />
+                                    <Condition Property="IsChecked" Value="false" />
+                                </MultiTrigger.Conditions>
+                                <MultiTrigger.Setters>
+                                    <Setter TargetName="border" Property="Background" Value="{StaticResource tpr_bgd}"/>
+                                    <Setter Property="Content" Value="{StaticResource brick_connected_mot}"/>
+                                </MultiTrigger.Setters>
+                            </MultiTrigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsMouseOver" Value="false" />
+                                    <Condition Property="IsChecked" Value="false" />
+                                </MultiTrigger.Conditions>
+                                <MultiTrigger.Setters>
+                                    <Setter TargetName="border" Property="Background" Value="{StaticResource tpr_bgd}"/>
+                                    <Setter Property="Content" Value="{StaticResource brick_connected_mof}"/>
+                                </MultiTrigger.Setters>
+                            </MultiTrigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsPressed" Value="true" />
+                                    <Condition Property="IsChecked" Value="false" />
+                                </MultiTrigger.Conditions>
+                                <MultiTrigger.Setters>
+                                    <Setter TargetName="border" Property="Background" Value="{StaticResource tpr_bgd}"/>
+                                    <Setter Property="Content" Value="{StaticResource brick_connected_clc}"/>
+                                </MultiTrigger.Setters>
+                            </MultiTrigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsChecked" Value="true" />
+                                </MultiTrigger.Conditions>
+                                <MultiTrigger.Setters>
+                                    <Setter TargetName="border" Property="Background" Value="{StaticResource tpr_bgd}"/>
+                                    <Setter Property="Content" Value="{StaticResource brick_connected_on}"/>
+                                </MultiTrigger.Setters>
+                            </MultiTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <ToggleButton Style="{StaticResource brick_connect}" Height="25" Width="25" ToolTip="{Binding Path=GetLocalization[tBrkConnect]}" IsChecked="{Binding Path=BrickConnect, Mode=TwoWay}"/>
+    </Grid>
+</UserControl>

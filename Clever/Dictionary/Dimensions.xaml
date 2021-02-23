@@ -1,0 +1,112 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Clever.Dictionary"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+    <sys:Double x:Key="pnl_but_height">22</sys:Double>
+    <sys:Double x:Key="pnl_but_width">22</sys:Double>
+
+    <sys:Double x:Key="brk_but_height">33</sys:Double>
+    <sys:Double x:Key="brk_but_width">33</sys:Double>
+    
+    <!-- Стили Home menu -->
+    <sys:Double x:Key="home_menu_height_all">78</sys:Double>
+    <sys:Double x:Key="home_menu_height_one">26</sys:Double>
+    <sys:Double x:Key="home_menu_width">140</sys:Double>
+    <GridLength x:Key="home_menu_c0_width">5</GridLength>
+    <GridLength x:Key="home_menu_c1_width">135</GridLength>
+    <sys:Double x:Key="home_menu_label_width">135</sys:Double>
+    <sys:Double x:Key="home_menu_text_width">130</sys:Double>
+    <FontFamily x:Key="home_menu_fontfamily">Calibri</FontFamily>
+    <sys:Double x:Key="home_menu_fontsize">14</sys:Double>
+    <SolidColorBrush x:Key="home_menu_foreground" Color="#000000"/>
+
+    <!-- Стили EV3Brick menu -->
+    <sys:Double x:Key="brk_menu_height_all">26</sys:Double>
+    <sys:Double x:Key="brk_menu_height_one">26</sys:Double>
+    <sys:Double x:Key="brk_menu_width">140</sys:Double>
+    <GridLength x:Key="brk_menu_c0_width">5</GridLength>
+    <GridLength x:Key="brk_menu_c1_width">135</GridLength>
+    <sys:Double x:Key="brk_menu_label_width">135</sys:Double>
+    <sys:Double x:Key="brk_menu_text_width">130</sys:Double>
+    <FontFamily x:Key="brk_menu_fontfamily">Calibri</FontFamily>
+    <sys:Double x:Key="brk_menu_fontsize">14</sys:Double>
+    <SolidColorBrush x:Key="brk_menu_foreground" Color="#000000"/>
+
+    <!-- Стили Status menu -->
+    <sys:Double x:Key="status_menu_height">26</sys:Double>
+    <sys:Double x:Key="status_menu_width">140</sys:Double>
+    <GridLength x:Key="status_menu_c0_width">5</GridLength>
+    <GridLength x:Key="status_menu_c1_width">135</GridLength>
+    <sys:Double x:Key="status_menu_label_width">135</sys:Double>
+    <sys:Double x:Key="status_menu_text_width">130</sys:Double>
+    <FontFamily x:Key="status_menu_fontfamily">Calibri</FontFamily>
+    <sys:Double x:Key="status_menu_fontsize">14</sys:Double>
+    <SolidColorBrush x:Key="status_menu_foreground" Color="#000000"/>
+
+    <!-- Стили File menu -->
+    <sys:Double x:Key="file_menu_height_all">161</sys:Double>
+    <sys:Double x:Key="file_menu_height_one">26</sys:Double>
+    <sys:Double x:Key="file_menu_width">250</sys:Double>
+    <GridLength x:Key="file_menu_c0_width">30</GridLength>
+    <GridLength x:Key="file_menu_c1_width">160</GridLength>
+    <GridLength x:Key="file_menu_c2_width">60</GridLength>
+    <sys:Double x:Key="file_menu_label_width">160</sys:Double>
+    <sys:Double x:Key="file_menu_text_width">155</sys:Double>
+    <FontFamily x:Key="file_menu_fontfamily">Calibri</FontFamily>
+    <sys:Double x:Key="file_menu_fontsize">14</sys:Double>
+    <SolidColorBrush x:Key="file_menu_foreground" Color="#000000"/>
+
+    <!-- Стили Edit menu -->
+    <sys:Double x:Key="edit_menu_height_all">327</sys:Double>
+    <sys:Double x:Key="edit_menu_height_one">26</sys:Double>
+    <sys:Double x:Key="edit_menu_width">250</sys:Double>
+    <GridLength x:Key="edit_menu_c0_width">30</GridLength>
+    <GridLength x:Key="edit_menu_c1_width">160</GridLength>
+    <GridLength x:Key="edit_menu_c2_width">60</GridLength>
+    <sys:Double x:Key="edit_menu_label_width">160</sys:Double>
+    <sys:Double x:Key="edit_menu_text_width">155</sys:Double>
+    <FontFamily x:Key="edit_menu_fontfamily">Calibri</FontFamily>
+    <sys:Double x:Key="edit_menu_fontsize">14</sys:Double>
+    <SolidColorBrush x:Key="edit_menu_foreground" Color="#000000"/>
+
+    <!-- Стили Preview menu -->
+    <sys:Double x:Key="preview_menu_height_all">78</sys:Double>
+    <sys:Double x:Key="preview_menu_height_one">26</sys:Double>
+    <sys:Double x:Key="preview_menu_width">225</sys:Double>
+    <GridLength x:Key="preview_menu_c0_width">5</GridLength>
+    <GridLength x:Key="preview_menu_c1_width">160</GridLength>
+    <GridLength x:Key="preview_menu_c2_width">60</GridLength>
+    <sys:Double x:Key="preview_menu_label_width">160</sys:Double>
+    <sys:Double x:Key="preview_menu_text_width">155</sys:Double>
+    <FontFamily x:Key="preview_menu_fontfamily">Calibri</FontFamily>
+    <sys:Double x:Key="preview_menu_fontsize">14</sys:Double>
+    <SolidColorBrush x:Key="preview_menu_foreground" Color="#000000"/>
+
+    <!-- Стили Text Edit menu -->
+    <sys:Double x:Key="te_menu_height_all">311</sys:Double>
+    <sys:Double x:Key="te_menu_height_one">26</sys:Double>
+    <sys:Double x:Key="te_menu_width">225</sys:Double>
+    <GridLength x:Key="te_menu_c0_width">5</GridLength>
+    <GridLength x:Key="te_menu_c1_width">160</GridLength>
+    <GridLength x:Key="te_menu_c2_width">60</GridLength>
+    <sys:Double x:Key="te_menu_label_width">160</sys:Double>
+    <sys:Double x:Key="te_menu_text_width">155</sys:Double>
+    <FontFamily x:Key="te_menu_fontfamily">Calibri</FontFamily>
+    <sys:Double x:Key="te_menu_fontsize">14</sys:Double>
+    <SolidColorBrush x:Key="te_menu_foreground" Color="#000000"/>
+
+    <!-- Стили Compile menu -->
+    <sys:Double x:Key="com_menu_height_all">130</sys:Double>
+    <sys:Double x:Key="com_menu_height_one">26</sys:Double>
+    <sys:Double x:Key="com_menu_width">280</sys:Double>
+    <GridLength x:Key="com_menu_c0_width">30</GridLength>
+    <GridLength x:Key="com_menu_c1_width">190</GridLength>
+    <GridLength x:Key="com_menu_c2_width">60</GridLength>
+    <sys:Double x:Key="com_menu_label_width">190</sys:Double>
+    <sys:Double x:Key="com_menu_text_width">185</sys:Double>
+    <FontFamily x:Key="com_menu_fontfamily">Calibri</FontFamily>
+    <sys:Double x:Key="com_menu_fontsize">14</sys:Double>
+    <SolidColorBrush x:Key="com_menu_foreground" Color="#000000"/>
+
+</ResourceDictionary>

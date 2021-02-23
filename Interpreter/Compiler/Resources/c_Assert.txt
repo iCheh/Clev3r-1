@@ -1,0 +1,134 @@
+// -------------------------------------- EXTENSION MODULE: ASSERT -----------------------------------
+
+subcall ASSERT.FAILED     // SV         TEXT.GETSUBTEXT TEXT.GETSUBTEXTTOEND
+{
+	IN_S message 252
+	
+	UI_DRAW CLEAN
+	UI_DRAW SELECT_FONT 1
+	UI_DRAW TEXT 1 0 16 'ASSERT FAILED'
+
+	DATA16 y
+	MOVE16_16 32 y
+	
+linesloop:
+	DATA16 len	
+	STRINGS GET_SIZE message len
+	JR_LTEQ16 len 22 lastline
+	
+	DATAS oneline 252
+	CALL TEXT.GETSUBTEXT message 1.0 22.0 oneline
+	UI_DRAW TEXT 1 0 y oneline
+	ADD16 y 12 y
+
+	CALL TEXT.GETSUBTEXTTOEND message 23.0 message		
+	JR linesloop
+	
+lastline:
+	UI_DRAW TEXT 1 0 y message
+	UI_DRAW UPDATE	
+}
+
+subcall ASSERT.EQUAL      // SSSV   ASSERT.FAILED TEXT.APPEND
+{
+	IN_S a 252
+	IN_S b 252
+	IN_S message 252
+	
+	DATA8 flag
+	
+	STRINGS COMPARE a b flag
+	JR_NEQ8 flag 0 isok
+	
+	CALL TEXT.APPEND message, ' (', message
+	CALL TEXT.APPEND message, a, message
+	CALL TEXT.APPEND message, '<>', message
+	CALL TEXT.APPEND message, b, message
+	CALL TEXT.APPEND message, ')', message
+	
+	CALL ASSERT.FAILED message	
+isok:
+}
+
+subcall ASSERT.NOTEQUAL      // SSSV     ASSERT.FAILED
+{
+	IN_S a 252
+	IN_S b 252
+	IN_S message 252
+	
+	DATA8 flag
+	
+	STRINGS COMPARE a b flag
+	JR_EQ8 flag 0 isok
+	CALL ASSERT.FAILED message	
+isok:
+}
+
+subcall ASSERT.GREATER      // FFSV     ASSERT.FAILED
+{
+	IN_F a
+	IN_F b
+	IN_S message 252
+	
+	JR_GTF a b isok
+	CALL ASSERT.FAILED message	
+isok:
+}
+
+subcall ASSERT.GREATEREQUAL   // FFSV     ASSERT.FAILED
+{
+	IN_F a
+	IN_F b
+	IN_S message 252
+	
+	JR_GTEQF a b isok
+	CALL ASSERT.FAILED message	
+isok:
+}
+
+subcall ASSERT.LESS   // FFSV      ASSERT.FAILED
+{
+	IN_F a
+	IN_F b
+	IN_S message 252
+	
+	JR_LTF a b isok
+	CALL ASSERT.FAILED message	
+isok:
+}
+
+subcall ASSERT.LESSEQUAL   // FFSV    ASSERT.FAILED
+{
+	IN_F a
+	IN_F b
+	IN_S message 252
+	
+	JR_LTEQF a b isok
+	CALL ASSERT.FAILED message	
+isok:
+}
+
+subcall ASSERT.NEAR   // FFSV    ASSERT.FAILED
+{
+	IN_F a
+	IN_F b
+	IN_S message 252
+	
+	DATAF tmp
+	DATAF epsilon
+	MOVE32_F 1 epsilon
+	MOVE32_F 5000000 tmp
+	DIVF epsilon tmp epsilon
+
+	SUBF b epsilon tmp
+	JR_LTF a tmp failed
+	ADDF b epsilon tmp
+	JR_GTF a tmp failed
+		
+	RETURN
+	
+failed:	
+	CALL ASSERT.FAILED message	
+}
+
+

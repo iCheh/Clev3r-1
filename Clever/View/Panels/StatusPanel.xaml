@@ -1,0 +1,44 @@
+﻿<UserControl x:Class="Clever.View.Panels.StatusPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Clever.View.Panels"
+             xmlns:menu="clr-namespace:Clever.View.Controls.Menu"
+             mc:Ignorable="d" 
+             d:DesignHeight="200" d:DesignWidth="800">
+    <Grid>
+        <ListBox x:Name="statusMessage" 
+                 Background="{StaticResource status_panel_bgd}" 
+                 Margin="3" 
+                 ItemsSource="{Binding Path=Status}" 
+                 PreviewMouseDoubleClick="StatusMessage_PreviewMouseDoubleClick"
+                 BorderBrush="{StaticResource status_panel_bgd}"
+                 BorderThickness="0" 
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                 PreviewMouseRightButtonUp="StatusMessage_PreviewMouseRightButtonUp">
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Setter Property="Width" Value="{Binding (Grid.ActualWidth), RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Grid}}}" />
+                    <Setter Property="Height" Value="20"/>
+                </Style>
+            </ListBox.ItemContainerStyle>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Text="{Binding}" TextWrapping="WrapWithOverflow" Margin="5,2,10,2" FontSize="12" FontFamily="Calibri" Foreground="#BBC0CC"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Popup x:Name="statusPopup"
+               IsOpen="{Binding Path=StatusMenuOpen, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+               PlacementTarget="{Binding ElementName=statusMessage}"
+               StaysOpen="False"
+               Placement="MousePoint"
+               Width="{StaticResource status_menu_width}"
+               Height="{StaticResource status_menu_height}">
+            <menu:StatusMenu/>
+        </Popup>
+    </Grid>
+</UserControl>

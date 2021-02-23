@@ -1,0 +1,16 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Clever.Dictionary">
+
+    <Style x:Key="StackPanelInfo" TargetType="{x:Type StackPanel}">
+        <Style.Triggers>
+            <Trigger Property="IsEnabled" Value="true">
+                <Setter Property="Background" Value="Yellow"/>
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="false">
+                <Setter Property="Background" Value="Red"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    
+</ResourceDictionary>

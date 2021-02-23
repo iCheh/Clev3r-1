@@ -1,0 +1,65 @@
+﻿<UserControl x:Class="Clever.View.Controls.Buttons.EditButton"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Clever.View.Controls.Buttons"
+             xmlns:edit_but="clr-namespace:Clever.View.Controls.Buttons.EditButtons"
+             mc:Ignorable="d" 
+             d:DesignHeight="50" d:DesignWidth="1000">
+    <Grid>
+        <StackPanel Orientation="Horizontal">
+            <edit_but:ButtonEditSelectAll Margin="5,0,0,0"/>
+            <edit_but:ButtonEditCopy Margin="10,0,0,0"/>
+            <edit_but:ButtonEditCut Margin="10,0,0,0"/>
+            <edit_but:ButtonEditPaste Margin="10,0,0,0"/>
+            <Canvas Width="2" Height="{StaticResource pnl_but_height}" Margin="10,0,0,0">
+                <Canvas.Background>
+                    <DrawingBrush>
+                        <DrawingBrush.Drawing>
+                            <DrawingGroup ClipGeometry="M0,0 V27 H2 V0 H0 Z">
+                                <DrawingGroup Opacity="1">
+                                    <GeometryDrawing Brush="{StaticResource delimeter}" Geometry="F1 M2,27z M0,0z M1,27C0.5,27,0,26.626,0,26L0,1C0,0.5 0.375,0 1,0 1.625,0 2,0.375 2,1L2,26C2,26.626,1.5,27,1,27z" />
+                                </DrawingGroup>
+                            </DrawingGroup>
+                        </DrawingBrush.Drawing>
+                    </DrawingBrush>
+                </Canvas.Background>
+            </Canvas>
+            <edit_but:ButtonEditUndo Margin="10,0,0,0"/>
+            <edit_but:ButtonEditRedo Margin="10,0,0,0"/>
+            <Canvas Width="2" Height="{StaticResource pnl_but_height}" Margin="10,0,0,0">
+                <Canvas.Background>
+                    <DrawingBrush>
+                        <DrawingBrush.Drawing>
+                            <DrawingGroup ClipGeometry="M0,0 V27 H2 V0 H0 Z">
+                                <DrawingGroup Opacity="1">
+                                    <GeometryDrawing Brush="{StaticResource delimeter}" Geometry="F1 M2,27z M0,0z M1,27C0.5,27,0,26.626,0,26L0,1C0,0.5 0.375,0 1,0 1.625,0 2,0.375 2,1L2,26C2,26.626,1.5,27,1,27z" />
+                                </DrawingGroup>
+                            </DrawingGroup>
+                        </DrawingBrush.Drawing>
+                    </DrawingBrush>
+                </Canvas.Background>
+            </Canvas>
+            <edit_but:ButtonEditShowNumber Margin="10,0,0,0"/>
+            <edit_but:ButtonEditWrap Margin="10,0,0,0"/>
+            <edit_but:ButtonEditFormat Margin="10,0,0,0"/>
+            <edit_but:ButtonEditShowLine Margin="10,0,0,0"/>
+            <edit_but:ButtonEditShowSpace Margin="10,0,0,0"/>
+            <Canvas Width="2" Height="{StaticResource pnl_but_height}" Margin="10,0,0,0">
+                <Canvas.Background>
+                    <DrawingBrush>
+                        <DrawingBrush.Drawing>
+                            <DrawingGroup ClipGeometry="M0,0 V27 H2 V0 H0 Z">
+                                <DrawingGroup Opacity="1">
+                                    <GeometryDrawing Brush="{StaticResource delimeter}" Geometry="F1 M2,27z M0,0z M1,27C0.5,27,0,26.626,0,26L0,1C0,0.5 0.375,0 1,0 1.625,0 2,0.375 2,1L2,26C2,26.626,1.5,27,1,27z" />
+                                </DrawingGroup>
+                            </DrawingGroup>
+                        </DrawingBrush.Drawing>
+                    </DrawingBrush>
+                </Canvas.Background>
+            </Canvas>
+            <edit_but:Find Margin="10,0,0,0"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

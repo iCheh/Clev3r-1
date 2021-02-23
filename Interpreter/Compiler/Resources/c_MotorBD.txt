@@ -1,0 +1,44 @@
+﻿// ------------------------------------------ EV3 MODULE: MOTORBD ----------------------------------------------
+
+inline MOTORBD.OFF // V
+{
+	OUTPUT_POWER 0 10 0
+	OUTPUT_STOP 0 10 0
+}
+
+inline MOTORBD.OFFANDBRAKE // V
+{
+	OUTPUT_POWER 0 10 0
+	OUTPUT_STOP 0 10 1
+}
+
+inline MOTORBD.SETSPEED    // FV
+{
+	MOVEF_8 :0 setSpeedB
+	OUTPUT_SPEED 0 10 setSpeedB
+}
+
+inline MOTORBD.SETPOWER   // FV
+{
+	MOVEF_8 :0 setPowerB
+	OUTPUT_POWER 0 10 setPowerB
+}
+
+inline MOTORBD.STARTSPEED    // FV
+{
+	MOVEF_8 :0 setSpeedB
+	OUTPUT_SPEED 0 10 setSpeedB
+	OUTPUT_START 0 10
+}
+
+inline MOTORBD.STARTPOWER   // FV
+{
+	MOVEF_8 :0 setPowerB
+	OUTPUT_POWER 0 10 setPowerB
+	OUTPUT_START 0 10
+}
+
+inline MOTORBD.START   // V
+{
+	OUTPUT_START 0 10
+}

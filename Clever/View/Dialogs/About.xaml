@@ -1,0 +1,52 @@
+﻿<Window x:Class="Clever.View.Dialogs.About"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Clever.View.Dialogs"
+        mc:Ignorable="d"
+        Title="CLEVƎR TEAM" Height="370" Width="400" WindowStartupLocation="CenterScreen">
+    <Grid Margin="0" Background="{StaticResource about_bgd}">
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+            <Grid Margin="30">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="15"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="15"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="25"/>
+
+                </Grid.RowDefinitions>
+                <TextBlock Text="UI design:" Margin="5,0,0,0" Grid.Row="0" FontFamily="Calibri" FontSize="16" VerticalAlignment="Center"/>
+                <TextBlock Text="ATOMo team. Kazakhstan." Margin="5,0,0,0" Grid.Row="1" FontFamily="Calibri" FontSize="14" VerticalAlignment="Center"/>
+                <Label Grid.Row="2" Height="25">
+                    <Hyperlink NavigateUri="http://atomorobotics.ru/" Click="Atom_Click">
+                        <TextBlock Text="http://atomorobotics.ru/" FontFamily="Calibri" FontSize="14" VerticalAlignment="Center"/>
+                    </Hyperlink>
+                </Label>
+
+                <TextBlock Text="Tests:" Margin="5,0,0,0" Grid.Row="4" FontFamily="Calibri" FontSize="16" VerticalAlignment="Center"/>
+                <TextBlock Text="Op[ti]mum team. Ukraine." Margin="5,0,0,0" Grid.Row="5" FontFamily="Calibri" FontSize="14" VerticalAlignment="Center"/>
+                <Label Grid.Row="6" Height="25">
+                    <Hyperlink NavigateUri="https://facebook.com/optimum.robotics.team" Click="Optimum_Click">
+                        <TextBlock Text="https://facebook.com/optimum.robotics.team" FontFamily="Calibri" FontSize="14" VerticalAlignment="Center"/>
+                    </Hyperlink>
+                </Label>
+
+                <TextBlock Text="Development:" Margin="5,0,0,0" Grid.Row="8" FontFamily="Calibri" FontSize="16" VerticalAlignment="Center"/>
+                <TextBlock Text="RoboMaks team. Russia." Margin="5,0,0,0" Grid.Row="9" FontFamily="Calibri" FontSize="14" VerticalAlignment="Center"/>
+                <Label Grid.Row="10" Height="25">
+                    <Hyperlink NavigateUri="https://robomaks.ru" Click="Robomaks_Click">
+                        <TextBlock Text="https://robomaks.ru" FontFamily="Calibri" FontSize="14" VerticalAlignment="Center"/>
+                    </Hyperlink>
+                </Label>
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+</Window>

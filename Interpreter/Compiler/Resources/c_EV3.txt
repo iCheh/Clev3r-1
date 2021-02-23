@@ -1,0 +1,168 @@
+// ------------------------------------------ EV3 MODULE: EV3 -------------------------------------------------
+
+DATA16 FD_NATIVECODECOMMAND
+DATA16 FD_NATIVECODERESPONSE
+
+
+subcall EV3.SETLEDCOLOR    // SSV
+{
+	IN_S color 8		// only receive first 7 characters
+	IN_S effect 8       // only receive first 7 characters
+	
+	ARRAY8 color_1 4	// split up to be able to do some operations with 4 bytes each
+	ARRAY8 color_2 4
+	ARRAY8 effect_1 4
+	ARRAY8 effect_2 4
+
+	STRINGS DUPLICATE color color_1
+	STRINGS DUPLICATE effect effect_1	
+	AND8888_32 color_1 -538976289 color_1        // AND 0xdfdfdfdf performs an upcase for 4 letters
+	AND8888_32 color_2 -538976289 color_2        // AND 0xdfdfdfdf performs an upcase for 4 letters
+	AND8888_32 effect_1 -538976289 effect_1      // AND 0xdfdfdfdf performs an upcase for 4 letters	
+	AND8888_32 effect_2 -538976289 effect_2      // AND 0xdfdfdfdf performs an upcase for 4 letters	
+	
+	DATA8 col
+	DATA8 flag
+	MOVE8_8 0 col
+	
+	STRINGS COMPARE color_1 'GREEN' flag
+	JR_EQ8 flag 0 notgreen
+	MOVE8_8 1 col
+	JR checkeffect
+notgreen:	
+	STRINGS COMPARE color_1 'RED' flag
+	JR_EQ8 flag 0 notred
+	MOVE8_8 2 col
+	JR checkeffect
+notred:	
+	STRINGS COMPARE color_1 'ORANGE' flag
+	JR_EQ8 flag 0 setcol
+	MOVE8_8 3 col
+checkeffect:
+	
+	STRINGS COMPARE effect_1 'FLASH' flag
+	JR_EQ8 flag 0 noflash
+	ADD8 col 3 col
+	JR setcol
+noflash:
+	STRINGS COMPARE effect_1 'PULSE' flag
+	JR_EQ8 flag 0 setcol
+	ADD8 col 6 col	
+	
+setcol:
+	UI_WRITE LED col
+}
+
+subcall EV3.TIME  // F
+{
+	OUT_F time
+	
+	DATA32 ms
+	DATAF thousand
+	
+	TIMER_READ ms
+	MOVE32_F ms time	
+}
+
+
+subcall EV3.BATTERYLEVEL  // F
+{
+	OUT_F level
+
+	DATA8 l8
+	UI_READ GET_LBATT l8
+	MOVE8_F l8 level
+}
+
+subcall EV3.BATTERYVOLTAGE  // F
+{
+	OUT_F voltage
+	UI_READ GET_VBATT voltage
+}
+
+subcall EV3.BATTERYCURRENT  // F
+{
+	OUT_F current
+	UI_READ GET_IBATT current
+}
+
+subcall EV3.BRICKNAME     // S
+{
+	OUT_S result 252
+	COM_GET GET_BRICKNAME 18 result
+}
+
+subcall EV3.SYSTEMCALL     // SF
+{
+	IN_S commandline 252
+	OUT_F result
+
+	DATA32 result32
+	DATA8 result00
+	DATA8 result01
+	DATA8 result02
+	DATA8 result03
+
+	SYSTEM commandline result00
+	MOVE8_32 result01 result32
+	AND32 result32 255 result32
+
+	MOVE32_F result32 result
+}
+
+inline EV3.QUEUENEXTCOMMAND        // V
+{
+}
+
+subcall EV3.NATIVECODE   // SF
+{
+	IN_S command 252
+	OUT_F response
+
+	DATA8 errorcode00 
+	DATA8 errorcode01 
+	DATA8 errorcode02 
+	DATA8 errorcode03
+	DATA32 filesize
+	DATAS responsetxt 128
+
+	// check if native code process is already running
+	JR_NEQ16 0 FD_NATIVECODECOMMAND alreadyrunning
+
+	// create/open named pipes
+	SYSTEM 'mknod /tmp/nativecodecommand p' errorcode00
+	SYSTEM 'mknod /tmp/nativecoderesponse p' errorcode00
+
+	// fire up the native code process
+	SYSTEM '/tmp/nativecode </tmp/nativecodecommand >/tmp/nativecoderesponse &' errorcode00
+	JR_NEQ8 errorcode01 0 errorclose
+
+	FILE OPEN_WRITE '/tmp/nativecodecommand' FD_NATIVECODECOMMAND
+	JR_LT16 FD_NATIVECODECOMMAND 1 errorclose
+	FILE OPEN_READ '/tmp/nativecoderesponse' FD_NATIVECODERESPONSE filesize
+	JR_LT16 FD_NATIVECODERESPONSE 1 errorclose
+
+alreadyrunning:
+	FILE WRITE_TEXT FD_NATIVECODECOMMAND 6 command
+
+//	DATA32 timer
+//	TIMER_WAIT 5 timer
+//	TIMER_READY timer
+
+	FILE READ_TEXT  FD_NATIVECODERESPONSE 6 127 responsetxt
+	STRINGS STRING_TO_VALUE responsetxt response
+	RETURN
+
+errorclose:
+	JR_EQ16 FD_NATIVECODECOMMAND 0 notopen1
+	FILE CLOSE FD_NATIVECODECOMMAND
+	MOVE16_16 0 FD_NATIVECODECOMMAND 
+notopen1:
+	JR_EQ16 FD_NATIVECODERESPONSE 0 notopen2
+	FILE CLOSE FD_NATIVECODERESPONSE
+	MOVE16_16 0 FD_NATIVECODERESPONSE 
+notopen2:
+	MOVEF_F -1.0 response
+}
+
+

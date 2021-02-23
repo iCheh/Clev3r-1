@@ -1,0 +1,87 @@
+﻿// ------------------------------------------ EV3 MODULE: MOTORB ----------------------------------------------
+
+DATA32 getTachoB
+DATA32 tmpTachoB
+DATA8 getSpeedB
+DATA8 setSpeedB
+DATA8 setPowerB
+
+inline MOTORB.GETTACHO    // F
+{
+	OUTPUT_GET_COUNT 0 1 getTachoB
+	MOVE32_F getTachoB :0
+}
+
+inline MOTORB.GETSPEED    // F
+{
+	OUTPUT_READ 0 1 getSpeedB tmpTachoB
+	MOVE8_F getSpeedB :0
+}
+
+inline MOTORB.RESETCOUNT // V
+{
+	OUTPUT_CLR_COUNT 0 2
+}
+
+inline MOTORB.SETDIRECTPOLARITY // V
+{
+	OUTPUT_POLARITY 0 2 1
+}
+
+inline MOTORB.SETREVERSPOLARITY // V
+{
+	OUTPUT_POLARITY 0 2 -1
+}
+
+inline MOTORB.OFF // V
+{
+	OUTPUT_POWER 0 2 0
+	OUTPUT_STOP 0 2 0
+}
+
+inline MOTORB.OFFANDBRAKE // V
+{
+	OUTPUT_POWER 0 2 0
+	OUTPUT_STOP 0 2 1
+}
+
+inline MOTORB.ISLARGE // V
+{
+	OUTPUT_SET_TYPE 0 1 7
+}
+
+inline MOTORB.ISMEDIUM // V
+{
+	OUTPUT_SET_TYPE 0 1 8
+}
+
+inline MOTORB.SETSPEED    // FV
+{
+	MOVEF_8 :0 setSpeedB
+	OUTPUT_SPEED 0 2 setSpeedB
+}
+
+inline MOTORB.SETPOWER   // FV
+{
+	MOVEF_8 :0 setPowerB
+	OUTPUT_POWER 0 2 setPowerB
+}
+
+inline MOTORB.STARTSPEED    // FV
+{
+	MOVEF_8 :0 setSpeedB
+	OUTPUT_SPEED 0 2 setSpeedB
+	OUTPUT_START 0 2
+}
+
+inline MOTORB.STARTPOWER   // FV
+{
+	MOVEF_8 :0 setPowerB
+	OUTPUT_POWER 0 2 setPowerB
+	OUTPUT_START 0 2
+}
+
+inline MOTORB.START   // V
+{
+	OUTPUT_START 0 2
+}

@@ -1,0 +1,1362 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C36F1832-9768-4409-9D99-A18956823DF7}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Clever</RootNamespace>
+    <AssemblyName>Clever</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>false</DebugSymbols>
+    <DebugType>none</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>none</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>none</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>cleverIcon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>false</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup />
+  <!--
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Clever|AnyCPU'">
+    <OutputPath>bin\Clever\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>none</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+	-->
+  <ItemGroup>
+    <Reference Include="PresentationFramework.Aero2" />
+    <Reference Include="ScintillaNET, Version=3.6.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\jacobslusser.ScintillaNET.3.6.3\lib\net40\ScintillaNET.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="WindowsFormsIntegration" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="CommonData\GUILanguage.cs" />
+    <Compile Include="CommonData\Configurations.cs" />
+    <Compile Include="Model\Bplus\BPInterpreter\Function.cs" />
+    <Compile Include="Model\Bplus\BPInterpreter\Include.cs" />
+    <Compile Include="Model\Bplus\BPInterpreter\Label.cs" />
+    <Compile Include="Model\Bplus\BPInterpreter\Module.cs" />
+    <Compile Include="Model\Bplus\BPInterpreter\Variable.cs" />
+    <Compile Include="Model\Enums\BPType.cs" />
+    <Compile Include="Model\Intellisense\IntellisenseParser.cs" />
+    <Compile Include="Model\Utils\Converter.cs" />
+    <Compile Include="Model\Utils\HelpToolTipModel.cs" />
+    <Compile Include="Model\Utils\ProgramMap.cs" />
+    <Compile Include="Model\Utils\TextLine.cs" />
+    <Compile Include="Model\Utils\WaveSoundPayer.cs" />
+    <Compile Include="ViewModel\PanelsVM\HelperPanelVM.cs" />
+    <Compile Include="ViewModel\PanelsVM\MediaPanelVM.cs" />
+    <Compile Include="View\Content\HelpToolTip.xaml.cs">
+      <DependentUpon>HelpToolTip.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Panels\HelperPanel.xaml.cs">
+      <DependentUpon>HelperPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Panels\MediaPanel.xaml.cs">
+      <DependentUpon>MediaPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Panels\MediaPanelItemHeader.xaml.cs">
+      <DependentUpon>MediaPanelItemHeader.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Panels\StatusPanel.xaml.cs">
+      <DependentUpon>StatusPanel.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Brick\Communication\ConnectionTypeDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Brick\Communication\IPAddressDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dictionary\BrickIcons.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dictionary\Brushes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dictionary\CompileIcons.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dictionary\Dimensions.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dictionary\EditIcons.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dictionary\EV3Icon.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dictionary\FileIcons.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dictionary\FindIcons.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dictionary\HomeIcons.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dictionary\Icons.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dictionary\Intellisense.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dictionary\RestIcons.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dictionary\TabItemStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dictionary\TreeViewItemStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Content\HelpToolTip.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\ButtonsPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\Buttons\BrickButtons\BrickCompile.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\Buttons\BrickButtons\BrickCompileAndRun.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\Buttons\BrickButtons\BrickFolderUp1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\Buttons\BrickButtons\BrickFolderUp2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\Buttons\BrickButtons\BrickConnected.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\Buttons\BrickButtons\BrickDelete.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\Buttons\BrickButtons\BrickDownload.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\Buttons\BrickButtons\BrickNewFolder.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\Buttons\BrickButtons\BrickPreview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\Buttons\BrickButtons\BrickRun.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\Buttons\BrickButtons\BrickStop.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\Buttons\BrickButtons\BrickUpload1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\Buttons\BrickButtons\BrickUpload2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\Buttons\CompileButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\Buttons\CompileButtons\ButtonCompile.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\Buttons\CompileButtons\ButtonCompileAndRun.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\Buttons\CompileButtons\ButtonConnect.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\Buttons\CompileButtons\ButtonDownload.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\Buttons\CompileButtons\ButtonStop.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\Buttons\EditButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\Buttons\EditButtons\ButtonEditCopy.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\Buttons\EditButtons\ButtonEditCut.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\Buttons\EditButtons\ButtonEditFormat.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\Buttons\EditButtons\ButtonEditPaste.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\Buttons\EditButtons\ButtonEditRedo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\Buttons\EditButtons\ButtonEditSelectAll.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\Buttons\EditButtons\ButtonEditShowLine.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\Buttons\EditButtons\ButtonEditShowNumber.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\Buttons\EditButtons\ButtonEditShowSpace.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\Buttons\EditButtons\ButtonEditUndo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\Buttons\EditButtons\ButtonEditWrap.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\Buttons\EditButtons\Find.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\Buttons\FileButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\Buttons\FileButtons\ButtonFileCloseAll.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\Buttons\FileButtons\ButtonFileNew.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\Buttons\FileButtons\ButtonFileOpen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\Buttons\FileButtons\ButtonFileSave.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\Buttons\FileButtons\ButtonFileSaveAll.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\Buttons\FileButtons\ButtonFileSaveAs.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\Buttons\FindButtons\ButtonFind.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\Buttons\FindButtons\hButtonFind.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\Buttons\HomeButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\Buttons\HomeButtons\hButtonCompile.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\Buttons\HomeButtons\hButtonCompileAndRun.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\Buttons\HomeButtons\hButtonConnect.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\Buttons\HomeButtons\hButtonDownload.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\Buttons\HomeButtons\hButtonEditCopy.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\Buttons\HomeButtons\hButtonEditCut.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\Buttons\HomeButtons\hButtonEditFormat.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\Buttons\HomeButtons\hButtonEditPaste.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\Buttons\HomeButtons\hButtonEditRedo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\Buttons\HomeButtons\hButtonEditSelectAll.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\Buttons\HomeButtons\hButtonEditShowLine.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\Buttons\HomeButtons\hButtonEditShowNumber.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\Buttons\HomeButtons\hButtonEditShowSpace.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\Buttons\HomeButtons\hButtonEditUndo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\Buttons\HomeButtons\hButtonEditWrap.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\Buttons\HomeButtons\hButtonFileCloseAll.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\Buttons\HomeButtons\hButtonFileNew.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\Buttons\HomeButtons\hButtonFileOpen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\Buttons\HomeButtons\hButtonFileSave.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\Buttons\HomeButtons\hButtonFileSaveAll.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\Buttons\HomeButtons\hButtonFileSaveAs.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\Buttons\HomeButtons\hButtonStop.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\Buttons\HomeButtons\hFind.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\EditorPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\Editors\Editor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\Editors\EditorHeader.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\Editors\ProgramNamePanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\Helps\EV3.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\Helps\EV3Brick.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\HelpPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\Helps\EV3Help.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\Helps\EV3Preview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\Helps\Help.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\Helps\QuestionBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Controls\Helps\View.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\Intellisense\HeaderEvent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\Intellisense\HeaderKeyword.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\Intellisense\HeaderMethod.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\Intellisense\HeaderObject.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\Intellisense\HeaderOperators.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\Intellisense\HeaderProperty.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\Intellisense\MainTree.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\Intellisense\Test.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\Menu\CompileMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\Menu\EditMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\Menu\FileMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\Menu\HomeMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\Menu\EV3BrickMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\Menu\PreviewMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\Menu\StatusMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\Menu\TextEditorMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Dialogs\About.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Dialogs\AssociationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Dialogs\FirstAssociationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Dialogs\LanguageWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Dialogs\MessageWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Dialogs\NameValidator.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Dialogs\SaveAllPrograms.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Dialogs\SaveOneProgram.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Dialogs\SetNames.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Dialogs\SetNamesOld.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Dialogs\UnAssociationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Brick\Communication\BinaryBuffer.cs" />
+    <Compile Include="Brick\Communication\ByteCodeBuffer.cs" />
+    <Compile Include="Brick\Communication\ConnectionFinder.cs" />
+    <Compile Include="Brick\Communication\ConnectionTypeDialog.xaml.cs">
+      <DependentUpon>ConnectionTypeDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Brick\Communication\EV3Connection.cs" />
+    <Compile Include="Brick\Communication\EV3ConnectionBluetooth.cs" />
+    <Compile Include="Brick\Communication\EV3ConnectionUSB.cs" />
+    <Compile Include="Brick\Communication\EV3ConnectionWiFi.cs" />
+    <Compile Include="Brick\Communication\EV3RemoteControler.cs" />
+    <Compile Include="Brick\Communication\IPAddressDialog.xaml.cs">
+      <DependentUpon>IPAddressDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Brick\DirectoryEntry.cs" />
+    <Compile Include="Brick\Utils\Reader.cs" />
+    <Compile Include="Brick\Utils\Keys.cs" />
+    <Compile Include="Brick\Utils\ReadKeys.cs" />
+    <Compile Include="Brick\Utils\WriteKeys.cs" />
+    <Compile Include="Brick\Utils\Writer.cs" />
+    <Compile Include="Model\Bplus\BpColors.cs" />
+    <Compile Include="Model\Bplus\BPInterpreter\LineBuilder.cs" />
+    <Compile Include="Model\Bplus\BPInterpreter\TokenBuilder.cs" />
+    <Compile Include="Model\Bplus\BPInterpreter\Tokens.cs" />
+    <Compile Include="Model\Bplus\BPInterpreter\Word.cs" />
+    <Compile Include="Model\Bplus\HotKeyManager.cs" />
+    <Compile Include="Model\Bplus\BpContext.cs" />
+    <Compile Include="Model\Bplus\BpInterop.cs" />
+    <Compile Include="Model\Bplus\TextEditor.cs" />
+    <Compile Include="Model\Bplus\BpLexer.cs" />
+    <Compile Include="Model\Bplus\BpObjects.cs" />
+    <Compile Include="Model\Bplus\SearchManager.cs" />
+    <Compile Include="CommonData\Status.cs" />
+    <Compile Include="Model\Intellisense\IntellisenseClass.cs" />
+    <Compile Include="Model\Intellisense\IntellisenseEvents.cs" />
+    <Compile Include="Model\Intellisense\IntellisenseInfo.cs" />
+    <Compile Include="Model\Intellisense\IntellisenseKeywords.cs" />
+    <Compile Include="Model\Intellisense\IntellisenseMethod.cs" />
+    <Compile Include="Model\Intellisense\IntellisenseObject.cs" />
+    <Compile Include="Model\Intellisense\IntellisenseOperators.cs" />
+    <Compile Include="Model\Intellisense\IntellisenseProperty.cs" />
+    <Compile Include="Model\Intellisense\IntellisenseType.cs" />
+    <Compile Include="Model\Program\CloseProgram.cs" />
+    <Compile Include="Model\Program\NewTabItem.cs" />
+    <Compile Include="Model\Program\OpenFile.cs" />
+    <Compile Include="Model\Program\SaveFile.cs" />
+    <Compile Include="Model\Utils\CleverClient.cs" />
+    <Compile Include="Model\Utils\Elements.cs" />
+    <Compile Include="Model\Utils\KeyRegistry.cs" />
+    <Compile Include="Model\Utils\Localizator.cs" />
+    <Compile Include="Model\Utils\ProgramData.cs" />
+    <Compile Include="Model\Intellisense\ReadXml.cs" />
+    <Compile Include="Model\Utils\ProjectData.cs" />
+    <Compile Include="Model\Utils\SystemMessage.cs" />
+    <Compile Include="Model\Utils\TextEditorEvents.cs" />
+    <Compile Include="Model\Utils\ValidData.cs" />
+    <Compile Include="Model\Utils\ValidName.cs" />
+    <Compile Include="Model\Utils\CleverServer.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\BaseVM\BaseViewModel.cs" />
+    <Compile Include="ViewModel\MainWindowVM.cs" />
+    <Compile Include="ViewModel\PanelsVM\StatusPanelVM.cs" />
+    <Compile Include="ViewModel\BaseVM\RelayCommand.cs" />
+    <Compile Include="View\Controls\ButtonsPanel.xaml.cs">
+      <DependentUpon>ButtonsPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\Buttons\BrickButtons\BrickCompile.xaml.cs">
+      <DependentUpon>BrickCompile.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\Buttons\BrickButtons\BrickCompileAndRun.xaml.cs">
+      <DependentUpon>BrickCompileAndRun.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\Buttons\BrickButtons\BrickFolderUp1.xaml.cs">
+      <DependentUpon>BrickFolderUp1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\Buttons\BrickButtons\BrickFolderUp2.xaml.cs">
+      <DependentUpon>BrickFolderUp2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\Buttons\BrickButtons\BrickConnected.xaml.cs">
+      <DependentUpon>BrickConnected.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\Buttons\BrickButtons\BrickDelete.xaml.cs">
+      <DependentUpon>BrickDelete.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\Buttons\BrickButtons\BrickDownload.xaml.cs">
+      <DependentUpon>BrickDownload.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\Buttons\BrickButtons\BrickNewFolder.xaml.cs">
+      <DependentUpon>BrickNewFolder.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\Buttons\BrickButtons\BrickPreview.xaml.cs">
+      <DependentUpon>BrickPreview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\Buttons\BrickButtons\BrickRun.xaml.cs">
+      <DependentUpon>BrickRun.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\Buttons\BrickButtons\BrickStop.xaml.cs">
+      <DependentUpon>BrickStop.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\Buttons\BrickButtons\BrickUpload1.xaml.cs">
+      <DependentUpon>BrickUpload1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\Buttons\BrickButtons\BrickUpload2.xaml.cs">
+      <DependentUpon>BrickUpload2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\Buttons\CompileButton.xaml.cs">
+      <DependentUpon>CompileButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\Buttons\CompileButtons\ButtonCompile.xaml.cs">
+      <DependentUpon>ButtonCompile.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\Buttons\CompileButtons\ButtonCompileAndRun.xaml.cs">
+      <DependentUpon>ButtonCompileAndRun.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\Buttons\CompileButtons\ButtonConnect.xaml.cs">
+      <DependentUpon>ButtonConnect.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\Buttons\CompileButtons\ButtonDownload.xaml.cs">
+      <DependentUpon>ButtonDownload.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\Buttons\CompileButtons\ButtonStop.xaml.cs">
+      <DependentUpon>ButtonStop.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\Buttons\EditButton.xaml.cs">
+      <DependentUpon>EditButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\Buttons\EditButtons\ButtonEditCopy.xaml.cs">
+      <DependentUpon>ButtonEditCopy.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\Buttons\EditButtons\ButtonEditCut.xaml.cs">
+      <DependentUpon>ButtonEditCut.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\Buttons\EditButtons\ButtonEditFormat.xaml.cs">
+      <DependentUpon>ButtonEditFormat.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\Buttons\EditButtons\ButtonEditPaste.xaml.cs">
+      <DependentUpon>ButtonEditPaste.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\Buttons\EditButtons\ButtonEditRedo.xaml.cs">
+      <DependentUpon>ButtonEditRedo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\Buttons\EditButtons\ButtonEditSelectAll.xaml.cs">
+      <DependentUpon>ButtonEditSelectAll.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\Buttons\EditButtons\ButtonEditShowLine.xaml.cs">
+      <DependentUpon>ButtonEditShowLine.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\Buttons\EditButtons\ButtonEditShowNumber.xaml.cs">
+      <DependentUpon>ButtonEditShowNumber.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\Buttons\EditButtons\ButtonEditShowSpace.xaml.cs">
+      <DependentUpon>ButtonEditShowSpace.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\Buttons\EditButtons\ButtonEditUndo.xaml.cs">
+      <DependentUpon>ButtonEditUndo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\Buttons\EditButtons\ButtonEditWrap.xaml.cs">
+      <DependentUpon>ButtonEditWrap.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\Buttons\EditButtons\Find.xaml.cs">
+      <DependentUpon>Find.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\Buttons\FileButton.xaml.cs">
+      <DependentUpon>FileButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\Buttons\FileButtons\ButtonFileCloseAll.xaml.cs">
+      <DependentUpon>ButtonFileCloseAll.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\Buttons\FileButtons\ButtonFileNew.xaml.cs">
+      <DependentUpon>ButtonFileNew.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\Buttons\FileButtons\ButtonFileOpen.xaml.cs">
+      <DependentUpon>ButtonFileOpen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\Buttons\FileButtons\ButtonFileSave.xaml.cs">
+      <DependentUpon>ButtonFileSave.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\Buttons\FileButtons\ButtonFileSaveAll.xaml.cs">
+      <DependentUpon>ButtonFileSaveAll.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\Buttons\FileButtons\ButtonFileSaveAs.xaml.cs">
+      <DependentUpon>ButtonFileSaveAs.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\Buttons\FindButtons\ButtonFind.xaml.cs">
+      <DependentUpon>ButtonFind.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\Buttons\FindButtons\hButtonFind.xaml.cs">
+      <DependentUpon>hButtonFind.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\Buttons\HomeButton.xaml.cs">
+      <DependentUpon>HomeButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\Buttons\HomeButtons\hButtonCompile.xaml.cs">
+      <DependentUpon>hButtonCompile.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\Buttons\HomeButtons\hButtonCompileAndRun.xaml.cs">
+      <DependentUpon>hButtonCompileAndRun.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\Buttons\HomeButtons\hButtonConnect.xaml.cs">
+      <DependentUpon>hButtonConnect.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\Buttons\HomeButtons\hButtonDownload.xaml.cs">
+      <DependentUpon>hButtonDownload.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\Buttons\HomeButtons\hButtonEditCopy.xaml.cs">
+      <DependentUpon>hButtonEditCopy.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\Buttons\HomeButtons\hButtonEditCut.xaml.cs">
+      <DependentUpon>hButtonEditCut.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\Buttons\HomeButtons\hButtonEditFormat.xaml.cs">
+      <DependentUpon>hButtonEditFormat.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\Buttons\HomeButtons\hButtonEditPaste.xaml.cs">
+      <DependentUpon>hButtonEditPaste.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\Buttons\HomeButtons\hButtonEditRedo.xaml.cs">
+      <DependentUpon>hButtonEditRedo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\Buttons\HomeButtons\hButtonEditSelectAll.xaml.cs">
+      <DependentUpon>hButtonEditSelectAll.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\Buttons\HomeButtons\hButtonEditShowLine.xaml.cs">
+      <DependentUpon>hButtonEditShowLine.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\Buttons\HomeButtons\hButtonEditShowNumber.xaml.cs">
+      <DependentUpon>hButtonEditShowNumber.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\Buttons\HomeButtons\hButtonEditShowSpace.xaml.cs">
+      <DependentUpon>hButtonEditShowSpace.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\Buttons\HomeButtons\hButtonEditUndo.xaml.cs">
+      <DependentUpon>hButtonEditUndo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\Buttons\HomeButtons\hButtonEditWrap.xaml.cs">
+      <DependentUpon>hButtonEditWrap.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\Buttons\HomeButtons\hButtonFileCloseAll.xaml.cs">
+      <DependentUpon>hButtonFileCloseAll.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\Buttons\HomeButtons\hButtonFileNew.xaml.cs">
+      <DependentUpon>hButtonFileNew.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\Buttons\HomeButtons\hButtonFileOpen.xaml.cs">
+      <DependentUpon>hButtonFileOpen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\Buttons\HomeButtons\hButtonFileSave.xaml.cs">
+      <DependentUpon>hButtonFileSave.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\Buttons\HomeButtons\hButtonFileSaveAll.xaml.cs">
+      <DependentUpon>hButtonFileSaveAll.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\Buttons\HomeButtons\hButtonFileSaveAs.xaml.cs">
+      <DependentUpon>hButtonFileSaveAs.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\Buttons\HomeButtons\hButtonStop.xaml.cs">
+      <DependentUpon>hButtonStop.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\Buttons\HomeButtons\hFind.xaml.cs">
+      <DependentUpon>hFind.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\EditorPanel.xaml.cs">
+      <DependentUpon>EditorPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\Editors\Editor.xaml.cs">
+      <DependentUpon>Editor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\Editors\EditorHeader.xaml.cs">
+      <DependentUpon>EditorHeader.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\Editors\ProgramNamePanel.xaml.cs">
+      <DependentUpon>ProgramNamePanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\Helps\EV3.xaml.cs">
+      <DependentUpon>EV3.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\Helps\EV3Brick.xaml.cs">
+      <DependentUpon>EV3Brick.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\HelpPanel.xaml.cs">
+      <DependentUpon>HelpPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\Helps\EV3Help.xaml.cs">
+      <DependentUpon>EV3Help.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\Helps\EV3Preview.xaml.cs">
+      <DependentUpon>EV3Preview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\Helps\Help.xaml.cs">
+      <DependentUpon>Help.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\Helps\QuestionBox.xaml.cs">
+      <DependentUpon>QuestionBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\Helps\View.xaml.cs">
+      <DependentUpon>View.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\Intellisense\HeaderEvent.xaml.cs">
+      <DependentUpon>HeaderEvent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\Intellisense\HeaderKeyword.xaml.cs">
+      <DependentUpon>HeaderKeyword.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\Intellisense\HeaderMethod.xaml.cs">
+      <DependentUpon>HeaderMethod.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\Intellisense\HeaderObject.xaml.cs">
+      <DependentUpon>HeaderObject.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\Intellisense\HeaderOperators.xaml.cs">
+      <DependentUpon>HeaderOperators.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\Intellisense\HeaderProperty.xaml.cs">
+      <DependentUpon>HeaderProperty.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\Intellisense\MainTree.xaml.cs">
+      <DependentUpon>MainTree.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\Intellisense\Test.xaml.cs">
+      <DependentUpon>Test.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\Menu\CompileMenu.xaml.cs">
+      <DependentUpon>CompileMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\Menu\EditMenu.xaml.cs">
+      <DependentUpon>EditMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\Menu\FileMenu.xaml.cs">
+      <DependentUpon>FileMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\Menu\HomeMenu.xaml.cs">
+      <DependentUpon>HomeMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\Menu\EV3BrickMenu.xaml.cs">
+      <DependentUpon>EV3BrickMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\Menu\PreviewMenu.xaml.cs">
+      <DependentUpon>PreviewMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\Menu\StatusMenu.xaml.cs">
+      <DependentUpon>StatusMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\Menu\TextEditorMenu.xaml.cs">
+      <DependentUpon>TextEditorMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Dialogs\About.xaml.cs">
+      <DependentUpon>About.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Dialogs\AssociationWindow.xaml.cs">
+      <DependentUpon>AssociationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Dialogs\FirstAssociationWindow.xaml.cs">
+      <DependentUpon>FirstAssociationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Dialogs\LanguageWindow.xaml.cs">
+      <DependentUpon>LanguageWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Dialogs\MessageWindow.xaml.cs">
+      <DependentUpon>MessageWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Dialogs\NameValidator.xaml.cs">
+      <DependentUpon>NameValidator.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Dialogs\SaveAllPrograms.xaml.cs">
+      <DependentUpon>SaveAllPrograms.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Dialogs\SaveOneProgram.xaml.cs">
+      <DependentUpon>SaveOneProgram.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Dialogs\SetNames.xaml.cs">
+      <DependentUpon>SetNames.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Dialogs\SetNamesOld.xaml.cs">
+      <DependentUpon>SetNamesOld.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Dialogs\UnAssociationWindow.xaml.cs">
+      <DependentUpon>UnAssociationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="View\Panels\HelperPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Panels\MediaPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Panels\MediaPanelItemHeader.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Panels\StatusPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Brick\Communication\EV3Watchdog.lms" />
+    <None Include="Brick\Communication\EV3Watchdog.rbf" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Brick\Communication\Resources\NativeCode.txt" />
+    <Resource Include="Brick\Communication\Resources\WatchDog.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\CleverSplashScreen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="cleverIcon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Controls\Intellisense\Image\Event.png" />
+    <Resource Include="View\Controls\Intellisense\Image\Keyword.png" />
+    <Resource Include="View\Controls\Intellisense\Image\Method.png" />
+    <Resource Include="View\Controls\Intellisense\Image\Object.png" />
+    <Resource Include="View\Controls\Intellisense\Image\Property.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Intellisense\IntellisenseEvent.png" />
+    <Resource Include="Resources\Intellisense\IntellisenseKeyword.png" />
+    <Resource Include="Resources\Intellisense\IntellisenseLabel.png" />
+    <Resource Include="Resources\Intellisense\IntellisenseMethod.png" />
+    <Resource Include="Resources\Intellisense\IntellisenseProperty.png" />
+    <Resource Include="Resources\Intellisense\IntellisenseSubroutine.png" />
+    <Resource Include="Resources\Intellisense\IntellisenseVariable.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Intellisense\IntellisenseObject_emerald.png" />
+    <Resource Include="Resources\Intellisense\IntellisenseObject_green.png" />
+    <Resource Include="Resources\Intellisense\IntellisenseObject_grey.png" />
+    <Resource Include="Resources\Intellisense\IntellisenseObject_red.png" />
+    <Resource Include="Resources\Intellisense\IntellisenseObject_yellow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Intellisense\object_15x15.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Intellisense\IntellisenseObject.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\bluebox.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\splashscreen_nover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Controls\Intellisense\Image\Operators.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Media\png\Accept 1.png" />
+    <Resource Include="Resources\Media\png\Accept 2.png" />
+    <Resource Include="Resources\Media\png\Accept.png" />
+    <Resource Include="Resources\Media\png\Alert.png" />
+    <Resource Include="Resources\Media\png\Angry.png" />
+    <Resource Include="Resources\Media\png\Awake.png" />
+    <Resource Include="Resources\Media\png\Backward.png" />
+    <Resource Include="Resources\Media\png\Bar 0.png" />
+    <Resource Include="Resources\Media\png\Bar 1.png" />
+    <Resource Include="Resources\Media\png\Bar 2.png" />
+    <Resource Include="Resources\Media\png\Bar 3.png" />
+    <Resource Include="Resources\Media\png\Bar 4.png" />
+    <Resource Include="Resources\Media\png\Big smile.png" />
+    <Resource Include="Resources\Media\png\Black eye.png" />
+    <Resource Include="Resources\Media\png\Bomb.png" />
+    <Resource Include="Resources\Media\png\Boom.png" />
+    <Resource Include="Resources\Media\png\Bottom left.png" />
+    <Resource Include="Resources\Media\png\Bottom right.png" />
+    <Resource Include="Resources\Media\png\Box.png" />
+    <Resource Include="Resources\Media\png\Busy 0.png" />
+    <Resource Include="Resources\Media\png\Busy 1.png" />
+    <Resource Include="Resources\Media\png\Color sensor.png" />
+    <Resource Include="Resources\Media\png\Crazy 1.png" />
+    <Resource Include="Resources\Media\png\Crazy 2.png" />
+    <Resource Include="Resources\Media\png\Decline 1.png" />
+    <Resource Include="Resources\Media\png\Decline 2.png" />
+    <Resource Include="Resources\Media\png\Decline.png" />
+    <Resource Include="Resources\Media\png\Dial 0.png" />
+    <Resource Include="Resources\Media\png\Dial 1.png" />
+    <Resource Include="Resources\Media\png\Dial 2.png" />
+    <Resource Include="Resources\Media\png\Dial 3.png" />
+    <Resource Include="Resources\Media\png\Dial 4.png" />
+    <Resource Include="Resources\Media\png\Disappointed.png" />
+    <Resource Include="Resources\Media\png\Dizzy.png" />
+    <Resource Include="Resources\Media\png\Dot empty.png" />
+    <Resource Include="Resources\Media\png\Dot full.png" />
+    <Resource Include="Resources\Media\png\Dots 0.png" />
+    <Resource Include="Resources\Media\png\Dots 1.png" />
+    <Resource Include="Resources\Media\png\Dots 2.png" />
+    <Resource Include="Resources\Media\png\Dots 3.png" />
+    <Resource Include="Resources\Media\png\Down.png" />
+    <Resource Include="Resources\Media\png\EV3 icon.png" />
+    <Resource Include="Resources\Media\png\EV3 small.png" />
+    <Resource Include="Resources\Media\png\EV3.png" />
+    <Resource Include="Resources\Media\png\Evil.png" />
+    <Resource Include="Resources\Media\png\Fire.png" />
+    <Resource Include="Resources\Media\png\Flowers.png" />
+    <Resource Include="Resources\Media\png\Forest.png" />
+    <Resource Include="Resources\Media\png\Forward.png" />
+    <Resource Include="Resources\Media\png\Gyro sensor.png" />
+    <Resource Include="Resources\Media\png\Heart large.png" />
+    <Resource Include="Resources\Media\png\Heart small.png" />
+    <Resource Include="Resources\Media\png\Hourglass 0.png" />
+    <Resource Include="Resources\Media\png\Hourglass 1.png" />
+    <Resource Include="Resources\Media\png\Hourglass 2.png" />
+    <Resource Include="Resources\Media\png\Hurt.png" />
+    <Resource Include="Resources\Media\png\IR beacon.png" />
+    <Resource Include="Resources\Media\png\IR sensor.png" />
+    <Resource Include="Resources\Media\png\Knocked out.png" />
+    <Resource Include="Resources\Media\png\Large motor.png" />
+    <Resource Include="Resources\Media\png\Left.png" />
+    <Resource Include="Resources\Media\png\LEGO.png" />
+    <Resource Include="Resources\Media\png\Light off.png" />
+    <Resource Include="Resources\Media\png\Light on.png" />
+    <Resource Include="Resources\Media\png\Lightning.png" />
+    <Resource Include="Resources\Media\png\Love.png" />
+    <Resource Include="Resources\Media\png\Medium motor.png" />
+    <Resource Include="Resources\Media\png\Middle left.png" />
+    <Resource Include="Resources\Media\png\Middle right.png" />
+    <Resource Include="Resources\Media\png\MINDSTORMS.png" />
+    <Resource Include="Resources\Media\png\Mouth 1 open.png" />
+    <Resource Include="Resources\Media\png\Mouth 1 shut.png" />
+    <Resource Include="Resources\Media\png\Mouth 2 open.png" />
+    <Resource Include="Resources\Media\png\Mouth 2 shut.png" />
+    <Resource Include="Resources\Media\png\Neutral.png" />
+    <Resource Include="Resources\Media\png\Night.png" />
+    <Resource Include="Resources\Media\png\No go.png" />
+    <Resource Include="Resources\Media\png\Nuclear.png" />
+    <Resource Include="Resources\Media\png\Pinch left.png" />
+    <Resource Include="Resources\Media\png\Pinch middle.png" />
+    <Resource Include="Resources\Media\png\Pinch right.png" />
+    <Resource Include="Resources\Media\png\Pirate.png" />
+    <Resource Include="Resources\Media\png\Play.png" />
+    <Resource Include="Resources\Media\png\Question mark.png" />
+    <Resource Include="Resources\Media\png\Right.png" />
+    <Resource Include="Resources\Media\png\Sad.png" />
+    <Resource Include="Resources\Media\png\Sick.png" />
+    <Resource Include="Resources\Media\png\Sleeping.png" />
+    <Resource Include="Resources\Media\png\Slider 0.png" />
+    <Resource Include="Resources\Media\png\Slider 1.png" />
+    <Resource Include="Resources\Media\png\Slider 2.png" />
+    <Resource Include="Resources\Media\png\Slider 3.png" />
+    <Resource Include="Resources\Media\png\Slider 4.png" />
+    <Resource Include="Resources\Media\png\Slider 5.png" />
+    <Resource Include="Resources\Media\png\Slider 6.png" />
+    <Resource Include="Resources\Media\png\Slider 7.png" />
+    <Resource Include="Resources\Media\png\Slider 8.png" />
+    <Resource Include="Resources\Media\png\Smile.png" />
+    <Resource Include="Resources\Media\png\Snow.png" />
+    <Resource Include="Resources\Media\png\Sound sensor.png" />
+    <Resource Include="Resources\Media\png\Stop 1.png" />
+    <Resource Include="Resources\Media\png\Stop 2.png" />
+    <Resource Include="Resources\Media\png\Swearing.png" />
+    <Resource Include="Resources\Media\png\Talking.png" />
+    <Resource Include="Resources\Media\png\Target.png" />
+    <Resource Include="Resources\Media\png\Tear.png" />
+    <Resource Include="Resources\Media\png\Temp sensor.png" />
+    <Resource Include="Resources\Media\png\Thumbs down.png" />
+    <Resource Include="Resources\Media\png\Thumbs up.png" />
+    <Resource Include="Resources\Media\png\Timer 0.png" />
+    <Resource Include="Resources\Media\png\Timer 1.png" />
+    <Resource Include="Resources\Media\png\Timer 2.png" />
+    <Resource Include="Resources\Media\png\Timer 3.png" />
+    <Resource Include="Resources\Media\png\Timer 4.png" />
+    <Resource Include="Resources\Media\png\Tired left.png" />
+    <Resource Include="Resources\Media\png\Tired middle.png" />
+    <Resource Include="Resources\Media\png\Tired right.png" />
+    <Resource Include="Resources\Media\png\Touch sensor.png" />
+    <Resource Include="Resources\Media\png\Toxic.png" />
+    <Resource Include="Resources\Media\png\Up.png" />
+    <Resource Include="Resources\Media\png\US sensor.png" />
+    <Resource Include="Resources\Media\png\Warning.png" />
+    <Resource Include="Resources\Media\png\Water level 0.png" />
+    <Resource Include="Resources\Media\png\Water level 1.png" />
+    <Resource Include="Resources\Media\png\Water level 2.png" />
+    <Resource Include="Resources\Media\png\Water level 3.png" />
+    <Resource Include="Resources\Media\png\Wink.png" />
+    <Resource Include="Resources\Media\png\Winking.png" />
+    <Resource Include="Resources\Media\png\ZZZ.png" />
+    <Resource Include="Resources\Media\wav\Activate.wav" />
+    <Resource Include="Resources\Media\wav\Air release.wav" />
+    <Resource Include="Resources\Media\wav\Airbrake.wav" />
+    <Resource Include="Resources\Media\wav\Analyze.wav" />
+    <Resource Include="Resources\Media\wav\Arm 1.wav" />
+    <Resource Include="Resources\Media\wav\Arm 2.wav" />
+    <Resource Include="Resources\Media\wav\Arm 3.wav" />
+    <Resource Include="Resources\Media\wav\Arm 4.wav" />
+    <Resource Include="Resources\Media\wav\Backing alert.wav" />
+    <Resource Include="Resources\Media\wav\Backwards.wav" />
+    <Resource Include="Resources\Media\wav\Black.wav" />
+    <Resource Include="Resources\Media\wav\Blip 1.wav" />
+    <Resource Include="Resources\Media\wav\Blip 2.wav" />
+    <Resource Include="Resources\Media\wav\Blip 3.wav" />
+    <Resource Include="Resources\Media\wav\Blip 4.wav" />
+    <Resource Include="Resources\Media\wav\Blue.wav" />
+    <Resource Include="Resources\Media\wav\Boing.wav" />
+    <Resource Include="Resources\Media\wav\Boo.wav" />
+    <Resource Include="Resources\Media\wav\Bravo.wav" />
+    <Resource Include="Resources\Media\wav\Brown.wav" />
+    <Resource Include="Resources\Media\wav\Cat purr.wav" />
+    <Resource Include="Resources\Media\wav\Cheering.wav" />
+    <Resource Include="Resources\Media\wav\Click.wav" />
+    <Resource Include="Resources\Media\wav\Color.wav" />
+    <Resource Include="Resources\Media\wav\Confirm.wav" />
+    <Resource Include="Resources\Media\wav\Connect.wav" />
+    <Resource Include="Resources\Media\wav\Crunching.wav" />
+    <Resource Include="Resources\Media\wav\Crying.wav" />
+    <Resource Include="Resources\Media\wav\Detected.wav" />
+    <Resource Include="Resources\Media\wav\Dog bark 1.wav" />
+    <Resource Include="Resources\Media\wav\Dog bark 2.wav" />
+    <Resource Include="Resources\Media\wav\Dog growl.wav" />
+    <Resource Include="Resources\Media\wav\Dog sniff.wav" />
+    <Resource Include="Resources\Media\wav\Dog whine.wav" />
+    <Resource Include="Resources\Media\wav\Down.wav" />
+    <Resource Include="Resources\Media\wav\Download.wav" />
+    <Resource Include="Resources\Media\wav\Drop load.wav" />
+    <Resource Include="Resources\Media\wav\Eight.wav" />
+    <Resource Include="Resources\Media\wav\Elephant call.wav" />
+    <Resource Include="Resources\Media\wav\Error alarm.wav" />
+    <Resource Include="Resources\Media\wav\Error.wav" />
+    <Resource Include="Resources\Media\wav\EV3.wav" />
+    <Resource Include="Resources\Media\wav\Fanfare.wav" />
+    <Resource Include="Resources\Media\wav\Fantastic.wav" />
+    <Resource Include="Resources\Media\wav\Five.wav" />
+    <Resource Include="Resources\Media\wav\Flashing.wav" />
+    <Resource Include="Resources\Media\wav\Forward.wav" />
+    <Resource Include="Resources\Media\wav\Four.wav" />
+    <Resource Include="Resources\Media\wav\Game over.wav" />
+    <Resource Include="Resources\Media\wav\General alert.wav" />
+    <Resource Include="Resources\Media\wav\Go.wav" />
+    <Resource Include="Resources\Media\wav\Good job.wav" />
+    <Resource Include="Resources\Media\wav\Good.wav" />
+    <Resource Include="Resources\Media\wav\Goodbye.wav" />
+    <Resource Include="Resources\Media\wav\Green.wav" />
+    <Resource Include="Resources\Media\wav\Hello.wav" />
+    <Resource Include="Resources\Media\wav\Hi.wav" />
+    <Resource Include="Resources\Media\wav\Horn 1.wav" />
+    <Resource Include="Resources\Media\wav\Horn 2.wav" />
+    <Resource Include="Resources\Media\wav\Insect buzz 1.wav" />
+    <Resource Include="Resources\Media\wav\Insect buzz 2.wav" />
+    <Resource Include="Resources\Media\wav\Insect chirp.wav" />
+    <Resource Include="Resources\Media\wav\Kung fu.wav" />
+    <Resource Include="Resources\Media\wav\Laser.wav" />
+    <Resource Include="Resources\Media\wav\Laughing 1.wav" />
+    <Resource Include="Resources\Media\wav\Laughing 2.wav" />
+    <Resource Include="Resources\Media\wav\Left.wav" />
+    <Resource Include="Resources\Media\wav\LEGO.wav" />
+    <Resource Include="Resources\Media\wav\Lift load.wav" />
+    <Resource Include="Resources\Media\wav\Magic wand.wav" />
+    <Resource Include="Resources\Media\wav\MINDSTORMS.wav" />
+    <Resource Include="Resources\Media\wav\Morning.wav" />
+    <Resource Include="Resources\Media\wav\Motor idle.wav" />
+    <Resource Include="Resources\Media\wav\Motor start.wav" />
+    <Resource Include="Resources\Media\wav\Motor stop.wav" />
+    <Resource Include="Resources\Media\wav\Nine.wav" />
+    <Resource Include="Resources\Media\wav\No.wav" />
+    <Resource Include="Resources\Media\wav\Object.wav" />
+    <Resource Include="Resources\Media\wav\OKay.wav" />
+    <Resource Include="Resources\Media\wav\OKey-dokey.wav" />
+    <Resource Include="Resources\Media\wav\One.wav" />
+    <Resource Include="Resources\Media\wav\Ouch.wav" />
+    <Resource Include="Resources\Media\wav\Overpower.wav" />
+    <Resource Include="Resources\Media\wav\Power down.wav" />
+    <Resource Include="Resources\Media\wav\Ratchet.wav" />
+    <Resource Include="Resources\Media\wav\Ready.wav" />
+    <Resource Include="Resources\Media\wav\Red.wav" />
+    <Resource Include="Resources\Media\wav\Right.wav" />
+    <Resource Include="Resources\Media\wav\Searching.wav" />
+    <Resource Include="Resources\Media\wav\Servo 1.wav" />
+    <Resource Include="Resources\Media\wav\Servo 2.wav" />
+    <Resource Include="Resources\Media\wav\Servo 3.wav" />
+    <Resource Include="Resources\Media\wav\Servo 4.wav" />
+    <Resource Include="Resources\Media\wav\Seven.wav" />
+    <Resource Include="Resources\Media\wav\Shouting.wav" />
+    <Resource Include="Resources\Media\wav\Six.wav" />
+    <Resource Include="Resources\Media\wav\Slide load.wav" />
+    <Resource Include="Resources\Media\wav\Smack.wav" />
+    <Resource Include="Resources\Media\wav\Snake hiss.wav" />
+    <Resource Include="Resources\Media\wav\Snake rattle.wav" />
+    <Resource Include="Resources\Media\wav\Snap.wav" />
+    <Resource Include="Resources\Media\wav\Sneezing.wav" />
+    <Resource Include="Resources\Media\wav\Snoring.wav" />
+    <Resource Include="Resources\Media\wav\Sonar.wav" />
+    <Resource Include="Resources\Media\wav\Sorry.wav" />
+    <Resource Include="Resources\Media\wav\Speed down.wav" />
+    <Resource Include="Resources\Media\wav\Speed idle.wav" />
+    <Resource Include="Resources\Media\wav\Speed up.wav" />
+    <Resource Include="Resources\Media\wav\Speeding.wav" />
+    <Resource Include="Resources\Media\wav\Start up.wav" />
+    <Resource Include="Resources\Media\wav\Start.wav" />
+    <Resource Include="Resources\Media\wav\Stop.wav" />
+    <Resource Include="Resources\Media\wav\T-rex roar.wav" />
+    <Resource Include="Resources\Media\wav\Ten.wav" />
+    <Resource Include="Resources\Media\wav\Thank you.wav" />
+    <Resource Include="Resources\Media\wav\Three.wav" />
+    <Resource Include="Resources\Media\wav\Tick tack.wav" />
+    <Resource Include="Resources\Media\wav\Touch.wav" />
+    <Resource Include="Resources\Media\wav\Turn.wav" />
+    <Resource Include="Resources\Media\wav\Two.wav" />
+    <Resource Include="Resources\Media\wav\Uh-oh.wav" />
+    <Resource Include="Resources\Media\wav\Up.wav" />
+    <Resource Include="Resources\Media\wav\Walk.wav" />
+    <Resource Include="Resources\Media\wav\White.wav" />
+    <Resource Include="Resources\Media\wav\Yellow.wav" />
+    <Resource Include="Resources\Media\wav\Yes.wav" />
+    <Resource Include="Resources\Media\wav\Zero.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Interpreter\Interpreter.csproj">
+      <Project>{635c6198-b007-4c73-869b-27325f584c4c}</Project>
+      <Name>Interpreter</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\folder_close.png" />
+    <Resource Include="Resources\Images\folder_open.png" />
+    <Resource Include="Resources\Images\image.png" />
+    <Resource Include="Resources\Images\sound.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
