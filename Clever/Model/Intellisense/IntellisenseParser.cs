@@ -113,7 +113,7 @@ namespace Clever.Model.Intellisense
 
             await Task.Run(() => SetVSL(pData, map, data));
 
-            OpenFile.FileOpen(map, data);
+            OpenFile.FileOpen(map, data, new HashSet<string>());
 
             //stopWatch.Stop();
             //var timer = stopWatch.ElapsedMilliseconds / 1000.0;

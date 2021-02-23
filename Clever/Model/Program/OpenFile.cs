@@ -1,4 +1,5 @@
 ﻿using Clever.Model.Bplus;
+using Clever.Model.Bplus.BPInterpreter;
 using Clever.Model.Intellisense;
 using Clever.Model.Utils;
 using Clever.ViewModel;
@@ -35,9 +36,17 @@ namespace Clever.Model.Program
             return text;
         }
 
-        internal static void FileOpen(ProgramMap map, Dictionary<string, ProgramData> data)
+        internal static void FileOpen(ProgramMap map, Dictionary<string, ProgramData> data, HashSet<string> names)
         {
-            var imports = map.Imports;
+            var imports = new Dictionary<string, Module>();
+            foreach (var imp in map.Imports)
+            {
+                if (!names.Contains(imp.Value.OriginName))
+                {
+                    names.Add(imp.Value.OriginName);
+                    imports.Add(imp.Key, imp.Value);
+                }
+            }
             var includes = map.Includes;
 
             foreach (var inc in includes)
@@ -116,7 +125,7 @@ namespace Clever.Model.Program
                         pd.TextChange = false;
                         data.Add(name, pd);
                         IntellisenseParser.Get.SetVSLSync(pd, data);
-                        FileOpen(pd.Map, data);
+                        FileOpen(pd.Map, data, names);
                     }
                 }
                 else
