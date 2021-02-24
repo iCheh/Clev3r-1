@@ -73,7 +73,7 @@ namespace Clever.ViewModel
         {
 
             //IntellisenseObjects = new ReadXml().Read();
-
+            CurrentName = "";
             Project = new ProjectData();
 
             //=====================
@@ -259,17 +259,29 @@ namespace Clever.ViewModel
 
                 if (_currentProgram != null)
                 {
+                    BpObjects.UpdateWork = false;
                     Project.UpdateColor();
                     var header = _currentProgram.Header as EditorHeader;
                     var name = header.HeaderName;
                     if (Project.ContainsKey(name))
                     {
+                        CurrentName = name;
                         var data = Project.GetDictionary()[name];
                         IntellisenseParser.Get.UpdateMap(data);
                     }
+                    else
+                    {
+                        CurrentName = "";
+                    }
+                }
+                else
+                {
+                    CurrentName = "";
                 }
             }
         }
+
+        internal static string CurrentName { get; private set; }
 
         private static ContentControl _currentInfo;
         public static ContentControl CurrentInfo
@@ -534,9 +546,10 @@ namespace Clever.ViewModel
             if (Project != null && Project.Count != 0)
                 MainWindow.UpdateSize();
 
-            string name = "";
+            //string name = "";
             string text = File.ReadAllText(path);
-            var tmp = new NewTabItem().Create(Project.GetDictionary(), text, out name);
+            //var tmp = new NewTabItem().Create(Project.GetDictionary(), text, out name);
+            var tmp = new NewTabItem().Create(Project.GetDictionary(), text, fi.Name);
             var pd = new ProgramData();
             pd.OldName = fi.Name;
             pd.ClosedName = fi.Name;

@@ -10,7 +10,7 @@
         xmlns:panel="clr-namespace:Clever.View.Panels"
         xmlns:config="clr-namespace:Clever.CommonData"
         mc:Ignorable="d"
-        Title="CLEVƎR v1.6.7.0" 
+        Title="CLEVƎR v1.6.8.1" 
         Height="{Binding Source={x:Static config:Configurations.Get}, Path=Window_Height, Mode=TwoWay}"
         MinHeight="440"
         Width="{Binding Source={x:Static config:Configurations.Get}, Path=Window_Width, Mode=TwoWay}"

@@ -29,6 +29,19 @@ namespace Clever.Model.Utils
             MainPath = "";
         }
 
+        internal void Clear()
+        {
+            Variables.Clear();
+            Subroutines.Clear();
+            Labels.Clear();
+            Includes.Clear();
+            Imports.Clear();
+            Map.Clear();
+            Summary.Clear();
+            MainName = "";
+            MainPath = "";
+        }
+
         internal BPType Type { get; set; }
         internal List<Variable> Variables { get; private set; }
         internal List<Function> Subroutines { get; private set; }

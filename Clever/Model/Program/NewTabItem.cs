@@ -1,4 +1,5 @@
-﻿using Clever.Model.Utils;
+﻿using Clever.Model.Bplus;
+using Clever.Model.Utils;
 using Clever.View.Controls.Editors;
 using Clever.View.Dialogs;
 using Clever.ViewModel;
@@ -96,11 +97,12 @@ namespace Clever.Model.Program
             tabItem.MouseLeftButtonUp += TextEditorEvents.EditorName_MouseLeftButtonUp;
             EditorHeader header = new EditorHeader();
             Editor editor = new Editor();
-            editor.GetTextEditor.TextArea.Text = text;
+            editor.GetTextEditor.TextArea.Text = text;            
             editor.GetTextEditor.EventsAdd();
             //editor.EditorTextChange += TextEditorEvents.Editor_Change;            
             editor.GetTextEditor.Menu = editor.GetTextEditorPopup;
             editor.GetTextEditor.ToolsWindow = editor.GetTextEditorTools;
+            editor.GetTextEditor.Lexer.SetFolding();
             header.HeaderName = "Program" + GetProgramNumber(items).ToString() + MainWindowVM.ext;
             name = header.HeaderName;
             header.HeaderChange = text;
@@ -129,6 +131,7 @@ namespace Clever.Model.Program
             //editor.EditorTextChange += TextEditorEvents.Editor_Change;           
             editor.GetTextEditor.Menu = editor.GetTextEditorPopup;
             editor.GetTextEditor.ToolsWindow = editor.GetTextEditorTools;
+            editor.GetTextEditor.Lexer.SetFolding();
             //header.HeaderName = "Program" + GetProgramNumber(items).ToString() + MainWindowVM.ext;
             header.HeaderName = itemName;
             header.HeaderChange = "";

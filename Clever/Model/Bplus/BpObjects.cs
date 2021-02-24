@@ -172,7 +172,7 @@ namespace Clever.Model.Bplus
                     {
                         if (m.ToLower().StartsWith(input.ToLower()))
                         {
-                            data.Add(m + "?7");
+                            data.Add(m + "?2");
                         }
                     }
                 }

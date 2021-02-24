@@ -1036,7 +1036,7 @@ namespace Clever.Model.Bplus
             }
         }
 
-        private void SetFolding()
+        internal void SetFolding()
         {
             int position = textArea.CurrentPosition;
 

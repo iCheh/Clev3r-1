@@ -50,7 +50,7 @@ namespace Interpreter.Parsers
                     IncludePath = GetIncludePath(tmpPath.Replace(Extension.BPInclude, ""));
                     Lines = new List<Line>();
                     OldText = new List<string>();
-                    GetAllLines(tmpPath);
+                    GetAllLines(tmpPath, IncludePath);
                 }
             }
         }
@@ -153,16 +153,16 @@ namespace Interpreter.Parsers
             return (fullPath + separator + fileName).Replace(separator + separator, separator);
         }
 
-        private static void GetAllLines(string path)
+        private static void GetAllLines(string fullPath, string path)
         {
-            var tmpText = File.ReadAllLines(path);
+            var tmpText = File.ReadAllLines(fullPath);
             //var fi = new FileInfo(path);
             for (int i = 0; i < tmpText.Length; i++)
             {
                 var tmpLine = new Line(LineBuilder.GetWords(tmpText[i]), tmpText[i]);
                 tmpLine.Number = i + 1;
                 //tmpLine.FileName = IncludeName + Extension.BPInclude;
-                tmpLine.FileName = path;
+                tmpLine.FileName = fullPath;
                 //tmpLine.FileName = fi.Name;
                 tmpLine.Type = LineBuilder.GetType(tmpLine);
 
@@ -180,7 +180,7 @@ namespace Interpreter.Parsers
                 }
                 else if (tmpLine.Type == LineType.IMPORT)
                 {
-                    ImportErrorParser.Start(tmpLine, GetIncludePath(path));
+                    ImportErrorParser.Start(tmpLine, path);
                     if (Data.Errors.Count > 0)
                         return;
                 }

@@ -16,6 +16,7 @@ namespace Interpreter.Utils
         {
             // Сброс медиа
             MethodErrorParser.MediaLines = new HashSet<string>();
+            ImportErrorParser.NewCallPath = mainPath;
 
             var program = new Program(mainName, mainPath, mainText, Data.Project.Type);
             Data.Project.Main = program;

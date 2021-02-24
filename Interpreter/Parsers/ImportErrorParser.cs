@@ -13,11 +13,11 @@ namespace Interpreter.Parsers
     internal static class ImportErrorParser
     {
         private static string separator = Path.DirectorySeparatorChar.ToString();
-        private static string newCallPath = "";
+        internal static string NewCallPath = "";
 
         internal static void Start (Line line, string callPath)
         {
-            newCallPath = callPath;
+            NewCallPath = callPath;
             if (line.Count == 1)
             {
                 Data.Errors.Add(new Errore(line.Number, line.FileName, 2002, ""));
@@ -34,7 +34,7 @@ namespace Interpreter.Parsers
             {
                 //var importFullPath = line.Words[1].OriginText.Replace("\"","");
 
-                var importFullPath = CreateFullPath(line.Words[1].OriginText.Replace("\"", ""), newCallPath);
+                var importFullPath = CreateFullPath(line.Words[1].OriginText.Replace("\"", ""), NewCallPath);
 
                 /*
                 if (importFullPath.IndexOf("..\\") != -1)
@@ -50,14 +50,24 @@ namespace Interpreter.Parsers
                     importFullPath = Data.Project.Path + line.Words[1].Text.Replace("\"", "").Replace('/', Path.DirectorySeparatorChar).Replace('\\', Path.DirectorySeparatorChar);
                 }
                 */
+
+                //Console.WriteLine('\n');
+                //Console.WriteLine("call path =>" + NewCallPath);
+                //Console.WriteLine("fuul path =>" + importFullPath);
+
                 string name = GetImportName(importFullPath);
                 string path = GetImportPath(importFullPath);
-                newCallPath = path;
-                
+                NewCallPath = path;
 
+                
+                
                 string tmpPath = path + name + Extension.BPModule;
 
-                Console.WriteLine(tmpPath);
+                
+                
+                //Console.WriteLine(path);
+                //Console.WriteLine(name);
+                //Console.WriteLine(tmpPath);
 
                 FileInfo fi = new FileInfo(tmpPath);
                 if (!fi.Exists)
@@ -104,7 +114,7 @@ namespace Interpreter.Parsers
                     {
                         if (l.Type == LineType.IMPORT)
                         {
-                            Start(l, newCallPath);
+                            Start(l, NewCallPath);
                             if (Data.Errors.Count > 0)
                                 return;
                         }
