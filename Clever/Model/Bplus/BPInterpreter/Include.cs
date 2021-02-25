@@ -12,26 +12,22 @@ namespace Clever.Model.Bplus.BPInterpreter
         private string separator = System.IO.Path.DirectorySeparatorChar.ToString();
         internal Include(string name, string mainPath)
         {
-            var tmpPath = Application.ResourceAssembly.Location.Replace("Clever.exe", "");
-            
+            var tmpPath = Application.ResourceAssembly.Location.Replace("Clever.exe", "");           
 
             name = name.Replace("\"", "").Trim().Replace("\\", separator).Replace("/", separator);
             mainPath = mainPath.Replace("\"", "").Trim().Replace("\\", separator).Replace("/", separator);
 
             if (name.IndexOf("Clev3r:" + separator + separator) == 0)
             {
-                //Path = tmpPath + name.Replace("Clev3r:" + separator + separator, "Lib" + separator + "Includes") + separator;
                 Path = tmpPath + "Lib" + separator + "Includes" + separator;
             }
             else if (name.IndexOf("Clever:" + separator + separator) == 0)
             {
-                //Path = tmpPath + name.Replace("Clever:" + separator + separator, "Lib" + separator + "Includes") + separator;
                 Path = tmpPath + "Lib" + separator + "Includes" + separator;
             }
             else
             {
-                Path = GetPath(name, mainPath);
-                //MessageBox.Show(Path);
+                Path = GetPath(name, mainPath).Replace(separator + separator, separator);
             }
 
             OriginName = GetName(name);

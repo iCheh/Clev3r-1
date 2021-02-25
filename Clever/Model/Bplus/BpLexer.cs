@@ -400,7 +400,7 @@ namespace Clever.Model.Bplus
 
                 int index = textArea.Lines[textArea.CurrentLine].DisplayIndex;
                 string name = sbDocument.ProgramName;
-
+                
                 var tmpVariables = bpObjects.GetVariables(currentWord, index, name);
                 var tmpLabels = bpObjects.GetLabels(currentWord, index, name);
                 var tmpModules = bpObjects.GetModuleObjects(currentWord, name);

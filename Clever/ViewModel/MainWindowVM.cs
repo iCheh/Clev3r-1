@@ -62,17 +62,9 @@ namespace Clever.ViewModel
 
         public static SearchFlags searchFlags = SearchFlags.None;
         public static bool highlightAll = false;
-        //public static SBObject showObject = null;
-        //public static SBObject showObjectLast = null;
-        //public static Member showMember = null;
-        //public static Member showMemberLast = null;
-        //public static ProgramData projectData = new ProgramData();
-        //public static ObservableCollection<IntellisenseObject> IntellisenseObjects;
 
         public MainWindowVM()
         {
-
-            //IntellisenseObjects = new ReadXml().Read();
             CurrentName = "";
             Project = new ProjectData();
 
@@ -83,7 +75,6 @@ namespace Clever.ViewModel
 
             elements = new Elements();
             _programNameList = new ObservableCollection<TabItem>();
-            //_status = new ObservableCollection<string>();
 
             FileNewCommand = new RelayCommand(param => FileNew(), true);
             FileOpenCommand = new RelayCommand(param => FileOpen(), true);
@@ -129,8 +120,6 @@ namespace Clever.ViewModel
 
             interop = new BPInterop();
             SpWidth = 300;
-            //CompileProgram = false;
-            //projectData = null;
 
             if (Configurations.Get.File_New == true) FileNewV = Visibility.Visible;
             else FileNewV = Visibility.Collapsed;
@@ -182,8 +171,6 @@ namespace Clever.ViewModel
 
             HiddenProgramButton = Visibility.Hidden;
 
-            //StartNewServer();
-
             IntellisenseParser.Install();
 
             Topmost();
@@ -193,7 +180,6 @@ namespace Clever.ViewModel
         {
             Application.Current.MainWindow.Topmost = true;
             Application.Current.MainWindow.Topmost = false;
-            //Application.Current.MainWindow.Focus();
         }
 
         private static void StartNewServer()
@@ -307,22 +293,6 @@ namespace Clever.ViewModel
             }
         }
 
-        /*
-        private static ObservableCollection<string> _status;
-        public static ObservableCollection<string> Status
-        {
-            get { return _status; }
-            set
-            {
-                _status = value;
-                OnStaticPropertyChanged("Status");
-                if (_status.Count > 0)
-                {
-                    MainWindow.GetStatus.ScrollIntoView(MainWindow.GetStatus.Items[MainWindow.GetStatus.Items.Count - 1]);
-                }
-            }
-        }
-        */
         private static ObservableCollection<string> _prgName = new ObservableCollection<string>();
         public static ObservableCollection<string> ProgramName
         {
@@ -334,13 +304,6 @@ namespace Clever.ViewModel
             }
         }
 
-        /*
-        public static void StatusUpdate()
-        {
-            var obj = Status;
-            Status = obj;
-        }
-        */
         #region Checked button
 
         private static bool _showNumber;
@@ -417,7 +380,6 @@ namespace Clever.ViewModel
             {
                 _spWidth = value;
                 HelperPanelVM.Get.SpWidth = value;
-                //OnStaticPropertyChanged("SpWidth");
             }
         }
 
@@ -429,7 +391,6 @@ namespace Clever.ViewModel
             {
                 _spWidthCl = value;
                 HelperPanelVM.Get.SpWidthCl = value;
-                //OnStaticPropertyChanged("SpWidthCl");
             }
         }
 
@@ -491,19 +452,6 @@ namespace Clever.ViewModel
                 CurrentProgram = pd.Item;
             }
             ButtonsPanel.GetFilePopup.IsOpen = false;
-            //MainWindow.ChangeSize();
-            //pd.Editor.TextArea.Focus();
-            //var ed = pd.Item.Content as Editor;
-            //ed.GetHost.Focusable = true;
-            //ed.GetHost.Focus();
-            //ed.GetHost.ForceCursor = true;
-            //var f = pd.Editor.TextArea.FindForm();
-            //f.Focus();
-            //ed.Focus();
-            //MainWindow.GetContext.Focusable = false;
-            //pd.Editor.TextArea.Select();
-            //Status.Add(pd.Editor.TextArea.Focused.ToString());
-            //Status.Add(pd.Editor.TextArea.Lexer);
         }
 
         public static void FileNew(string path, bool start)
@@ -519,11 +467,9 @@ namespace Clever.ViewModel
             FileInfo fi = new FileInfo(path);
             if (Project.ContainsKey(fi.Name))
             {
-                //
-                //Status.Add(GetLocalization["prgFindName1"] + " " + fi.Name.Replace(ext, "") + " " + GetLocalization["prgFindName2"]);
                 CommonData.Status.Clear();
                 CommonData.Status.Add(GetLocalization["prgFindName1"] + " " + fi.Name + " " + GetLocalization["prgFindName2"]);
-                //
+
                 Topmost();
                 if (start)
                 {
@@ -546,9 +492,7 @@ namespace Clever.ViewModel
             if (Project != null && Project.Count != 0)
                 MainWindow.UpdateSize();
 
-            //string name = "";
             string text = File.ReadAllText(path);
-            //var tmp = new NewTabItem().Create(Project.GetDictionary(), text, out name);
             var tmp = new NewTabItem().Create(Project.GetDictionary(), text, fi.Name);
             var pd = new ProgramData();
             pd.OldName = fi.Name;
@@ -578,13 +522,6 @@ namespace Clever.ViewModel
 
             Topmost();
 
-            //pd.Editor.TextArea.GotoPosition(pd.Editor.TextArea.CurrentPosition);
-            //Status.Add(pd.Editor.TextArea.CurrentPosition.ToString());
-            /*
-            if (Project.Count < 1)
-                MainWindow.ChangeSize();
-            */
-
             if (start)
             {
                 StartNewServer();
@@ -594,7 +531,6 @@ namespace Clever.ViewModel
         public static void FindAndReplaceFile(string name, string path)
         {
             var tmpName = "~" + name;
-            //MessageBox.Show("=>" + tmpName + "<=");
             if (Project.ContainsKey(tmpName))
             {
                 var pd = Project.GetDictionary()[tmpName];
@@ -1129,6 +1065,10 @@ namespace Clever.ViewModel
                 {
                     CurrentProgram = ProgramNameList[0];
                     ProgramNameList[0].Style = (System.Windows.Style)Application.Current.Resources["FirstTabItem"];
+                }
+                else
+                {
+                    IntellisenseParser.Get.Data.Clear();
                 }
                 EditorPanel.GetPopup.IsOpen = false;
             }

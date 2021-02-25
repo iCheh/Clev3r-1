@@ -36,118 +36,6 @@ namespace Clever.Model.Program
             return text;
         }
 
-        internal static void FileOpen(ProgramMap map, Dictionary<string, ProgramData> data, HashSet<string> namesM, HashSet<string> namesI)
-        {
-            var imports = new Dictionary<string, Module>();
-            var includes = new Dictionary<string, Include>();
-
-            foreach (var imp in map.Imports)
-            {
-                if (!namesM.Contains(imp.Value.OriginName))
-                {
-                    namesM.Add(imp.Value.OriginName);
-                    imports.Add(imp.Key, imp.Value);
-                }
-            }
-
-            foreach (var inc in map.Includes)
-            {
-                if (!namesI.Contains(inc.Value.OriginName))
-                {
-                    namesI.Add(inc.Value.OriginName);
-                    includes.Add(inc.Key, inc.Value);
-                }
-            }
-
-            foreach (var inc in includes)
-            {
-                var name = inc.Value.OriginName;
-                var path = inc.Value.Path + name;
-                var contains = data.ContainsKey(name);
-
-                if (File.Exists(path))
-                {
-                    if (contains)
-                    {
-                        if (path  != data[name].FullPath)
-                        {
-                            data.Remove(name);
-                        }
-                    }
-
-                    if (!data.ContainsKey(name))
-                    {
-                        var text = File.ReadAllText(path);
-                        var item = new NewTabItem().Create(text, name);
-                        var pd = new ProgramData();
-                        pd.ParseName = name;
-                        pd.ClosedName = name;
-                        pd.OldName = name;
-                        pd.Name = name;
-                        pd.AddToObjects = false;
-                        pd.Item = item;
-                        pd.Path = inc.Value.Path;
-                        pd.FullPath = path;
-                        pd.TextChange = false;
-                        data.Add(name, pd);
-                        IntellisenseParser.Get.SetVSLSync(pd, data);
-                    }
-                }
-                else
-                {
-                    if (contains)
-                    {
-                        data.Remove(name);
-                    }
-                }
-                
-            }
-
-            foreach (var imp in imports)
-            {
-                var name = imp.Value.OriginName;
-                var path = imp.Value.Path + name;
-                var contains = data.ContainsKey(name);
-
-                if (File.Exists(path))
-                {
-                    if (contains)
-                    {
-                        if (path != data[name].FullPath)
-                        {
-                            data.Remove(name);
-                        }
-                    }
-
-                    if (!data.ContainsKey(name))
-                    {
-                        var text = File.ReadAllText(path);
-                        var item = new NewTabItem().Create(text, name);
-                        var pd = new ProgramData();
-                        pd.ParseName = name;
-                        pd.ClosedName = name;
-                        pd.OldName = name;
-                        pd.Name = name;
-                        pd.AddToObjects = false;
-                        pd.Item = item;
-                        pd.Path = imp.Value.Path;
-                        pd.FullPath = path;
-                        pd.TextChange = false;
-                        data.Add(name, pd);
-                        IntellisenseParser.Get.SetVSLSync(pd, data);
-                        FileOpen(pd.Map, data, namesM, namesI);
-                    }
-                }
-                else
-                {
-                    if (contains)
-                    {
-                        data.Remove(name);
-                    }
-                }
-            }  
-        }
-
         internal static void IncludeFileOpen(ProgramMap map, Dictionary<string, ProgramData> data, HashSet<string> namesI)
         {
             var includes = new Dictionary<string, Include>();
@@ -218,7 +106,6 @@ namespace Clever.Model.Program
                     imports.Add(imp.Key, imp.Value);
                 }
             }
-
             foreach (var imp in imports)
             {
                 var name = imp.Value.OriginName;
@@ -251,7 +138,6 @@ namespace Clever.Model.Program
                         pd.TextChange = false;
                         data.Add(name, pd);
                         IntellisenseParser.Get.SetVSLSync(pd, data);
-                        ImportFileOpen(pd.Map, data, namesM);
                     }
                 }
                 else
@@ -260,6 +146,49 @@ namespace Clever.Model.Program
                     {
                         data.Remove(name);
                     }
+                }
+            }
+        }
+
+        internal static void MainFileOpen(ProgramMap map, Dictionary<string, ProgramData> data)
+        {
+            var name = map.MainName;
+            var path = map.MainPath + name;
+            var contains = data.ContainsKey(name);
+
+            if (File.Exists(path))
+            {
+                if (contains)
+                {
+                    if (path != data[name].FullPath)
+                    {
+                        data.Remove(name);
+                    }
+                }
+
+                if (!data.ContainsKey(name))
+                {
+                    var text = File.ReadAllText(path);
+                    var item = new NewTabItem().Create(text, name);
+                    var pd = new ProgramData();
+                    pd.ParseName = name;
+                    pd.ClosedName = name;
+                    pd.OldName = name;
+                    pd.Name = name;
+                    pd.AddToObjects = false;
+                    pd.Item = item;
+                    pd.Path = map.MainPath;
+                    pd.FullPath = path;
+                    pd.TextChange = false;
+                    data.Add(name, pd);
+                    IntellisenseParser.Get.SetVSLSync(pd, data);
+                }
+            }
+            else
+            {
+                if (contains)
+                {
+                    data.Remove(name);
                 }
             }
         }

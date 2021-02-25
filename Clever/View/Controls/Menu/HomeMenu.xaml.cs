@@ -1,6 +1,7 @@
 ﻿using Clever.CommonData;
 using Clever.Model.Utils;
 using Clever.View.Dialogs;
+using Clever.ViewModel;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -44,6 +45,15 @@ namespace Clever.View.Controls.Menu
                     Configurations.Get.Association = result.IsRegistry;
                 }
             }
+            ButtonsPanel.GetHomePopup.IsOpen = false;
+        }
+
+        private void Config_Click(object sender, RoutedEventArgs e)
+        {
+            var conf = new ConfigWindow();
+            var cdc = new ConfigWindowVM();
+            conf.DataContext = cdc;
+            conf.ShowDialog();
             ButtonsPanel.GetHomePopup.IsOpen = false;
         }
     }

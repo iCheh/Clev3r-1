@@ -99,10 +99,14 @@
     <Compile Include="Model\Utils\ProgramMap.cs" />
     <Compile Include="Model\Utils\TextLine.cs" />
     <Compile Include="Model\Utils\WaveSoundPayer.cs" />
+    <Compile Include="ViewModel\ConfigWindowVM.cs" />
     <Compile Include="ViewModel\PanelsVM\HelperPanelVM.cs" />
     <Compile Include="ViewModel\PanelsVM\MediaPanelVM.cs" />
     <Compile Include="View\Content\HelpToolTip.xaml.cs">
       <DependentUpon>HelpToolTip.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Dialogs\ConfigWindow.xaml.cs">
+      <DependentUpon>ConfigWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Panels\HelperPanel.xaml.cs">
       <DependentUpon>HelperPanel.xaml</DependentUpon>
@@ -565,6 +569,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Dialogs\AssociationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Dialogs\ConfigWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

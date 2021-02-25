@@ -20,8 +20,6 @@ namespace Clever.Model.Program
             string newName = "";
 
             var win = new SetNames(prgName, modName, incName);
-            //var win = new SetNamesOld(prgName, incName);
-            //MessageBox.Show("Create");
             if (win.ShowDialog() == true)
             {
                 newName = win.GetName;
@@ -36,7 +34,6 @@ namespace Clever.Model.Program
             var tmpExt = newName.Substring(newName.Length - 3);
             var ext = "";
 
-            //CommonData.Status.Clear();
             if (tmpExt == ".bp")
             {
                 ext = ".bp";
@@ -45,8 +42,6 @@ namespace Clever.Model.Program
             {
                 ext = "." + tmpExt;
             }
-
-            //CommonData.Status.Add(ext);
 
             var saveName = new SaveFile().Save("", newName, ext);
             
@@ -61,8 +56,6 @@ namespace Clever.Model.Program
             newName = saveName.Substring(ind);
             path = saveName.Substring(0, saveName.Length - newName.Length - 1);
 
-            //CommonData.Status.Add(path + "      " + newName);
-
             TabItem tabItem = new TabItem();
             tabItem.IsSelected = true;
             tabItem.Loaded += TextEditorEvents.Editor_Loaded;
@@ -70,42 +63,12 @@ namespace Clever.Model.Program
             EditorHeader header = new EditorHeader();
             Editor editor = new Editor();
             editor.GetTextEditor.EventsAdd();
-            //editor.EditorTextChange += TextEditorEvents.Editor_Change;
             editor.GetTextEditor.TextArea.Text = "";
             editor.GetTextEditor.Menu = editor.GetTextEditorPopup;
             editor.GetTextEditor.ToolsWindow = editor.GetTextEditorTools;
             header.HeaderName = newName;
             name = header.HeaderName;
             header.HeaderChange = "";
-            tabItem.Header = header;
-            tabItem.Content = editor;
-            tabItem.Style = (Style)Application.Current.Resources["FirstTabItem"];
-            if (items.Count == 0)
-            {
-                var element = new Elements();
-                element.SetCloseButtonlMargin(tabItem, 1);
-            }
-
-            return tabItem;
-        }
-
-        public TabItem Create(Dictionary<string, ProgramData> items, string text, out string name)
-        {
-            TabItem tabItem = new TabItem();
-            tabItem.IsSelected = true;
-            tabItem.Loaded += TextEditorEvents.Editor_Loaded;
-            tabItem.MouseLeftButtonUp += TextEditorEvents.EditorName_MouseLeftButtonUp;
-            EditorHeader header = new EditorHeader();
-            Editor editor = new Editor();
-            editor.GetTextEditor.TextArea.Text = text;            
-            editor.GetTextEditor.EventsAdd();
-            //editor.EditorTextChange += TextEditorEvents.Editor_Change;            
-            editor.GetTextEditor.Menu = editor.GetTextEditorPopup;
-            editor.GetTextEditor.ToolsWindow = editor.GetTextEditorTools;
-            editor.GetTextEditor.Lexer.SetFolding();
-            header.HeaderName = "Program" + GetProgramNumber(items).ToString() + MainWindowVM.ext;
-            name = header.HeaderName;
-            header.HeaderChange = text;
             tabItem.Header = header;
             tabItem.Content = editor;
             tabItem.Style = (Style)Application.Current.Resources["FirstTabItem"];
@@ -127,12 +90,10 @@ namespace Clever.Model.Program
             EditorHeader header = new EditorHeader();
             Editor editor = new Editor();
             editor.GetTextEditor.TextArea.Text = text;
-            editor.GetTextEditor.EventsAdd();
-            //editor.EditorTextChange += TextEditorEvents.Editor_Change;           
+            editor.GetTextEditor.EventsAdd();          
             editor.GetTextEditor.Menu = editor.GetTextEditorPopup;
             editor.GetTextEditor.ToolsWindow = editor.GetTextEditorTools;
             editor.GetTextEditor.Lexer.SetFolding();
-            //header.HeaderName = "Program" + GetProgramNumber(items).ToString() + MainWindowVM.ext;
             header.HeaderName = itemName;
             header.HeaderChange = "";
             tabItem.Header = header;
@@ -165,7 +126,6 @@ namespace Clever.Model.Program
         private int GetProgramNumber(Dictionary<string, ProgramData> items)
         {
             int num = 1;
-            //Elements elem = new Elements();
             string tmpName = "Program" + num.ToString() + MainWindowVM.ext;
 
             if (items.Count > 0)
@@ -182,7 +142,6 @@ namespace Clever.Model.Program
         private int GetModuleNumber(Dictionary<string, ProgramData> items)
         {
             int num = 1;
-            //Elements elem = new Elements();
             string tmpName = "Module" + num.ToString() + ".bpm";
 
             if (items.Count > 0)
@@ -199,7 +158,6 @@ namespace Clever.Model.Program
         private int GetIncludeNumber(Dictionary<string, ProgramData> items)
         {
             int num = 1;
-            //Elements elem = new Elements();
             string tmpName = "Include" + num.ToString() + ".bpi";
 
             if (items.Count > 0)

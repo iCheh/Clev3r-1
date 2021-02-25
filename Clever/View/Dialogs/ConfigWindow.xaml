@@ -1,0 +1,634 @@
+﻿<Window x:Class="Clever.View.Dialogs.ConfigWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:wf="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
+        xmlns:local="clr-namespace:Clever.View.Dialogs"
+        mc:Ignorable="d"
+        Title="Setting"
+        Height="600"
+        Width="1000">
+    <Grid Margin="0"
+          Background="{StaticResource about_bgd}">
+        <Grid.RowDefinitions>
+            <RowDefinition MinHeight="200"/>
+            <RowDefinition Height="6"/>
+            <RowDefinition MinHeight="200"/>
+        </Grid.RowDefinitions>
+        <ScrollViewer Grid.Row="0"
+                      Margin="20,10,20,5"
+                      VerticalScrollBarVisibility="Auto"
+                      HorizontalScrollBarVisibility="Auto">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="20"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Border Grid.Column="0"
+                        Grid.Row="0"
+                        Grid.RowSpan="7"
+                        Margin="0"
+                        BorderThickness="0"
+                        BorderBrush="#00000000"
+                        Background="{Binding Path=LineNumberBGD_Color}"/>
+                <Border Grid.Column="1"
+                        Grid.ColumnSpan="2"
+                        Grid.Row="0"
+                        Grid.RowSpan="7"
+                        Margin="0"
+                        BorderThickness="0"
+                        BorderBrush="#00000000"
+                        Background="{Binding Path=EditorBGD_Color}"/>
+                
+                <!--#region Первая строк -->
+                
+                <TextBlock Grid.Row="0"
+                           Grid.Column="0"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Right"
+                           Margin="0,0,4,0"
+                           FontSize="16"
+                           FontFamily="Consolas"
+                           Text="1"
+                           Foreground="{Binding Path=LineNumberFORE_Color}"/>
+                <TextBlock Grid.Row="0"
+                           Grid.Column="2"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Left"
+                           FontSize="16"
+                           FontFamily="Consolas"
+                           Text="' this is comment"
+                           FontStyle="Italic"
+                           Foreground="{Binding Path=Comment_Color}"/>
+                <!--#endregion -->
+                
+                <!--#region Вторая строка -->
+
+                <TextBlock Grid.Row="1"
+                           Grid.Column="0"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Right"
+                           Margin="0,0,4,0"
+                           FontSize="16"
+                           FontFamily="Consolas"
+                           Text="2"
+                           Foreground="{Binding Path=LineNumberFORE_Color}"/>
+
+                <!--#endregion-->
+
+                <!--#region Третья строк -->
+
+                <TextBlock Grid.Row="2"
+                           Grid.Column="0"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Right"
+                           Margin="0,0,4,0"
+                           FontSize="16"
+                           FontFamily="Consolas"
+                           Text="3"
+                           Foreground="{Binding Path=LineNumberFORE_Color}"/>
+                <StackPanel Grid.Row="2"
+                            Grid.Column="2"
+                            Orientation="Horizontal">
+                    <TextBlock VerticalAlignment="Center"
+                               HorizontalAlignment="Left"
+                               FontSize="16"
+                               FontFamily="Consolas"
+                               Text="folder"
+                               Foreground="{Binding Path=Keyword1_Color}"/>
+                    <TextBlock VerticalAlignment="Center"
+                               HorizontalAlignment="Left"
+                               Margin="10,0,0,0"
+                               FontSize="16"
+                               FontFamily="Consolas"
+                               Text="&quot;sd&quot;"
+                               Foreground="{Binding Path=String_Color}"/>
+                    <TextBlock VerticalAlignment="Center"
+                               HorizontalAlignment="Left"
+                               Margin="10,0,0,0"
+                               FontSize="16"
+                               FontFamily="Consolas"
+                               Text="&quot;MyProject&quot;"
+                               Foreground="{Binding Path=String_Color}"/>
+                </StackPanel>
+                
+                
+                <!--#endregion -->
+
+            </Grid>
+            
+        </ScrollViewer>
+
+        <ScrollViewer Margin="20"
+                      Grid.Row="2"
+                      VerticalScrollBarVisibility="Auto"
+                      HorizontalScrollBarVisibility="Auto">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="60"/>
+                    <ColumnDefinition Width="20"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="60"/>
+                    <ColumnDefinition Width="20"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="60"/>
+                </Grid.ColumnDefinitions>
+
+                <!--#region LINE NUMBER BACKGROUND -->
+
+                <TextBlock Text="Line number background:"
+                               Grid.Row="0"
+                               Grid.Column="0"
+                               Grid.ColumnSpan="3"
+                               Margin="10,0,0,0"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Left"
+                               FontSize="16"
+                               FontFamily="Consolas"/>
+                <Border Grid.Row="0"
+                            Grid.Column="10"
+                            Height="20"
+                            Width="50"
+                            Background="{Binding Path=LineNumberBGD_Color}"
+                            BorderThickness="1"
+                            BorderBrush="#000000"/>
+
+                <TextBlock Text="R"
+                               Grid.Row="1"
+                               Grid.Column="0"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center"
+                               FontSize="14"
+                               FontFamily="Consolas"/>
+                <TextBlock Text="G"
+                               Grid.Row="1"
+                               Grid.Column="4"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center"
+                               FontSize="14"
+                               FontFamily="Consolas"/>
+                <TextBlock Text="B"
+                               Grid.Row="1"
+                               Grid.Column="8"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center"
+                               FontSize="14"
+                               FontFamily="Consolas"/>
+
+                <Slider x:Name="lineNumberBGDR"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Value="{Binding Path=LineNumberBGDR, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                            Minimum="0"
+                            Maximum="255"
+                            SmallChange="1"/>
+                <TextBox HorizontalAlignment="Center"
+                             VerticalAlignment="Center"
+                             Grid.Row="1"
+                             Grid.Column="2"
+                             Height="20"
+                             Width="50"
+                             Text="{Binding ElementName=lineNumberBGDR, Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:F0}}"
+                             TextAlignment="Right"
+                             FontSize="14"
+                             FontFamily="Consolas"
+                             Background="#00000000"
+                             BorderThickness="1"
+                             BorderBrush="#000000"/>
+
+                <Slider x:Name="lineNumberBGDG"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"
+                            Grid.Row="1"
+                            Grid.Column="5"
+                            Value="{Binding Path=LineNumberBGDG, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                            Minimum="0"
+                            Maximum="255"/>
+                <TextBox HorizontalAlignment="Center"
+                             VerticalAlignment="Center"
+                             Grid.Row="1"
+                             Grid.Column="6"
+                             Height="20"
+                             Width="50"
+                             Text="{Binding ElementName=lineNumberBGDG, Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:F0}}"
+                             TextAlignment="Right"
+                             FontSize="14"
+                             FontFamily="Consolas"
+                             Background="#00000000"
+                             BorderThickness="1"
+                             BorderBrush="#000000"/>
+
+                <Slider x:Name="lineNumberBGDB" HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"
+                            Grid.Row="1"
+                            Grid.Column="9"
+                            Value="{Binding Path=LineNumberBGDB, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                            Minimum="0"
+                            Maximum="255"/>
+                <TextBox HorizontalAlignment="Center"
+                             VerticalAlignment="Center"
+                             Grid.Row="1"
+                             Grid.Column="10"
+                             Height="20"
+                             Width="50"
+                             Text="{Binding ElementName=lineNumberBGDB, Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:F0}}"
+                             TextAlignment="Right"
+                             FontSize="14"
+                             FontFamily="Consolas"
+                             Background="#00000000"
+                             BorderThickness="1"
+                             BorderBrush="#000000"/>
+
+                <!--#endregion-->
+
+                <Separator Grid.Row="2"
+                           Grid.ColumnSpan="10"/>
+
+                <!--#region LINE NUMBER FOREGROUND -->
+
+                <TextBlock Text="Line number foreground:"
+                               Grid.Row="3"
+                               Grid.Column="0"
+                               Grid.ColumnSpan="3"
+                               Margin="10,0,0,0"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Left"
+                               FontSize="16"
+                               FontFamily="Consolas"/>
+                <Border Grid.Row="3"
+                            Grid.Column="10"
+                            Height="20"
+                            Width="50"
+                            Background="{Binding Path=LineNumberFORE_Color}"
+                            BorderThickness="1"
+                            BorderBrush="#000000"/>
+
+                <TextBlock Text="R"
+                               Grid.Row="4"
+                               Grid.Column="0"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center"
+                               FontSize="14"
+                               FontFamily="Consolas"/>
+                <TextBlock Text="G"
+                               Grid.Row="4"
+                               Grid.Column="4"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center"
+                               FontSize="14"
+                               FontFamily="Consolas"/>
+                <TextBlock Text="B"
+                               Grid.Row="4"
+                               Grid.Column="8"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center"
+                               FontSize="14"
+                               FontFamily="Consolas"/>
+
+                <Slider x:Name="lineNumberFORER"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"
+                            Grid.Row="4"
+                            Grid.Column="1"
+                            Value="{Binding Path=LineNumberFORER, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                            Minimum="0"
+                            Maximum="255"
+                            SmallChange="1"/>
+                <TextBox HorizontalAlignment="Center"
+                             VerticalAlignment="Center"
+                             Grid.Row="4"
+                             Grid.Column="2"
+                             Height="20"
+                             Width="50"
+                             Text="{Binding ElementName=lineNumberFORER, Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:F0}}"
+                             TextAlignment="Right"
+                             FontSize="14"
+                             FontFamily="Consolas"
+                             Background="#00000000"
+                             BorderThickness="1"
+                             BorderBrush="#000000"/>
+
+                <Slider x:Name="lineNumberFOREG"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"
+                            Grid.Row="4"
+                            Grid.Column="5"
+                            Value="{Binding Path=LineNumberFOREG, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                            Minimum="0"
+                            Maximum="255"/>
+                <TextBox HorizontalAlignment="Center"
+                             VerticalAlignment="Center"
+                             Grid.Row="4"
+                             Grid.Column="6"
+                             Height="20"
+                             Width="50"
+                             Text="{Binding ElementName=lineNumberFOREG, Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:F0}}"
+                             TextAlignment="Right"
+                             FontSize="14"
+                             FontFamily="Consolas"
+                             Background="#00000000"
+                             BorderThickness="1"
+                             BorderBrush="#000000"/>
+
+                <Slider x:Name="lineNumberFOREB" HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"
+                            Grid.Row="4"
+                            Grid.Column="9"
+                            Value="{Binding Path=LineNumberFOREB, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                            Minimum="0"
+                            Maximum="255"/>
+                <TextBox HorizontalAlignment="Center"
+                             VerticalAlignment="Center"
+                             Grid.Row="4"
+                             Grid.Column="10"
+                             Height="20"
+                             Width="50"
+                             Text="{Binding ElementName=lineNumberFOREB, Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:F0}}"
+                             TextAlignment="Right"
+                             FontSize="14"
+                             FontFamily="Consolas"
+                             Background="#00000000"
+                             BorderThickness="1"
+                             BorderBrush="#000000"/>
+
+                <!--#endregion-->
+
+                <Separator Grid.Row="5"
+                           Grid.ColumnSpan="10"/>
+
+                <!--#region EDITOR BACKGROUND -->
+
+                <TextBlock Text="Editor background:"
+                               Grid.Row="6"
+                               Grid.Column="0"
+                               Grid.ColumnSpan="3"
+                               Margin="10,0,0,0"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Left"
+                               FontSize="16"
+                               FontFamily="Consolas"/>
+                <Border Grid.Row="6"
+                            Grid.Column="10"
+                            Height="20"
+                            Width="50"
+                            Background="{Binding Path=EditorBGD_Color}"
+                            BorderThickness="1"
+                            BorderBrush="#000000"/>
+
+                <TextBlock Text="R"
+                               Grid.Row="7"
+                               Grid.Column="0"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center"
+                               FontSize="14"
+                               FontFamily="Consolas"/>
+                <TextBlock Text="G"
+                               Grid.Row="7"
+                               Grid.Column="4"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center"
+                               FontSize="14"
+                               FontFamily="Consolas"/>
+                <TextBlock Text="B"
+                               Grid.Row="7"
+                               Grid.Column="8"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center"
+                               FontSize="14"
+                               FontFamily="Consolas"/>
+
+                <Slider x:Name="editorBGDR"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"
+                            Grid.Row="7"
+                            Grid.Column="1"
+                            Value="{Binding Path=EditorBGDR, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                            Minimum="0"
+                            Maximum="255"
+                            SmallChange="1"/>
+                <TextBox HorizontalAlignment="Center"
+                             VerticalAlignment="Center"
+                             Grid.Row="7"
+                             Grid.Column="2"
+                             Height="20"
+                             Width="50"
+                             Text="{Binding ElementName=editorBGDR, Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:F0}}"
+                             TextAlignment="Right"
+                             FontSize="14"
+                             FontFamily="Consolas"
+                             Background="#00000000"
+                             BorderThickness="1"
+                             BorderBrush="#000000"/>
+
+                <Slider x:Name="editorBGDG"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"
+                            Grid.Row="7"
+                            Grid.Column="5"
+                            Value="{Binding Path=EditorBGDG, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                            Minimum="0"
+                            Maximum="255"/>
+                <TextBox HorizontalAlignment="Center"
+                             VerticalAlignment="Center"
+                             Grid.Row="7"
+                             Grid.Column="6"
+                             Height="20"
+                             Width="50"
+                             Text="{Binding ElementName=editorBGDG, Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:F0}}"
+                             TextAlignment="Right"
+                             FontSize="14"
+                             FontFamily="Consolas"
+                             Background="#00000000"
+                             BorderThickness="1"
+                             BorderBrush="#000000"/>
+
+                <Slider x:Name="editorBGDB" HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"
+                            Grid.Row="7"
+                            Grid.Column="9"
+                            Value="{Binding Path=EditorBGDB, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                            Minimum="0"
+                            Maximum="255"/>
+                <TextBox HorizontalAlignment="Center"
+                             VerticalAlignment="Center"
+                             Grid.Row="7"
+                             Grid.Column="10"
+                             Height="20"
+                             Width="50"
+                             Text="{Binding ElementName=editorBGDB, Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:F0}}"
+                             TextAlignment="Right"
+                             FontSize="14"
+                             FontFamily="Consolas"
+                             Background="#00000000"
+                             BorderThickness="1"
+                             BorderBrush="#000000"/>
+
+                <!--#endregion-->
+
+                <Separator Grid.Row="8"
+                           Grid.ColumnSpan="10"/>
+
+                <!--#region COMMENT -->
+
+                <TextBlock Text="Comment:"
+                               Grid.Row="9"
+                               Grid.Column="0"
+                               Grid.ColumnSpan="3"
+                               Margin="10,0,0,0"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Left"
+                               FontSize="16"
+                               FontFamily="Consolas"/>
+                <Border Grid.Row="9"
+                            Grid.Column="10"
+                            Height="20"
+                            Width="50"
+                            Background="{Binding Path=Comment_Color}"
+                            BorderThickness="1"
+                            BorderBrush="#000000"/>
+
+                <TextBlock Text="R"
+                               Grid.Row="10"
+                               Grid.Column="0"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center"
+                               FontSize="14"
+                               FontFamily="Consolas"/>
+                <TextBlock Text="G"
+                               Grid.Row="10"
+                               Grid.Column="4"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center"
+                               FontSize="14"
+                               FontFamily="Consolas"/>
+                <TextBlock Text="B"
+                               Grid.Row="10"
+                               Grid.Column="8"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center"
+                               FontSize="14"
+                               FontFamily="Consolas"/>
+
+                <Slider x:Name="commentR"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"
+                            Grid.Row="10"
+                            Grid.Column="1"
+                            Value="{Binding Path=CommentR, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                            Minimum="0"
+                            Maximum="255"
+                            SmallChange="1"/>
+                <TextBox HorizontalAlignment="Center"
+                             VerticalAlignment="Center"
+                             Grid.Row="10"
+                             Grid.Column="2"
+                             Height="20"
+                             Width="50"
+                             Text="{Binding ElementName=commentR, Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:F0}}"
+                             TextAlignment="Right"
+                             FontSize="14"
+                             FontFamily="Consolas"
+                             Background="#00000000"
+                             BorderThickness="1"
+                             BorderBrush="#000000"/>
+
+                <Slider x:Name="commentG"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"
+                            Grid.Row="10"
+                            Grid.Column="5"
+                            Value="{Binding Path=CommentG, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                            Minimum="0"
+                            Maximum="255"/>
+                <TextBox HorizontalAlignment="Center"
+                             VerticalAlignment="Center"
+                             Grid.Row="10"
+                             Grid.Column="6"
+                             Height="20"
+                             Width="50"
+                             Text="{Binding ElementName=commentG, Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:F0}}"
+                             TextAlignment="Right"
+                             FontSize="14"
+                             FontFamily="Consolas"
+                             Background="#00000000"
+                             BorderThickness="1"
+                             BorderBrush="#000000"/>
+
+                <Slider x:Name="commentB" HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"
+                            Grid.Row="10"
+                            Grid.Column="9"
+                            Value="{Binding Path=CommentB, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                            Minimum="0"
+                            Maximum="255"/>
+                <TextBox HorizontalAlignment="Center"
+                             VerticalAlignment="Center"
+                             Grid.Row="10"
+                             Grid.Column="10"
+                             Height="20"
+                             Width="50"
+                             Text="{Binding ElementName=commentB, Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:F0}}"
+                             TextAlignment="Right"
+                             FontSize="14"
+                             FontFamily="Consolas"
+                             Background="#00000000"
+                             BorderThickness="1"
+                             BorderBrush="#000000"/>
+
+                <!--#endregion-->
+
+                <Separator Grid.Row="11"
+                           Grid.ColumnSpan="10"/>
+
+            </Grid>
+        </ScrollViewer>
+
+        <GridSplitter Grid.Row="1"
+                      VerticalAlignment="Stretch"
+                      HorizontalAlignment="Stretch"
+                      Background="#00000000"
+                      BorderThickness="1"
+                      BorderBrush="#00000000"/>
+    </Grid>
+</Window>

@@ -22,16 +22,20 @@ namespace Clever.Model.Utils
 
         internal static void EditorName_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            var ti = (TabItem)sender;
-            var ed = (Editor)ti.Content;
+            var ti = sender as TabItem;
+            var ed = ti.Content as Editor;
             ed.GetTextEditor.TextArea.Focus();
         }
 
         internal static void Editor_Loaded(object sender, RoutedEventArgs e)
         {
-            var ti = (TabItem)sender;
-            var ed = (Editor)ti.Content;
+            var ti = sender as TabItem;
+            var ed = ti.Content as Editor;
             ed.GetTextEditor.TextArea.Focus();
+            var header = ti.Header as EditorHeader;
+            var data = MainWindowVM.Project.GetProgramData(ti);
+            data.ToolTip = data.FullPath;
+            header.MyToolTip = data.ToolTip;
         }
     }
 }

@@ -20,19 +20,15 @@ namespace Clever.Model.Bplus.BPInterpreter
 
             if (name.IndexOf("Clev3r:" + separator + separator) == 0)
             {
-                //var pth = tmpPath + name.Replace("Clev3r:" + separator + separator, "Lib" + separator + "Modules" + separator) + ".bpm";
-                //Path = tmpPath + name.Replace("Clev3r:" + separator + separator, "Lib" + separator + "Modules" + separator) + ".bpm";
                 Path = tmpPath + "Lib" + separator + "Modules" + separator;
             }
             else if (name.IndexOf("Clever:" + separator + separator) == 0)
             {
-                //var pth = tmpPath + name.Replace("Clev3r:" + separator + separator, "Lib" + separator + "Modules" + separator) + ".bpm";
-                //Path = tmpPath + name.Replace("Clever:" + separator + separator, "Lib" + separator + "Modules" + separator) + ".bpm";
                 Path = tmpPath + "Lib" + separator + "Modules" + separator;
             }
             else
             {
-                Path = GetPath(name, mainPath);
+                Path = GetPath(name, mainPath).Replace(separator + separator, separator);
             }
 
             OriginName = GetName(name);

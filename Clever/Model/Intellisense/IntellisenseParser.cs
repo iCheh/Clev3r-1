@@ -20,14 +20,12 @@ namespace Clever.Model.Intellisense
     {
         private Task taskP;
         private bool newActionP = false;
-        private Task taskU;
-        private bool newActionU = false;
         private bool dataAdded = false;
         internal LineBuilder Builder;
         internal HashSet<string> BPObjects;
         internal HashSet<string> BPKeywords;
         internal Dictionary<string, ProgramData> Data;
-        private int start = 0;
+        //private int start = 0;
         //Stopwatch stopWatch = new Stopwatch();
 
 
@@ -78,10 +76,7 @@ namespace Clever.Model.Intellisense
 
             pData.Map.Type = firstType;
 
-            //var map = new ProgramMap(firstType);
-            SetVSL(pData, pData.Map, data);
-            //pData.Map = map;
-            
+            SetVSL(pData, pData.Map, data);            
         }
 
         private async Task SetVSLAsync(ProgramData pData)
@@ -91,7 +86,7 @@ namespace Clever.Model.Intellisense
             //CommonData.Status.Add("Parser start count: " + start.ToString());
             //stopWatch.Reset();
             //stopWatch.Start();
-
+            var prjData = MainWindowVM.Project.GetDictionary();
             var firstType = BPType.PROGRAM;
             if (pData.ParseName.IndexOf(".bpi") != -1)
             {
@@ -118,85 +113,83 @@ namespace Clever.Model.Intellisense
 
             await Task.Run(() => SetVSL(pData, map, data));
 
-            if (!dataAdded)
+            if (map.Type == BPType.PROGRAM)
             {
-                if (map.Type == BPType.INCLUDE && MainWindowVM.CurrentName == pData.ParseName)
+                var incNames = new HashSet<string>();
+                OpenFile.IncludeFileOpen(map, data, incNames);
+                foreach (var incName in incNames)
                 {
-                    var mainName = map.MainName;
-                    var mainPath = map.MainPath + mainName;
-
-                    if (File.Exists(mainPath))
+                    if (data.ContainsKey(incName))
                     {
-                        if (!data.ContainsKey(mainName))
+                        var incMap = data[incName].Map;
+                        foreach (var imp in incMap.Imports)
                         {
-                            var text = File.ReadAllText(mainPath);
-                            var item = new NewTabItem().Create(text, mainName);
-                            var pd = new ProgramData();
-                            pd.ParseName = mainName;
-                            pd.ClosedName = mainName;
-                            pd.OldName = mainName;
-                            pd.Name = mainName;
-                            pd.AddToObjects = false;
-                            pd.Item = item;
-                            pd.Path = map.MainPath;
-                            pd.FullPath = mainPath;
-                            pd.TextChange = false;
-                            data.Add(mainName, pd);
-                            SetVSLSync(pd, data);
-
-                            OpenFile.IncludeFileOpen(pd.Map, data, new HashSet<string>());
-
-                            foreach (var inc in pd.Map.Includes)
+                            if (!map.Imports.ContainsKey(imp.Key))
                             {
-                                if (data.ContainsKey(inc.Value.OriginName))
-                                {
-                                    foreach (var imp in data[inc.Value.OriginName].Map.Imports)
-                                    {
-                                        if (!pd.Map.Imports.ContainsKey(imp.Key))
-                                        {
-                                            pd.Map.Imports.Add(imp.Key, imp.Value);
-                                        }
-                                    }
-                                }
-                            }
-
-                            OpenFile.ImportFileOpen(pd.Map, data, new HashSet<string>());
-                            
-                            if (map.MainName != "")
-                            {
-                                if (data.ContainsKey(map.MainName))
-                                {
-                                    dataAdded = true;
-                                    map.Includes = data[map.MainName].Map.Includes;
-                                    if (map.Imports.Count > 0)
-                                    {
-                                        foreach (var imp in map.Imports)
-                                        {
-                                            if (!data[map.MainName].Map.Imports.ContainsKey(imp.Key))
-                                            {
-
-                                                data[map.MainName].Map.Imports.Add(imp.Key, imp.Value);
-                                            }
-                                        }
-                                    }
-
-                                    map.Imports = data[map.MainName].Map.Imports;
-                                    map.Variables.AddRange(data[map.MainName].Map.Variables);
-                                    map.Subroutines.AddRange(data[map.MainName].Map.Subroutines);
-                                    map.Labels.AddRange(data[map.MainName].Map.Labels);
-                                }
-                                else
-                                {
-                                    dataAdded = false;
-                                }
+                                map.Imports.Add(imp.Key, imp.Value);
                             }
                         }
                     }
                 }
+                var impNames = new HashSet<string>();
+                OpenFile.ImportFileOpen(map, data, impNames);
             }
-            else
+            else if (map.Type == BPType.MODULE)
             {
-                OpenFile.FileOpen(map, data, new HashSet<string>(), new HashSet<string>());
+                var impNames = new HashSet<string>();
+                OpenFile.ImportFileOpen(map, data, impNames);
+            }
+            else if (map.Type == BPType.INCLUDE)
+            {
+                if (map.MainName != "")
+                {
+                    if (!data.ContainsKey(map.MainName))
+                    {
+                        OpenFile.MainFileOpen(map, data);
+                    }
+
+                    if (data.ContainsKey(map.MainName))
+                    {
+                        if (data[map.MainName].Map.Includes.ContainsKey(pData.ParseName.ToLower()))
+                        {
+                            map.Variables.AddRange(data[map.MainName].Map.Variables);
+                            map.Subroutines.AddRange(data[map.MainName].Map.Subroutines);
+                            map.Labels.AddRange(data[map.MainName].Map.Labels);
+
+                            map.Includes = data[map.MainName].Map.Includes;
+
+                            var imports = data[map.MainName].Map.Imports;
+                            foreach (var imp in imports)
+                            {
+                                if (!map.Imports.ContainsKey(imp.Key))
+                                {
+                                    map.Imports.Add(imp.Key, imp.Value);
+                                }
+                            }
+                            var incNames = new HashSet<string>();
+                            OpenFile.IncludeFileOpen(map, data, incNames);
+
+                            foreach (var incName in incNames)
+                            {
+                                if (data.ContainsKey(incName))
+                                {
+                                    var incMap = data[incName].Map;
+                                    foreach (var imp in incMap.Imports)
+                                    {
+                                        if (!map.Imports.ContainsKey(imp.Key))
+                                        {
+                                            map.Imports.Add(imp.Key, imp.Value);
+                                        }
+                                    }
+                                }
+                            }
+
+                            var impNames = new HashSet<string>();
+
+                            OpenFile.ImportFileOpen(map, data, impNames);
+                        }
+                    }
+                }
             }
 
             pData.Map = map;
@@ -205,28 +198,7 @@ namespace Clever.Model.Intellisense
 
             //stopWatch.Stop();
             //var timer = stopWatch.ElapsedMilliseconds / 1000.0;
-            //CommonData.Status.Add("Parser work time: " + timer.ToString() + " sec.");
-
-            /*
-            if (taskU != null)
-            {
-                if (taskU.IsCompleted)
-                {
-                    newActionU = false;
-                    taskU = UpdateWorkAsync(pData, map, data);
-                }
-                else
-                {
-                    newActionU = true;
-                }
-            }
-            else
-            {
-                newActionU = false;
-                taskU = UpdateWorkAsync(pData, map, data);
-            }
-            */
-            
+            //CommonData.Status.Add("Parser work time: " + timer.ToString() + " sec.");           
         }
 
         private void SetVSL(ProgramData pData, ProgramMap map, Dictionary<string, ProgramData> data)
@@ -412,74 +384,6 @@ namespace Clever.Model.Intellisense
                     }
                 }
             }
-            if (map.Type == BPType.INCLUDE && MainWindowVM.CurrentName == name)
-            {
-                if (map.MainName != "")
-                {
-                    if (data.ContainsKey(map.MainName))
-                    {
-                        dataAdded = true;
-                        map.Includes = data[map.MainName].Map.Includes;
-                        if (map.Imports.Count > 0)
-                        {
-                            foreach (var imp in map.Imports)
-                            {
-                                if (!data[map.MainName].Map.Imports.ContainsKey(imp.Key))
-                                {
-                                    data[map.MainName].Map.Imports.Add(imp.Key, imp.Value);
-                                }
-                            }
-                        }
-
-                        map.Imports = data[map.MainName].Map.Imports;
-                        map.Variables.AddRange(data[map.MainName].Map.Variables);
-                        map.Subroutines.AddRange(data[map.MainName].Map.Subroutines);
-                        map.Labels.AddRange(data[map.MainName].Map.Labels);
-                        //var tmpNames = new HashSet<string>();
-                        /*
-                        foreach (var inc in map.Includes)
-                        {
-                            if (data.ContainsKey(inc.Value.OriginName))
-                            {
-                                if (!tmpNames.Contains(inc.Value.OriginName))
-                                {
-                                    MessageBox.Show(inc.Value.OriginName + "   " + data[inc.Value.OriginName].Map.Variables.Count.ToString());
-                                    map.Variables.AddRange(data[inc.Value.OriginName].Map.Variables);
-                                    map.Subroutines.AddRange(data[inc.Value.OriginName].Map.Subroutines);
-                                    map.Labels.AddRange(data[inc.Value.OriginName].Map.Labels);
-                                    tmpNames.Add(inc.Value.OriginName);
-                                }
-                            }
-                        }
-                        */
-                    }
-                    else
-                    {
-                        dataAdded = false;
-                    }
-                }
-            }
-            else if (map.Type == BPType.PROGRAM)
-            {
-                var inc = map.Includes;
-
-                foreach (var ii in inc)
-                {
-                    var nn = ii.Value.OriginName;
-                    if (data.ContainsKey(nn))
-                    {
-                        var imp = data[nn].Map.Imports;
-
-                        foreach (var im in imp)
-                        {
-                            if (!map.Imports.ContainsKey(im.Key))
-                            {
-                                map.Imports.Add(im.Key, im.Value);
-                            }
-                        }
-                    }
-                }
-            }
         }
 
         private int GetParamCount(List<Word> words)
@@ -525,36 +429,6 @@ namespace Clever.Model.Intellisense
             }
 
             return 0;
-        }
-
-        #endregion
-
-        #region AsyncUI
-
-        private async Task UpdateWorkAsync(ProgramData pData, ProgramMap map, Dictionary<string, ProgramData> data)
-        {
-            await Task.Run(() => UpdateWork());
-            pData.Map = map;
-            /*
-            if (data.ContainsKey(pData.ParseName))
-            {
-                data[pData.ParseName] = pData;
-            }
-            else
-            {
-                data.Add(pData.ParseName, pData);
-            }
-            */
-            Data = data;
-            //BpObjects.IntelliData = Get.Data;
-            //stopWatch.Stop();
-            //var timer = stopWatch.ElapsedMilliseconds / 1000.0;
-            //CommonData.Status.Add("Parser second work time: " + timer.ToString() + " sec.");
-        }
-
-        private void UpdateWork()
-        {
-            while (BpObjects.UpdateWork) { }
         }
 
         #endregion

@@ -125,7 +125,7 @@ namespace Clever.Model.Utils
             }
         }
 
-        private string ToolTip { get; set; }
+        internal string ToolTip { get; set; }
         public TextEditor Editor { get; set; }
         private EditorHeader header { get; set; }
         public Popup Menu { get; set; }
@@ -176,14 +176,6 @@ namespace Clever.Model.Utils
                 }                   
                 else
                     SetChangeToHeaderNo();
-
-                /*
-                Stopwatch stopWatch1 = new Stopwatch();
-                stopWatch1.Start();
-                ParseTextTEST1();
-                stopWatch1.Stop();
-                var timer1 = stopWatch1.ElapsedMilliseconds / 1000.0;
-                */
             }
         }
 
