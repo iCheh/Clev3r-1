@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<doc>
+  <members>
+    <member name="T:EV3">
+      <summary>
+        Small utility functions that concern the EV3 brick as a whole.
+      </summary>
+    </member>
+    <member name="P:Time">
+      <summary>
+        The time in milliseconds since the program was started.
+      </summary>
+    </member>
+    <member name="M:SetLEDColor">
+      <summary>
+        Set the color of the brick LED light and the effect to use for it.
+      </summary>
+      <param name="color">Can be "OFF", "GREEN", "RED", "ORANGE"</param>
+      <param name="effect">Can be "NORMAL", "FLASH", "PULSE"</param>
+    </member>
+    <member name="M:SystemCall">
+      <summary>
+        Execute one system command by the command shell of the EV3 linux system. All threads of the virtual machine are halted until the system command is finished.
+      </summary>
+      <param name="commandline">The system command</param>
+      <returns>Exit status of the command</returns>
+    </member>
+    <member name="M:QueueNextCommand">
+      <summary>
+        Increase performance when program runs in "PC mode": Do not send next command to the brick immediately, but wait until one more command is issued which will then be sent together with the first one. You can bunch more commands together by using an additional call to QueueNextCommand before any command that should be placed into the queue.
+        In "brick mode", this command has no effect.
+      </summary>
+    </member>
+    <member name="P:BatteryLevel">
+      <summary>
+        The current charge level of the battery (range 0 to 100).
+      </summary>
+      <example>
+        <text>
+          Get battery power in %
+        </text>
+        <code>
+          l = EV3.BatteryLevel
+        </code>
+      </example>
+    </member>
+    <member name="P:BatteryVoltage">
+      <summary>
+        The current charge level of the battery in volts.
+      </summary>
+      <example>
+        <text>
+          Get battery power in volts
+        </text>
+        <code>
+          v = EV3.BatteryVoltage
+        </code>
+      </example>
+    </member>
+    <member name="P:BatteryCurrent">
+      <summary>
+        The electric current being consumed from the battery in amperes.
+      </summary>
+      <example>
+        <text>
+          Get battery current
+        </text>
+        <code>
+          i = EV3.BatteryCurrent
+        </code>
+      </example>
+    </member>
+    <member name="P:BrickName">
+      <summary>
+        The individual name of the EV3 brick.
+      </summary>
+      <example>
+        <text>
+          Get brick name
+        </text>
+        <code>
+          n = EV3.BrickName
+        </code>
+      </example>
+    </member>
+  </members>
+</doc>

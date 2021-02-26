@@ -1,0 +1,91 @@
+<?xml version="1.0"?>
+<doc>
+  <members>
+    <member name="T:MotorA">
+      <summary>
+        A set of quick methods for a motor connected to port A.
+      </summary>
+    </member>
+    <member name="M:GetTacho">
+      <summary>
+        Query the current rotation count of a single motor for port A. 
+        As long as the counter is not reset it will accurately measure all movements of a motor, even if the motor is driven by some external force while not actively running.
+        Note that this command does not work for motors connected via daisy-chaining.
+      </summary>
+      <returns>The current rotation count in degrees for motor port B</returns>
+    </member>
+    <member name="M:GetSpeed">
+      <summary>
+        Query the current speed of a single motor for port A.
+        Note that this command does not work for motors connected via daisy-chaining.
+      </summary>
+      <returns>Current speed in range -100 to 100</returns>
+    </member>
+    <member name="M:ResetCount">
+      <summary>
+        Set the rotation count of motor port A to 0.
+      </summary>
+    </member>
+    <member name="M:SetDirectPolarity">
+      <summary>
+        Sets the direct polarity for motor to port A
+      </summary>
+    </member>
+    <member name="M:SetReversPolarity">
+      <summary>
+        Sets the direct polarity for motor to port A
+      </summary>
+    </member>
+    <member name="M:Off">
+      <summary>
+        Stop motor port A. This will also cancel any scheduled movement for this motor.
+        Motor will continue to rotate by inertia
+      </summary>
+    </member>
+    <member name="M:OffAndBrake">
+      <summary>
+        Stop motor port A. This will also cancel any scheduled movement for this motor.
+        Motor will stop completely
+      </summary>
+    </member>
+    <member name="M:IsLarge">
+      <summary>
+        Set the motor type for port A - Large motor
+      </summary>
+    </member>
+    <member name="M:IsMedium">
+      <summary>
+        Set the motor type for port A - Medium motor
+      </summary>
+    </member>
+    <member name="M:SetSpeed">
+      <summary>
+        Set motor speed to port A.
+      </summary>
+      <param name="speed">Speed value from -100 (full reverse) to 100 (full forward)</param>
+    </member>
+    <member name="M:SetPower">
+      <summary>
+        Set motor power to port A.
+      </summary>
+      <param name="power">Speed value from -100 (full reverse) to 100 (full forward)</param>
+    </member>
+    <member name="M:Start">
+      <summary>
+        Start motor to pirt A
+      </summary>
+    </member>
+    <member name="M:StartSpeed">
+      <summary>
+        Set motor speed to port A, then start motor.
+      </summary>
+      <param name="speed">Speed value from -100 (full reverse) to 100 (full forward)</param>
+    </member>
+    <member name="M:StartPower">
+      <summary>
+        Set motor power to port A, then start motor.
+      </summary>
+      <param name="power">Speed value from -100 (full reverse) to 100 (full forward)</param>
+    </member>
+  </members>
+</doc>

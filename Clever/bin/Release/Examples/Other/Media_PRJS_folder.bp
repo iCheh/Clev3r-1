@@ -1,0 +1,8 @@
+folder "prjs" "MediaTest"
+
+LCD.Clear()
+LCD.BmpFile(1, 0, 0, "Tired middle")
+
+Speaker.Play(100, "Cat purr")
+
+Program.Delay(1000000)

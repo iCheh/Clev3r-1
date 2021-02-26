@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<doc>
+  <members>
+    <member name="T:Row">
+      <summary>
+        Набір оптимізованих команд для роботи з одновимірними масивами.
+      </summary>
+    </member>
+    <member name="M:Init">
+      <summary>
+        Створити новий масив потрібного розміру і заповнити його зазначеними значеннями.
+      </summary>
+      <param name="size">Розмір масиву (не більше 30000).</param>
+      <param name="value">Значення, яким заповнюється масив.</param>
+      <returns>Створений масив</returns>
+    </member>
+    <member name="M:Delete">
+      <summary>
+        Видалити вказаний масив.
+      </summary>
+      <param name="array">Масив</param>
+    </member>
+    <member name="M:Read">
+      <summary>
+        Вважати значення елемента масиву за вказаним індексом.
+      </summary>
+      <param name="array">Масив</param>
+      <param name="index">Індекс</param>
+      <returns>Шукане значення</returns>
+    </member>
+    <member name="M:Write">
+      <summary>
+        Записати значення в елемент масиву за вказаним індексом.
+      </summary>
+      <param name="array">Масив</param>
+      <param name="index">Індекс</param>
+      <param name="value">Значення для запису в масив</param>
+    </member>
+    <member name="M:Size">
+      <summary>
+        Отримати розмір масиву.
+      </summary>
+      <param name="array">Масив</param>
+      <returns>Розмір масиву</returns>
+    </member>
+    <member name="M:Resize">
+      <summary>
+        Змінити розмір масиву.
+      </summary>
+      <param name="array">Масив</param>
+      <param name="size">Новий розмір масиву (не більше 30000).</param>
+    </member>
+  </members>
+</doc>

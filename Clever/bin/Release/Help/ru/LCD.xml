@@ -1,0 +1,117 @@
+<?xml version="1.0"?>
+<doc>
+  <members>
+    <member name="T:LCD">
+      <summary>
+        Группа команд LCD отвечает за вывод графической информации на экран. EV3 имеет черно-белый дисплей с разрешением 178x128 точек, с началом отсчета координат в левом верхнем углу дисплея.
+      </summary>
+    </member>
+    <member name="M:StopUpdate">
+      <summary>
+        Команда остановки вывода информации на экран с ее логированием. При следующем вызове Update() все накопленные изменения будут отображены единовременно. Можно использовать эту функцию, чтобы предотвратить мерцание или для ускорения рисования сложных изображений.
+      </summary>
+    </member>
+    <member name="M:Update">
+      <summary>
+        Вывод на экран всех изменений, которые произошли с момента последнего вызова StopUpdate().
+      </summary>
+    </member>
+    <member name="M:Clear">
+      <summary>
+        Очистка экрана, все пиксели закрашиваются в белый цвет.
+      </summary>
+    </member>
+    <member name="M:Pixel">
+      <summary>
+        Вывод на экран одиночного пикселя указанного цвета.
+      </summary>
+      <param name="color">0 (белый) или 1 (черный)</param>
+      <param name="x">Координата X по горизонтали</param>
+      <param name="y">Координата Y по вертикали</param>
+    </member>
+    <member name="M:Line">
+      <summary>
+        Вывод на экран линии указанного цвета.
+      </summary>
+      <param name="color">0 (белый) или 1 (черный)</param>
+      <param name="x1">Координата X начальной точки</param>
+      <param name="y1">Координата Y начальной точки</param>
+      <param name="x2">Координата X конечной точки</param>
+      <param name="y2">Координата Y конечной точки</param>
+    </member>
+    <member name="M:Circle">
+      <summary>
+        Вывод на экран контура круга указанного размера.
+      </summary>
+      <param name="color">0 (белый) или 1 (черный)</param>
+      <param name="x">Координата X центра круга</param>
+      <param name="y">Координата Y центра круга</param>
+      <param name="radius">Радиус круга</param>
+    </member>
+    <member name="M:Text">
+      <summary>
+        Вывод на экран текста или числа с заданными параметрами (цвет, размер)
+      </summary>
+      <param name="color">0 (белый) или 1 (черный)</param>
+      <param name="x">Координата X начала печати</param>
+      <param name="y">Координата Y начала печати</param>
+      <param name="font">Размер шрифта: 0 (маленький), 1 (полужирный), 2 (большой)</param>
+      <param name="text">Текст или число для вывода на дисплей</param>
+    </member>
+    <member name="M:Write">
+      <summary>
+        Вывод на экран заданного текста в черном цвете и размере по умолчанию. Для управления параметрами выводимого текста лучше использовать LCD.Text
+      </summary>
+      <param name="x">Координата X начала печати</param>
+      <param name="y">Координата Y начала печати</param>
+      <param name="text">Текст или числа для вывода на экран</param>
+    </member>
+    <member name="M:FillRect">
+      <summary>
+        Вывод на экран сплошного прямоугольника с заданным цветом.
+      </summary>
+      <param name="color">0 (белый) или 1 (черный)</param>
+      <param name="x">Координата X левой стороны прямоугольника</param>
+      <param name="y">Координата Y верхней стороны прямоугольника</param>
+      <param name="width">Ширина прямоугольника</param>
+      <param name="height">Высота прямоугольника</param>
+    </member>
+    <member name="M:Rect">
+      <summary>
+        Вывод на экран контура прямоугольника с заданным цветом.
+      </summary>
+      <param name="color">0 (белый) или 1 (черный)</param>
+      <param name="x">Координата X левой стороны прямоугольника</param>
+      <param name="y">Координата Y верхней стороны прямоугольника</param>
+      <param name="width">Ширина прямоугольника</param>
+      <param name="height">Высота прямоугольника</param>
+    </member>
+    <member name="M:InverseRect">
+      <summary>
+        Инверсия цвета всех пикселей в границах заданного прямоугольника.
+      </summary>
+      <param name="x">Координата X левой стороны прямоугольника</param>
+      <param name="y">Координата Y верхней стороны прямоугольника</param>
+      <param name="width">Ширина прямоугольника</param>
+      <param name="height">Высота прямоугольника</param>
+    </member>
+    <member name="M:FillCircle">
+      <summary>
+        Вывод на экран сплошного круга с заданным цветом.
+      </summary>
+      <param name="color">0 (белый) или 1 (черный)</param>
+      <param name="x">Координата X центра круга</param>
+      <param name="y">Координата Y центра круга</param>
+      <param name="radius">Радиус круга</param>
+    </member>
+    <member name="M:BmpFile">
+      <summary>
+        Вывод на экран файл с заданным цветом. Поддерживаются только файлы rgf-формата.
+      </summary>
+      <param name="color">0 (белый) или 1 (черный)</param>
+      <param name="x">Координата X левой стороны изображения</param>
+      <param name="y">Координата Y верхней стороны изображения</param>
+      <param name="filename">Имя файла без расширения .rgf. Может содержать относительный путь от папки 'prjs' или абсолютный, начинаясь с '/')</param>
+    </member>
+  </members>
+</doc>

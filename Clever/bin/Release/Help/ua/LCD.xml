@@ -1,0 +1,118 @@
+﻿<?xml version="1.0"?>
+<doc>
+  <members>
+    <member name="T:LCD">
+      <summary>
+        Група команд LCD відповідає за виведення графічної інформації на екран. EV3 має чорно-білий дисплей з роздільною здатністю 178x128 пікселів, з початком відліку координат в лівому верхньому кутку дисплея.
+      </summary>
+    </member>
+    <member name="M:StopUpdate">
+      <summary>
+        Команда зупинки виведення інформації на екран. При наступному виклику Update () всі накопичені зміни будуть відображені одноразово. Можна скористатися цією функцією, щоб запобігти мерехтіння або для прискорення малювання складних зображень.
+      </summary>
+    </member>
+    <member name="M:Update">
+      <summary>
+        Виведення на екран всіх змін, які відбулися з моменту останнього виклику StopUpdate ().
+      </summary>
+    </member>
+    <member name="M:Clear">
+      <summary>
+        Очищення екрану, всі пікселі зафарбовуються в білий колір.
+      </summary>
+    </member>
+    <member name="M:Pixel">
+      <summary>
+        Виведення на екран окремого пікселя зазначеного кольору.
+      </summary>
+      <param name="color">0 (білий) або 1 (чорний)</param>
+      <param name="x">Координата X по горизонталі</param>
+      <param name="y">Координата Y по вертикалі</param>
+    </member>
+    <member name="M:Line">
+      <summary>
+        Виведення на екран лінії зазначеного кольору.
+      </summary>
+      <param name="color">0 (білий) або 1 (чорний)</param>
+      <param name="x1">Координата X початкової точки</param>
+      <param name="y1">Координата Y початкової точки</param>
+      <param name="x2">Координата X кінцевої точки</param>
+      <param name="y2">Координата Y кінцевої точки</param>
+    </member>
+
+    <member name="M:Text">
+      <summary>
+        Виведення на екран тексту або числа з заданими параметрами (колір, розмір)
+      </summary>
+      <param name="color">0 (білий) або 1 (чорний)</param>
+      <param name="x">Координата X початку друку</param>
+      <param name="y">Координата Y початку друку</param>
+      <param name="font">Розмір шрифту: 0 (маленький), 1 (напівжирний), 2 (великий)</param>
+      <param name="text">Текст або число для виведення на дисплей</param>
+    </member>
+    <member name="M:Write">
+      <summary>
+        Виведення на екран заданого тексту в чорному кольорі і розмірі за замовчуванням. Для управління параметрами виведеного тексту краще використовувати LCD.Text
+      </summary>
+      <param name="x">Координата X початку друку</param>
+      <param name="y">Координата Y початку друку</param>
+      <param name="text">Текст або число для виведення на дисплей</param>
+    </member>
+    <member name="M:FillRect">
+      <summary>
+        Виведення на екран суцільного прямокутника з заданим кольором.
+      </summary>
+      <param name="color">0 (білий) або 1 (чорний)</param>
+      <param name="x">Координата X лівої сторони прямокутника</param>
+      <param name="y">Координата Y верхньої сторони прямокутника</param>
+      <param name="width">Ширина прямокутника</param>
+      <param name="height">Висота прямокутника</param>
+    </member>
+    <member name="M:Rect">
+      <summary>
+        Виведення на екран контуру прямокутника з заданим кольором.
+      </summary>
+      <param name="color">0 (білий) або 1 (чорний)</param>
+      <param name="x">Координата X лівої сторони прямокутника</param>
+      <param name="y">Координата Y верхньої сторони прямокутника</param>
+      <param name="width">Ширина прямокутника</param>
+      <param name="height">Висота прямокутника</param>
+    </member>
+    <member name="M:InverseRect">
+      <summary>
+        Інверсія кольору всіх пікселів в межах заданого прямокутника.
+      </summary>
+      <param name="x">Координата X лівої сторони прямокутника</param>
+      <param name="y">Координата Y верхньої сторони прямокутника</param>
+      <param name="width">Ширина прямокутника</param>
+      <param name="height">Висота прямокутника</param>
+    </member>
+    <member name="M:FillCircle">
+      <summary>
+        Виведення на екран суцільного кола із заданим кольором.
+      </summary>
+      <param name="color">0 (білий) або 1 (чорний)</param>
+      <param name="x">Координата X центру кола</param>
+      <param name="y">Координата Y центру кола</param>
+      <param name="radius">Радіус кола</param>
+    </member>
+    <member name="M:Circle">
+      <summary>
+        Виведення на екран контуру кола зазначеного розміру.
+      </summary>
+      <param name="color">0 (білий) або 1 (чорний)</param>
+      <param name="x">Координата X центру кола</param>
+      <param name="y">Координата Y центру кола</param>
+      <param name="radius">Радіус кола</param>
+    </member>
+    <member name="M:BmpFile">
+      <summary>
+        Виведення на екран файлу заданого кольору. Підтримуються тільки файли в форматі .rgf
+      </summary>
+      <param name="color">0 (білий) або 1 (чорний)</param>
+      <param name="x">Координата X лівої сторони зображення</param>
+      <param name="y">Координата Y верхньої сторони зображення</param>
+      <param name="filename">Ім'я файлу без розширення .rgf. Може містити відносний шлях від папки 'prjs' або абсолютний, що починається з '/').</param>
+    </member>
+  </members>
+</doc>

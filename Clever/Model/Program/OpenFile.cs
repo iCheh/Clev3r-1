@@ -53,11 +53,10 @@ namespace Clever.Model.Program
             {
                 var name = inc.Value.OriginName;
                 var path = inc.Value.Path + name;
-                var contains = data.ContainsKey(name);
 
                 if (File.Exists(path))
                 {
-                    if (contains)
+                    if (data.ContainsKey(name))
                     {
                         if (path != data[name].FullPath)
                         {
@@ -80,17 +79,18 @@ namespace Clever.Model.Program
                         pd.FullPath = path;
                         pd.TextChange = false;
                         data.Add(name, pd);
-                        IntellisenseParser.Get.SetVSLSync(pd, data);
+                        //IntellisenseParser.SetVSLSync(pd, data);
                     }
                 }
                 else
                 {
-                    if (contains)
+                    if (data.ContainsKey(name))
                     {
                         data.Remove(name);
                     }
-                }
 
+                    map.Includes.Remove(name.ToLower());
+                }
             }
         }
 
@@ -110,11 +110,10 @@ namespace Clever.Model.Program
             {
                 var name = imp.Value.OriginName;
                 var path = imp.Value.Path + name;
-                var contains = data.ContainsKey(name);
 
                 if (File.Exists(path))
                 {
-                    if (contains)
+                    if (data.ContainsKey(name))
                     {
                         if (path != data[name].FullPath)
                         {
@@ -137,15 +136,17 @@ namespace Clever.Model.Program
                         pd.FullPath = path;
                         pd.TextChange = false;
                         data.Add(name, pd);
-                        IntellisenseParser.Get.SetVSLSync(pd, data);
+                        //IntellisenseParser.SetVSLSync(pd, data);
                     }
                 }
                 else
                 {
-                    if (contains)
+                    if (data.ContainsKey(name))
                     {
                         data.Remove(name);
                     }
+
+                    map.Imports.Remove(name.ToLower());
                 }
             }
         }
@@ -154,14 +155,14 @@ namespace Clever.Model.Program
         {
             var name = map.MainName;
             var path = map.MainPath + name;
-            var contains = data.ContainsKey(name);
 
             if (File.Exists(path))
             {
-                if (contains)
+                if (data.ContainsKey(name))
                 {
                     if (path != data[name].FullPath)
                     {
+                        CommonData.Status.Add(path + "  " + data[name].FullPath);
                         data.Remove(name);
                     }
                 }
@@ -181,15 +182,17 @@ namespace Clever.Model.Program
                     pd.FullPath = path;
                     pd.TextChange = false;
                     data.Add(name, pd);
-                    IntellisenseParser.Get.SetVSLSync(pd, data);
+                    //IntellisenseParser.SetVSLSync(pd, data);
                 }
             }
             else
             {
-                if (contains)
+                if (data.ContainsKey(name))
                 {
                     data.Remove(name);
                 }
+
+                map.MainName = "";
             }
         }
     }

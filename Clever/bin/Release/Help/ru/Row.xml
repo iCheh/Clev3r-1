@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<doc>
+  <members>
+    <member name="T:Row">
+      <summary>
+        Набор оптимизированных команд для работы с одномерными массивами.
+      </summary>
+    </member>
+    <member name="M:Init">
+      <summary>
+        Создать новый массив нужного размера и заполнить его указанными значениями.
+      </summary>
+      <param name="size">Размер массива (не более 30000).</param>
+      <param name="value">Значение, которым заполняется массив.</param>
+      <returns>Созданный массив</returns>
+    </member>
+    <member name="M:Delete">
+      <summary>
+        Удалить указанный массив.
+      </summary>
+      <param name="array">Массив</param>
+    </member>
+    <member name="M:Read">
+      <summary>
+        Считать значение элемента массива с указанным индексом.
+      </summary>
+      <param name="array">Массив</param>
+      <param name="index">Индекс</param>
+      <returns>Искомое значение</returns>
+    </member>
+    <member name="M:Write">
+      <summary>
+        Записать значение в элемент массива с указанным индексом.
+      </summary>
+      <param name="array">Массив</param>
+      <param name="index">Индекс</param>
+      <param name="value">Значение для записи в массив</param>
+    </member>
+    <member name="M:Size">
+      <summary>
+        Получить размер массива.
+      </summary>
+      <param name="array">Массив</param>
+      <returns>Размер массива</returns>
+    </member>
+    <member name="M:Resize">
+      <summary>
+        Изменить размер массива.
+      </summary>
+      <param name="array">Массив</param>
+      <param name="size">Новый размер массива (не более 30000).</param>
+    </member>
+  </members>
+</doc>

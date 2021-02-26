@@ -1,0 +1,12 @@
+Math (10, 20, c)
+WriteToScreen (1, 20, 20, 2, c)
+
+Function Math (in number a, in number b, out number c)
+  c = a + b
+EndFunction
+
+Function WriteToScreen (in number fontColor, in number X, in number Y, in number fontSize, in number message)
+LCD.Clear()
+LCD.Text(fontColor, X, Y, fontSize, message)
+LCD.Update()
+EndFunction

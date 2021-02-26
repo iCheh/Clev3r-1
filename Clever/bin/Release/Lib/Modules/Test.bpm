@@ -1,0 +1,56 @@
+''''Тестовый модуль:
+
+
+''''WriteRGB - Вывод на экран значений R G B (ввод номер датчика)
+Function WriteRGB(in number sensorNumber)
+  R=0
+  G=0
+  B=0
+  
+  LCD.Update()
+  While 1 = 1
+    'считали значение с сенсора в RGB
+    If sensorNumber = 1 Then
+      Sensor1.Raw3(R,G,B)
+    ElseIf sensorNumber = 2 Then
+      Sensor2.Raw3(R,G,B)
+    ElseIf sensorNumber = 3 Then
+      Sensor3.Raw3(R,G,B)
+    ElseIf sensorNumber = 4 Then
+      Sensor4.Raw3(R,G,B)
+    EndIf
+    LCD.Clear()
+    LCD.Write(20, 40, "Red:   " + R)
+    LCD.Write(20, 60, "Green: " + G)
+    LCD.Write(20, 80, "Blue:  " + B)
+    Program.Delay(50)
+  EndWhile
+EndFunction
+
+''''WriteSensValue - Вывод на экран значения с одного датчика в заданном режиме (ввод номер датчика, режим)
+Function WriteSensValue(in number sensorNumber, in number sensorMode)
+  S = 0
+  
+  Sensor.SetMode(sensorNumber,sensorMode)
+  Sensor.Wait(sensorNumber)
+  
+  LCD.Update()
+  While 1 = 1
+    'считали значение с сенсора
+    If sensorNumber = 1 Then
+      S = Sensor1.Raw1()
+    ElseIf sensorNumber = 2 Then
+      S = Sensor2.Raw1()
+    ElseIf sensorNumber = 3 Then
+      S = Sensor3.Raw1()
+    ElseIf sensorNumber = 4 Then
+      S = Sensor4.Raw1()
+    EndIf
+    
+    LCD.Clear()
+    LCD.Write(20, 40, "sensorNumber: " + sensorNumber)
+    LCD.Write(20, 60, "sensorMode:   " + sensorMode)
+    LCD.Write(20, 80, "sensorValue:  " + S)
+    Program.Delay(50)
+  EndWhile
+EndFunction

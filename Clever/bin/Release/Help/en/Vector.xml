@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<doc>
+  <members>
+    <member name="T:Vector">
+      <summary>
+        This object allows direct manipulation of larger quantities of numbers. 
+        These are called vectors and will be stored using arrays with consecutive indices (starting at 0).
+        When arrays with different content are given to the operations, every missing array 
+        element with be treated as being 0.
+      </summary>
+    </member>
+    <member name="M:Init">
+      <summary>
+        Set up a vector of a given size with all elements set to the same value.
+      </summary>
+      <param name="size">Size of the vector</param>
+      <param name="value">The value to use for all elements</param>
+      <returns>The created vector</returns>
+    </member>
+    <member name="M:Data">
+      <summary>
+        Set up a vector of a given size and initialize the elements with data drawn from a text. For this, the text will be split apart on blank spaces and every part is treated as a decimal number.
+        For example: V = Vector.Data(4,"47 11 8 15") will result in an number array with the 4 values 47 11 8 15.
+      </summary>
+      <param name="size">Size of the resulting vector</param>
+      <param name="data">Data in text form to be filled into the array. When the text contains too few elements, the vector is padded with 0 to reach the specified number of elements</param>
+      <returns>The created vector</returns>
+    </member>
+    <member name="M:Add">
+      <summary>
+        Add two vectors by adding the individual elements (C[0]=A[0]+B[0], C[1]=A[1]+B[1]...)
+      </summary>
+      <param name="size">That many numbers are taken for computation</param>
+      <param name="A">First vector</param>
+      <param name="B">Second vector</param>
+      <returns>A vector of the given size what contains sum values</returns>
+    </member>
+    <member name="M:Sort">
+      <summary>
+        Sort the elements of a vector in increasing order.
+      </summary>
+      <param name="size">Number of elements to sort</param>
+      <param name="A">The array containing the elements</param>
+      <returns>A new vector with the elements in correct order</returns>
+    </member>
+    <member name="M:Multiply">
+      <summary>
+        Matrix multiplication operation. 
+        The input vectors are treated as two-dimensional matrices of given width and height. The individual rows of the matrix are stored inside the vectors directly one after the other.
+      </summary>
+      <param name="rows">Number of rows in the resulting output matrix</param>
+      <param name="columns">Number of columns in the resulting output matrix</param>
+      <param name="k">Number of columns in input matrix A and number of rows in input matrix B</param>
+      <param name="A">A matrix of size rows * k</param>
+      <param name="B">A matrix of size k * columns</param>
+      <returns>A matrix holding the multiplication result</returns>
+    </member>
+  </members>
+</doc>

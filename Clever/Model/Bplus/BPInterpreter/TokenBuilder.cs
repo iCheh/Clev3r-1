@@ -129,7 +129,7 @@ namespace Clever.Model.Bplus.BPInterpreter
             else if (word.IndexOf(":") != -1)
             {
                 //return Tokens.LABEL;
-                return Tokens.NON;
+                return Tokens.LABELNAME;
             }
             else if (word.IndexOfAny(new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' }) != -1)
             {

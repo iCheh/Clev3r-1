@@ -252,8 +252,8 @@ namespace Clever.ViewModel
                     if (Project.ContainsKey(name))
                     {
                         CurrentName = name;
-                        var data = Project.GetDictionary()[name];
-                        IntellisenseParser.Get.UpdateMap(data);
+                        //var data = Project.GetDictionary()[name];
+                        IntellisenseParser.UpdateMap(CurrentName);
                     }
                     else
                     {
@@ -581,9 +581,9 @@ namespace Clever.ViewModel
                         return;
                     }
 
-                    if (IntellisenseParser.Get.Data.ContainsKey(tmpName))
+                    if (IntellisenseParser.Data.ContainsKey(tmpName))
                     {
-                        IntellisenseParser.Get.Data.Remove(tmpName);
+                        IntellisenseParser.Data.Remove(tmpName);
                     }
 
                     var tmp = new NewTabItem().Create(Project.GetDictionary(), text, tmpName);
@@ -1068,7 +1068,7 @@ namespace Clever.ViewModel
                 }
                 else
                 {
-                    IntellisenseParser.Get.Data.Clear();
+                    IntellisenseParser.Data.Clear();
                 }
                 EditorPanel.GetPopup.IsOpen = false;
             }

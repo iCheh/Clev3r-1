@@ -82,9 +82,9 @@ namespace Clever.Model.Bplus
             string result = "";
             List<string> data = new List<string>();
 
-            if (IntellisenseParser.Get.Data.ContainsKey(name))
+            if (IntellisenseParser.Data.ContainsKey(name))
             {
-                var tmpModule = IntellisenseParser.Get.Data[name].Map.Imports;
+                var tmpModule = IntellisenseParser.Data[name].Map.Imports;
                 foreach (var m in tmpModule)
                 {
                     if (m.Key.StartsWith(input.ToLower()))
@@ -150,10 +150,10 @@ namespace Clever.Model.Bplus
             input = input.ToUpper();
             List<string> data = new List<string>();
 
-            if (IntellisenseParser.Get.Data.ContainsKey(name))
+            if (IntellisenseParser.Data.ContainsKey(name))
             {
-                var vars = IntellisenseParser.Get.Data[name].Map.GetModuleVariables(obj, name);
-                var mem = IntellisenseParser.Get.Data[name].Map.GetModuleMethods(obj, name);
+                var vars = IntellisenseParser.Data[name].Map.GetModuleVariables(obj, name);
+                var mem = IntellisenseParser.Data[name].Map.GetModuleMethods(obj, name);
 
                 if (vars.Count > 0)
                 {
@@ -190,9 +190,9 @@ namespace Clever.Model.Bplus
         {
             string result = "";
 
-            if (IntellisenseParser.Get.Data.ContainsKey(name))
+            if (IntellisenseParser.Data.ContainsKey(name))
             {
-                var vars = IntellisenseParser.Get.Data[name].Map.GetVariables(lineNumber, name);
+                var vars = IntellisenseParser.Data[name].Map.GetVariables(lineNumber, name);
 
                 /*
                 CommonData.Status.Clear();
@@ -228,9 +228,9 @@ namespace Clever.Model.Bplus
             string result = "";
             List<string> data = new List<string>();
 
-            if (IntellisenseParser.Get.Data.ContainsKey(name))
+            if (IntellisenseParser.Data.ContainsKey(name))
             {
-                var mem = IntellisenseParser.Get.Data[name].Map.GetSubroutines(name);
+                var mem = IntellisenseParser.Data[name].Map.GetSubroutines(name);
 
                 if (mem.Count > 0)
                 {
@@ -268,10 +268,10 @@ namespace Clever.Model.Bplus
             List<string> data = new List<string>();
             var tmpSubs = new List<(string, int)>();
 
-            if (IntellisenseParser.Get.Data.ContainsKey(name))
+            if (IntellisenseParser.Data.ContainsKey(name))
             {
-                var mem = IntellisenseParser.Get.Data[name].Map.Subroutines;
-                var inc = IntellisenseParser.Get.Data[name].Map.Includes;
+                var mem = IntellisenseParser.Data[name].Map.Subroutines;
+                var inc = IntellisenseParser.Data[name].Map.Includes;
 
                 if (mem.Count > 0)
                 {
@@ -305,10 +305,10 @@ namespace Clever.Model.Bplus
                     foreach (var ii in inc)
                     {
                         var nn = ii.Value.OriginName;
-                        if (IntellisenseParser.Get.Data.ContainsKey(nn))
+                        if (IntellisenseParser.Data.ContainsKey(nn))
                         {
                             //CommonData.Status.Add(nn);
-                            var subs = IntellisenseParser.Get.Data[nn].Map.Subroutines;
+                            var subs = IntellisenseParser.Data[nn].Map.Subroutines;
 
                             if (subs.Count > 0)
                             {
@@ -357,10 +357,10 @@ namespace Clever.Model.Bplus
             List<string> data = new List<string>();
             
 
-            if (IntellisenseParser.Get.Data.ContainsKey(input + ".bpm"))
+            if (IntellisenseParser.Data.ContainsKey(input + ".bpm"))
             {
                 
-                var mem = IntellisenseParser.Get.Data[input + ".bpm"].Map;
+                var mem = IntellisenseParser.Data[input + ".bpm"].Map;
                 
                 if (mem.Summary.Count > 0)
                 {
@@ -388,9 +388,9 @@ namespace Clever.Model.Bplus
             string result = "";
             List<string> data = new List<string>();
 
-            if (IntellisenseParser.Get.Data.ContainsKey(name))
+            if (IntellisenseParser.Data.ContainsKey(name))
             {
-                var mem = IntellisenseParser.Get.Data[name].Map.Variables;
+                var mem = IntellisenseParser.Data[name].Map.Variables;
                 
                 if (mem.Count > 0)
                 {
@@ -422,9 +422,9 @@ namespace Clever.Model.Bplus
         {
             string result = "";
 
-            if (IntellisenseParser.Get.Data.ContainsKey(name))
+            if (IntellisenseParser.Data.ContainsKey(name))
             {
-                var labs = IntellisenseParser.Get.Data[name].Map.GetLabels(lineNumber);
+                var labs = IntellisenseParser.Data[name].Map.GetLabels(lineNumber);
                 if (labs.Count > 0)
                 {
                     var data = new List<string>();

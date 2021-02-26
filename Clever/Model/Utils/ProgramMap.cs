@@ -135,7 +135,7 @@ namespace Clever.Model.Utils
                         }
                     }
                     // Ищем переменные по инклюдам
-                    var obj = IntellisenseParser.Get.Data;
+                    var obj = IntellisenseParser.Data;
                     GetIncludeVars(variables, Includes, obj);
                     //CommonData.Status.Clear();
                     //CommonData.Status.Add(variables.Count.ToString());
@@ -191,7 +191,7 @@ namespace Clever.Model.Utils
             }
 
             // Ищем переменные по инклюдам
-            var obj = IntellisenseParser.Get.Data;
+            var obj = IntellisenseParser.Data;
             GetIncludeSubs(subs, Includes, obj);
 
             subs = subs.Distinct().ToList();
@@ -246,9 +246,9 @@ namespace Clever.Model.Utils
 
             var data = new List<string>();
 
-            if (IntellisenseParser.Get.Data.ContainsKey(moduleName))
+            if (IntellisenseParser.Data.ContainsKey(moduleName))
             {
-                var map = IntellisenseParser.Get.Data[moduleName].Map;
+                var map = IntellisenseParser.Data[moduleName].Map;
 
                 //CommonData.Status.Clear();
                 //CommonData.Status.Add(map.Variables.Count.ToString());
@@ -292,9 +292,9 @@ namespace Clever.Model.Utils
 
             var data = new List<string>();
 
-            if (IntellisenseParser.Get.Data.ContainsKey(moduleName))
+            if (IntellisenseParser.Data.ContainsKey(moduleName))
             {
-                var map = IntellisenseParser.Get.Data[moduleName].Map;
+                var map = IntellisenseParser.Data[moduleName].Map;
                 if (moduleName == fileName)
                 {
                     var func = map.Subroutines;

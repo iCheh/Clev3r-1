@@ -1,0 +1,16 @@
+'  try to stop motor by hand to see increased current draw and voltage drop
+Motor.Start("A",10)
+
+While "true"
+  LCD.StopUpdate()
+  LCD.Clear()
+  LCD.Text(1, 10,5,  1, "Battery Level")
+  LCD.Text(1, 10,20, 1, EV3.BatteryLevel)
+  LCD.Text(1, 10,40,  1, "Battery Voltage")
+  LCD.Text(1, 10,55, 1, EV3.BatteryVoltage)
+  LCD.Text(1, 10,75,  1, "Battery Current")
+  LCD.Text(1, 10,90, 1, EV3.BatteryCurrent)
+  LCD.Update()
+  Program.Delay(100)
+endwhile
+  

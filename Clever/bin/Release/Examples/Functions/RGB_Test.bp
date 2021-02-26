@@ -1,0 +1,21 @@
+r = 1
+g = 2
+b = 3
+Sensor.SetMode(1, 4)
+Sensor1.Raw3(r , g , b)
+WriteRGBToScreen(r , g , b)
+
+function WriteRGBToScreen (in number r, in number g, in number b)
+  LCD.Clear()
+  
+  If r = 1 Then
+    r = 1
+  Else
+    r = 2
+  EndIf
+  
+  LCD.Text(1, 10, 10, 2, "R = " + r)
+  LCD.Text(1, 10, 30, 2, "G = " + g)
+  LCD.Text(1, 10, 50, 2, "B = " + b)
+  Program.Delay(5000)
+endfunction

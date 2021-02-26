@@ -23,6 +23,7 @@ namespace Clever.Model.Utils
         internal List<string> Subroutines = new List<string>();
         internal ProgramMap Map { get; set; }
         internal bool AddToObjects = true;
+        internal int Number = 0;
         public ProgramData()
         {
             ClosedName = "";
@@ -54,14 +55,14 @@ namespace Clever.Model.Utils
                     ParseName = value;
                     if (value != OldName)
                     {
-                        if (AddToObjects && IntellisenseParser.Get.Data.ContainsKey(OldName))
+                        if (AddToObjects && IntellisenseParser.Data.ContainsKey(OldName))
                         {
-                            IntellisenseParser.Get.Data.Remove(OldName);
+                            IntellisenseParser.Data.Remove(OldName);
                         }
                         
-                        if (AddToObjects && !IntellisenseParser.Get.Data.ContainsKey(value))
+                        if (AddToObjects && !IntellisenseParser.Data.ContainsKey(value))
                         {
-                            IntellisenseParser.Get.Data.Add(value, this);
+                            IntellisenseParser.Data.Add(value, this);
                         }
 
                         OldName = value;
@@ -150,8 +151,8 @@ namespace Clever.Model.Utils
                     Menu = editor.GetTextEditorPopup;
                     TextChange = false;
 
-                    if (AddToObjects && !IntellisenseParser.Get.Data.ContainsKey(Name))
-                        IntellisenseParser.Get.Data.Add(Name, this);
+                    if (AddToObjects && !IntellisenseParser.Data.ContainsKey(Name))
+                        IntellisenseParser.Data.Add(Name, this);
                 }
             }
         }
@@ -171,7 +172,7 @@ namespace Clever.Model.Utils
                     SetChangeToHeaderYes();
                     if (AddToObjects)
                     {
-                        IntellisenseParser.Get.UpdateMap(this);
+                        IntellisenseParser.UpdateMap(ParseName);
                     }  
                 }                   
                 else
