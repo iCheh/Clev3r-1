@@ -134,11 +134,9 @@ namespace Clever.Model.Utils
                             variables.Add(v.Name);
                         }
                     }
-                    // Ищем переменные по инклюдам
+
                     var obj = IntellisenseParser.Data;
                     GetIncludeVars(variables, Includes, obj);
-                    //CommonData.Status.Clear();
-                    //CommonData.Status.Add(variables.Count.ToString());
                 }
                 else
                 {
@@ -190,7 +188,6 @@ namespace Clever.Model.Utils
                 subs.Add(s.Name);
             }
 
-            // Ищем переменные по инклюдам
             var obj = IntellisenseParser.Data;
             GetIncludeSubs(subs, Includes, obj);
 
@@ -214,6 +211,9 @@ namespace Clever.Model.Utils
                             labels.Add(l.Name);
                         }
                     }
+
+                    var obj = IntellisenseParser.Data;
+                    GetIncludeLabels(labels, Includes, obj);
                 }
                 else
                 {
@@ -346,23 +346,6 @@ namespace Clever.Model.Utils
             {
                 var tmpName = inc.Value.OriginName;
 
-                // Чтение файла
-                /*
-                if (!obj.ContainsKey(tmpName))
-                {
-                    var path = inc.Value.Path;
-                    FileInfo fi = new FileInfo(path + tmpName);
-                    if (!fi.Exists)
-                    {
-                        return;
-                    }
-                    else
-                    {
-                        var text = File.ReadAllText(path + tmpName);
-                    }
-                }
-                */
-
                 if (!names.Contains(tmpName) && obj.ContainsKey(tmpName))
                 {
                     names.Add(tmpName);
@@ -394,6 +377,29 @@ namespace Clever.Model.Utils
                     foreach (var s in subs)
                     {
                         data.Add(s.Name);
+                    }
+                }
+            }
+        }
+
+        internal void GetIncludeLabels(List<string> data, Dictionary<string, Include> includes, Dictionary<string, ProgramData> obj)
+        {
+            var names = new List<string>();
+            foreach (var inc in includes)
+            {
+                var tmpName = inc.Value.OriginName;
+
+                if (!names.Contains(tmpName) && obj.ContainsKey(tmpName))
+                {
+                    names.Add(tmpName);
+                    var labels = obj[tmpName].Map.Labels;
+
+                    foreach (var l in labels)
+                    {
+                        if (!l.FromFunction)
+                        {
+                            data.Add(l.Name);
+                        }
                     }
                 }
             }

@@ -87,10 +87,13 @@ namespace Clever.Model.Bplus
         internal void EventsRemove()
         {
             lexer.EventsRemove();
-            textArea.PreviewKeyDown -= TextArea_PreviewKeyDown;
-            textArea.KeyPress -= TextArea_KeyPress;
-            textArea.MouseDown -= TextArea_MouseDown;
-            textArea.ZoomChanged -= TextArea_ZoomChanged;
+            if (textArea != null)
+            {
+                textArea.PreviewKeyDown -= TextArea_PreviewKeyDown;
+                textArea.KeyPress -= TextArea_KeyPress;
+                textArea.MouseDown -= TextArea_MouseDown;
+                textArea.ZoomChanged -= TextArea_ZoomChanged;
+            }
         }
 
         internal void EventsAdd()
@@ -525,16 +528,27 @@ namespace Clever.Model.Bplus
         {
             if (disposing)
             {
-                this.EventsRemove();
-                textArea.Dispose();
+                //this.EventsRemove();
                 lexer.Dispose();
+                try
+                {
+                    if (textArea != null)
+                    {
+                        textArea.Dispose();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    CommonData.Status.Clear();
+                    CommonData.Status.Add(ex.Message);
+                }
             }
         }
 
         public void Dispose()
         {
             Dispose(true);
-            GC.SuppressFinalize(this);
+            //GC.SuppressFinalize(this);
         }
     }
 

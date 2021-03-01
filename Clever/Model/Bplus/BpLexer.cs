@@ -99,19 +99,21 @@ namespace Clever.Model.Bplus
 
         internal void EventsRemove()
         {
-            textArea.CharAdded -= (this.OnCharAdded);
-            textArea.StyleNeeded -= OnStyleNeeded;
-            textArea.TextChanged -= OnTextChanged;
-            textArea.MouseDwellTime = 100;
-            textArea.DwellStart -= OnDwellStart;
-            textArea.DwellEnd -= OnDwellEnd;
-            textArea.AutoCSelection -= OnAutoCSelection;
-            textArea.AutoCCompleted -= OnAutoCCompleted;
-            textArea.UpdateUI -= OnUpdateUI;
-            textArea.MouseDoubleClick -= TextArea_MouseDoubleClick;
-            textArea.MarginClick -= TextArea_MarginClick;
-            textArea.MouseClick -= TextArea_MouseClick;
-            AutoCTimer.Tick -= new EventHandler(AutoCTimerCallback);
+            //MessageBox.Show("20");
+            if (textArea != null)
+            {
+                textArea.CharAdded -= (this.OnCharAdded);
+                textArea.StyleNeeded -= OnStyleNeeded;
+                textArea.TextChanged -= OnTextChanged;
+                textArea.DwellStart -= OnDwellStart;
+                textArea.DwellEnd -= OnDwellEnd;
+                textArea.AutoCSelection -= OnAutoCSelection;
+                textArea.AutoCCompleted -= OnAutoCCompleted;
+                textArea.UpdateUI -= OnUpdateUI;
+                textArea.MouseDoubleClick -= TextArea_MouseDoubleClick;
+                textArea.MarginClick -= TextArea_MarginClick;
+                textArea.MouseClick -= TextArea_MouseClick;
+            }
         }
 
         internal void EventsAdd()
@@ -426,7 +428,7 @@ namespace Clever.Model.Bplus
             SetStyle(startPos, endPos, textArea);
         }
 
-        private void OnTextChanged(object sender, EventArgs e)
+        internal void OnTextChanged(object sender, EventArgs e)
         {
             //HelpPanelVM.Get.OpenHelp();
             TextEditorEvents.Editor_Change(sender, new System.Windows.RoutedEventArgs());
@@ -978,16 +980,24 @@ namespace Clever.Model.Bplus
 
         protected virtual void Dispose(bool disposing)
         {
-            if (disposing)
+            if (disposing && this.AutoCTimer != null)
             {
-                AutoCTimer.Dispose();
+                try
+                {
+                    AutoCTimer.Dispose();
+                }
+                catch (Exception ex)
+                {
+                    CommonData.Status.Clear();
+                    CommonData.Status.Add(ex.Message);
+                }
             }
         }
 
         public void Dispose()
         {
             Dispose(true);
-            GC.SuppressFinalize(this);
+            //GC.SuppressFinalize(this);
         }
 
         private void ViewTreeInfo(string nameO, string nameM)

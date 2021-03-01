@@ -25,8 +25,10 @@ namespace Clever.Model.Intellisense
         internal static HashSet<string> BPObjects;
         internal static HashSet<string> BPKeywords;
         internal static Dictionary<string, ProgramData> Data { get; set; }
-        private static int start = 0;
-        private static Stopwatch stopWatch = new Stopwatch();
+
+        private static bool firstOpen = true;
+        //private static int start = 0;
+        //private static Stopwatch stopWatch = new Stopwatch();
 
         internal static void Install()
         {
@@ -40,11 +42,18 @@ namespace Clever.Model.Intellisense
 
         internal static void UpdateMap(string name)
         {
-            start++;
-            CommonData.Status.Clear();
-            CommonData.Status.Add("Parser start count: " + start.ToString());
-            stopWatch.Reset();
-            stopWatch.Start();
+            //start++;
+            //CommonData.Status.Clear();
+            if (firstOpen)
+            {
+                CommonData.Status.Clear();
+                CommonData.Status.Add("PLEASE WAIT PROJECT UPLOADED ... 0 %");
+            }
+                
+
+            //CommonData.Status.Add("Parser start count: " + start.ToString());
+            //stopWatch.Reset();
+            //stopWatch.Start();
 
             if (taskP != null)
             {
@@ -97,6 +106,13 @@ namespace Clever.Model.Intellisense
                 var path = pData.Path;
 
                 await Task.Run(() => SetVSL(path, lines, map));
+
+                if (firstOpen)
+                {
+                    CommonData.Status.Clear();
+                    CommonData.Status.Add("PLEASE WAIT PROJECT UPLOADED ... 15 %");
+                }
+
 
                 if (map.Type == BPType.PROGRAM)
                 {
@@ -208,6 +224,7 @@ namespace Clever.Model.Intellisense
 
                             ImportFileOpen(map);
 
+                            /*
                             foreach (var v in mMap.Variables)
                             {
                                 map.Variables.Add(v);
@@ -222,8 +239,20 @@ namespace Clever.Model.Intellisense
                             {
                                 map.Labels.Add(l);
                             }
+                            */
+                            
+                            map.Variables.AddRange(mMap.Variables);
+                            map.Subroutines.AddRange(mMap.Subroutines);
+                            map.Labels.AddRange(mMap.Labels);
+                            
                         }
                     }
+                }
+
+                if (firstOpen)
+                {
+                    CommonData.Status.Clear();
+                    CommonData.Status.Add("PLEASE WAIT PROJECT UPLOADED ... 95 %");
                 }
 
                 pData.Map = map;
@@ -237,9 +266,9 @@ namespace Clever.Model.Intellisense
                     Data.Add(name, pData);
                 }
 
-                stopWatch.Stop();
-                var timer = stopWatch.ElapsedMilliseconds / 1000.0;
-                CommonData.Status.Add("Parser work time: " + timer.ToString() + " sec.");
+                //stopWatch.Stop();
+                //var timer = stopWatch.ElapsedMilliseconds / 1000.0;
+                //CommonData.Status.Add("Parser work time: " + timer.ToString() + " sec.");
                 /*
                 CommonData.Status.Add("===============================================");
                 if (Data.ContainsKey(Data[name].Map.MainName))
@@ -252,6 +281,13 @@ namespace Clever.Model.Intellisense
                 CommonData.Status.Add("===============================================");
                 CommonData.Status.Add("DATA COUNT: " + Data.Count.ToString());
                 */
+                if (firstOpen)
+                {
+                    CommonData.Status.Clear();
+                    CommonData.Status.Add("PLEASE WAIT PROJECT UPLOADED ... 100 %");
+                    CommonData.Status.Add("PROJECT IS LOADED AND READY.");
+                    firstOpen = false;
+                }
             }    
         }
 

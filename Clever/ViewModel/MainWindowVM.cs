@@ -1025,14 +1025,33 @@ namespace Clever.ViewModel
             try
             {
                 int result = 0;
+                ObservableCollection<TabItem> items = new ObservableCollection<TabItem>();
                 foreach (var item in ProgramNameList)
                 {
                     string name = Project.GetProgramData(item).Name;
-                    ProgramNameList = new CloseProgram().Close(ProgramNameList, name, out result);
-                    if (result == 0)
+                    new CloseProgram().CloseAll(ProgramNameList, name, out result);
+                    if (result == -1)
+                    {
+                        items.Add(item);
+                    }
+                    else
                     {
                         Project.Remove(name);
                     }
+                }
+
+                if (items.Count > 0)
+                {
+                    items[0].Style = (System.Windows.Style)Application.Current.Resources["FirstTabItem"];
+                    
+                    ProgramNameList = items;
+                    CurrentProgram = items[0];
+                }
+                else
+                {
+                    CurrentProgram = null;
+                    ProgramNameList.Clear();
+                    IntellisenseParser.Data.Clear();
                 }
             }
             catch (Exception ex)

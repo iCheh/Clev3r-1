@@ -487,7 +487,7 @@ namespace Interpreter.Utils
                     {
                         if (!func)
                         {
-                            word.Text = (glogalVarsPref + word.Text).ToLower();
+                            word.Text = (glogalVarsPref + word.Text).ToLower().Replace("@", "");
                         }
                         else
                         {
@@ -505,7 +505,7 @@ namespace Interpreter.Utils
                     {
                         if (!func)
                         {
-                            word.Text = (glogalLabelsPref + word.Text).ToLower();
+                            word.Text = (glogalLabelsPref + word.Text).ToLower().Replace("@", "");
                         }
                         else
                         {
