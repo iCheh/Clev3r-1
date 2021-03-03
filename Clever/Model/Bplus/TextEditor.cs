@@ -78,7 +78,7 @@ namespace Clever.Model.Bplus
             // SEARCH
             searchManager.TextArea = textArea;
 
-            textArea.CaretLineBackColor = System.Drawing.Color.FromArgb(0x00, 0xF8, 0xF8, 0xF8);
+            textArea.CaretLineBackColor = BpColors.Carret_Line_Color;
             textArea.CaretLineVisible = true;
 
             //CommonData.Status.Add(textArea.Zoom.ToString());

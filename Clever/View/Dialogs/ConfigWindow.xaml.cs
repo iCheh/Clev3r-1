@@ -26,14 +26,5 @@ namespace Clever.View.Dialogs
         {
             InitializeComponent();
         }
-
-        private void ButtonDefault_Click(object sender, RoutedEventArgs e)
-        {
-            Configurations.SetDefaultColor();
-            var dc = this.DataContext as ConfigWindowVM;
-            dc.ChangeColor = false;
-            dc.SetSettingColor();
-            dc.ChangeColor = true;
-        }
     }
 }

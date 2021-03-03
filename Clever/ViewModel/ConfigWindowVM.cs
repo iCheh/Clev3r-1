@@ -9,22 +9,44 @@ using System.Windows.Media;
 using System.Windows.Forms.Integration;
 using System.Windows.Forms;
 using ScintillaNET;
+using System.Windows.Input;
 
 namespace Clever.ViewModel
 {
     internal class ConfigWindowVM : BaseViewModel
     {
-
+        public ICommand SaveCommand { get; set; }
+        public ICommand DefaultColorCommand { get; set; }
         internal bool ChangeColor;
 
         internal ConfigWindowVM()
         {
+            SaveCommand = new RelayCommand(param => SaveClick(), true);
+            DefaultColorCommand = new RelayCommand(param => DefaultColoreClick(), true);
+
             ChangeColor = false;
             
             SetSettingColor();
 
             ChangeColor = true;
         }
+
+        #region METHODS FOR COMMAND
+
+        private void SaveClick()
+        {
+            Configurations.Save();
+        }
+
+        private void DefaultColoreClick()
+        {
+            Configurations.SetDefaultColor();
+            ChangeColor = false;
+            SetSettingColor();
+            ChangeColor = true;
+        }
+
+        #endregion
 
         #region COLOR BINDING
 
@@ -221,6 +243,134 @@ namespace Clever.ViewModel
 
         #endregion
 
+        #region Selection Line
+
+        private SolidColorBrush _selectionLine_Color;
+        public SolidColorBrush SelectionLine_Color
+        {
+            get { return _selectionLine_Color; }
+            set
+            {
+                _selectionLine_Color = value;
+                OnPropertyChanged("SelectionLine_Color");
+            }
+        }
+
+        private double _selectionLineR;
+        public double SelectionLineR
+        {
+            get { return _selectionLineR; }
+            set
+            {
+                _selectionLineR = value;
+                OnPropertyChanged("SelectionLineR");
+                SetSelectionLineColor();
+            }
+        }
+
+        private double _selectionLineG;
+        public double SelectionLineG
+        {
+            get { return _selectionLineG; }
+            set
+            {
+                _selectionLineG = value;
+                OnPropertyChanged("SelectionLineG");
+                SetSelectionLineColor();
+            }
+        }
+
+        private double _selectionLineB;
+        public double SelectionLineB
+        {
+            get { return _selectionLineB; }
+            set
+            {
+                _selectionLineB = value;
+                OnPropertyChanged("SelectionLineB");
+                SetSelectionLineColor();
+            }
+        }
+
+        internal void SetSelectionLineColor()
+        {
+            if (!ChangeColor)
+                return;
+
+            var r = Convert.ToByte(SelectionLineR);
+            var g = Convert.ToByte(SelectionLineG);
+            var b = Convert.ToByte(SelectionLineB);
+            var color = Color.FromRgb(r, g, b);
+            SelectionLine_Color = new SolidColorBrush(color);
+            Configurations.Get.Carret_Line_Color = ToSDC(color);
+        }
+
+        #endregion
+
+        #region Selection
+
+        private SolidColorBrush _selection_Color;
+        public SolidColorBrush Selection_Color
+        {
+            get { return _selection_Color; }
+            set
+            {
+                _selection_Color = value;
+                OnPropertyChanged("Selection_Color");
+            }
+        }
+
+        private double _selectionR;
+        public double SelectionR
+        {
+            get { return _selectionR; }
+            set
+            {
+                _selectionR = value;
+                OnPropertyChanged("SelectionR");
+                SetSelectionColor();
+            }
+        }
+
+        private double _selectionG;
+        public double SelectionG
+        {
+            get { return _selectionG; }
+            set
+            {
+                _selectionG = value;
+                OnPropertyChanged("SelectionG");
+                SetSelectionColor();
+            }
+        }
+
+        private double _selectionB;
+        public double SelectionB
+        {
+            get { return _selectionB; }
+            set
+            {
+                _selectionB = value;
+                OnPropertyChanged("SelectionB");
+                SetSelectionColor();
+            }
+        }
+
+        internal void SetSelectionColor()
+        {
+            if (!ChangeColor)
+                return;
+
+            var r = Convert.ToByte(SelectionR);
+            var g = Convert.ToByte(SelectionG);
+            var b = Convert.ToByte(SelectionB);
+            var color = Color.FromRgb(r, g, b);
+            Selection_Color = new SolidColorBrush(color);
+            Configurations.Get.Select_Color = ToSDC(color);
+        }
+
+        #endregion
+
         #region Comment
 
         private SolidColorBrush _comment_Color;
@@ -304,11 +454,23 @@ namespace Clever.ViewModel
             EditorBGDG = Convert.ToDouble(EditorBGD_Color.Color.G);
             EditorBGDB = Convert.ToDouble(EditorBGD_Color.Color.B);
 
+            SelectionLine_Color = new SolidColorBrush(ToSWMC(Configurations.Get.Carret_Line_Color));
+            SelectionLineR = Convert.ToDouble(SelectionLine_Color.Color.R);
+            SelectionLineG = Convert.ToDouble(SelectionLine_Color.Color.G);
+            SelectionLineB = Convert.ToDouble(SelectionLine_Color.Color.B);
+
+            Selection_Color = new SolidColorBrush(ToSWMC(Configurations.Get.Select_Color));
+            SelectionR = Convert.ToDouble(Selection_Color.Color.R);
+            SelectionG = Convert.ToDouble(Selection_Color.Color.G);
+            SelectionB = Convert.ToDouble(Selection_Color.Color.B);
+
             Comment_Color = new SolidColorBrush(ToSWMC(Configurations.Get.Comment_Color));
             CommentR = Convert.ToDouble(Comment_Color.Color.R);
             CommentG = Convert.ToDouble(Comment_Color.Color.G);
             CommentB = Convert.ToDouble(Comment_Color.Color.B);
         }
+
+        #region Utils
 
         private System.Drawing.Color ToSDC(Color color)
         {
@@ -319,5 +481,7 @@ namespace Clever.ViewModel
         {
             return Color.FromArgb(color.A, color.R, color.G, color.B);
         }
+
+        #endregion
     }
 }

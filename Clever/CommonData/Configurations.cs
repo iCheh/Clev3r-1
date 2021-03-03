@@ -15,7 +15,7 @@ namespace Clever.CommonData
 {
     internal class Configurations
     {
-        private static int ConfigCount = 68;
+        private static int ConfigCount = 69;
         public static Configurations Get { get; private set; }
 
         #region Bindings
@@ -72,6 +72,7 @@ namespace Clever.CommonData
         internal Color Find_Highlight_Color { get; set; }
         internal Color Back_Calltip_Color { get; set; }
         internal Color Fore_Calltip_Color { get; set; }
+        internal Color Carret_Line_Color { get; set; }
 
         internal Color Back_Color { get; set; }
         internal Color Fore_Color { get; set; }
@@ -177,26 +178,29 @@ namespace Clever.CommonData
                 Get.Find_Highlight_Color = StringColorToColor(list[46]);
                 Get.Back_Calltip_Color = StringColorToColor(list[47]);
                 Get.Fore_Calltip_Color = StringColorToColor(list[48]);
+                Get.Carret_Line_Color = StringColorToColor(list[49]);
 
-                Get.Back_Color = StringColorToColor(list[49]);
-                Get.Fore_Color = StringColorToColor(list[50]);
-                Get.Comment_Color =  StringColorToColor(list[51]);
-                Get.String_Color = StringColorToColor(list[52]);
-                Get.Operator_Color = StringColorToColor(list[53]);
-                Get.Keyword_1_Color = StringColorToColor(list[54]);
-                Get.Keyword_2_Color = StringColorToColor(list[55]);
-                Get.Keyword_3_Color = StringColorToColor(list[56]);
-                Get.Keyword_4_Color = StringColorToColor(list[57]);
-                Get.Object_Color = StringColorToColor(list[58]);
-                Get.Method_Color = StringColorToColor(list[59]);
-                Get.Literal_Color = StringColorToColor(list[60]);
-                Get.Number_Color = StringColorToColor(list[61]);
-                Get.Sub_Color = StringColorToColor(list[62]);
-                Get.Var_Color = StringColorToColor(list[63]);
-                Get.Label_Color = StringColorToColor(list[64]);
-                Get.Module_Color = StringColorToColor(list[65]);
-                Get.Region_Open_Color = StringColorToColor(list[66]);
-                Get.Region_Close_Color = StringColorToColor(list[67]);
+                Get.Back_Color = StringColorToColor(list[50]);
+                Get.Fore_Color = StringColorToColor(list[51]);
+                Get.Comment_Color =  StringColorToColor(list[52]);
+                Get.String_Color = StringColorToColor(list[53]);
+                Get.Operator_Color = StringColorToColor(list[54]);
+                Get.Keyword_1_Color = StringColorToColor(list[55]);
+                Get.Keyword_2_Color = StringColorToColor(list[56]);
+                Get.Keyword_3_Color = StringColorToColor(list[57]);
+                Get.Keyword_4_Color = StringColorToColor(list[58]);
+                Get.Object_Color = StringColorToColor(list[59]);
+                Get.Method_Color = StringColorToColor(list[60]);
+                Get.Literal_Color = StringColorToColor(list[61]);
+                Get.Number_Color = StringColorToColor(list[62]);
+                Get.Sub_Color = StringColorToColor(list[63]);
+                Get.Var_Color = StringColorToColor(list[64]);
+                Get.Label_Color = StringColorToColor(list[65]);
+                Get.Module_Color = StringColorToColor(list[66]);
+                Get.Region_Open_Color = StringColorToColor(list[67]);
+                Get.Region_Close_Color = StringColorToColor(list[68]);
+
+                SetDefaultColor();
             }
             catch(Exception ex)
             {
@@ -280,6 +284,7 @@ namespace Clever.CommonData
             list.Add(Get.Find_Highlight_Color.ToArgb().ToString());
             list.Add(Get.Back_Calltip_Color.ToArgb().ToString());
             list.Add(Get.Fore_Calltip_Color.ToArgb().ToString());
+            list.Add(Get.Carret_Line_Color.ToArgb().ToString());
 
             list.Add(Get.Back_Color.ToArgb().ToString());
             list.Add(Get.Fore_Color.ToArgb().ToString());
@@ -365,6 +370,7 @@ namespace Clever.CommonData
             Get.Find_Highlight_Color = Color.FromArgb(255, 255, 0, 0);
             Get.Back_Calltip_Color = Color.FromArgb(255, 255, 255, 235);
             Get.Fore_Calltip_Color = Color.FromArgb(255, 0, 0, 0);
+            Get.Carret_Line_Color = Color.FromArgb(255, 248, 248, 248);
 
             Get.Back_Color = Color.FromArgb(255, 255, 255, 255);
             Get.Fore_Color = Color.FromArgb(255, 0, 0, 0);

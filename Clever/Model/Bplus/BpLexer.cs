@@ -216,8 +216,6 @@ namespace Clever.Model.Bplus
             textArea.Styles[Style.IndentGuide].ForeColor = BpColors.Fore_Folding_Color;
             textArea.Styles[Style.IndentGuide].BackColor = BpColors.Back_Folding_Color;
 
-            //MessageBox.Show(textArea.Styles[Style.LineNumber].BackColor.ToString() + '\n' + BpColors.Back_Margin_Color.ToString());
-
             textArea.Styles[STYLE_UNKNOWN_NEW].ForeColor = BpColors.Fore_Color;
             textArea.Styles[STYLE_COMMENT_NEW].ForeColor = BpColors.Comment_Color;
             textArea.Styles[STYLE_STRING_NEW].ForeColor = BpColors.String_Color;

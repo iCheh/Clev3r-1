@@ -27,6 +27,7 @@ namespace Clever.Model.Bplus
         internal static Color Find_Highlight_Color { get; set; }
         internal static Color Back_Calltip_Color { get; set; }
         internal static Color Fore_Calltip_Color { get; set; }
+        internal static Color Carret_Line_Color { get; set; }
 
         // LEXER
         internal static Color Back_Color { get; set; }
@@ -60,6 +61,7 @@ namespace Clever.Model.Bplus
             Find_Highlight_Color = Configurations.Get.Find_Highlight_Color;
             Back_Calltip_Color = Configurations.Get.Back_Calltip_Color;
             Fore_Calltip_Color = Configurations.Get.Fore_Calltip_Color;
+            Carret_Line_Color = Configurations.Get.Carret_Line_Color;
 
             Back_Color = Configurations.Get.Back_Color;
             Fore_Color = Configurations.Get.Fore_Color;

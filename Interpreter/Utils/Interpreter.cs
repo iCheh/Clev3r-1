@@ -253,6 +253,8 @@ namespace Interpreter.Utils
                                             {
                                                 variables.Add(p.Key, (new Variable(p.Key) { Type = param.varType }, line));
                                             }
+
+                                            line.OutLines.Add(new Line(newWords, "") { Number = line.Number, FileName = line.FileName, Type = LineType.VARINIT });
                                         }
                                         else if (tmpWords[i].Count > 1)
                                         {
@@ -277,11 +279,11 @@ namespace Interpreter.Utils
                                                 Data.Errors.Add(new Errore(line.Number, line.FileName, 1405, "( " + line.OldLine + " )"));
                                                 return;
                                             }
-                                            
+                                            line.OutLines.Add(new Line(newWords, "") { Number = line.Number, FileName = line.FileName, Type = LineType.VARARRAYINIT });
                                         }
                                         i++;
 
-                                        line.OutLines.Add(new Line(newWords, "") { Number = line.Number, FileName = line.FileName, Type = LineType.VARARRAYINIT });
+                                        //line.OutLines.Add(new Line(newWords, "") { Number = line.Number, FileName = line.FileName, Type = LineType.VARARRAYINIT });
                                         
                                         //Console.WriteLine("output =>" + line.OutLines[line.OutLines.Count - 1].NewLine + "<=");
                                     }

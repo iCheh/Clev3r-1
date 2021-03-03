@@ -124,6 +124,12 @@
                            FontFamily="Consolas"
                            Text="3"
                            Foreground="{Binding Path=LineNumberFORE_Color}"/>
+                <Border Grid.Row="2"
+                        Grid.Column="2"
+                        Margin="0,0,10,0"
+                        BorderThickness="0"
+                        BorderBrush="#00000000"
+                        Background="{Binding Path=SelectionLine_Color, UpdateSourceTrigger=PropertyChanged}"/>
                 <StackPanel Grid.Row="2"
                             Grid.Column="2"
                             Orientation="Horizontal">
@@ -647,6 +653,227 @@
                 <Separator Grid.Row="11"
                            Grid.ColumnSpan="10"/>
 
+                <!--#region SELECTION LINE -->
+
+                <TextBlock Text="Carret Line:"
+                           Grid.Row="12"
+                           Grid.Column="0"
+                           Grid.ColumnSpan="3"
+                           Margin="10,0,0,0"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Left"
+                           FontSize="16"
+                           FontFamily="Consolas"/>
+                <Border Grid.Row="12"
+                        Grid.Column="10"
+                        Height="20"
+                        Width="50"
+                        Background="{Binding Path=SelectionLine_Color}"
+                        BorderThickness="1"
+                        BorderBrush="#000000"/>
+
+                <TextBlock Text="R"
+                           Grid.Row="13"
+                           Grid.Column="0"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center"
+                           FontSize="14"
+                           FontFamily="Consolas"/>
+                <TextBlock Text="G"
+                           Grid.Row="13"
+                           Grid.Column="4"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center"
+                           FontSize="14"
+                           FontFamily="Consolas"/>
+                <TextBlock Text="B"
+                           Grid.Row="13"
+                           Grid.Column="8"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center"
+                           FontSize="14"
+                           FontFamily="Consolas"/>
+
+                <Slider x:Name="selectionLineR"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Center"
+                        Grid.Row="13"
+                        Grid.Column="1"
+                        Value="{Binding Path=SelectionLineR, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                        Minimum="0"
+                        Maximum="255"
+                        SmallChange="1"/>
+                <TextBox HorizontalAlignment="Center"
+                         VerticalAlignment="Center"
+                         Grid.Row="13"
+                         Grid.Column="2"
+                         Height="20"
+                         Width="50"
+                         Text="{Binding ElementName=selectionLineR, Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:F0}}"
+                         TextAlignment="Right"
+                         FontSize="14"
+                         FontFamily="Consolas"
+                         Background="#00000000"
+                         BorderThickness="1"
+                         BorderBrush="#000000"/>
+
+                <Slider x:Name="selectionLineG"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"
+                            Grid.Row="13"
+                            Grid.Column="5"
+                            Value="{Binding Path=SelectionLineG, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                            Minimum="0"
+                            Maximum="255"/>
+                <TextBox HorizontalAlignment="Center"
+                             VerticalAlignment="Center"
+                             Grid.Row="13"
+                             Grid.Column="6"
+                             Height="20"
+                             Width="50"
+                             Text="{Binding ElementName=selectionLineG, Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:F0}}"
+                             TextAlignment="Right"
+                             FontSize="14"
+                             FontFamily="Consolas"
+                             Background="#00000000"
+                             BorderThickness="1"
+                             BorderBrush="#000000"/>
+
+                <Slider x:Name="selectionLineB" HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"
+                            Grid.Row="13"
+                            Grid.Column="9"
+                            Value="{Binding Path=SelectionLineB, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                            Minimum="0"
+                            Maximum="255"/>
+                <TextBox HorizontalAlignment="Center"
+                             VerticalAlignment="Center"
+                             Grid.Row="13"
+                             Grid.Column="10"
+                             Height="20"
+                             Width="50"
+                             Text="{Binding ElementName=selectionLineB, Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:F0}}"
+                             TextAlignment="Right"
+                             FontSize="14"
+                             FontFamily="Consolas"
+                             Background="#00000000"
+                             BorderThickness="1"
+                             BorderBrush="#000000"/>
+
+                <!--#endregion-->
+
+                <Separator Grid.Row="14"
+                           Grid.ColumnSpan="10"/>
+
+                <!--#region SELECTION -->
+
+                <TextBlock Text="Selection:"
+                           Grid.Row="15"
+                           Grid.Column="0"
+                           Grid.ColumnSpan="3"
+                           Margin="10,0,0,0"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Left"
+                           FontSize="16"
+                           FontFamily="Consolas"/>
+                <Border Grid.Row="15"
+                        Grid.Column="10"
+                        Height="20"
+                        Width="50"
+                        Background="{Binding Path=SelectionLine_Color}"
+                        BorderThickness="1"
+                        BorderBrush="#000000"/>
+
+                <TextBlock Text="R"
+                           Grid.Row="16"
+                           Grid.Column="0"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center"
+                           FontSize="14"
+                           FontFamily="Consolas"/>
+                <TextBlock Text="G"
+                           Grid.Row="16"
+                           Grid.Column="4"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center"
+                           FontSize="14"
+                           FontFamily="Consolas"/>
+                <TextBlock Text="B"
+                           Grid.Row="16"
+                           Grid.Column="8"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center"
+                           FontSize="14"
+                           FontFamily="Consolas"/>
+
+                <Slider x:Name="selectionR"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Center"
+                        Grid.Row="16"
+                        Grid.Column="1"
+                        Value="{Binding Path=SelectionR, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                        Minimum="0"
+                        Maximum="255"
+                        SmallChange="1"/>
+                <TextBox HorizontalAlignment="Center"
+                         VerticalAlignment="Center"
+                         Grid.Row="16"
+                         Grid.Column="2"
+                         Height="20"
+                         Width="50"
+                         Text="{Binding ElementName=selectionR, Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:F0}}"
+                         TextAlignment="Right"
+                         FontSize="14"
+                         FontFamily="Consolas"
+                         Background="#00000000"
+                         BorderThickness="1"
+                         BorderBrush="#000000"/>
+
+                <Slider x:Name="selectionG"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"
+                            Grid.Row="16"
+                            Grid.Column="5"
+                            Value="{Binding Path=SelectionG, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                            Minimum="0"
+                            Maximum="255"/>
+                <TextBox HorizontalAlignment="Center"
+                             VerticalAlignment="Center"
+                             Grid.Row="16"
+                             Grid.Column="6"
+                             Height="20"
+                             Width="50"
+                             Text="{Binding ElementName=selectionG, Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:F0}}"
+                             TextAlignment="Right"
+                             FontSize="14"
+                             FontFamily="Consolas"
+                             Background="#00000000"
+                             BorderThickness="1"
+                             BorderBrush="#000000"/>
+
+                <Slider x:Name="selectionB" HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"
+                            Grid.Row="16"
+                            Grid.Column="9"
+                            Value="{Binding Path=SelectionB, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                            Minimum="0"
+                            Maximum="255"/>
+                <TextBox HorizontalAlignment="Center"
+                             VerticalAlignment="Center"
+                             Grid.Row="16"
+                             Grid.Column="10"
+                             Height="20"
+                             Width="50"
+                             Text="{Binding ElementName=selectionB, Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:F0}}"
+                             TextAlignment="Right"
+                             FontSize="14"
+                             FontFamily="Consolas"
+                             Background="#00000000"
+                             BorderThickness="1"
+                             BorderBrush="#000000"/>
+
+                <!--#endregion-->
+
             </Grid>
         </ScrollViewer>
 
@@ -657,25 +884,52 @@
                       BorderThickness="1"
                       BorderBrush="#00000000"/>
 
-        <Button Grid.Row="3"
-                x:Name="butDefault"
-                Style="{StaticResource default_button}"
-                VerticalAlignment="Center"
-                HorizontalAlignment="Right"
-                Width="100"
-                Height="20"
-                Margin="0,0,40,0"
-                Click="ButtonDefault_Click">
-            <Button.Content>
-                <TextBlock x:Name="butTextClose"
-                           Text="Default Colors"
-                           FontFamily="Calibri"
-                           FontSize="12"
-                           Foreground="#000000"
-                           VerticalAlignment="Center"
-                           HorizontalAlignment="Center"/>
-            </Button.Content>
-        </Button>
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="0"
+                    Style="{StaticResource default_button}"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Left"
+                    Width="60"
+                    Height="20"
+                    Margin="20,0,0,0"
+                    Command="{Binding Path=SaveCommand}">
+                <Button.Content>
+                    <TextBlock x:Name="saveText"
+                               Text="Save"
+                               FontFamily="Calibri"
+                               FontSize="12"
+                               Foreground="#000000"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center"/>
+                </Button.Content>
+            </Button>
+
+            <Button Grid.Column="1"
+                    Style="{StaticResource default_button}"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Right"
+                    Width="100"
+                    Height="20"
+                    Margin="0,0,20,0"
+                    Command="{Binding Path=DefaultColorCommand}">
+                <Button.Content>
+                    <TextBlock x:Name="defaultColorText"
+                               Text="Default Colors"
+                               FontFamily="Calibri"
+                               FontSize="12"
+                               Foreground="#000000"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center"/>
+                </Button.Content>
+            </Button>
+        </Grid>
+
+        
 
     </Grid>
 </Window>
