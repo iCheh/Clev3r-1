@@ -89,7 +89,6 @@ namespace Clever.Model.Bplus
                         {
                             member.other.Add("example", method.Example);
                         }
-                        //MessageBox.Show(member.name);
                     }
 
                     foreach (var prop in obj.Property)

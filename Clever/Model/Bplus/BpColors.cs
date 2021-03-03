@@ -1,50 +1,85 @@
-﻿namespace Clever.Model.Bplus
+﻿using Clever.CommonData;
+using System.Drawing;
+
+namespace Clever.Model.Bplus
 {
     class BpColors
     {
-        internal static int BACKGROUND_COLOR = 0xDFE9F5;
-        internal static int FOREGROUND_COLOR = 0x000000;
-        internal static int SPLITTER_COLOR = 0x96AFFF;
-        internal static int SELECTION_COLOR = 0xC0D0FF;
-        // Text Area Colors
-        internal static int BACK_MARGIN_COLOR = 0xF8F8F8;
-        internal static int FORE_MARGIN_COLOR = 0xb2b2b2;
-        internal static int BACK_FOLDING_COLOR = 0xFFFFFF;
-        internal static int FORE_FOLDING_COLOR = 0x5C5C5C;
-        internal static int SELECT_COLOR = 0xCCDDFF;
-        internal static int DEBUG_HIGHLIGHT_COLOR = 0xFFFF50;
-        internal static int FIND_HIGHLIGHT_COLOR = 0xFF0000;
-        internal static int DELETED_HIGHLIGHT_COLOR = 0xFF8080;
-        internal static int INSERTED_HIGHLIGHT_COLOR = 0x80FF80;
-        internal static int FORE_CALLTIP_COLOR = 0x5C5C5C;
-        internal static int BACK_CALLTIP_COLOR = 0xFFFFEB;
-        internal static int HIGHLIGHT_CALLTIP_COLOR = 0xFF0000;
-        // Lexer Colors
-        internal static int FORE_COLOR = 0x000000;
-        internal static int BACK_COLOR = 0x00FFFFFF;
-        internal static int COMMENT_COLOR = 0x008020;
-        internal static int STRING_COLOR = 0xCC6633;
-        internal static int OPERATOR_COLOR = 0x800000;
-        internal static int KEYWORD_COLOR = 0x7777FF;
-        internal static int KEYWORD_1_COLOR = 0x7777FF;
-        internal static int KEYWORD_2_COLOR = 0x9696FF;
-        internal static int KEYWORD_3_COLOR = 0x7777FF;
-        internal static int KEYWORD_4_COLOR = 0x7777FF;
-        internal static int OBJECT_COLOR = 0x006060;
-        internal static int METHOD_COLOR = 0x802020;
-        internal static int LITERAL_COLOR = 0xDD6633;
-        internal static int NUMBER_COLOR = 0xDD6633;
-        internal static int SUB_COLOR = 0x800080;
-        internal static int VAR_COLOR = 0x000000;
-        internal static int LABEL_COLOR = 0xAF80CE;
-        internal static int MODULE_COLOR = 0x7D7D00;
-        internal static int BRACE_BAD = 0xFF0000;
-        internal static int REGION_COLOR_OPEN = 0x7F7F7F;
-        internal static int REGION_COLOR_CLOSE = 0x7F7F7F;
+        // HELP COLORS
+        internal static int HELP_OBJECT_NAME = 0x969696;
+        internal static int HELP_METHOD_NAME = 0x0C37CD;
+        internal static int HELP_TEXT = 0x000000;
 
-        internal static int II_OBJECT_NAME = 0x969696;
-        internal static int II_METHOD_NAME = 0x0C37CD;
-        internal static int II_TEXT = 0x000000;
-        internal static int CARET_LINE_BACK_COLOR = 0xF8F8F8;
+        internal static int HELP_COMMENT_COLOR = 0x008020;
+        internal static int HELP_STRING_COLOR = 0xCC6633;
+
+        internal static int HELP_KEYWORD_COLOR = 0x7777FF;
+        internal static int HELP_OBJECT_COLOR = 0x006060;
+        internal static int HELP_METHOD_COLOR = 0x802020;
+
+        // EDITOR
+        internal static Color Foreground_Color { get; set; }
+        internal static Color Back_Margin_Color { get; set; }
+        internal static Color Fore_Margin_Color { get; set; }
+        internal static Color Back_Folding_Color { get; set; }
+        internal static Color Fore_Folding_Color { get; set; }
+        internal static Color Select_Color { get; set; }
+        internal static Color Find_Highlight_Color { get; set; }
+        internal static Color Back_Calltip_Color { get; set; }
+        internal static Color Fore_Calltip_Color { get; set; }
+
+        // LEXER
+        internal static Color Back_Color { get; set; }
+        internal static Color Fore_Color { get; set; }
+        internal static Color Comment_Color { get; set; }
+        internal static Color String_Color { get; set; }
+        internal static Color Operator_Color { get; set; }
+        internal static Color Keyword_1_Color { get; set; }
+        internal static Color Keyword_2_Color { get; set; }
+        internal static Color Keyword_3_Color { get; set; }
+        internal static Color Keyword_4_Color { get; set; }
+        internal static Color Object_Color { get; set; }
+        internal static Color Method_Color { get; set; }
+        internal static Color Literal_Color { get; set; }
+        internal static Color Number_Color { get; set; }
+        internal static Color Sub_Color { get; set; }
+        internal static Color Var_Color { get; set; }
+        internal static Color Label_Color { get; set; }
+        internal static Color Module_Color { get; set; }
+        internal static Color Region_Open_Color { get; set; }
+        internal static Color Region_Close_Color { get; set; }
+
+        internal static void Install()
+        {
+            Foreground_Color = Configurations.Get.Foreground_Color;
+            Back_Margin_Color = Configurations.Get.Back_Margin_Color;
+            Fore_Margin_Color = Configurations.Get.Fore_Margin_Color;
+            Back_Folding_Color = Configurations.Get.Back_Folding_Color;
+            Fore_Folding_Color = Configurations.Get.Fore_Folding_Color;
+            Select_Color = Configurations.Get.Select_Color;
+            Find_Highlight_Color = Configurations.Get.Find_Highlight_Color;
+            Back_Calltip_Color = Configurations.Get.Back_Calltip_Color;
+            Fore_Calltip_Color = Configurations.Get.Fore_Calltip_Color;
+
+            Back_Color = Configurations.Get.Back_Color;
+            Fore_Color = Configurations.Get.Fore_Color;
+            Comment_Color = Configurations.Get.Comment_Color;
+            String_Color = Configurations.Get.String_Color;
+            Operator_Color = Configurations.Get.Operator_Color;
+            Keyword_1_Color = Configurations.Get.Keyword_1_Color;
+            Keyword_2_Color = Configurations.Get.Keyword_2_Color;
+            Keyword_3_Color = Configurations.Get.Keyword_3_Color;
+            Keyword_4_Color = Configurations.Get.Keyword_4_Color;
+            Object_Color = Configurations.Get.Object_Color;
+            Method_Color = Configurations.Get.Method_Color;
+            Literal_Color = Configurations.Get.Literal_Color;
+            Number_Color = Configurations.Get.Number_Color;
+            Sub_Color = Configurations.Get.Sub_Color;
+            Var_Color = Configurations.Get.Var_Color;
+            Label_Color = Configurations.Get.Label_Color;
+            Module_Color = Configurations.Get.Module_Color;
+            Region_Open_Color = Configurations.Get.Region_Open_Color;
+            Region_Close_Color = Configurations.Get.Region_Close_Color;
+        }
     }
 }

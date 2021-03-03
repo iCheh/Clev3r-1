@@ -646,7 +646,6 @@
     <Compile Include="Model\Bplus\BPInterpreter\Tokens.cs" />
     <Compile Include="Model\Bplus\BPInterpreter\Word.cs" />
     <Compile Include="Model\Bplus\HotKeyManager.cs" />
-    <Compile Include="Model\Bplus\BpContext.cs" />
     <Compile Include="Model\Bplus\BpInterop.cs" />
     <Compile Include="Model\Bplus\TextEditor.cs" />
     <Compile Include="Model\Bplus\BpLexer.cs" />

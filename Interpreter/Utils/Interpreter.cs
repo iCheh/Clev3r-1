@@ -81,7 +81,7 @@ namespace Interpreter.Utils
             // Перезапишем выходной текст и уберём оттуда неиспользуемые процедуры и функции
             var lines = RewriteOutLines(Data.Project.OutputLines, callsSub, callsFunc);
 
-            
+
 
             // Заполним словарь переменных
             // Распарсим все инициализации переменных
@@ -173,6 +173,8 @@ namespace Interpreter.Utils
                 return;
 
             ParseOneCall(methods, variables);
+            if (Data.Errors.Count > 0)
+                return;
         }
 
         private void ParseOneCall(List<Line> lines, Dictionary<string, (Variable, Line)> variables)
@@ -194,6 +196,7 @@ namespace Interpreter.Utils
 
                             if (func.Parameters.Count == tmpWords.Count && func.Parameters.Count > 0)
                             {
+                                //Console.WriteLine('\n');
                                 int i = 0;
                                 body = false;
                                 foreach (var p in func.Parameters)
@@ -216,6 +219,8 @@ namespace Interpreter.Utils
                                         i++;
 
                                         line.OutLines.Add(new Line(newWords, "") { Number = line.Number, FileName = line.FileName, Type = LineType.VARINIT });
+                                        
+                                        //Console.WriteLine("input =>" + line.OutLines[line.OutLines.Count-1].NewLine + "<=");
                                     }
                                     else if (param.paramType == ParameterType.OUTPUT)
                                     {
@@ -234,6 +239,12 @@ namespace Interpreter.Utils
                                         }
                                         if (tmpWords[i].Count == 1)
                                         {
+                                            if (tmpWords[i][0].Token != Tokens.VARIABLE)
+                                            {
+                                                Data.Errors.Add(new Errore(line.Number, line.FileName, 1405, "( " + line.OldLine + " )"));
+                                                return;
+                                            }
+
                                             newWords.Add(tmpWords[i][0]);
                                             newWords.Add(new Word() { Text = "=", OriginText = "=", Token = Tokens.EQU });
                                             newWords.Add(new Word() { Text = p.Key, OriginText = p.Key, Token = Tokens.VARIABLE });
@@ -243,9 +254,36 @@ namespace Interpreter.Utils
                                                 variables.Add(p.Key, (new Variable(p.Key) { Type = param.varType }, line));
                                             }
                                         }
+                                        else if (tmpWords[i].Count > 1)
+                                        {
+                                            // Из-за отсутствия этой конструкции была ошибка при попытке запихнуть в параметры элемент массива
+
+                                            if (tmpWords[i][0].Token == Tokens.VARIABLE && tmpWords[i][0].ToLower().Trim() != "gv_" && tmpWords[i][1].Token == Tokens.BRACKETLEFTARRAY && tmpWords[i][tmpWords[i].Count - 1].Token == Tokens.BRACKETRIGHTARRAY)
+                                            {
+                                                foreach (var tmpW in tmpWords[i])
+                                                {
+                                                    newWords.Add(tmpW);
+                                                }
+                                                newWords.Add(new Word() { Text = "=", OriginText = "=", Token = Tokens.EQU });
+                                                newWords.Add(new Word() { Text = p.Key, OriginText = p.Key, Token = Tokens.VARIABLE });
+
+                                                if (!variables.ContainsKey(p.Key))
+                                                {
+                                                    variables.Add(p.Key, (new Variable(p.Key) { Type = param.varType }, line));
+                                                }
+                                            }
+                                            else
+                                            {
+                                                Data.Errors.Add(new Errore(line.Number, line.FileName, 1405, "( " + line.OldLine + " )"));
+                                                return;
+                                            }
+                                            
+                                        }
                                         i++;
 
-                                        line.OutLines.Add(new Line(newWords, "") { Number = line.Number, FileName = line.FileName, Type = LineType.VARINIT });
+                                        line.OutLines.Add(new Line(newWords, "") { Number = line.Number, FileName = line.FileName, Type = LineType.VARARRAYINIT });
+                                        
+                                        //Console.WriteLine("output =>" + line.OutLines[line.OutLines.Count - 1].NewLine + "<=");
                                     }
                                 }
                                 if (!body)

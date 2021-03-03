@@ -13,8 +13,10 @@ namespace Interpreter.Parsers
         {
             foreach (var line in lines)
             {
+                //Console.WriteLine(line.Number.ToString() + " " + line.NewLine + " =>" + line.Type.ToString());
                 if (line.Type == LineType.VARINIT)
                 {
+                    //Console.WriteLine("INIT => " + line.NewLine);
                     if (line.Words[0].Token == Tokens.VARIABLE)
                     {
                         if (Data.Project.Variables.ContainsKey(line.Words[0].Text))
@@ -199,6 +201,8 @@ namespace Interpreter.Parsers
 
                         if (!badString)
                         {
+                            //Console.WriteLine('\n');
+                            //Console.WriteLine(word.OriginText);
                             Data.Errors.Add(new Errore(line.Number, line.FileName, 1407, ""));
                             return true;
                         }
@@ -752,11 +756,13 @@ namespace Interpreter.Parsers
 
         internal static bool ParseBracketLeftArray(Line line)
         {
+            /*
             if (line.Count < 6)
             {
                 Data.Errors.Add(new Errore(line.Number, line.FileName, 1401, "( " + line.NewLine + " )"));
                 return true;
             }
+            */
 
             int startPos = 0;
             var type = VariableType.NON;

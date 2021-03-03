@@ -8,13 +8,39 @@
         mc:Ignorable="d"
         Title="Setting"
         Height="600"
-        Width="1000">
+        Width="1000"
+        WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <Style x:Key="default_button" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border BorderBrush="{StaticResource dialog_but_border}" BorderThickness="1" Name="border" CornerRadius="3">
+                            <ContentPresenter RecognizesAccessKey="True" Margin="{TemplateBinding Padding}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="{StaticResource dialog_but_mot}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="false">
+                                <Setter TargetName="border" Property="Background" Value="{StaticResource dialog_but_mof}"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="{StaticResource dialog_but_clc}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
     <Grid Margin="0"
           Background="{StaticResource about_bgd}">
         <Grid.RowDefinitions>
             <RowDefinition MinHeight="200"/>
             <RowDefinition Height="6"/>
             <RowDefinition MinHeight="200"/>
+            <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
         <ScrollViewer Grid.Row="0"
                       Margin="20,10,20,5"
@@ -630,5 +656,26 @@
                       Background="#00000000"
                       BorderThickness="1"
                       BorderBrush="#00000000"/>
+
+        <Button Grid.Row="3"
+                x:Name="butDefault"
+                Style="{StaticResource default_button}"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Right"
+                Width="100"
+                Height="20"
+                Margin="0,0,40,0"
+                Click="ButtonDefault_Click">
+            <Button.Content>
+                <TextBlock x:Name="butTextClose"
+                           Text="Default Colors"
+                           FontFamily="Calibri"
+                           FontSize="12"
+                           Foreground="#000000"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center"/>
+            </Button.Content>
+        </Button>
+
     </Grid>
 </Window>

@@ -78,7 +78,7 @@ namespace Clever.Model.Bplus
 
             if (search.Length > 0)
             {
-                TextArea.Indicators[0].ForeColor = TextEditor.IntToColor(BpColors.FIND_HIGHLIGHT_COLOR);
+                TextArea.Indicators[0].ForeColor = BpColors.Find_Highlight_Color;
                 TextArea.Indicators[0].Style = IndicatorStyle.RoundBox;
 
                 TextArea.TargetStart = 0;

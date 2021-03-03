@@ -1,0 +1,19 @@
+'в параметрах указывается азимут, на который нужно ехать. Функция умеет только выдавать ошибку относительно введённого азимута. Соответствует настройке в ev3-g - measure-relative heading
+
+x=0
+value=0
+znach=0
+azimut=0
+value=Sensor.ReadI2CRegister(1, 1, 66)
+znach=azimut-value+180
+If znach>=0 Then
+  x=znach
+  znach=Math.Ceiling(znach/360)
+  znach=x-znach
+Else
+  x=-1-znach
+  znach=Math.Ceiling(znach/360)
+  znach=x-znach
+  znach=359-znach
+EndIf
+znach=znach-180

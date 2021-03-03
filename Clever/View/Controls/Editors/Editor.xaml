@@ -11,8 +11,14 @@
              d:DesignWidth="600"
              Loaded="UserControl_Loaded"
              Unloaded="UserControl_Unloaded">
-    <Grid Background="#ECEDF1" Margin="0" x:Name="edit" PreviewMouseRightButtonUp="edit_PreviewMouseRightButtonUp">
-        <WindowsFormsHost Margin="3" x:Name="wfh" Panel.ZIndex="0" Background="White">
+    <Grid Background="#ECEDF1"
+          Margin="0"
+          x:Name="edit"
+          PreviewMouseRightButtonUp="edit_PreviewMouseRightButtonUp">
+        <WindowsFormsHost Margin="3"
+                          x:Name="wfh"
+                          Panel.ZIndex="0"
+                          Background="White">
         </WindowsFormsHost>
 
         <Popup PlacementTarget="{Binding ElementName=edit}" x:Name="editorPopup" StaysOpen="False" Placement="MousePoint" Width="{StaticResource te_menu_width}" Height="{StaticResource te_menu_height_all}">

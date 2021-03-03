@@ -1,0 +1,11 @@
+' Выдаёт зону и силу инфракрасного излучения в этой зоне
+
+direction=Sensor.ReadI2CRegister(2, 8, 73)
+ost=Math.Remainder(direction, 2)
+If ost=0.5 Then
+  signal=Sensor.ReadI2CRegister(2, 8, (direction/2)+74-0.5)
+ElseIf direction<>0 Then
+  signal=(Sensor.ReadI2CRegister(2, 8, 74+(direction/2)+1)+Sensor.ReadI2CRegister(1, 8, 74+(direction/2)))/2
+Else
+  signal=(Sensor.ReadI2CRegister(2, 8, 74)+Sensor.ReadI2CRegister(1, 8, 78))/2
+EndIf

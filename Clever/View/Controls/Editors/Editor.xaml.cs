@@ -5,6 +5,7 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Forms;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace Clever.View.Controls.Editors
 {
@@ -20,6 +21,8 @@ namespace Clever.View.Controls.Editors
         public Editor()
         {
             InitializeComponent();
+            var color = BpColors.Back_Margin_Color;
+            edit.Background = new SolidColorBrush(Color.FromArgb(color.A, color.R, color.G, color.B));
             te = new TextEditor();
             te.TextArea.BorderStyle = BorderStyle.None;
             wfh.Child = te.TextArea;

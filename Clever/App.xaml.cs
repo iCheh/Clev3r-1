@@ -1,4 +1,5 @@
 ﻿using Clever.CommonData;
+using Clever.Model.Bplus;
 using Clever.Model.Intellisense;
 using Clever.Model.Utils;
 using Clever.View.Dialogs;
@@ -61,6 +62,7 @@ namespace Clever
                     SplashScreen.Show(false);
                     Configurations.Install();
                     GUILanguage.Install();
+                    BpColors.Install();
                     Errors = localizator.ReadErrors();
                     IntellisenseObjects = new ReadXml().Read();     
                     MainWindow main = new MainWindow();

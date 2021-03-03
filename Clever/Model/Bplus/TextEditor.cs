@@ -166,7 +166,7 @@ namespace Clever.Model.Bplus
         *////////
         private void InitColors()
         {
-            textArea.SetSelectionBackColor(true, IntToColor(BpColors.SELECT_COLOR));
+            textArea.SetSelectionBackColor(true, BpColors.Select_Color);
         }
 
         private void InitHotkeys()
@@ -234,8 +234,8 @@ namespace Clever.Model.Bplus
 
         private void InitCodeFolding()
         {
-            textArea.SetFoldMarginColor(true, IntToColor(BpColors.BACK_FOLDING_COLOR));
-            textArea.SetFoldMarginHighlightColor(true, IntToColor(BpColors.BACK_FOLDING_COLOR));
+            textArea.SetFoldMarginColor(true, BpColors.Back_Folding_Color);
+            textArea.SetFoldMarginHighlightColor(true, BpColors.Back_Folding_Color);
             textArea.FoldDisplayTextSetStyle(FoldDisplayText.Boxed);
 
             // Enable code folding
@@ -251,8 +251,8 @@ namespace Clever.Model.Bplus
             // Set colors for all folding markers
             for (int i = 25; i <= 31; i++)
             {
-                textArea.Markers[i].SetForeColor(IntToColor(BpColors.BACK_FOLDING_COLOR)); // styles for [+] and [-]
-                textArea.Markers[i].SetBackColor(IntToColor(BpColors.FORE_FOLDING_COLOR)); // styles for [+] and [-]
+                textArea.Markers[i].SetForeColor(BpColors.Back_Folding_Color); // styles for [+] and [-]
+                textArea.Markers[i].SetBackColor(BpColors.Fore_Folding_Color); // styles for [+] and [-]
             }
 
             // Configure folding markers with respective symbols
@@ -274,7 +274,6 @@ namespace Clever.Model.Bplus
             {
                 lineStack.bActive = true;
                 Menu.IsOpen = true;
-                //sbContext.SetMenu();
             }
         }
 
@@ -451,44 +450,7 @@ namespace Clever.Model.Bplus
 
         #endregion
 
-        #region Indent / Outdent
-
-        public void Indent()
-        {
-            // we use this hack to send "Shift+Tab" to scintilla, since there is no known API to indent,
-            // although the indentation function exists. Pressing TAB with the editor focused confirms this.
-            GenerateKeystrokes("{TAB}");
-        }
-
-        public void Outdent()
-        {
-            // we use this hack to send "Shift+Tab" to scintilla, since there is no known API to outdent,
-            // although the indentation function exists. Pressing Shift+Tab with the editor focused confirms this.
-            GenerateKeystrokes("+{TAB}");
-        }
-
-        private void GenerateKeystrokes(string keys)
-        {
-            HotKeyManager.Enable = false;
-            textArea.Focus();
-            SendKeys.Send(keys);
-            HotKeyManager.Enable = true;
-        }
-
-        #endregion
-
         #region Zoom
-
-        public void SelectWord()
-        {
-            textArea.SelectionStart = textArea.WordStartPosition(textArea.CurrentPosition, true);
-            textArea.SelectionEnd = textArea.WordEndPosition(textArea.CurrentPosition, true);
-        }
-
-        public void TopOfView()
-        {
-            textArea.FirstVisibleLine = textArea.CurrentLine;
-        }
 
         public void ClearSelection()
         {
@@ -511,18 +473,7 @@ namespace Clever.Model.Bplus
             SelectLine();
         }
 
-        #endregion
-
-        #region Utils
-
-        public static System.Drawing.Color IntToColor(int rgb)
-        {
-            return System.Drawing.Color.FromArgb(255, (byte)(rgb >> 16), (byte)(rgb >> 8), (byte)rgb);
-        }
-
-        #endregion
-
-        
+        #endregion       
 
         protected virtual void Dispose(bool disposing)
         {

@@ -518,6 +518,12 @@ namespace Interpreter.Utils
                                 word.Text = (glogalVarsPref + word.Text).ToLower().Replace("@", "");
                             }
                         }
+
+                        if (word.Token == Tokens.LABEL)
+                        {
+                            var tmpLabeName = word.Text.Replace(":", "") + ":";
+                            word.Text = tmpLabeName;
+                        }
                     }
                     else if (word.Token == Tokens.MODULEPROPERTY)
                     {

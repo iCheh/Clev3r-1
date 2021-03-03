@@ -84,19 +84,19 @@ namespace Clever.Model.Intellisense
                             sp2.Children.Add(tbh);
                             var tbh1 = new Run();
                             tbh1.Text = obj.Class.Name + ".";
-                            tbh1.Foreground = new SolidColorBrush(IntToColor(BpColors.II_OBJECT_NAME));
+                            tbh1.Foreground = new SolidColorBrush(IntToColor(BpColors.HELP_OBJECT_NAME));
                             tbh1.FontStyle = FontStyles.Normal;
                             var tbh2 = new Run();
                             tbh2.Text = method.Name;
                             tbh2.FontWeight = FontWeights.Bold;
-                            tbh2.Foreground = new SolidColorBrush(IntToColor(BpColors.II_METHOD_NAME));
+                            tbh2.Foreground = new SolidColorBrush(IntToColor(BpColors.HELP_METHOD_NAME));
                             var tbh3 = new Run();
                             tbh3.Text = " (";
                             tbh3.FontStyle = FontStyles.Normal;
-                            tbh3.Foreground = new SolidColorBrush(IntToColor(BpColors.II_METHOD_NAME));
+                            tbh3.Foreground = new SolidColorBrush(IntToColor(BpColors.HELP_METHOD_NAME));
                             var tbh4 = new Run();
                             tbh4.FontStyle = FontStyles.Italic;
-                            tbh4.Foreground = new SolidColorBrush(IntToColor(BpColors.II_METHOD_NAME));
+                            tbh4.Foreground = new SolidColorBrush(IntToColor(BpColors.HELP_METHOD_NAME));
                             if (method.ParamName.Count > 0)
                             {
                                 for (int i = 0; i < method.ParamName.Count; i++)
@@ -111,7 +111,7 @@ namespace Clever.Model.Intellisense
                             var tbh5 = new Run();
                             tbh5.Text = ")";
                             tbh5.FontStyle = FontStyles.Normal;
-                            tbh5.Foreground = new SolidColorBrush(IntToColor(BpColors.II_METHOD_NAME));
+                            tbh5.Foreground = new SolidColorBrush(IntToColor(BpColors.HELP_METHOD_NAME));
                             tbh.Inlines.Add(tbh1);
                             tbh.Inlines.Add(tbh2);
                             tbh.Inlines.Add(tbh3);
@@ -127,11 +127,11 @@ namespace Clever.Model.Intellisense
                                     var tbpn1 = new Run();
                                     tbpn1.Text = method.ParamName[i];
                                     tbpn1.FontStyle = FontStyles.Italic;
-                                    tbpn1.Foreground = new SolidColorBrush(IntToColor(BpColors.II_METHOD_NAME));
+                                    tbpn1.Foreground = new SolidColorBrush(IntToColor(BpColors.HELP_METHOD_NAME));
                                     var tbpn2 = new Run();
                                     tbpn2.Text = " - " + method.ParamSummary[i];
                                     tbpn2.FontStyle = FontStyles.Normal;
-                                    tbpn2.Foreground = new SolidColorBrush(IntToColor(BpColors.II_TEXT));
+                                    tbpn2.Foreground = new SolidColorBrush(IntToColor(BpColors.HELP_TEXT));
                                     tbpn.Inlines.Add(tbpn1);
                                     tbpn.Inlines.Add(tbpn2);
                                     sp2.Children.Add(tbpn);
@@ -145,11 +145,11 @@ namespace Clever.Model.Intellisense
                                 var tbr1 = new Run();
                                 tbr1.Text = MainWindowVM.GetLocalization["hpReturn"] + ": ";
                                 tbr1.FontWeight = FontWeights.Bold;
-                                tbr1.Foreground = new SolidColorBrush(IntToColor(BpColors.II_TEXT));
+                                tbr1.Foreground = new SolidColorBrush(IntToColor(BpColors.HELP_TEXT));
                                 var tbr2 = new Run();
                                 tbr2.Text = method.Return;
                                 tbr2.FontStyle = FontStyles.Normal;
-                                tbr2.Foreground = new SolidColorBrush(IntToColor(BpColors.II_TEXT));
+                                tbr2.Foreground = new SolidColorBrush(IntToColor(BpColors.HELP_TEXT));
                                 tbr.Inlines.Add(tbr1);
                                 tbr.Inlines.Add(tbr2);
                                 sp2.Children.Add(tbr);
@@ -162,14 +162,14 @@ namespace Clever.Model.Intellisense
                                 tbe.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
                                 tbe.Text = MainWindowVM.GetLocalization["hpExample"] + ":";
                                 tbe.FontWeight = FontWeights.Bold;
-                                tbe.Foreground = new SolidColorBrush(IntToColor(BpColors.II_TEXT));
+                                tbe.Foreground = new SolidColorBrush(IntToColor(BpColors.HELP_TEXT));
                                 sp2.Children.Add(tbe);
                                 var tbes = new TextBlock() { Margin = new System.Windows.Thickness(2, 2, 2, 2) };
                                 tbes.TextWrapping = System.Windows.TextWrapping.Wrap;
                                 tbes.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
                                 tbes.Text = "' " + method.Example;
                                 tbes.FontStyle = FontStyles.Italic;
-                                tbes.Foreground = new SolidColorBrush(IntToColor(BpColors.COMMENT_COLOR));
+                                tbes.Foreground = new SolidColorBrush(IntToColor(BpColors.HELP_COMMENT_COLOR));
                                 sp2.Children.Add(tbes);
                                 if (method.Code.Count > 0)
                                 {
@@ -210,12 +210,12 @@ namespace Clever.Model.Intellisense
                             sp2.Children.Add(tbh);
                             var tbh1 = new Run();
                             tbh1.Text = obj.Class.Name + ".";
-                            tbh1.Foreground = new SolidColorBrush(IntToColor(BpColors.II_OBJECT_NAME));
+                            tbh1.Foreground = new SolidColorBrush(IntToColor(BpColors.HELP_OBJECT_NAME));
                             tbh1.FontStyle = FontStyles.Normal;
                             var tbh2 = new Run();
                             tbh2.Text = ev.Name;
                             tbh2.FontWeight = FontWeights.Bold;
-                            tbh2.Foreground = new SolidColorBrush(IntToColor(BpColors.II_METHOD_NAME));
+                            tbh2.Foreground = new SolidColorBrush(IntToColor(BpColors.HELP_METHOD_NAME));
                             tbh.Inlines.Add(tbh1);
                             tbh.Inlines.Add(tbh2);
                             if (ev.Return != "")
@@ -226,11 +226,11 @@ namespace Clever.Model.Intellisense
                                 var tbr1 = new Run();
                                 tbr1.Text = MainWindowVM.GetLocalization["hpReturn"] + ": ";
                                 tbr1.FontWeight = FontWeights.Bold;
-                                tbr1.Foreground = new SolidColorBrush(IntToColor(BpColors.II_TEXT));
+                                tbr1.Foreground = new SolidColorBrush(IntToColor(BpColors.HELP_TEXT));
                                 var tbr2 = new Run();
                                 tbr2.Text = ev.Return;
                                 tbr2.FontStyle = FontStyles.Normal;
-                                tbr2.Foreground = new SolidColorBrush(IntToColor(BpColors.II_TEXT));
+                                tbr2.Foreground = new SolidColorBrush(IntToColor(BpColors.HELP_TEXT));
                                 tbr.Inlines.Add(tbr1);
                                 tbr.Inlines.Add(tbr2);
                                 sp2.Children.Add(tbr);
@@ -242,14 +242,14 @@ namespace Clever.Model.Intellisense
                                 tbe.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
                                 tbe.Text = MainWindowVM.GetLocalization["hpExample"] + ":";
                                 tbe.FontWeight = FontWeights.Bold;
-                                tbe.Foreground = new SolidColorBrush(IntToColor(BpColors.II_TEXT));
+                                tbe.Foreground = new SolidColorBrush(IntToColor(BpColors.HELP_TEXT));
                                 sp2.Children.Add(tbe);
                                 var tbes = new TextBlock() { Margin = new System.Windows.Thickness(2, 2, 2, 2) };
                                 tbes.TextWrapping = System.Windows.TextWrapping.Wrap;
                                 tbes.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
                                 tbes.Text = "' " + ev.Example;
                                 tbes.FontStyle = FontStyles.Italic;
-                                tbes.Foreground = new SolidColorBrush(IntToColor(BpColors.COMMENT_COLOR));
+                                tbes.Foreground = new SolidColorBrush(IntToColor(BpColors.HELP_COMMENT_COLOR));
                                 sp2.Children.Add(tbes);
                                 if (ev.Code.Count > 0)
                                 {
@@ -290,12 +290,12 @@ namespace Clever.Model.Intellisense
                             sp2.Children.Add(tbh);
                             var tbh1 = new Run();
                             tbh1.Text = obj.Class.Name + ".";
-                            tbh1.Foreground = new SolidColorBrush(IntToColor(BpColors.II_OBJECT_NAME));
+                            tbh1.Foreground = new SolidColorBrush(IntToColor(BpColors.HELP_OBJECT_NAME));
                             tbh1.FontStyle = FontStyles.Normal;
                             var tbh2 = new Run();
                             tbh2.Text = prop.Name;
                             tbh2.FontWeight = FontWeights.Bold;
-                            tbh2.Foreground = new SolidColorBrush(IntToColor(BpColors.II_METHOD_NAME));
+                            tbh2.Foreground = new SolidColorBrush(IntToColor(BpColors.HELP_METHOD_NAME));
                             tbh.Inlines.Add(tbh1);
                             tbh.Inlines.Add(tbh2);
                             if (prop.Return != "")
@@ -306,11 +306,11 @@ namespace Clever.Model.Intellisense
                                 var tbr1 = new Run();
                                 tbr1.Text = MainWindowVM.GetLocalization["hpReturn"] + ": ";
                                 tbr1.FontWeight = FontWeights.Bold;
-                                tbr1.Foreground = new SolidColorBrush(IntToColor(BpColors.II_TEXT));
+                                tbr1.Foreground = new SolidColorBrush(IntToColor(BpColors.HELP_TEXT));
                                 var tbr2 = new Run();
                                 tbr2.Text = prop.Return;
                                 tbr2.FontStyle = FontStyles.Normal;
-                                tbr2.Foreground = new SolidColorBrush(IntToColor(BpColors.II_TEXT));
+                                tbr2.Foreground = new SolidColorBrush(IntToColor(BpColors.HELP_TEXT));
                                 tbr.Inlines.Add(tbr1);
                                 tbr.Inlines.Add(tbr2);
                                 sp2.Children.Add(tbr);
@@ -322,14 +322,14 @@ namespace Clever.Model.Intellisense
                                 tbe.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
                                 tbe.Text = MainWindowVM.GetLocalization["hpExample"] + ":";
                                 tbe.FontWeight = FontWeights.Bold;
-                                tbe.Foreground = new SolidColorBrush(IntToColor(BpColors.II_TEXT));
+                                tbe.Foreground = new SolidColorBrush(IntToColor(BpColors.HELP_TEXT));
                                 sp2.Children.Add(tbe);
                                 var tbes = new TextBlock() { Margin = new System.Windows.Thickness(2, 2, 2, 2) };
                                 tbes.TextWrapping = System.Windows.TextWrapping.Wrap;
                                 tbes.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
                                 tbes.Text = "' " + prop.Example;
                                 tbes.FontStyle = FontStyles.Italic;
-                                tbes.Foreground = new SolidColorBrush(IntToColor(BpColors.COMMENT_COLOR));
+                                tbes.Foreground = new SolidColorBrush(IntToColor(BpColors.HELP_COMMENT_COLOR));
                                 sp2.Children.Add(tbes);
                                 if (prop.Code.Count > 0)
                                 {
@@ -359,7 +359,7 @@ namespace Clever.Model.Intellisense
                             tbh.TextWrapping = System.Windows.TextWrapping.Wrap;
                             tbh.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
                             tbh.FontWeight = FontWeights.Bold;
-                            tbh.Foreground = new SolidColorBrush(IntToColor(BpColors.II_METHOD_NAME));
+                            tbh.Foreground = new SolidColorBrush(IntToColor(BpColors.HELP_METHOD_NAME));
                             tbh.Text = key.Name;
                             sp2.Children.Add(tbh);
                             var tbs = new TextBlock() { Margin = new System.Windows.Thickness(2, 2, 2, 2) };
@@ -370,7 +370,7 @@ namespace Clever.Model.Intellisense
                                 var tbsr = new Run();
                                 tbsr.FontWeight = FontWeights.Normal;
                                 tbsr.FontStyle = FontStyles.Normal;
-                                tbsr.Foreground = new SolidColorBrush(IntToColor(BpColors.II_TEXT));
+                                tbsr.Foreground = new SolidColorBrush(IntToColor(BpColors.HELP_TEXT));
                                 tbsr.Text += w;
                                 tbs.Inlines.Add(tbsr);
                             }
@@ -382,14 +382,14 @@ namespace Clever.Model.Intellisense
                                 tbe.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
                                 tbe.Text = MainWindowVM.GetLocalization["hpExample"] + ":";
                                 tbe.FontWeight = FontWeights.Bold;
-                                tbe.Foreground = new SolidColorBrush(IntToColor(BpColors.II_TEXT));
+                                tbe.Foreground = new SolidColorBrush(IntToColor(BpColors.HELP_TEXT));
                                 sp2.Children.Add(tbe);
                                 var tbes = new TextBlock() { Margin = new System.Windows.Thickness(2, 2, 2, 2) };
                                 tbes.TextWrapping = System.Windows.TextWrapping.Wrap;
                                 tbes.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
                                 tbes.Text = "' " + key.Example;
                                 tbes.FontStyle = FontStyles.Italic;
-                                tbes.Foreground = new SolidColorBrush(IntToColor(BpColors.COMMENT_COLOR));
+                                tbes.Foreground = new SolidColorBrush(IntToColor(BpColors.HELP_COMMENT_COLOR));
                                 sp2.Children.Add(tbes);
                                 if (key.Code.Count > 0)
                                 {
@@ -426,34 +426,34 @@ namespace Clever.Model.Intellisense
                 {
                     if (obj.Name == word)
                     {
-                        return IntToColor(BpColors.OBJECT_COLOR);
+                        return IntToColor(BpColors.HELP_OBJECT_COLOR);
                     }
                     foreach (var k in obj.Keywords)
                     {
                         if (k.Name == word)
                         {
-                            return IntToColor(BpColors.KEYWORD_COLOR);
+                            return IntToColor(BpColors.HELP_KEYWORD_COLOR);
                         }
                     }
                     foreach (var m in obj.Methods)
                     {
                         if (m.Name == word)
                         {
-                            return IntToColor(BpColors.METHOD_COLOR);
+                            return IntToColor(BpColors.HELP_METHOD_COLOR);
                         }
                     }
                     foreach (var p in obj.Property)
                     {
                         if (p.Name == word)
                         {
-                            return IntToColor(BpColors.METHOD_COLOR);
+                            return IntToColor(BpColors.HELP_METHOD_COLOR);
                         }
                     }
                     foreach (var e in obj.Event)
                     {
                         if (e.Name == word)
                         {
-                            return IntToColor(BpColors.METHOD_COLOR);
+                            return IntToColor(BpColors.HELP_METHOD_COLOR);
                         }
                     }
                 }
@@ -462,15 +462,15 @@ namespace Clever.Model.Intellisense
             matches = regex.Matches(word);
             if (matches.Count == word.Length)
             {
-                return IntToColor(BpColors.OBJECT_COLOR);
+                return IntToColor(BpColors.HELP_OBJECT_COLOR);
             }
             else if (matches.Count == word.Length + 1 && word.IndexOf('.') != -1)
             {
-                return IntToColor(BpColors.OBJECT_COLOR);
+                return IntToColor(BpColors.HELP_OBJECT_COLOR);
             }
             else if (word.IndexOf('"') != -1)
             {
-                return IntToColor(BpColors.STRING_COLOR);
+                return IntToColor(BpColors.HELP_STRING_COLOR);
             }
             return Color.FromArgb(255, 0, 0, 0);
         }

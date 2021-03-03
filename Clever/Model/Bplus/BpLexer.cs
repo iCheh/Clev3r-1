@@ -187,8 +187,8 @@ namespace Clever.Model.Bplus
 
         private void InitSyntaxColoring()
         {
-            Color foreColor = IntToColor(BpColors.FORE_COLOR);
-            Color backColor = IntToColor(BpColors.BACK_COLOR);
+            Color foreColor = BpColors.Fore_Color;
+            Color backColor = BpColors.Back_Color;
 
             textArea.StyleResetDefault();
 
@@ -211,29 +211,31 @@ namespace Clever.Model.Bplus
             for (int i = 0; i < textArea.TabWidth; i++) spaces += " ";
             textArea.StyleClearAll();
 
-            textArea.Styles[Style.LineNumber].ForeColor = IntToColor(BpColors.FORE_MARGIN_COLOR);
-            textArea.Styles[Style.LineNumber].BackColor = IntToColor(BpColors.BACK_MARGIN_COLOR);
-            textArea.Styles[Style.IndentGuide].ForeColor = IntToColor(BpColors.FORE_FOLDING_COLOR);
-            textArea.Styles[Style.IndentGuide].BackColor = IntToColor(BpColors.BACK_FOLDING_COLOR);
+            textArea.Styles[Style.LineNumber].ForeColor = BpColors.Fore_Margin_Color;
+            textArea.Styles[Style.LineNumber].BackColor = BpColors.Back_Margin_Color;
+            textArea.Styles[Style.IndentGuide].ForeColor = BpColors.Fore_Folding_Color;
+            textArea.Styles[Style.IndentGuide].BackColor = BpColors.Back_Folding_Color;
 
-            textArea.Styles[STYLE_UNKNOWN_NEW].ForeColor = IntToColor(BpColors.FORE_COLOR);
-            textArea.Styles[STYLE_COMMENT_NEW].ForeColor = IntToColor(BpColors.COMMENT_COLOR);
-            textArea.Styles[STYLE_STRING_NEW].ForeColor = IntToColor(BpColors.STRING_COLOR);
-            textArea.Styles[STYLE_OPERATOR_NEW].ForeColor = IntToColor(BpColors.OPERATOR_COLOR);
-            textArea.Styles[STYLE_KEYWORD_1_NEW].ForeColor = IntToColor(BpColors.KEYWORD_1_COLOR);
-            textArea.Styles[STYLE_KEYWORD_2_NEW].ForeColor = IntToColor(BpColors.KEYWORD_2_COLOR);
-            textArea.Styles[STYLE_KEYWORD_3_NEW].ForeColor = IntToColor(BpColors.KEYWORD_3_COLOR);
-            textArea.Styles[STYLE_KEYWORD_4_NEW].ForeColor = IntToColor(BpColors.KEYWORD_4_COLOR);
-            textArea.Styles[STYLE_OBJECT_NEW].ForeColor = IntToColor(BpColors.OBJECT_COLOR);
-            textArea.Styles[STYLE_METHOD_NEW].ForeColor = IntToColor(BpColors.METHOD_COLOR);
-            textArea.Styles[STYLE_SUBROUTINE_NEW].ForeColor = IntToColor(BpColors.SUB_COLOR);
-            textArea.Styles[STYLE_LABEL_NEW].ForeColor = IntToColor(BpColors.LABEL_COLOR);
-            textArea.Styles[STYLE_VARIABLE_NEW].ForeColor = IntToColor(BpColors.VAR_COLOR);
-            textArea.Styles[STYLE_LITERAL_NEW].ForeColor = IntToColor(BpColors.LITERAL_COLOR);
-            textArea.Styles[STYLE_NUMBER_NEW].ForeColor = IntToColor(BpColors.NUMBER_COLOR);
-            textArea.Styles[STYLE_MODULE_NEW].ForeColor = IntToColor(BpColors.MODULE_COLOR);
-            textArea.Styles[STYLE_REGION_OPEN].ForeColor = IntToColor(BpColors.REGION_COLOR_OPEN);
-            textArea.Styles[STYLE_REGION_CLOSE].ForeColor = IntToColor(BpColors.REGION_COLOR_CLOSE);
+            //MessageBox.Show(textArea.Styles[Style.LineNumber].BackColor.ToString() + '\n' + BpColors.Back_Margin_Color.ToString());
+
+            textArea.Styles[STYLE_UNKNOWN_NEW].ForeColor = BpColors.Fore_Color;
+            textArea.Styles[STYLE_COMMENT_NEW].ForeColor = BpColors.Comment_Color;
+            textArea.Styles[STYLE_STRING_NEW].ForeColor = BpColors.String_Color;
+            textArea.Styles[STYLE_OPERATOR_NEW].ForeColor = BpColors.Operator_Color;
+            textArea.Styles[STYLE_KEYWORD_1_NEW].ForeColor = BpColors.Keyword_1_Color;
+            textArea.Styles[STYLE_KEYWORD_2_NEW].ForeColor = BpColors.Keyword_2_Color;
+            textArea.Styles[STYLE_KEYWORD_3_NEW].ForeColor = BpColors.Keyword_3_Color;
+            textArea.Styles[STYLE_KEYWORD_4_NEW].ForeColor = BpColors.Keyword_4_Color;
+            textArea.Styles[STYLE_OBJECT_NEW].ForeColor = BpColors.Object_Color;
+            textArea.Styles[STYLE_METHOD_NEW].ForeColor = BpColors.Method_Color;
+            textArea.Styles[STYLE_SUBROUTINE_NEW].ForeColor = BpColors.Sub_Color;
+            textArea.Styles[STYLE_LABEL_NEW].ForeColor = BpColors.Label_Color;
+            textArea.Styles[STYLE_VARIABLE_NEW].ForeColor = BpColors.Var_Color;
+            textArea.Styles[STYLE_LITERAL_NEW].ForeColor = BpColors.Literal_Color;
+            textArea.Styles[STYLE_NUMBER_NEW].ForeColor = BpColors.Number_Color;
+            textArea.Styles[STYLE_MODULE_NEW].ForeColor = BpColors.Module_Color;
+            textArea.Styles[STYLE_REGION_OPEN].ForeColor = BpColors.Region_Open_Color;
+            textArea.Styles[STYLE_REGION_CLOSE].ForeColor = BpColors.Region_Close_Color;
 
             textArea.Styles[STYLE_REGION_CLOSE].Visible = false;
 
@@ -259,9 +261,9 @@ namespace Clever.Model.Bplus
 
             const int SCI_CALLTIPSETBACK = 2205;
             const int SCI_CALLTIPSETFORE = 2206;
-            textArea.DirectMessage(SCI_CALLTIPSETBACK, new IntPtr(ColorTranslator.ToWin32(TextEditor.IntToColor(BpColors.BACK_CALLTIP_COLOR))), IntPtr.Zero);
-            textArea.DirectMessage(SCI_CALLTIPSETFORE, new IntPtr(ColorTranslator.ToWin32(TextEditor.IntToColor(BpColors.FORE_CALLTIP_COLOR))), IntPtr.Zero);
-            textArea.CallTipSetForeHlt(TextEditor.IntToColor(BpColors.FOREGROUND_COLOR));
+            textArea.DirectMessage(SCI_CALLTIPSETBACK, new IntPtr(ColorTranslator.ToWin32(BpColors.Back_Calltip_Color)), IntPtr.Zero);
+            textArea.DirectMessage(SCI_CALLTIPSETFORE, new IntPtr(ColorTranslator.ToWin32(BpColors.Fore_Calltip_Color)), IntPtr.Zero);
+            textArea.CallTipSetForeHlt(BpColors.Foreground_Color);
         }
 
         private void InitAutoComplete()

@@ -1,5 +1,8 @@
-﻿using System;
+﻿using Clever.View.Dialogs;
+using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -12,7 +15,7 @@ namespace Clever.CommonData
 {
     internal class Configurations
     {
-        private static int ConfigCount = 40;
+        private static int ConfigCount = 68;
         public static Configurations Get { get; private set; }
 
         #region Bindings
@@ -60,6 +63,36 @@ namespace Clever.CommonData
         internal bool Brick_Stop { get; set; }
         internal int Zoom { get; set; }
 
+        internal Color Foreground_Color { get; set; }
+        internal Color Back_Margin_Color { get; set; }
+        internal Color Fore_Margin_Color { get; set; }
+        internal Color Back_Folding_Color { get; set; }
+        internal Color Fore_Folding_Color { get; set; }
+        internal Color Select_Color { get; set; }
+        internal Color Find_Highlight_Color { get; set; }
+        internal Color Back_Calltip_Color { get; set; }
+        internal Color Fore_Calltip_Color { get; set; }
+
+        internal Color Back_Color { get; set; }
+        internal Color Fore_Color { get; set; }
+        internal Color Comment_Color { get; set; }
+        internal Color String_Color { get; set; }
+        internal Color Operator_Color { get; set; }
+        internal Color Keyword_1_Color { get; set; }
+        internal Color Keyword_2_Color { get; set; }
+        internal Color Keyword_3_Color { get; set; }
+        internal Color Keyword_4_Color { get; set; }
+        internal Color Object_Color { get; set; }
+        internal Color Method_Color { get; set; }
+        internal Color Literal_Color { get; set; }
+        internal Color Number_Color { get; set; }
+        internal Color Sub_Color { get; set; }
+        internal Color Var_Color { get; set; }
+        internal Color Label_Color { get; set; }
+        internal Color Module_Color { get; set; }
+        internal Color Region_Open_Color { get; set; }
+        internal Color Region_Close_Color { get; set; }
+
         #endregion
 
         #region Install New Configurations
@@ -69,6 +102,7 @@ namespace Clever.CommonData
             Get = new Configurations();
             var list = Get.ReadFile(Get.FullName);
             //var list = new List<string>();
+           
             if (list == null || list.Count < ConfigCount)
             {
                 SetDefault();
@@ -131,9 +165,42 @@ namespace Clever.CommonData
                 Get.Brick_Download = Convert.ToBoolean(list[37]);
                 Get.Brick_Stop = Convert.ToBoolean(list[38]);
                 Get.Zoom = Convert.ToInt16(list[39]);
+                //MessageBox.Show(list[40]);
+                Get.Foreground_Color = StringColorToColor(list[40]);
+                Get.Back_Margin_Color = StringColorToColor(list[41]);
+
+                Get.Fore_Margin_Color = StringColorToColor(list[42]);
+                Get.Back_Folding_Color = StringColorToColor(list[43]);
+                Get.Fore_Folding_Color = StringColorToColor(list[44]);
+
+                Get.Select_Color = StringColorToColor(list[45]);
+                Get.Find_Highlight_Color = StringColorToColor(list[46]);
+                Get.Back_Calltip_Color = StringColorToColor(list[47]);
+                Get.Fore_Calltip_Color = StringColorToColor(list[48]);
+
+                Get.Back_Color = StringColorToColor(list[49]);
+                Get.Fore_Color = StringColorToColor(list[50]);
+                Get.Comment_Color =  StringColorToColor(list[51]);
+                Get.String_Color = StringColorToColor(list[52]);
+                Get.Operator_Color = StringColorToColor(list[53]);
+                Get.Keyword_1_Color = StringColorToColor(list[54]);
+                Get.Keyword_2_Color = StringColorToColor(list[55]);
+                Get.Keyword_3_Color = StringColorToColor(list[56]);
+                Get.Keyword_4_Color = StringColorToColor(list[57]);
+                Get.Object_Color = StringColorToColor(list[58]);
+                Get.Method_Color = StringColorToColor(list[59]);
+                Get.Literal_Color = StringColorToColor(list[60]);
+                Get.Number_Color = StringColorToColor(list[61]);
+                Get.Sub_Color = StringColorToColor(list[62]);
+                Get.Var_Color = StringColorToColor(list[63]);
+                Get.Label_Color = StringColorToColor(list[64]);
+                Get.Module_Color = StringColorToColor(list[65]);
+                Get.Region_Open_Color = StringColorToColor(list[66]);
+                Get.Region_Close_Color = StringColorToColor(list[67]);
             }
-            catch
+            catch(Exception ex)
             {
+                //MessageBox.Show(ex.Message);
                 SetDefault();
                 return;
             }
@@ -146,7 +213,6 @@ namespace Clever.CommonData
         internal static void Save()
         {
             var list = new List<string>();
-
             // 1) WindowState
             switch (Get.Window_State)
             {
@@ -205,6 +271,36 @@ namespace Clever.CommonData
             list.Add(Get.Brick_Stop.ToString());
             list.Add(Get.Zoom.ToString());
 
+            list.Add(Get.Foreground_Color.ToArgb().ToString());
+            list.Add(Get.Back_Margin_Color.ToArgb().ToString());
+            list.Add(Get.Fore_Margin_Color.ToArgb().ToString());
+            list.Add(Get.Back_Folding_Color.ToArgb().ToString());
+            list.Add(Get.Fore_Folding_Color.ToArgb().ToString());
+            list.Add(Get.Select_Color.ToArgb().ToString());
+            list.Add(Get.Find_Highlight_Color.ToArgb().ToString());
+            list.Add(Get.Back_Calltip_Color.ToArgb().ToString());
+            list.Add(Get.Fore_Calltip_Color.ToArgb().ToString());
+
+            list.Add(Get.Back_Color.ToArgb().ToString());
+            list.Add(Get.Fore_Color.ToArgb().ToString());
+            list.Add(Get.Comment_Color.ToArgb().ToString());
+            list.Add(Get.String_Color.ToArgb().ToString());
+            list.Add(Get.Operator_Color.ToArgb().ToString());
+            list.Add(Get.Keyword_1_Color.ToArgb().ToString());
+            list.Add(Get.Keyword_2_Color.ToArgb().ToString());
+            list.Add(Get.Keyword_3_Color.ToArgb().ToString());
+            list.Add(Get.Keyword_4_Color.ToArgb().ToString());
+            list.Add(Get.Object_Color.ToArgb().ToString());
+            list.Add(Get.Method_Color.ToArgb().ToString());
+            list.Add(Get.Literal_Color.ToArgb().ToString());
+            list.Add(Get.Number_Color.ToArgb().ToString());
+            list.Add(Get.Sub_Color.ToArgb().ToString());
+            list.Add(Get.Var_Color.ToArgb().ToString());
+            list.Add(Get.Label_Color.ToArgb().ToString());
+            list.Add(Get.Module_Color.ToArgb().ToString());
+            list.Add(Get.Region_Open_Color.ToArgb().ToString());
+            list.Add(Get.Region_Close_Color.ToArgb().ToString());
+
             WriteFile(Get.FullPath, Get.FileName, list);
         }
 
@@ -254,11 +350,69 @@ namespace Clever.CommonData
             Get.Brick_Download = false;
             Get.Brick_Stop = true;
             Get.Zoom = 0;
+
+            SetDefaultColor();
+        }
+
+        internal static void SetDefaultColor()
+        {
+            Get.Foreground_Color = Color.FromArgb(255, 0, 0, 0);
+            Get.Back_Margin_Color = Color.FromArgb(255, 248, 248, 248);
+            Get.Fore_Margin_Color = Color.FromArgb(255, 178, 178, 178);
+            Get.Back_Folding_Color = Color.FromArgb(255, 255, 255, 255);
+            Get.Fore_Folding_Color = Color.FromArgb(255, 92, 92, 92);
+            Get.Select_Color = Color.FromArgb(255, 204, 221, 255);
+            Get.Find_Highlight_Color = Color.FromArgb(255, 255, 0, 0);
+            Get.Back_Calltip_Color = Color.FromArgb(255, 255, 255, 235);
+            Get.Fore_Calltip_Color = Color.FromArgb(255, 0, 0, 0);
+
+            Get.Back_Color = Color.FromArgb(255, 255, 255, 255);
+            Get.Fore_Color = Color.FromArgb(255, 0, 0, 0);
+            Get.Comment_Color = Color.FromArgb(255, 0, 128, 32);
+            Get.String_Color = Color.FromArgb(255, 204, 102, 51);
+            Get.Operator_Color = Color.FromArgb(255, 128, 0, 0);
+            Get.Keyword_1_Color = Color.FromArgb(255, 119, 119, 255);
+            Get.Keyword_2_Color = Color.FromArgb(255, 150, 150, 255);
+            Get.Keyword_3_Color = Color.FromArgb(255, 119, 119, 255);
+            Get.Keyword_4_Color = Color.FromArgb(255, 119, 119, 255);
+            Get.Object_Color = Color.FromArgb(255, 0, 96, 96);
+            Get.Method_Color = Color.FromArgb(255, 128, 32, 32);
+            Get.Literal_Color = Color.FromArgb(255, 221, 102, 51);
+            Get.Number_Color = Color.FromArgb(255, 221, 102, 51);
+            Get.Sub_Color = Color.FromArgb(255, 128, 0, 128);
+            Get.Var_Color = Color.FromArgb(255, 0, 0, 0);
+            Get.Label_Color = Color.FromArgb(255, 175, 128, 206);
+            Get.Module_Color = Color.FromArgb(255, 125, 125, 0);
+            Get.Region_Open_Color = Color.FromArgb(255, 127, 127, 127);
+            Get.Region_Close_Color = Color.FromArgb(255, 127, 127, 127);
         }
 
         #endregion
 
         #region Utils
+
+        private static Color StringColorToColor(string color)
+        {
+            /*
+            //replace # occurences
+            if (hexString.IndexOf('#') != -1)
+                hexString = hexString.Replace("#", "");
+
+            if (hexString.Length == 8)
+                hexString = hexString.Substring(2);
+
+            int r = 0;
+            int g = 0;
+            int b = 0;
+
+            r = int.Parse(hexString.Substring(0, 2), NumberStyles.AllowHexSpecifier);
+            g = int.Parse(hexString.Substring(2, 2), NumberStyles.AllowHexSpecifier);
+            b = int.Parse(hexString.Substring(4, 2), NumberStyles.AllowHexSpecifier);
+            */
+
+            //return Color.FromArgb(255, r, g, b);
+            return Color.FromArgb(Convert.ToInt32(color));
+        }
 
         private static void WriteFile(string path, string name, List<string> list)
         {

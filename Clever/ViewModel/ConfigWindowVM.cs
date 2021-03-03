@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Clever.ViewModel.BaseVM;
+using Clever.CommonData;
 using System.Windows.Media;
 using System.Windows.Forms.Integration;
 using System.Windows.Forms;
@@ -14,15 +15,15 @@ namespace Clever.ViewModel
     internal class ConfigWindowVM : BaseViewModel
     {
 
-        private bool _changeColor;
+        internal bool ChangeColor;
 
         internal ConfigWindowVM()
         {
-            _changeColor = false;
+            ChangeColor = false;
             
             SetSettingColor();
 
-            _changeColor = true;
+            ChangeColor = true;
         }
 
         #region COLOR BINDING
@@ -78,13 +79,16 @@ namespace Clever.ViewModel
 
         internal void SetEditorBGDColor()
         {
-            if (!_changeColor)
+            if (!ChangeColor)
                 return;
 
             var r = Convert.ToByte(EditorBGDR);
             var g = Convert.ToByte(EditorBGDG);
             var b = Convert.ToByte(EditorBGDB);
-            EditorBGD_Color = new SolidColorBrush(Color.FromRgb(r, g, b));
+            var color = Color.FromRgb(r, g, b);
+            EditorBGD_Color = new SolidColorBrush(color);
+            Configurations.Get.Back_Color = ToSDC(color);
+            Configurations.Get.Back_Folding_Color = ToSDC(color);
         }
 
         #endregion
@@ -140,13 +144,15 @@ namespace Clever.ViewModel
 
         internal void SetLineNumberBGDColor()
         {
-            if (!_changeColor)
+            if (!ChangeColor)
                 return;
 
             var r = Convert.ToByte(LineNumberBGDR);
             var g = Convert.ToByte(LineNumberBGDG);
             var b = Convert.ToByte(LineNumberBGDB);
-            LineNumberBGD_Color = new SolidColorBrush(Color.FromRgb(r, g, b));
+            var color = Color.FromRgb(r, g, b);
+            LineNumberBGD_Color = new SolidColorBrush(color);
+            Configurations.Get.Back_Margin_Color = ToSDC(color);
         }
 
         #endregion
@@ -202,13 +208,15 @@ namespace Clever.ViewModel
 
         internal void SetLineNumberFOREColor()
         {
-            if (!_changeColor)
+            if (!ChangeColor)
                 return;
 
             var r = Convert.ToByte(LineNumberFORER);
             var g = Convert.ToByte(LineNumberFOREG);
             var b = Convert.ToByte(LineNumberFOREB);
-            LineNumberFORE_Color = new SolidColorBrush(Color.FromRgb(r, g, b));
+            var color = Color.FromRgb(r, g, b);
+            LineNumberFORE_Color = new SolidColorBrush(color);
+            Configurations.Get.Fore_Margin_Color = ToSDC(color);
         }
 
         #endregion
@@ -264,41 +272,52 @@ namespace Clever.ViewModel
 
         internal void SetCommentColor()
         {
-            if (!_changeColor)
+            if (!ChangeColor)
                 return;
 
             var r = Convert.ToByte(CommentR);
             var g = Convert.ToByte(CommentG);
             var b = Convert.ToByte(CommentB);
-            Comment_Color = new SolidColorBrush(Color.FromRgb(r, g, b));
+            var color = Color.FromRgb(r, g, b);
+            Comment_Color = new SolidColorBrush(color);
+            Configurations.Get.Comment_Color = ToSDC(color);
         }
 
         #endregion
 
         #endregion
 
-        private void SetSettingColor()
+        internal void SetSettingColor()
         {
-            
-            LineNumberBGD_Color = new SolidColorBrush(Color.FromRgb(248, 248, 248));
+            LineNumberBGD_Color = new SolidColorBrush(ToSWMC(Configurations.Get.Back_Margin_Color));
             LineNumberBGDR = Convert.ToDouble(LineNumberBGD_Color.Color.R);
             LineNumberBGDG = Convert.ToDouble(LineNumberBGD_Color.Color.G);
             LineNumberBGDB = Convert.ToDouble(LineNumberBGD_Color.Color.B);
 
-            LineNumberFORE_Color = new SolidColorBrush(Color.FromRgb(178, 178, 178));
+            LineNumberFORE_Color = new SolidColorBrush(ToSWMC(Configurations.Get.Fore_Margin_Color));
             LineNumberFORER = Convert.ToDouble(LineNumberFORE_Color.Color.R);
             LineNumberFOREG = Convert.ToDouble(LineNumberFORE_Color.Color.G);
             LineNumberFOREB = Convert.ToDouble(LineNumberFORE_Color.Color.B);
 
-            EditorBGD_Color = new SolidColorBrush(Color.FromRgb(255, 255, 255));
+            EditorBGD_Color = new SolidColorBrush(ToSWMC(Configurations.Get.Back_Color));
             EditorBGDR = Convert.ToDouble(EditorBGD_Color.Color.R);
             EditorBGDG = Convert.ToDouble(EditorBGD_Color.Color.G);
             EditorBGDB = Convert.ToDouble(EditorBGD_Color.Color.B);
 
-            Comment_Color = new SolidColorBrush(Color.FromRgb(0, 128, 32));
+            Comment_Color = new SolidColorBrush(ToSWMC(Configurations.Get.Comment_Color));
             CommentR = Convert.ToDouble(Comment_Color.Color.R);
             CommentG = Convert.ToDouble(Comment_Color.Color.G);
             CommentB = Convert.ToDouble(Comment_Color.Color.B);
+        }
+
+        private System.Drawing.Color ToSDC(Color color)
+        {
+            return System.Drawing.Color.FromArgb(color.A, color.R, color.G, color.B);
+        }
+
+        private Color ToSWMC (System.Drawing.Color color)
+        {
+            return Color.FromArgb(color.A, color.R, color.G, color.B);
         }
     }
 }
