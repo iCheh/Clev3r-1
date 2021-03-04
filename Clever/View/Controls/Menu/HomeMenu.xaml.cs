@@ -50,11 +50,16 @@ namespace Clever.View.Controls.Menu
 
         private void Config_Click(object sender, RoutedEventArgs e)
         {
-            var conf = new ConfigWindow();
             var cdc = new ConfigWindowVM();
+            var conf = new ConfigWindow();
             conf.DataContext = cdc;
-            conf.ShowDialog();
-            ButtonsPanel.GetHomePopup.IsOpen = false;
+            ButtonsPanel.GetHomePopup.IsOpen = false;                   
+
+            if (conf.ShowDialog() == true)
+            {
+                cdc.RemoveEvents();
+                cdc.ColorItems.Clear();
+            }
         }
     }
 }

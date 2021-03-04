@@ -200,7 +200,7 @@ namespace Clever.CommonData
                 Get.Region_Open_Color = StringColorToColor(list[67]);
                 Get.Region_Close_Color = StringColorToColor(list[68]);
 
-                SetDefaultColor();
+                //SetDefaultColor();
             }
             catch(Exception ex)
             {

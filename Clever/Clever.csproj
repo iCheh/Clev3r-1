@@ -87,12 +87,15 @@
     </ApplicationDefinition>
     <Compile Include="CommonData\GUILanguage.cs" />
     <Compile Include="CommonData\Configurations.cs" />
+    <Compile Include="Model\BaseM\BaseModel.cs" />
     <Compile Include="Model\Bplus\BPInterpreter\Function.cs" />
     <Compile Include="Model\Bplus\BPInterpreter\Include.cs" />
     <Compile Include="Model\Bplus\BPInterpreter\Label.cs" />
     <Compile Include="Model\Bplus\BPInterpreter\Module.cs" />
     <Compile Include="Model\Bplus\BPInterpreter\Variable.cs" />
+    <Compile Include="Model\Colorizer\ColorItem.cs" />
     <Compile Include="Model\Enums\BPType.cs" />
+    <Compile Include="Model\Enums\ColorType.cs" />
     <Compile Include="Model\Intellisense\IntellisenseParser.cs" />
     <Compile Include="Model\Utils\Converter.cs" />
     <Compile Include="Model\Utils\HelpToolTipModel.cs" />

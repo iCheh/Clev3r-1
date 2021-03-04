@@ -10,7 +10,7 @@
     <sys:Double x:Key="brk_but_width">33</sys:Double>
     
     <!-- Стили Home menu 3 - 78   4 - 104 -->
-    <sys:Double x:Key="home_menu_height_all">78</sys:Double>
+    <sys:Double x:Key="home_menu_height_all">104</sys:Double>
     <sys:Double x:Key="home_menu_height_one">26</sys:Double>
     <sys:Double x:Key="home_menu_width">140</sys:Double>
     <GridLength x:Key="home_menu_c0_width">5</GridLength>

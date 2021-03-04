@@ -191,7 +191,6 @@ namespace Clever.Model.Bplus
             Color backColor = BpColors.Back_Color;
 
             textArea.StyleResetDefault();
-
             
             textArea.Styles[Style.Default].Font = "Consolas";
             textArea.Styles[Style.Default].Size = 12;
@@ -261,7 +260,10 @@ namespace Clever.Model.Bplus
             const int SCI_CALLTIPSETFORE = 2206;
             textArea.DirectMessage(SCI_CALLTIPSETBACK, new IntPtr(ColorTranslator.ToWin32(BpColors.Back_Calltip_Color)), IntPtr.Zero);
             textArea.DirectMessage(SCI_CALLTIPSETFORE, new IntPtr(ColorTranslator.ToWin32(BpColors.Fore_Calltip_Color)), IntPtr.Zero);
-            textArea.CallTipSetForeHlt(BpColors.Foreground_Color);
+            
+            textArea.Styles[Style.CallTip].BackColor = BpColors.Back_Calltip_Color;
+            textArea.Styles[Style.CallTip].ForeColor = BpColors.Fore_Calltip_Color;
+            textArea.CallTipSetForeHlt(BpColors.Fore_Calltip_Color);
         }
 
         private void InitAutoComplete()

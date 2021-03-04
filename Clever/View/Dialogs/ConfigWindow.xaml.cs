@@ -25,6 +25,12 @@ namespace Clever.View.Dialogs
         public ConfigWindow()
         {
             InitializeComponent();
+            this.Closing += ConfigWindow_Closing;
+        }
+
+        private void ConfigWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            this.DialogResult = true;
         }
     }
 }
