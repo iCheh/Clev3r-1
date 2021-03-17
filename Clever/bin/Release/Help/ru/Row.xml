@@ -8,47 +8,47 @@
     </member>
     <member name="M:Init">
       <summary>
-        Создать новый массив нужного размера и заполнить его указанными значениями.
-      </summary>
-      <param name="size">Размер массива (не более 30000).</param>
-      <param name="value">Значение, которым заполняется массив.</param>
-      <returns>Созданный массив</returns>
+          Создать новый массив нужного размера и заполнить его указанными значениями.
+        </summary>
+        <param name="size">размер массива (не более 30000)</param>
+        <param name="value">значение, которым заполняется массив</param>
+        <return>Номер, идентифицирующий созданный массив (array handle)</return>
     </member>
     <member name="M:Delete">
       <summary>
-        Удалить указанный массив.
-      </summary>
-      <param name="array">Массив</param>
+          Удалить указанный массив.
+        </summary>
+        <param name="handle">номер, идентифицирующий массив (array handle)</param>
     </member>
     <member name="M:Read">
       <summary>
-        Считать значение элемента массива с указанным индексом.
-      </summary>
-      <param name="array">Массив</param>
-      <param name="index">Индекс</param>
-      <returns>Искомое значение</returns>
+          Прочитать значение элемента массива по указанному индексу.
+        </summary>
+        <param name="handle">номер, идентифицирующий массив (array handle)</param>
+        <param name="index">индекс</param>
+        <return>Прочитанное значение</return>
     </member>
     <member name="M:Write">
       <summary>
-        Записать значение в элемент массива с указанным индексом.
-      </summary>
-      <param name="array">Массив</param>
-      <param name="index">Индекс</param>
-      <param name="value">Значение для записи в массив</param>
+          Записать значение в элемент массива с указанным индексом.
+        </summary>
+        <param name="handle">номер, идентифицирующий массив (array handle)</param>
+        <param name="index">индекс</param>
+        <param name="value">значение для записи в массив</param>
     </member>
     <member name="M:Size">
       <summary>
-        Получить размер массива.
-      </summary>
-      <param name="array">Массив</param>
-      <returns>Размер массива</returns>
+          Получить размер массива.
+        </summary>
+        <param name="handle">номер, идентифицирующий массив (array handle)</param>
+        <return>Размер массива</return>
     </member>
     <member name="M:Resize">
       <summary>
-        Изменить размер массива.
-      </summary>
-      <param name="array">Массив</param>
-      <param name="size">Новый размер массива (не более 30000).</param>
+          Изменить размер массива.
+        </summary>
+        <param name="handle">номер, идентифицирующий массив (array handle)</param>
+        <param name="size">новый размер массива (не более 30000)</param>
     </member>
   </members>
 </doc>

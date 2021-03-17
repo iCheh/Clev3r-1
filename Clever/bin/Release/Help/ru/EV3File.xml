@@ -69,6 +69,14 @@
       <param name="size">Размер массива, который будет прочитан</param>
       <returns>Массив чисел указанного размера</returns>
     </member>
+    <member name="M:WriteNumberArray">
+      <summary>
+          Записывает массив чисел в бинарного файла. Числа будут закодированы с использованием кодировки IEEE как тип Float с одинарной точностью.
+        </summary>
+        <param name="handle">идентификатор файла, полученный в момент открытия файла</param>
+        <param name="size">количество значений для записи</param>
+        <param name="data">массив чисел</param>
+    </member>
     <member name="M:ConvertToNumber">
       <summary>
         Конвертация текста в число.

@@ -260,22 +260,22 @@
     </member>
     <member name="K:in">
       <summary>
-        Применяется только с ключевым словом Function. Указывает на то, что переменная используется как входной параметр. После слова in должен быть тип переменной (number, number[], string, string[]), затем имя переменной.
+        Applies only with the Function keyword. Indicates that the variable is used as an input parameter. After the word in, there must be the type of the variable (number, number [], string, string []), then the name of the variable.
       </summary>
     </member>
     <member name="K:out">
       <summary>
-        Применяется только с ключевым словом Function. Указывает на то, что переменная используется как выходной параметр. После слова out должен быть тип переменной (number, number[], string, string[]), затем имя переменной.
+        Applies only with the Function keyword. Indicates that the variable is being used as an output parameter. After the word out, there must be a variable type (number, number [], string, string []), then the name of the variable.
       </summary>
     </member>
     <member name="K:number">
       <summary>
-        Применяется только с ключевым словом Function. Указывает на то, что переменная будет хранить число. Если использовать с [] (number[]), тогда переменная будет хранить числовой массив.
+        Applies only with the Function keyword. Indicates that the variable will store a number. If used with [] (number []) then the variable will store a numeric array.
       </summary>
     </member>
     <member name="K:string">
       <summary>
-        Применяется только с ключевым словом Function. Указывает на то, что переменная будет хранить строку. Если использовать с [] (string[]), тогда переменная будет хранить массив строк.
+        Applies only with the Function keyword. Indicates that the variable will store the string. If used with [] (string []) then the variable will store an array of strings.
       </summary>
     </member>
   </members>
