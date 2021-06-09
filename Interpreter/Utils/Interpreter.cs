@@ -65,6 +65,8 @@ namespace Interpreter.Utils
             {
                 Console.WriteLine(v.NewLine + " " + v.Type.ToString());
             }
+            */
+            /*
             foreach (var v in Data.Project.Variables)
             {
                 Console.WriteLine(v.Key + " " + v.Value.Name + " " + v.Value.Type.ToString());
@@ -100,6 +102,24 @@ namespace Interpreter.Utils
             {
                 Data.Project.OutputLines.Add(line);
             }
+
+            // ==================================
+            /*
+            Console.Write("\n");
+            Console.WriteLine("========");
+            foreach (var l in Data.Project.OutputLines)
+            {
+                Console.WriteLine(l.Number.ToString() + "   " + l.NewLine + "     ===>  " + l.Type.ToString());
+                var str = "";
+                foreach (var w in l.Words)
+                {
+                    str += w.Token.ToString() + " ";
+                }
+                Console.WriteLine(l.Number.ToString() + "   " + str);
+            }
+            Console.WriteLine("========");
+            */
+            // ==================================
         }
 
         private void ParseFuncInitLine()
@@ -253,6 +273,20 @@ namespace Interpreter.Utils
                                             {
                                                 variables.Add(p.Key, (new Variable(p.Key) { Type = param.varType }, line));
                                             }
+
+                                            //=========== Пробуем добавить переменные отправленные в функцию в качестве выходных
+                                            if (!Data.Project.Variables.ContainsKey(tmpWords[i][0].ToLower()))
+                                            {
+                                                Data.Project.Variables.Add(tmpWords[i][0].ToLower(), new Variable(tmpWords[i][0].ToLower()) { Init = true, Type = param.varType, Line = line });
+                                            }
+
+                                            /*
+                                            if (!variables.ContainsKey(tmpWords[i][0].ToLower()))
+                                            {
+                                                variables.Add(tmpWords[i][0].ToLower(), (new Variable(tmpWords[i][0].ToLower()) { Type = param.varType }, line));
+                                            }
+                                            */
+                                            //===========
 
                                             line.OutLines.Add(new Line(newWords, "") { Number = line.Number, FileName = line.FileName, Type = LineType.VARINIT });
                                         }

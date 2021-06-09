@@ -598,6 +598,12 @@ namespace Interpreter.Utils
                         {
                             word.Text = (localLabelsPrefText + word.Text + "_" + localLabelsPrefNumber.ToString()).ToLower();
                         }
+
+                        if (word.Token == Tokens.LABEL)
+                        {
+                            var tmpLabeName = word.Text.Replace(":", "") + ":";
+                            word.Text = tmpLabeName;
+                        }
                     }
                     else if (word.Token == Tokens.MODULEPROPERTY)
                     {

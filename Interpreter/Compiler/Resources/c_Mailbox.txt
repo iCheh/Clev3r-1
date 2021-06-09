@@ -26,6 +26,25 @@ subcall MAILBOX.CREATE        // SF
 	MOVEF_F -1.0 id
 	RETURN	
 }
+
+subcall MAILBOX.CREATEFORNUMBER        // SF
+{
+	IN_S boxname 252
+	OUT_F id
+
+	JR_GTEQ32 NUMMAILBOXES 30 toomanyboxes
+
+	DATA8 id8
+	MOVE32_F NUMMAILBOXES id
+	MOVE32_8 NUMMAILBOXES id8
+	ADD32 NUMMAILBOXES 1 NUMMAILBOXES
+	MAILBOX_OPEN id8 boxname 3 0 0 
+	RETURN
+
+ toomanyboxes:
+	MOVEF_F -1.0 id
+	RETURN	
+}
         
 
 subcall MAILBOX.ISAVAILABLE        // FS  
@@ -55,6 +74,14 @@ inline MAILBOX.RECEIVE            // FS
 	MAILBOX_READ no:# 252 1 :1
 }
 
+inline MAILBOX.RECEIVENUMBER            // FF
+{
+	DATA8 no:#
+	MOVEF_8 :0 no:#
+	MAILBOX_READY no:#
+	MAILBOX_READ no:# 3 1 :1
+}
+
 
 subcall MAILBOX.SEND   // SSSV
 {
@@ -63,6 +90,15 @@ subcall MAILBOX.SEND   // SSSV
 	IN_S message 252
 	
 	MAILBOX_WRITE brickname 0 boxname 4 1 message
+}
+
+subcall MAILBOX.SENDNUMBER   // SSFV
+{
+	IN_S brickname 252
+	IN_S boxname 252
+	IN_F message
+	
+	MAILBOX_WRITE brickname 0 boxname 3 1 message
 }
 
 

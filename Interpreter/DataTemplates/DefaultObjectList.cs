@@ -82,9 +82,12 @@ namespace Interpreter.DataTemplates
             Objects.Add("lcd.bmpfile", new DefaultSignature(ObjectType.METHOD, 4, new List<VariableType> { VariableType.NUMBER, VariableType.NUMBER, VariableType.NUMBER, VariableType.STRING }, VariableType.NON));
             // MAILBOX
             Objects.Add("mailbox.create", new DefaultSignature(ObjectType.METHOD, 1, new List<VariableType> { VariableType.STRING }, VariableType.NUMBER));
+            Objects.Add("mailbox.createfornumber", new DefaultSignature(ObjectType.METHOD, 1, new List<VariableType> { VariableType.STRING }, VariableType.NUMBER));
             Objects.Add("mailbox.isavailable", new DefaultSignature(ObjectType.METHOD, 1, new List<VariableType> { VariableType.NUMBER }, VariableType.STRING));
             Objects.Add("mailbox.receive", new DefaultSignature(ObjectType.METHOD, 1, new List<VariableType> { VariableType.NUMBER }, VariableType.STRING));
             Objects.Add("mailbox.send", new DefaultSignature(ObjectType.METHOD, 3, new List<VariableType> { VariableType.STRING, VariableType.STRING, VariableType.STRING }, VariableType.NON));
+            Objects.Add("mailbox.receivenumber", new DefaultSignature(ObjectType.METHOD, 1, new List<VariableType> { VariableType.NUMBER }, VariableType.NUMBER));
+            Objects.Add("mailbox.sendnumber", new DefaultSignature(ObjectType.METHOD, 3, new List<VariableType> { VariableType.STRING, VariableType.STRING, VariableType.NUMBER }, VariableType.NON));
             Objects.Add("mailbox.connect", new DefaultSignature(ObjectType.METHOD, 1, new List<VariableType> { VariableType.STRING }, VariableType.NON));
             // MATH
             Objects.Add("math.pi", new DefaultSignature(ObjectType.PROPERTY, 0, new List<VariableType>(), VariableType.NUMBER));

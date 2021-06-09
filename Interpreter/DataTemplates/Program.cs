@@ -26,8 +26,8 @@ namespace Interpreter.DataTemplates
                 OldText = text;
                 for (int i = 0; i < text.Count; i++)
                 {
-                    var words = LineBuilder.GetWords(text[i]);
-                    Line newLine = new Line(words, text[i]);
+                    var words = LineBuilder.GetWords(text[i].Trim());
+                    Line newLine = new Line(words, text[i].Trim());
                     //newLine.FileName = Name + Ext;
                     newLine.FileName = Path + Name.Replace(Ext, "") + Ext;
                     newLine.Number = i + 1;

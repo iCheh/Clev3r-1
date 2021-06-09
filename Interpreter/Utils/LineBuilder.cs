@@ -238,6 +238,11 @@ namespace Interpreter.Utils
 
             for (int i = 0; i < words.Count; i++)
             {
+                words[i] = words[i].Trim();
+            }
+
+            for (int i = 0; i < words.Count; i++)
+            {
                 if (i == 0)
                 {
                     if (i < words.Count - 1)

@@ -82,22 +82,6 @@ namespace Interpreter
 
             new Preprocessor().Start(tmpName, mainPath, mainText);
             
-            /*
-            Console.Write("\n");
-            Console.WriteLine("========");
-            foreach (var l in Data.Project.MainText)
-            {
-                Console.WriteLine(l.Number.ToString() + "   " + l.NewLine + "     ===>  " + l.Type.ToString());
-                var str = "";
-                foreach (var w in l.Words)
-                {
-                    str += w.Token.ToString() + " ";
-                }
-                Console.WriteLine(l.Number.ToString() + "   " + str);
-            }
-            Console.WriteLine("========");
-            */
-
             if (Data.Errors.Count > 0)
             {
                 Console.Write("\n");

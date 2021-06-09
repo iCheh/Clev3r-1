@@ -15,6 +15,15 @@
       <param name="boxname">Name of the message box to be created.</param>
       <returns>A numerical identifier of the mailbox. This is needed to actually retrieve messages from the box.</returns>
     </member>
+    <member name="M:CreateForNumber">
+      <summary>
+        Create a mailbox on the local brick that can receive messages (number) from other bricks. 
+        Only after creation of the box incoming messages can be stored for retrieval.
+        There is a total limit of 30 mailboxes that can be created.
+      </summary>
+      <param name="boxname">Name of the message box to be created.</param>
+      <returns>A numerical identifier of the mailbox. This is needed to actually retrieve messages from the box.</returns>
+    </member>
     <member name="M:Send">
       <summary>
         Send a message to a mailbox on another brick.
@@ -22,6 +31,14 @@
       <param name="brickname">The name of the brick to receive the message. A connection to this brick must be already open for this command to work. You can specify empty Text here, in which case the message will be sent to all connected bricks.</param>
       <param name="boxname">Name of the message box on the receiving brick.</param>
       <param name="message">The message as a text. Currently only text messages are supported.</param>
+    </member>
+    <member name="M:SendNumber">
+      <summary>
+        Send a message to a mailbox on another brick.
+      </summary>
+      <param name="brickname">The name of the brick to receive the message. A connection to this brick must be already open for this command to work. You can specify empty Text here, in which case the message will be sent to all connected bricks.</param>
+      <param name="boxname">Name of the message box on the receiving brick.</param>
+      <param name="number">The message as a number.</param>
     </member>
     <member name="M:IsAvailable">
       <summary>
@@ -38,6 +55,15 @@
       </summary>
       <param name="id">Identifier of the local mailbox</param>
       <returns>The message as a Text. Currently only text messages are supported.</returns>
+    </member>
+    <member name="M:ReceiveNumber">
+      <summary>
+        Receive the latest message from a local mailbox. When no message is present, the command will block until some message arrives.
+        The message will then be consumed and the next call to Receive will wait for the next message.
+        To avoid blocking, you can check with IsAvailable() whether there is a message in the box. When no message box with the name exists, the command will return "" immediately.
+      </summary>
+      <param name="id">Identifier of the local mailbox</param>
+      <returns>The message as a number.</returns>
     </member>
     <member name="M:Connect">
       <summary>
