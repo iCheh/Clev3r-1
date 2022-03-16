@@ -15,3 +15,9 @@
 Сайт проекта - https://clev3r.ru
 
 Телеграм чат - https://t.me/clev3r_chat
+
+![for_git_1](https://user-images.githubusercontent.com/43149554/158631784-197244ab-6177-44a1-b47c-21b2ec7bd9eb.png)
+
+![for_git_2](https://user-images.githubusercontent.com/43149554/158631871-3ee0227e-b19a-442a-97fd-adc50e2d4706.png)
+
+![for_git_3](https://user-images.githubusercontent.com/43149554/158631892-1e85f7a2-1706-48d6-a949-560cdfefc0cc.png)
