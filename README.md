@@ -9,7 +9,7 @@
 Использовался код из следующих проектов:
 
 - ev3 basic - https://github.com/c0pperdragon/EV3Basic
-- ScintillaNET - https://github.com/jacobslusser/ScintillaNET/blob/master/LICENSE
+- ScintillaNET - https://github.com/jacobslusser/ScintillaNET
 
 
 Сайт проекта - https://clev3r.ru
