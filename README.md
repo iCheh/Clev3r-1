@@ -24,7 +24,7 @@
 Команда разработчиков:
  - iCheh (RoboMaks) - код
  - op[ti]mum (https://www.facebook.com/optimum.robotics.team) - тесты
- - ATOMo - (http://atomorobotics.ru/) - GUI дизайн
+ - ATOMo - (http://atomorobotics.ru) - GUI дизайн
 
 ![for_git_1](https://user-images.githubusercontent.com/43149554/158631784-197244ab-6177-44a1-b47c-21b2ec7bd9eb.png)
 
