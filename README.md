@@ -16,6 +16,16 @@
 
 Телеграм чат - https://t.me/clev3r_chat
 
+Интерфейс представлен следующими языками:
+ - Русский;
+ - Украинский;
+ - Английский.
+
+Команда разработчиков:
+ - iCheh (RoboMaks) - код
+ - op[ti]mum (https://www.facebook.com/optimum.robotics.team) - тесты
+ - ATOMo - (http://atomorobotics.ru/) - GUI дизайн
+
 ![for_git_1](https://user-images.githubusercontent.com/43149554/158631784-197244ab-6177-44a1-b47c-21b2ec7bd9eb.png)
 
 ![for_git_2](https://user-images.githubusercontent.com/43149554/158631871-3ee0227e-b19a-442a-97fd-adc50e2d4706.png)
