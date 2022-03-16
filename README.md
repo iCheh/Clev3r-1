@@ -13,5 +13,4 @@
 
 
 Сайт проекта - https://clev3r.ru
-
 Телеграм чат - https://t.me/clev3r_chat
