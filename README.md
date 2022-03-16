@@ -12,5 +12,6 @@
 - ScintillaNET - https://github.com/jacobslusser/ScintillaNET/blob/master/LICENSE
 
 
-Сайт проекта - https://clev3r.ru/
-Телеграм чат - t.me/clev3r_chat
+Сайт проекта - https://clev3r.ru
+
+Телеграм чат - https://t.me/clev3r_chat
