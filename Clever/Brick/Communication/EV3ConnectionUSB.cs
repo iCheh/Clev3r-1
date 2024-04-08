@@ -62,7 +62,7 @@ namespace Clever.Brick.Communication
 
                 if (HidImports.SetupDiGetDeviceInterfaceDetail(hDevInfo, ref diData, ref diDetail, size, out size, IntPtr.Zero))
                 {
-                    _handle = HidImports.CreateFile(diDetail.DevicePath, FileAccess.ReadWrite, FileShare.None/*.ReadWrite*/, IntPtr.Zero, FileMode.Open, 0 /*HidImports.EFileAttributes.Overlapped*/, IntPtr.Zero);
+                    _handle = HidImports.CreateFile(diDetail.DevicePath, FileAccess.ReadWrite, FileShare.ReadWrite, IntPtr.Zero, FileMode.Open, 0 /*HidImports.EFileAttributes.Overlapped*/, IntPtr.Zero);
                     HidImports.HIDD_ATTRIBUTES attrib = new HidImports.HIDD_ATTRIBUTES();
                     attrib.Size = Marshal.SizeOf(attrib);
 
@@ -177,7 +177,7 @@ namespace Clever.Brick.Communication
                     HidImports.HIDD_ATTRIBUTES attrib = new HidImports.HIDD_ATTRIBUTES();
                     attrib.Size = Marshal.SizeOf(attrib);
 
-                    SafeFileHandle handle = HidImports.CreateFile(diDetail.DevicePath, FileAccess.ReadWrite, FileShare.None/*.ReadWrite*/, IntPtr.Zero, FileMode.Open, 0 /*HidImports.EFileAttributes.Overlapped*/, IntPtr.Zero);
+                    SafeFileHandle handle = HidImports.CreateFile(diDetail.DevicePath, FileAccess.ReadWrite, FileShare.ReadWrite, IntPtr.Zero, FileMode.Open, HidImports.EFileAttributes.Overlapped, IntPtr.Zero);
 
                     if (HidImports.HidD_GetAttributes(handle.DangerousGetHandle(), ref attrib))
                     {
