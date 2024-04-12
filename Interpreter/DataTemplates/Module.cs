@@ -29,7 +29,7 @@ namespace Interpreter.DataTemplates
         {
             get
             {
-                return Path + Name + Ext;
+                return Path + Name.Replace(".bpm", "") + Ext;
             }
         }
     }

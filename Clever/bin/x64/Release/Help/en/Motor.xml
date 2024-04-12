@@ -1,0 +1,203 @@
+<?xml version="1.0"?>
+<doc>
+  <members>
+    <member name="T:Motor">
+      <summary>
+        Control the Motors connected to the EV3 Brick.
+        For every Motor function you need to specify one or more motor ports that should be affected (for example, "A", "BC", "ABD").
+        When additional bricks are daisy-chained to the master brick, address the correct port by adding the layer number to the specifier (for example, "3BC", "2A"). In this case only the motors of one brick can be accessed with a single command. 
+        Speed vs. Power: When requesting to drive a motor with a certain speed, the electrical power will be permanently adjusted to keep the motor on this speed regardless of the necessary driving force (as long as enough power can be provided). When requesting a certain power instead, the motor will be provided with just this much electrical power and the actual speed will then depend on the resistance it meets.
+      </summary>
+    </member>
+    <member name="M:Stop">
+      <summary>
+        Stop one or multiple motors. This will also cancel any scheduled movement for this motor.
+      </summary>
+      <param name="ports">Motor port name(s)</param>
+      <param name="brake">"True", if the motor should use the brake</param>
+    </member>
+    <member name="M:Start">
+      <summary>
+        Start one or more motors with the requested speed or set an already running motor to this speed.
+      </summary>
+      <param name="ports">Motor port name(s)</param>
+      <param name="speed">Speed value from -100 (full reverse) to 100 (full forward)</param>
+    </member>
+    <member name="M:StartPower">
+      <summary>
+        Start one or more motors with the requested power or set an already running motor to this power.
+      </summary>
+      <param name="ports">Motor port name(s)</param>
+      <param name="power">Power value from -100 (full reverse) to 100 (full forward)</param>
+    </member>
+    <member name="M:StartSteer">
+      <summary>
+        Set two motors to run with a specified speed and relative ratio. 
+        This ratio is determined by the 'turn' parameter which basically determines
+        into which direction a vehicle with a simple two-wheel drive would make its turn (given that the motor with the lower port letter is mounted on the left side).
+        The two motors will be synchronized which means that when one motor experiences some resistance and cannot keep up its speed, the other motor will also slow down or stop altogether. This is especially useful for vehicles with two independently driven wheels which still need to go straight or make a specified turn.
+        The motors will keep running until stopped by another command.
+      </summary>
+      <param name="ports">Name of two motor ports (for example "AB" or "CD")</param>
+      <param name="speed">Speed value from -100 (full reverse) to 100 (full forward) for the faster motor</param>
+      <param name="turn">Turn ratio from -100 (rotating left on the spot) to 100 (rotating right on the spot)</param>
+    </member>
+    <member name="M:StartSync">
+      <summary>
+        Set two motors to run synchronized at their chosen speed levels. 
+        The two motors will be synchronized which means that when one motor experiences some resistance and cannot keep up its speed, the other motor will also slow down or stop altogether. This is especially useful for vehicles with two independently driven wheels which still need to go straight or make a specified turn.
+        The motors will keep running until stopped by another command.
+      </summary>
+      <param name="ports">Name of two motor ports (for example "AB" or "CD")</param>
+      <param name="speed1">Speed value from -100 (full reverse) to 100 (full forward) of the motor with the lower port letter</param>
+      <param name="speed2">Speed value from -100 (full reverse) to 100 (full forward) of the motor with the higher port letter</param>
+    </member>
+    <member name="M:GetSpeed">
+      <summary>
+        Query the current speed of a single motor.
+        Note that this command does not work for motors connected via daisy-chaining.
+      </summary>
+      <param name="port">Motor port name</param>
+      <returns>Current speed in range -100 to 100</returns>
+    </member>
+    <member name="M:IsBusy">
+      <summary>
+        Checks if one or more motors are currently running.
+      </summary>
+      <param name="ports">Motor port name(s)</param>
+      <returns>"True" if at least one of the motors is running, "False" otherwise.</returns>
+    </member>
+    <member name="M:Schedule">
+      <summary>
+        Move one or more motors with the specified speed values. The speed can be adjusted along the total rotation to get a soft start and a soft stop if needed.
+        The total angle to rotate the motor is degrees1+degrees2+degrees3. At the end of the movement, the motor stops automatically (with or without using the brake).
+        This function returns immediately. You can use IsBusy() to detect the end of the movement or call Wait() to wait until the movement is finished.
+      </summary>
+      <param name="ports">Motor port name(s)</param>
+      <param name="speed">Speed level from -100 (full reverse) to 100 (full forward)</param>
+      <param name="degrees1">The part of the rotation during which to accelerate</param>
+      <param name="degrees2">The part of the rotation with uniform motion</param>
+      <param name="degrees3">The part of the rotation during which to decelerate</param>
+      <param name="brake">"True", if the motor(s) should switch on the brake after movement</param>
+    </member>
+    <member name="M:SchedulePower">
+      <summary>
+        Move one or more motors with the specified power. The power can be adjusted along the total rotation to get a soft start and a soft stop if needed.
+        The total angle to rotate the motor is degrees1+degrees2+degrees3. At the end of the movement, the motor stops automatically (with or without using the brake).
+        This function returns immediately. You can use IsBusy() to detect the end of the movement or call Wait() to wait until the movement is finished.
+      </summary>
+      <param name="ports">Motor port name(s)</param>
+      <param name="power">Power level from -100 (full reverse) to 100 (full forward)</param>
+      <param name="degrees1">The part of the rotation during which to accelerate</param>
+      <param name="degrees2">The part of the rotation with uniform motion</param>
+      <param name="degrees3">The part of the rotation during which to decelerate</param>
+      <param name="brake">"True", if the motor(s) should switch on the brake after movement</param>
+    </member>
+    <member name="M:ScheduleSteer">
+      <summary>
+        Move 2 motors a defined number of degrees with a specified speed and relative ratio.
+        This ratio is determined by the 'turn' parameter which basically determines
+        into which direction a vehicle with a simple two-wheel drive would make its turn (given that the motor with the lower port letter is mounted on the left side).
+        The two motors are synchronized which means that when one motor experiences some resistance and cannot keep up its speed, the other motor will also slow down or stop altogether. This is especially useful for vehicles with two independently driven wheels which still need to go straight or make a specified turn.
+        The distance to move is for the motor with the higher speed.
+        This function returns immediately. You can use IsBusy() to detect the end of the movement or call Wait() to wait until movement is finished.
+      </summary>
+      <param name="ports">Names of 2 motor ports (for example "AB" or "CD"</param>
+      <param name="speed">Speed value from -100 (full reverse) to 100 (full forward) of the faster motor</param>
+      <param name="turn">Turn ratio from -100 (rotating left on the spot) to 100 (rotating right on the spot)</param>
+      <param name="degrees">The angle through which the faster motor should rotate</param>
+      <param name="brake">"True", if the motors should switch on the brake after movement</param>
+    </member>
+    <member name="M:ScheduleSync">
+      <summary>
+        Move 2 motors synchronously a defined number of degrees. 
+        The two motors are synchronized which means that when one motor experiences some resistance and cannot keep up its speed, the other motor will also slow down or stop altogether. This is especially useful for vehicles with two independently driven wheels which still need to go straight or make a specified turn.
+        The distance to move is for the motor with the higher speed.
+        This function returns immediately. You can use IsBusy() to detect the end of the movement or call Wait() to wait until movement is finished.
+      </summary>
+      <param name="ports">Names of 2 motor ports (for example "AB" or "CD"</param>
+      <param name="speed1">Speed value from -100 (full reverse) to 100 (full forward) of the motor with the lower port letter</param>
+      <param name="speed2">Speed value from -100 (full reverse) to 100 (full forward) of the motor with the higher port letter</param>
+      <param name="degrees">The angle through which the faster motor should rotate</param>
+      <param name="brake">"True", if the motors should switch on the brake after movement</param>
+    </member>
+    <member name="M:ResetCount">
+      <summary>
+        Set the rotation count of one or more motors to 0.
+      </summary>
+      <param name="ports">Motor port name(s)</param>
+    </member>
+    <member name="M:GetCount">
+      <summary>
+        Query the current rotation count of a single motor. 
+        As long as the counter is not reset it will accurately measure all movements of a motor, even if the motor is driven by some external force while not actively running.
+        Note that this command does not work for motors connected via daisy-chaining.
+      </summary>
+      <param name="port">Motor port name</param>
+      <returns>The current rotation count in degrees</returns>
+    </member>
+    <member name="M:Move">
+      <summary>
+        Move one or more motors with the specified speed the specified angle (in degrees).
+        This command will block execution until the motor has reached its destination.
+        When you need finer control over the movement (soft acceleration or deceleration), consider using the command Motor.Schedule instead.
+      </summary>
+      <param name="ports">Motor port name(s)</param>
+      <param name="speed">Speed level from -100 (full reverse) to 100 (full forward)</param>
+      <param name="degrees">The angle to rotate</param>
+      <param name="brake">"True", if the motor(s) should switch on the brake after movement</param>
+    </member>
+    <member name="M:MovePower">
+      <summary>
+        Move one or more motors with the specified power the specified angle (in degrees).
+        This command will block execution until the motor has reached its destination.
+        When you need finer control over the movement (soft acceleration or deceleration), consider using the command Motor.SchedulePower instead.
+      </summary>
+      <param name="ports">Motor port name(s)</param>
+      <param name="power">Power level from -100 (full reverse) to 100 (full forward)</param>
+      <param name="degrees">The angle to rotate</param>
+      <param name="brake">"True", if the motor(s) should switch on the brake after movement</param>
+    </member>
+    <member name="M:MoveSteer">
+      <summary>
+        Move 2 motors a defined number of degrees with a specified speed and relative ratio.
+        This ratio is determined by the 'turn' parameter which basically determines
+        into which direction a vehicle with a simple two-wheel drive would make its turn (given that the motor with the lower port letter is mounted on the left side).
+        The two motors are synchronized which means that when one motor experiences some resistance and cannot keep up its speed, the other motor will also slow down or stop altogether. This is especially useful for vehicles with two independently driven wheels which still need to go straight or make a specified turn.
+        The angle to move is for the motor with the higher speed.
+      </summary>
+      <param name="ports">Names of 2 motor ports (for example "AB" or "CD"</param>
+      <param name="speed">Speed value from -100 (full reverse) to 100 (full forward) of the faster motor</param>
+      <param name="turn">Turn ratio from -100 (rotating left on the spot) to 100 (rotating right on the spot)</param>
+      <param name="degrees">The angle of the faster motor to rotate</param>
+      <param name="brake">"True", if the motors should switch on the brake after movement</param>
+    </member>
+    <member name="M:MoveSync">
+      <summary>
+        Moves 2 motors synchronously a defined number of degrees. 
+        The two motors are synchronized which means that when one motor experiences some resistance and cannot keep up its speed, the other motor will also slow down or stop altogether. This is especially useful for vehicles with two independently driven wheels which still need to go straight or make a specified turn.
+        The angle to move is for the motor with the higher speed.
+      </summary>
+      <param name="ports">Names of 2 motor ports (for example "AB" or "CD"</param>
+      <param name="speed1">Speed value from -100 (full reverse) to 100 (full forward) of the motor with the lower port letter.</param>
+      <param name="speed2">Speed value from -100 (full reverse) to 100 (full forward) of the motor with the higher port letter.</param>
+      <param name="degrees">The angle of the faster motor to rotate</param>
+      <param name="brake">"True", if the motors should switch on the brake after movement</param>
+    </member>
+    <member name="M:Wait">
+      <summary>
+        Wait until the specified motor(s) has finished a "Schedule..." or "Move..." operation.
+        Using this method is normally better than calling IsBusy() in a tight loop.
+      </summary>
+      <param name="ports">Motor port name(s)</param>
+    </member>
+    <member name="M:Invert">
+      <summary>
+        Invert the polarity (direction) of one or more motors. This will affect all future commands that move this motors and also the tacho and speed readings will deliver inverted values.
+        This operation makes it easy to change the way a motor is built into a robot without altering the rest of the program.
+        You just need to add a single Motor.Invert() command at the very start of the program. Note that there is intentionally no way to disable the inversion later on.
+      </summary>
+      <param name="ports">Motor port name(s)</param>
+    </member>
+  </members>
+</doc>

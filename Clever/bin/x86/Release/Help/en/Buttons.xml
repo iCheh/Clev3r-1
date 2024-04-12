@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<doc>
+  <members>
+    <member name="T:Buttons">
+      <summary>
+        Reads the states and clicks of the buttons on the EV3 brick.
+        The buttons are specified with the following letters:
+        U - up
+        D - down
+        L - left
+        R - right
+        E - center
+      </summary>
+    </member>
+    <member name="M:GetClicks">
+      <summary>
+        Check which buttons were clicked since the last call to GetClicks and returns a text containing their letters. 
+        The 'clicked' state of the buttons is then removed. Also a sound is emitted from the brick when a click was detected.
+      </summary>
+      <returns>A text containing the letters of the clicked buttons (can be empty)</returns>
+    </member>
+    <member name="M:Wait">
+      <summary>
+        Wait until at least one button is clicked. If a buttons was already clicked before calling this function, it returns immediately.
+      </summary>
+    </member>
+    <member name="M:Flush">
+      <summary>
+        Remove any clicked-state of all buttons. Subsequent calls to GetClicks will only deliver the buttons that were clicked after the flush.
+      </summary>
+    </member>
+    <member name="P:Current">
+      <summary>
+        The buttons that are currently pressed. 
+        This property contains a text with the key letters of all keys being pressed at the moment. 
+      </summary>
+    </member>
+  </members>
+</doc>

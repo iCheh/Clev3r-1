@@ -1,0 +1,247 @@
+<?xml version="1.0"?>
+<doc>
+  <members>
+    <member name="T:Math">
+            <summary>
+            Класс Math предоставляет множество полезных методов для математических операций.
+            </summary>
+        </member>
+        <member name="M:Abs">
+            <summary>
+            Вычисляет модуль (положительное значение) заданного числа. Например, для -32.233 метод вернет 32.233.
+            </summary>
+            <param name="number">
+            Заданное число
+            </param>
+            <returns>
+            Абсолютное значение заданного числа
+            </returns>
+        </member>
+        <member name="M:Ceiling">
+            <summary>
+            Округляет заданное десятичное значение до большего или равного целого числа. Например, для 32,233 метод вернет 33.
+            </summary>
+            <param name="number">
+            Заданное число
+            </param>
+            <returns>
+            Число, округленное в большую сторону
+            </returns>
+        </member>
+        <member name="M:Floor">
+            <summary>
+            Округляет заданное десятичное значение до меньшего или равного целого числа.  Например, для 32.233 метод вернет 32.
+            </summary>
+            <param name="number">
+            Заданное число
+            </param>
+            <returns>
+            Число, округленное в меньшую сторону
+            </returns>
+        </member>
+        <member name="M:NaturalLog">
+            <summary>
+            Вычисляет натуральный логарифм для заданного числа.
+            </summary>
+            <param name="number">
+            Заданное число
+            </param>
+            <returns>
+            Значение натурального логарифма для заданного числа
+            </returns>
+        </member>
+        <member name="M:Log">
+            <summary>
+            Вычисляет десятичный логарифм для заданного числа.
+            </summary>
+            <param name="number">
+            Заданное число
+            </param>
+            <returns>
+            Десятичный логарифм для указанного числа
+            </returns>
+        </member>
+        <member name="M:Cos">
+            <summary>
+            Вычисляет значение косинуса для заданного в радианах угла.
+            </summary>
+            <param name="angle">
+            Значение угла в радианах
+            </param>
+            <returns>
+            Значение косинуса данного угла
+            </returns>
+        </member>
+        <member name="M:Sin">
+            <summary>
+            Получает значение синуса для заданного в радианах угла.
+            </summary>
+            <param name="angle">
+            Значение угла в радианах
+            </param>
+            <returns>
+            Расчитанный инус для заданного угла
+            </returns>
+        </member>
+        <member name="M:Tan">
+            <summary>
+            Получает значение тангенса для заданного в радианах угла.
+            </summary>
+            <param name="angle">
+            Значение угла в радианах
+            </param>
+            <returns>
+            Рассчитанный тангенс
+            </returns>
+        </member>
+        <member name="M:ArcSin">
+            <summary>
+            Возвращает значение угла в радианах, соответствующее указанному значению синуса.
+            </summary>
+            <param name="sinValue">
+            Заданное число
+            </param>
+            <returns>
+            Угол в радианах
+            </returns>
+        </member>
+        <member name="M:ArcCos">
+            <summary>
+            Возвращает значение угла в радианах, соответствующее указанному значению косинуса.
+            </summary>
+            <param name="cosValue">
+            Значение косинуса, для которого надо получить угол
+            </param>
+            <returns>
+            Угол (в радианах) для заданного значения косинуса
+            </returns>
+        </member>
+        <member name="M:ArcTan">
+            <summary>
+            Получает угол в радианах для заданного значения тангенса.
+            </summary>
+            <param name="tanValue">
+            Значения тангенса, для которого надо получить угол
+            </param>
+            <returns>
+            Угол (в радианах) для заданного значения тангенса
+            </returns>
+        </member>
+        <member name="M:GetDegrees">
+            <summary>
+            Конвертирует заданный угол из радиан в градусы.
+            </summary>
+            <param name="angle">
+            Значение угла в радианах
+            </param>
+            <returns>
+            Значение угла, переведенное в градусы
+            </returns>
+        </member>
+        <member name="M:GetRadians">
+            <summary>
+            Конвертирует заданный угол из градусов в радианы.
+            </summary>
+            <param name="angle">
+            Значение угла в градусах
+            </param>
+            <returns>
+            Значение угла, переведенное в радианы
+            </returns>
+        </member>
+        <member name="M:SquareRoot">
+            <summary>
+            Получает квадратный корень для заданного числа.
+            </summary>
+            <param name="number">
+            Заданное число
+            </param>
+            <returns>
+            Квадратный корень для заданного числа
+            </returns>
+        </member>
+        <member name="M:Power">
+            <summary>
+            Возводит число в указанную степень.
+            </summary>
+            <param name="baseNumber">
+            Заданное число
+            </param>
+            <param name="exponent">
+            Степень, в которую надо возвести число
+            </param>
+            <returns>
+            Число, возведенное в указанную степень
+            </returns>
+        </member>
+        <member name="M:Round">
+            <summary>
+            Округляет заданное десятичное значение до ближайшего целого числа.  Например, 32.233 будет округлено до 32.0, а 32.566 до 33.
+            </summary>
+            <param name="number">
+            Заданное число
+            </param>
+            <returns>
+            Округленное значение заданного числа
+            </returns>
+        </member>
+        <member name="M:Max">
+            <summary>
+            Сравнивает два значение и возвращает большее из них.
+            </summary>
+            <param name="number1">
+            Первое из сравниваемых чисел
+            </param>
+            <param name="number2">
+            Второе из сравниваемых чисел
+            </param>
+            <returns>
+            Наибольшее значение из двух заданных чисел
+            </returns>
+        </member>
+        <member name="M:Min">
+            <summary>
+            Сравнивает два значение и возвращает меньшее из них.
+            </summary>
+            <param name="number1">
+            Первое из сравниваемых чисел
+            </param>
+            <param name="number2">
+            Второе из сравниваемых чисел
+            </param>
+            <returns>
+            Наименьшее значение из двух заданных чисел
+            </returns>
+        </member>
+        <member name="M:Remainder">
+            <summary>
+            Делит первое число на второе и возвращает остаток.
+            </summary>
+            <param name="dividend">
+            Делимое
+            </param>
+            <param name="divisor">
+            Делитель
+            </param>
+            <returns>
+            Остаток от деления
+            </returns>
+        </member>
+        <member name="M:GetRandomNumber">
+            <summary>
+            Возвращает случайное число в диапазоне между 1 и числом, заданным в параметре maxNumber (включительно).
+            </summary>
+            <param name="maxNumber">
+            Максимальное значение для диапазона случайных чисел
+            </param>
+            <returns>
+            Случайное число, которое меньше или равно указанному максимальному значению
+            </returns>
+        </member>
+        <member name="P:Pi">
+            <summary>
+            Получает значение числа Pi.
+            </summary>
+        </member>
+  </members>
+</doc>

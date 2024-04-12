@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Clever.View.Dialogs"
         mc:Ignorable="d"
+        KeyUp="Window_KeyUp"
         Title="" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Width="500" Height="auto" MaxHeight="330">
     <Window.Resources>
         <Style x:Key="close_button" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
@@ -53,7 +54,7 @@
                 </Grid.ColumnDefinitions>
                 <TextBlock Grid.Column="0" Grid.Row="0" Name="txtToolTip" Text="Choose file type" FontFamily="Calibri" FontSize="14" Foreground="#000000" Height="22" Width="300" Padding="4" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
                 <TextBlock Grid.Column="0" Grid.Row="2" Name="txtProgramName" Text="Program name:" FontFamily="Calibri" FontSize="14" Foreground="#000000" Height="22" Width="300" Padding="4" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
-                <TextBox Grid.Column="0" Grid.Row="3" Margin="2,0,0,0" Name="programName" Text="Ansver" FontFamily="Calibri" FontSize="12" Foreground="#000000" Padding="1" Height="20" Width="360" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                <TextBox Grid.Column="0" Grid.Row="3" Margin="2,0,0,0" Name="programName" Text="Ansver" FontFamily="Calibri" FontSize="12" Foreground="#000000" Padding="1" Height="20" Width="360" VerticalAlignment="Center" HorizontalAlignment="Left" KeyUp="programName_KeyUp"/>
                 <Button Grid.Column="1" Grid.Row="3" x:Name="butCreatePrg" Style="{StaticResource close_button}" Click="butCreatePrg_Click" VerticalAlignment="Center" HorizontalAlignment="Right" Width="70" Height="20">
                     <Button.Content>
                         <TextBlock x:Name="butTextPrg" Text="Create" FontFamily="Calibri" FontSize="12" Foreground="#000000" VerticalAlignment="Center" HorizontalAlignment="Center"/>
@@ -61,7 +62,7 @@
                 </Button>
 
                 <TextBlock Grid.Column="0" Grid.Row="5" Name="txtIncludeName" Text="Include name:" FontFamily="Calibri" FontSize="14" Foreground="#000000" Height="22" Width="300" Padding="4" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
-                <TextBox Grid.Column="0" Grid.Row="6" Margin="2,0,0,0" Name="includeName" Text="Ansver" FontFamily="Calibri" FontSize="12" Foreground="#000000" Padding="1" Height="20" Width="360" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                <TextBox Grid.Column="0" Grid.Row="6" Margin="2,0,0,0" Name="includeName" Text="Ansver" FontFamily="Calibri" FontSize="12" Foreground="#000000" Padding="1" Height="20" Width="360" VerticalAlignment="Center" HorizontalAlignment="Left" KeyUp="includeName_KeyUp"/>
                 <Button Grid.Column="1" Grid.Row="6" x:Name="butCreateInc" Style="{StaticResource close_button}" Click="butCreateInc_Click" VerticalAlignment="Center" HorizontalAlignment="Right" Width="70" Height="20">
                     <Button.Content>
                         <TextBlock x:Name="butTextInc" Text="Create" FontFamily="Calibri" FontSize="12" Foreground="#000000" VerticalAlignment="Center" HorizontalAlignment="Center"/>
@@ -69,7 +70,7 @@
                 </Button>
 
                 <TextBlock Grid.Column="0" Grid.Row="8" Name="txtModuleName" Text="Module name:" FontFamily="Calibri" FontSize="14" Foreground="#000000" Height="22" Width="300" Padding="4" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
-                <TextBox Grid.Column="0" Grid.Row="9" Margin="2,0,0,0" Name="moduleName" Text="Ansver" FontFamily="Calibri" FontSize="12" Foreground="#000000" Padding="1" Height="20" Width="360" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                <TextBox Grid.Column="0" Grid.Row="9" Margin="2,0,0,0" Name="moduleName" Text="Ansver" FontFamily="Calibri" FontSize="12" Foreground="#000000" Padding="1" Height="20" Width="360" VerticalAlignment="Center" HorizontalAlignment="Left" KeyUp="moduleName_KeyUp"/>
                 <Button Grid.Column="1" Grid.Row="9" x:Name="butCreateMod" Style="{StaticResource close_button}" Click="butCreateMod_Click" VerticalAlignment="Center" HorizontalAlignment="Right" Width="70" Height="20">
                     <Button.Content>
                         <TextBlock x:Name="butTextMod" Text="Create" FontFamily="Calibri" FontSize="12" Foreground="#000000" VerticalAlignment="Center" HorizontalAlignment="Center"/>

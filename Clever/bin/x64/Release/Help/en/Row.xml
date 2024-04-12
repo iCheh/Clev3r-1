@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<doc>
+  <members>
+    <member name="T:Row">
+      <summary>
+        Methods for working with 1 dimension arrays
+      </summary>
+    </member>
+    <member name="M:Init">
+      <summary>
+					Creates a 1 dimensional array of the specified size and fills it with the specified values.
+				</summary>
+				<param name="size">size array</param>
+				<param name="value">value to fill</param>
+				<return>A number that identifies created array (a.k.a. array handle)</return>
+    </member>
+    <member name="M:Delete">
+      <summary>
+					Delete a 1 dimensional array.
+				</summary>
+				<param name="handle">a number that identifies array (a.k.a. array handle)</param>
+    </member>
+    <member name="M:Read">
+      <summary>
+					Read index value from 1 dimensional array.
+				</summary>
+				<param name="handle">a number that identifies array (a.k.a. array handle)</param>
+				<param name="index">index</param>
+				<return>Value</return>
+    </member>
+    <member name="M:Write">
+      <summary>
+					Write index value to 1 dimensional array.
+				</summary>
+				<param name="handle">a number that identifies array (a.k.a. array handle)</param>
+				<param name="index">index</param>
+				<param name="value">value</param>
+    </member>
+    <member name="M:Size">
+      <summary>
+					Get size 1 dimensional array.
+				</summary>
+				<param name="handle">a number that identifies array (a.k.a. array handle)</param>
+				<return>Size</return>
+    </member>
+    <member name="M:Resize">
+      <summary>
+					Resize 1 dimensional array.
+				</summary>
+				<param name="handle">a number that identifies array (a.k.a. array handle)</param>
+				<param name="size">new size array</param>
+    </member>
+  </members>
+</doc>

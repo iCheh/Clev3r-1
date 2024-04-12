@@ -62,7 +62,12 @@ namespace Clever.Brick.Communication
 
                 if (HidImports.SetupDiGetDeviceInterfaceDetail(hDevInfo, ref diData, ref diDetail, size, out size, IntPtr.Zero))
                 {
-                    _handle = HidImports.CreateFile(diDetail.DevicePath, FileAccess.ReadWrite, FileShare.None/*.ReadWrite*/, IntPtr.Zero, FileMode.Open, 0 /*HidImports.EFileAttributes.Overlapped*/, IntPtr.Zero);
+                    // До версии 1.6.8.9 включительно
+                    // Это вызывает проблемы в Windows 11 23h2
+                    //_handle = HidImports.CreateFile(diDetail.DevicePath, FileAccess.ReadWrite, FileShare.None/*.ReadWrite*/, IntPtr.Zero, FileMode.Open, 0 /*HidImports.EFileAttributes.Overlapped*/, IntPtr.Zero);
+                    // С версии 1.7
+                    _handle = HidImports.CreateFile(diDetail.DevicePath, FileAccess.ReadWrite, FileShare.ReadWrite, IntPtr.Zero, FileMode.Open, 0 /*HidImports.EFileAttributes.Overlapped*/, IntPtr.Zero);
+
                     HidImports.HIDD_ATTRIBUTES attrib = new HidImports.HIDD_ATTRIBUTES();
                     attrib.Size = Marshal.SizeOf(attrib);
 
@@ -177,7 +182,10 @@ namespace Clever.Brick.Communication
                     HidImports.HIDD_ATTRIBUTES attrib = new HidImports.HIDD_ATTRIBUTES();
                     attrib.Size = Marshal.SizeOf(attrib);
 
-                    SafeFileHandle handle = HidImports.CreateFile(diDetail.DevicePath, FileAccess.ReadWrite, FileShare.None/*.ReadWrite*/, IntPtr.Zero, FileMode.Open, 0 /*HidImports.EFileAttributes.Overlapped*/, IntPtr.Zero);
+                    // До версии 1.6.8.9 включительно
+                    //SafeFileHandle handle = HidImports.CreateFile(diDetail.DevicePath, FileAccess.ReadWrite, FileShare.None/*.ReadWrite*/, IntPtr.Zero, FileMode.Open, 0 /*HidImports.EFileAttributes.Overlapped*/, IntPtr.Zero);
+                    // Начиная с версии 1.7
+                    SafeFileHandle handle = HidImports.CreateFile(diDetail.DevicePath, FileAccess.ReadWrite, FileShare.ReadWrite, IntPtr.Zero, FileMode.Open, 0 /*HidImports.EFileAttributes.Overlapped*/, IntPtr.Zero);
 
                     if (HidImports.HidD_GetAttributes(handle.DangerousGetHandle(), ref attrib))
                     {

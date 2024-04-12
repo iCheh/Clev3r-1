@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<doc>
+  <members>
+    <member name="T:Row">
+      <summary>
+        Набір оптимізованих команд для роботи з одновимірними масивами.
+      </summary>
+    </member>
+    <member name="M:Init">
+      <summary>
+          Створити новий масив потрібного розміру і заповнити його зазначеними значеннями.
+        </summary>
+        <param name="size">розмір масиву (не більше 30000).</param>
+        <param name="value">значення, яким заповнюється масив.</param>
+        <return>Номер, що ідентифікує створений масив (array handle)</return>
+    </member>
+    <member name="M:Delete">
+      <summary>
+          Видалити вказаний масив.
+        </summary>
+        <param name="handle">номер, що ідентифікує масив (array handle)</param>
+    </member>
+    <member name="M:Read">
+      <summary>
+          Вважати значення елемента масиву за вказаним індексом.
+        </summary>
+        <param name="handle">номер, що ідентифікує масив (array handle)</param>
+        <param name="index">iндекс</param>
+        <return>Шукане значення</return>
+    </member>
+    <member name="M:Write">
+      <summary>
+          Записати значення в елемент масиву за вказаним індексом.
+        </summary>
+        <param name="handle">номер, що ідентифікує масив (array handle)</param>
+        <param name="index">iндекс</param>
+        <param name="value">значення для запису в масив</param>
+    </member>
+    <member name="M:Size">
+      <summary>
+          Отримати розмір масиву.
+        </summary>
+        <param name="handle">номер, що ідентифікує масив (array handle)</param>
+        <return>Розмір масиву</return>
+    </member>
+    <member name="M:Resize">
+      <summary>
+          Змінити розмір масиву.
+        </summary>
+        <param name="handle">номер, що ідентифікує масив (array handle)</param>
+        <param name="size">новий розмір масиву (не більше 30000)</param>
+    </member>
+  </members>
+</doc>

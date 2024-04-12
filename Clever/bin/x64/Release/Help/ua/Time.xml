@@ -1,0 +1,109 @@
+<?xml version="1.0"?>
+<doc>
+  <members>
+    <member name="T:Time">
+      <summary>
+        Набір команд для роботи з вбудованими програмним таймером EV3.
+      </summary>
+    </member>
+    <member name="M:Get1">
+      <summary>
+        Отримати показання таймера №1 в мілісекундах. Час рахується з моменту останнього скидання таймера (або з моменту початку роботи програми).
+      </summary>
+      <returns>Час в мілісекундах</returns>
+    </member>
+    <member name="M:Reset1">
+      <summary>
+        Скинути таймер №1
+      </summary>
+    </member>
+    <member name="M:Get2">
+      <summary>
+        Отримати показання таймера №2 в мілісекундах. Час рахується з моменту останнього скидання таймера (або з моменту початку роботи програми).
+      </summary>
+      <returns>Час в мілісекундах</returns>
+    </member>
+    <member name="M:Reset2">
+      <summary>
+        Скинути таймер №2
+      </summary>
+    </member>
+    <member name="M:Get3">
+      <summary>
+        Отримати показання таймера №3 в мілісекундах. Час рахується з моменту останнього скидання таймера (або з моменту початку роботи програми).
+      </summary>
+      <returns>Час в мілісекундах</returns>
+    </member>
+    <member name="M:Reset3">
+      <summary>
+        Скинути таймер №3
+      </summary>
+    </member>
+    <member name="M:Get4">
+      <summary>
+        Отримати показання таймера №4 в мілісекундах. Час рахується з моменту останнього скидання таймера (або з моменту початку роботи програми).
+      </summary>
+      <returns>Час в мілісекундах</returns>
+    </member>
+    <member name="M:Reset4">
+      <summary>
+        Скинути таймер №4
+      </summary>
+    </member>
+    <member name="M:Get5">
+      <summary>
+        Отримати показання таймера №5 в мілісекундах. Час рахується з моменту останнього скидання таймера (або з моменту початку роботи програми).
+      </summary>
+      <returns>Час в мілісекундах</returns>
+    </member>
+    <member name="M:Reset5">
+      <summary>
+        Скинути таймер №5
+      </summary>
+    </member>
+    <member name="M:Get6">
+      <summary>
+        Отримати показання таймера №6 в мілісекундах. Час рахується з моменту останнього скидання таймера (або з моменту початку роботи програми).
+      </summary>
+      <returns>Час в мілісекундах</returns>
+    </member>
+    <member name="M:Reset6">
+      <summary>
+        Скинути таймер №6
+      </summary>
+    </member>
+    <member name="M:Get7">
+      <summary>
+        Отримати показання таймера №7 в мілісекундах. Час рахується з моменту останнього скидання таймера (або з моменту початку роботи програми).
+      </summary>
+      <returns>Час в мілісекундах</returns>
+    </member>
+    <member name="M:Reset7">
+      <summary>
+        Скинути таймер №7
+      </summary>
+    </member>
+    <member name="M:Get8">
+      <summary>
+        Отримати показання таймера №8 в мілісекундах. Час рахується з моменту останнього скидання таймера (або з моменту початку роботи програми).
+      </summary>
+      <returns>Час в мілісекундах</returns>
+    </member>
+    <member name="M:Reset8">
+      <summary>
+        Скинути таймер №8
+      </summary>
+    </member>
+    <member name="M:Get9">
+      <summary>
+        Отримати показання таймера №9 в мілісекундах. Час рахується з моменту останнього скидання таймера (або з моменту початку роботи програми).
+      </summary>
+      <returns>Час в мілісекундах</returns>
+    </member>
+    <member name="M:Reset9">
+      <summary>
+        Скинути таймер №9
+      </summary>
+    </member>
+  </members>
+</doc>

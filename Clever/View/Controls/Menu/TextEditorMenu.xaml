@@ -154,6 +154,66 @@
                 </Label>
                 <TextBlock Text="Ctrl+G" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="2" FontFamily="{StaticResource te_menu_fontfamily}" FontSize="{StaticResource te_menu_fontsize}" Foreground="{StaticResource te_menu_foreground}"/>
             </Grid>
+
+            <Grid Style="{DynamicResource xGrid}"
+                  Width="{StaticResource te_menu_width}"
+                  Height="{StaticResource te_menu_height_one}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="{StaticResource te_menu_c0_width}"/>
+                    <ColumnDefinition Width="{StaticResource te_menu_c1_width}"/>
+                    <ColumnDefinition Width="{StaticResource te_menu_c2_width}"/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="1"
+                       Height="{StaticResource te_menu_height_one}"
+                       Width="{StaticResource te_menu_label_width}">
+                    <Hyperlink TextDecorations="None"
+                               Command="{Binding Path=EditFoldFuncCommand}">
+                        <TextBlock Text="{Binding Path=GetLocalization[tFoldFunc]}"
+                                   VerticalAlignment="Center"
+                                   Width="{StaticResource te_menu_text_width}"
+                                   FontFamily="{StaticResource te_menu_fontfamily}"
+                                   FontSize="{StaticResource te_menu_fontsize}"
+                                   Foreground="{StaticResource te_menu_foreground}"/>
+                    </Hyperlink>
+                </Label>
+                <TextBlock Text="Ctrl+D"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center"
+                           Grid.Column="2"
+                           FontFamily="{StaticResource te_menu_fontfamily}"
+                           FontSize="{StaticResource te_menu_fontsize}"
+                           Foreground="{StaticResource te_menu_foreground}"/>
+            </Grid>
+            <Grid Style="{DynamicResource xGrid}"
+                  Width="{StaticResource te_menu_width}"
+                  Height="{StaticResource te_menu_height_one}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="{StaticResource te_menu_c0_width}"/>
+                    <ColumnDefinition Width="{StaticResource te_menu_c1_width}"/>
+                    <ColumnDefinition Width="{StaticResource te_menu_c2_width}"/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="1"
+                       Height="{StaticResource te_menu_height_one}"
+                       Width="{StaticResource te_menu_label_width}">
+                    <Hyperlink TextDecorations="None"
+                               Command="{Binding Path=EditUnFoldFuncCommand}">
+                        <TextBlock Text="{Binding Path=GetLocalization[tUnFoldFunc]}"
+                                   VerticalAlignment="Center"
+                                   Width="{StaticResource te_menu_text_width}"
+                                   FontFamily="{StaticResource te_menu_fontfamily}"
+                                   FontSize="{StaticResource te_menu_fontsize}"
+                                   Foreground="{StaticResource te_menu_foreground}"/>
+                    </Hyperlink>
+                </Label>
+                <TextBlock Text="Ctrl+D"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center"
+                           Grid.Column="2"
+                           FontFamily="{StaticResource te_menu_fontfamily}"
+                           FontSize="{StaticResource te_menu_fontsize}"
+                           Foreground="{StaticResource te_menu_foreground}"/>
+            </Grid>
+
             <Separator/>
             <Grid Style="{DynamicResource xGrid}" Width="{StaticResource te_menu_width}" Height="{StaticResource te_menu_height_one}">
                 <Grid.ColumnDefinitions>

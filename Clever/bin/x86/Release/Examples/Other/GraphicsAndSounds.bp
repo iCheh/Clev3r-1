@@ -1,0 +1,21 @@
+' This example uses graphics and sound resources that must be already
+' present on the EV3 in order to access them from the program. 
+' In this chase, a bitmap file (yamyam.rgf) and a sound file (emerald.rsf)
+' are expected to exist in a sub-folder "GraphicsAndSounds'  inside the 
+'  "prjs" folder (you can create such a folder and transfer the files from the examples 
+' to the  EV3 with the EV3Explorer. Contrary to the Small Basic convention,
+' filenames for the EV3 are case-sensitive (because it is a Linux file system).
+'
+' As long as the EV3 explorer does not support file format conversion, you
+' will probably still need the standard lego software to create you own sounds
+' and bitmaps. 
+
+
+LCD.Clear()
+'Данный файл ( Tired middle.rgf ) должен лежать в папке GraphicsAndSounds. Эта папка должна быть создана в папке prjs.
+LCD.BmpFile(1, 0,0, "GraphicsAndSounds/Tired middle")
+
+'Данный файл ( Cat purr.rsf ) должен лежать в папке GraphicsAndSounds. Эта папка должна быть создана в папке prjs.
+Speaker.Play(100, "GraphicsAndSounds/Cat purr")
+
+Program.Delay(10000)

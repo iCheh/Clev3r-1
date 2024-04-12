@@ -1,0 +1,30 @@
+' Example - Vehicle that stops before an obstacle
+
+' Go
+Motor.Start("A",50)
+
+While "True"
+  
+ ' IR-Sensor (on port 1) reads distance to obstacle and stops model
+ If Sensor.ReadPercent(1) < 15 then
+   Motor.Stop("A","True")
+ endif
+ ' press on touch sensor (port 2) restarts model
+ If Sensor.ReadPercent(2)=100 Then
+   Motor.Start("A",50)
+ endif
+ 
+ ' independently change led colors every 3 seconds
+ F = Math.Remainder(Math.Floor(EV3.Time/3000), 3)
+ If f=0 Then
+   EV3.SetLEDColor("RED", "NORMAL")
+ ElseIf F=1 then
+   EV3.SetLEDColor("ORANGE", "NORMAL")
+ ElseIf F=2 then
+   EV3.SetLEDColor("GREEN", "NORMAL")
+ endif   
+ 
+ ' make the loop not go too fast
+ Program.Delay(10)
+
+EndWhile

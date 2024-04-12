@@ -1,0 +1,94 @@
+﻿<?xml version="1.0"?>
+<doc>
+  <members>
+    <member name="T:EV3">
+      <summary>
+        Додаткові команди для EV3.
+      </summary>
+    </member>
+    <member name="M:SetLEDColor">
+      <summary>
+        Керування ефектами підсвічування кнопок EV3.
+      </summary>
+      <param name="color">Кольори підсвічування: "GREEN" - зелена, "RED" - червона, "ORANGE" - жовтогаряча, "OFF" - вимкнути</param>
+      <param name="effect">Ефекти підсвічування: "NORMAL" - постійне світіння, "FLASH" - спалахи, "PULSE" - пульсація.</param>
+    </member>
+    <member name="M:SystemCall">
+      <summary>
+        Виконати системну команду в операційній системі EV3 Linux. Програма, що виконується, буде чекати, поки програма, яку запущено в операційній системі, не завершить роботу.
+      </summary>
+      <param name="commandline">Системна команда</param>
+      <returns>Статус завершення виконуваної команди</returns>
+    </member>
+    <member name="M:QueueNextCommand">
+      <summary>
+        Підвищення продуктивності при роботі в режимі «ПК». Не посилати наступну команду на блок відразу ж, а почекати, поставивши її в чергу. У режимі запуску програми на блоці не має сенсу.
+      </summary>
+    </member>
+    <member name="P:Time">
+      <summary>
+        Час в мілісекундах, що минув з моменту запуску програми.
+      </summary>
+      <example>
+        <text>
+          Отримати поточний час
+        </text>
+        <code>
+          t = EV3.Time
+        </code>
+      </example>
+    </member>
+    <member name="P:BatteryLevel">
+      <summary>
+        Повертає поточний заряд батареї у відсотках (діапазон значень 0 - 100).
+      </summary>
+      <example>
+        <text>
+          Отримати заряд батареї у %
+        </text>
+        <code>
+          l = EV3.BatteryLevel
+        </code>
+      </example>
+    </member>
+    <member name="P:BatteryVoltage">
+      <summary>
+        Повертає поточний заряд батареї в вольтах.
+      </summary>
+      <example>
+        <text>
+          Отримати заряд батареї в вольтах
+        </text>
+        <code>
+          v = EV3.BatteryVoltage
+        </code>
+      </example>
+    </member>
+    <member name="P:BatteryCurrent">
+      <summary>
+        Повертає поточний струм в амперах.
+      </summary>
+      <example>
+        <text>
+          Отримати струм в амперах
+        </text>
+        <code>
+          i = EV3.BatteryCurrent
+        </code>
+      </example>
+    </member>
+    <member name="P:BrickName">
+      <summary>
+        Повертає ім'я блоку EV3.
+      </summary>
+      <example>
+        <text>
+          Отримати ім'я блоку
+        </text>
+        <code>
+          n = EV3.BrickName
+        </code>
+      </example>
+    </member>
+  </members>
+</doc>

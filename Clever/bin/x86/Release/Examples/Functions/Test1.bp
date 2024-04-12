@@ -1,0 +1,8 @@
+WriteToScreen(1, 0, 0, 2, "HELLO")
+Program.Delay(5000)
+
+Function WriteToScreen (in number fontColor, in number X, in number Y, in number fontSize, in string message)
+LCD.Clear()
+LCD.Text(fontColor, X, Y, fontSize, message)
+LCD.Update()
+EndFunction

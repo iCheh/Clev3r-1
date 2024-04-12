@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<doc>
+  <members>
+    <member name="T:Speaker">
+      <summary>
+        Команди керування аудіосітемой EV3 для відтворення звукових ефектів.
+      </summary>
+    </member>
+    <member name="M:Stop">
+      <summary>
+        Зупинити відтворення звуку.
+      </summary>
+    </member>
+    <member name="M:Tone">
+      <summary>
+        Відтворити однотонний звук певної частоти і тривалості.
+      </summary>
+      <param name="volume">Гучність (0 - 100)</param>
+      <param name="frequency">Частота, Гц (250 - 10000)</param>
+      <param name="duration">Тривалість в мілісекундах</param>
+    </member>
+    <member name="M:Note">
+      <summary>
+        Відтворити ноту зазначеної висоти і тривалості.
+      </summary>
+      <param name="volume">Гучність (0 - 100)</param>
+      <param name="note">Нота у вигляді тексту, від "C4" до "B7" з напівтонами в вигляді "C#5"</param>
+      <param name="duration">Тривалість в мілісекундах</param>
+    </member>
+    <member name="M:Play">
+      <summary>
+        Відтворити звуковий файл формату .rsf (інші формати не підтримуються) з пам'яті EV3.
+      </summary>
+      <param name="volume">Гучність (0 - 100)</param>
+      <param name="filename">Ім'я звукового файлу без розширення rsf. Файл може містити абсолютний, або відносний шлях щодо папки «prjs»</param>
+    </member>
+    <member name="M:IsBusy">
+      <summary>
+        Перевірити, чи зайнята аудіосистема EV3 відтворенням звукових ефектів.
+      </summary>
+      <returns>"True", якщо відтворюється будь-який звук.</returns>
+    </member>
+    <member name="M:Wait">
+      <summary>
+        Дочекатися, поки EV3 закінчить відтворення звукових ефектів.
+      </summary>
+    </member>
+  </members>
+</doc>

@@ -1,0 +1,30 @@
+LCD.Clear()
+LCD.Text(1, 0,30, 1, "Control motors with")
+LCD.Text(1, 0,45, 1, "directional buttons")
+LCD.Text(1, 0,70, 1, "Left/Right: Motor A")
+LCD.Text(1, 0,85, 1, "Up/Down: Motor B")
+
+while "True"
+  ' request button state
+  K = Buttons.Current
+
+  SA = 0
+  SB = 0
+  If Text.IsSubText(K, "L") then
+    SA = -50    
+  elseif Text.IsSubText(K, "R") then
+    SA = 50
+  endif
+  If Text.IsSubText(K, "U") then
+    SB = -50    
+  elseif Text.IsSubText(K, "D") then
+    SB = 50
+  endif
+  
+  ' Adjust motor power
+  Motor.StartPower("A", SA)
+  Motor.StartPower("B", SB)
+  
+  ' wait a little before polling again
+  Program.Delay(100)
+Endwhile

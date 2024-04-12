@@ -101,9 +101,24 @@ namespace Clever.CommonData
         internal static void Install()
         {
             Get = new Configurations();
-            var list = Get.ReadFile(Get.FullName);
-            //var list = new List<string>();
-           
+            var path = Get.FullName;
+            var list = Get.ReadFile(path);
+
+            // Всатвка чтения настроек из версии 1.6.8.9
+            // =========================================
+            if (list == null)
+            {
+                list = Get.ReadFile(path.Replace(Get.AppVersion, "1.6.8.9"));
+
+                if (list != null && list.Count == ConfigCount)
+                {
+                    list[9] = "false";
+                    list[10] = "false";
+                    WriteFile(Get.FullPath, Get.FileName, list);
+                }
+            }
+            // =========================================
+
             if (list == null || list.Count < ConfigCount)
             {
                 SetDefault();
@@ -453,11 +468,27 @@ namespace Clever.CommonData
 
         #region File Name
 
-        private string FullPath
+        internal string FullPath
         {
             get
             {
                 return Path.Combine(SpecialFolder, AppName, AppVersion);
+            }
+        }
+
+        internal string ConfigNameWifi
+        {
+            get
+            {
+                return Path.Combine(Get.FullPath, "wifi.ini");
+            }
+        }
+
+        internal string ConfigNameBluetooth
+        {
+            get
+            {
+                return Path.Combine(Get.FullPath, "bluetooth.ini");
             }
         }
 

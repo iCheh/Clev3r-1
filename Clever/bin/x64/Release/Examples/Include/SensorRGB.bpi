@@ -1,0 +1,5 @@
+R = 0
+G = 0
+B = 0
+
+Sensor1.Raw3(R, G, B)

@@ -35,7 +35,6 @@ namespace Clever.Model.Bplus
 {
     public class BpLexer : IDisposable
     {
-        int ppp = 0;
         private TextEditor sbDocument;
         private Scintilla textArea;
         private int linesCount = 999;
@@ -76,7 +75,7 @@ namespace Clever.Model.Bplus
         Timer AutoCTimer;
         internal BpObjects bpObjects = new BpObjects();
         internal int toolTipPosition = 0;
-        string keywords = "Sub|EndSub|For|To|Step|EndFor|If|Then|Else|ElseIf|EndIf|While|EndWhile|Goto|include|import|Or|And|folder|Function|EndFunction|in|out|number|string";
+        string keywords = "Sub|EndSub|For|To|Step|EndFor|If|Then|Else|ElseIf|EndIf|While|EndWhile|Goto|include|import|Or|And|folder|Function|EndFunction|in|out|number|string|break|continue";
         Regex keyword1 = new Regex("^[\\W](IF|SUB|WHILE|FOR|FUNCTION)[\\W]");
         Regex keyword2 = new Regex("^[\\W](ENDIF|ENDSUB|ENDWHILE|ENDFOR|ENDFUNCTION)[\\W]");
         Regex keyword3 = new Regex("^[\\W](ELSE|ELSEIF)[\\W]");
@@ -249,8 +248,8 @@ namespace Clever.Model.Bplus
             textArea.Styles[STYLE_MODULE_NEW].Bold = true;
 
             _keywords1 = new HashSet<string>() { "SUB", "ENDSUB", "FUNCTION", "ENDFUNCTION", "GOTO", "IN", "OUT" };
-            _keywords2 = new HashSet<string>() { "NUMBER", "STRING", "NUMBER[]", "STRING[]" };
-            _keywords3 = new HashSet<string>() { "FOLDER", "INCLUDE", "IMPORT", "PRIVATE" };
+            _keywords2 = new HashSet<string>() { "NUMBER", "STRING", "NUMBER[]", "STRING[]", "BREAK", "CONTINUE" };
+            _keywords3 = new HashSet<string>() { "FOLDER", "INCLUDE", "IMPORT", "PRIVATE"};
             _keywords4 = new HashSet<string>() { "IF", "THEN", "ELSE", "ELSEIF", "ENDIF", "FOR", "TO", "STEP", "ENDFOR", "OR", "AND", "WHILE", "ENDWHILE" };
 
             // Configure the lexer styles
@@ -1005,7 +1004,7 @@ namespace Clever.Model.Bplus
         private void ViewTreeInfo(string nameO, string nameM)
         {
             var tree = (System.Windows.Controls.TreeView)View.Controls.Helps.Help.GetHelpTree;
-            string kw = "Sub|EndSub|For|To|Step|EndFor|If|Then|Else|ElseIf|EndIf|While|EndWhile|Goto|include|import|And|Or|folder|function|endfunction|in|out|number|string|private";
+            string kw = "Sub|EndSub|For|To|Step|EndFor|If|Then|Else|ElseIf|EndIf|While|EndWhile|Goto|include|import|And|Or|folder|function|endfunction|in|out|number|string|private|break|continue";
             if (kw.ToUpper().IndexOf(nameO.ToUpper()) != -1 && nameM == "")
             {
                 nameM = nameO;
@@ -1014,7 +1013,7 @@ namespace Clever.Model.Bplus
 
             foreach (System.Windows.Controls.TreeViewItem to in tree.Items)
             {
-                if (to.Name == nameO)
+                if (to.Name.ToUpper() == nameO.ToUpper())
                 {
                     to.IsExpanded = true;
                     double h = MainWindowVM.HeightHelpPanel - 100;
@@ -1028,7 +1027,7 @@ namespace Clever.Model.Bplus
                             if (tm.GetType() == to.GetType())
                             {
                                 var tmi = tm as System.Windows.Controls.TreeViewItem;
-                                if (tmi.Name == nameM.Replace("_", "robomaks"))
+                                if (tmi.Name.ToUpper() == nameM.Replace("_", "robomaks").ToUpper())
                                 {
                                     tmi.IsExpanded = true;
                                     tmi.BringIntoView(new System.Windows.Rect(tmi.DesiredSize));

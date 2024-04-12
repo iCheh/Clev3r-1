@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+<doc>
+  <members>
+    <member name="T:EV3File">
+      <summary>
+        Операции с файловой системой EV3 для чтения/записи данных. Путь к файлам может быть указан полностью (абсолютный путь, например "/home/root/lms2012/prjs/TEST/test.dat"), либо относительно папки prjs ("TEST/test.dat"). При написании пути к файлу необходимо учитывать регистр.
+      </summary>
+    </member>
+    <member name="M:OpenWrite">
+      <summary>
+        Открывает файл для перезаписи. Если файл не существует, он будет создан.
+      </summary>
+      <param name="filename">Имя файла для создания/перезаписи</param>
+      <returns>Номер, идентифицирующий данный открытый файл (file handle)</returns>
+    </member>
+    <member name="M:OpenAppend">
+      <summary>
+        Открывает файл для добавления в него данных. Если файл не существует, он будет создан.
+      </summary>
+      <param name="filename">Имя файла для создания/добавления данных</param>
+      <returns>Идентификатор файла, либо 0 в случае отсутствия файла</returns>
+    </member>
+    <member name="M:OpenRead">
+      <summary>
+        Открывает файл для чтения.
+      </summary>
+      <param name="filename">Имя файла для чтения</param>
+      <returns>Идентификатор файла, либо 0 в случае отсутствия файла</returns>
+    </member>
+    <member name="M:Close">
+      <summary>
+        Закрывает открытый файл.
+      </summary>
+      <param name="handle">Идентификатор файла</param>
+    </member>
+    <member name="M:WriteLine">
+      <summary>
+        Записывает текстовую строку в файл. Строка будет записана в кодировке ISO-8859-1 и оканчиваться символом перевода строки (код 10).
+      </summary>
+      <param name="handle">Идентификатор файла, полученный в момент открытия файла</param>
+      <param name="text">Текст для записи в файл</param>
+    </member>
+    <member name="M:WriteByte">
+      <summary>
+        Записывает один байт данных в файл.
+      </summary>
+      <param name="handle">Идентификатор файла, полученный в момент открытия файла</param>
+      <param name="data">Один байт для записи (значение от 0 до 255).</param>
+    </member>
+    <member name="M:ReadLine">
+      <summary>
+        Прочитать текстовую строку из файла. Строка будет прочитана в кодировке ISO-8859-1 и должна оканчиваться символом перевода строки (код 10).
+      </summary>
+      <param name="handle">Идентификатор файла, полученный в момент открытия файла</param>
+      <returns>Текстовая строка, прочитанная из текущей строки файла</returns>
+    </member>
+    <member name="M:ReadByte">
+      <summary>
+        Прочитать один байт из файла.
+      </summary>
+      <param name="handle">Идентификатор файла, полученный в момент открытия файла</param>
+      <returns>Следующий по счету байт из файла</returns>
+    </member>
+    <member name="M:ReadNumberArray">
+      <summary>
+        Читает массив чисел из бинарного файла. Числа будут раскодированы с использованием кодировки IEEE как тип Float с одинарной точностью.
+      </summary>
+      <param name="handle">Идентификатор файла, полученный в момент открытия файла</param>
+      <param name="size">Размер массива, который будет прочитан</param>
+      <returns>Массив чисел указанного размера</returns>
+    </member>
+    <member name="M:WriteNumberArray">
+      <summary>
+          Записывает массив чисел в бинарного файла. Числа будут закодированы с использованием кодировки IEEE как тип Float с одинарной точностью.
+        </summary>
+        <param name="handle">идентификатор файла, полученный в момент открытия файла</param>
+        <param name="size">количество значений для записи</param>
+        <param name="data">массив чисел</param>
+    </member>
+    <member name="M:ConvertToNumber">
+      <summary>
+        Конвертация текста в число.
+      </summary>
+      <param name="text">Текст, содержащий число, может содержать также дробную часть числа</param>
+      <returns>Число</returns>
+    </member>
+    <member name="M:TableLookup">
+      <summary>
+        Функция предназначена для чтения байт из потенциально огромных файлов, которые слишком велики, чтобы быть переданы в память в целом.
+        Поскольку файл может быть настолько большой, что численной адресации будет недостаточно, вводятся параметры строка/столбец.
+      </summary>
+      <param name="filename">Имя файла</param>
+      <param name="bytes_per_row">Если файл имеет структуру строк/столбцов, в параметре указывается число байт в строке, в противном случае указывается 1</param>
+      <param name="row">Читаемая строка (начиная с 0)</param>
+      <param name="column">Читаемый столбец (начиная с 0)</param>
+      <returns>Байт из указанной позиции</returns>
+    </member>
+  </members>
+</doc>

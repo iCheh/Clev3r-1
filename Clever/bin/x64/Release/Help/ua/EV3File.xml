@@ -1,0 +1,99 @@
+﻿<?xml version="1.0"?>
+<doc>
+  <members>
+    <member name="T:EV3File">
+      <summary>
+        Операції у файловій системі EV3 для читання/запису даних. Шлях до файлів може бути вказаний повністю (абсолютний шлях, наприклад "/home/root/lms2012/prjs/TEST/test.dat"), або щодо папки prjs ("TEST / test.dat"). При написанні шляху до файлу необхідно враховувати регістр.
+      </summary>
+    </member>
+    <member name="M:OpenWrite">
+      <summary>
+        Відкриває файл для перезапису. Якщо файл не існує, він буде створений.
+      </summary>
+      <param name="filename">Ім'я файлу для створення/перезапису</param>
+      <returns>Номер, що ідентифікує даний відкритий файл (file handle)</returns>
+    </member>
+    <member name="M:OpenAppend">
+      <summary>
+        Відкриває файл для додавання в нього даних. Якщо файл не існує, він буде створений.
+      </summary>
+      <param name="filename">Ім'я файлу для створення / добавлення даних</param>
+      <returns>Ідентифікатор файлу, або 0 в разі відсутності файлу</returns>
+    </member>
+    <member name="M:OpenRead">
+      <summary>
+        Відкриває файл для читання.
+      </summary>
+      <param name="filename">Ім'я файлу для читання</param>
+      <returns>Ідентифікатор файлу, або 0 в разі відсутності файлу</returns>
+    </member>
+    <member name="M:Close">
+      <summary>
+        Закриває відкритий файл.
+      </summary>
+      <param name="handle">Ідентифікатор файлу</param>
+    </member>
+    <member name="M:WriteLine">
+      <summary>
+        Записує текстовий рядок в файл. Рядок буде записаний в кодуванні ISO-8859-1 і буде закінчуватися символом нового рядка (код 10).
+      </summary>
+      <param name="handle">Ідентифікатор файлу, отриманий в момент відкриття файлу</param>
+      <param name="text">Текст для запису до файлу</param>
+    </member>
+    <member name="M:WriteByte">
+      <summary>
+        Записує один байт даних до файлу.
+      </summary>
+      <param name="handle">Ідентифікатор файлу, отриманий у момент відкриття файлу</param>
+      <param name="data">Один байт для запису (значення від 0 до 255).</param>
+    </member>
+    <member name="M:ReadLine">
+      <summary>
+        Прочитати текстовий рядок з файлу. Рядок буде прочитаний в кодуванні ISO-8859-1 і має закінчуватися символом нового рядка (код 10).
+      </summary>
+      <param name="handle">Ідентифікатор файлу, отриманий у момент відкриття файлу</param>
+      <returns>Текстовий рядок, прочитаний з поточного рядка файлу</returns>
+    </member>
+    <member name="M:ReadByte">
+      <summary>
+        Прочитати один байт з файлу.
+      </summary>
+      <param name="handle">Ідентифікатор файлу, отриманий у момент відкриття файлу</param>
+      <returns>Наступний за рахунком байт з файлу</returns>
+    </member>
+    <member name="M:ReadNumberArray">
+      <summary>
+        Читає масив чисел з бінарного файлу. Числа будуть розкодовані з використанням кодування IEEE як тип Float з одинарною точністю.
+      </summary>
+      <param name="handle">Ідентифікатор файлу, отриманий у момент відкриття файлу</param>
+      <param name="size">Розмір масиву, який буде прочитано</param>
+      <returns>Масив чисел зазначеного розміру</returns>
+    </member>
+    <member name="M:ConvertToNumber">
+      <summary>
+        Конвертація тексту в число.
+      </summary>
+      <param name="text">Текст, що містить число, може містити також дробову частину числа</param>
+      <returns>Число</returns>
+    </member>
+    <member name="M:WriteNumberArray">
+      <summary>
+          Записує масив чисел до бінарного файлу. Числа будуть закодовані з використанням кодування IEEE як тип Float з одинарною точністю.
+        </summary>
+        <param name="handle">iдентифікатор файлу, отриманий у момент відкриття файлу</param>
+        <param name="size">кiлькiсть значень для запису</param>
+        <param name="data">масив чисел</param>
+    </member>
+    <member name="M:TableLookup">
+      <summary>
+        Функція призначена для читання байт з потенційно величезних файлів, які занадто великі, щоб їх можна було передати до пам'яті цілком.
+        Оскільки файл може бути настільки великий, що чисельної адресації буде недостатньо, запроваджуються параметри рядок/стовпець.
+      </summary>
+      <param name="filename">Ім'я файлу</param>
+      <param name="bytes_per_row">Якщо файл має структуру рядків/стовпців, в параметрі вказується число байт в рядку, в іншому випадку вказується 1</param>
+      <param name="row">Рядок, що читається (починаючи з 0)</param>
+      <param name="column">Стовпець, що читається (починаючи з 0)</param>
+      <returns>Байт з вказаної позиції</returns>
+    </member>
+  </members>
+</doc>

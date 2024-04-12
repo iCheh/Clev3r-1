@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<doc>
+  <members>
+    <member name="T:Assert">
+      <summary>
+        A test facility to help check part of the code for correctness. 
+        Assertions make implicit assumptions about the current program state explicit. By adding assertion calls you can find bugs in your program more easily. For example, when a part of the program depends on the variable A having a positive value, you could call  Assert.Greater(A,0,"A must be > 0!"). 
+        In the case that the program runs into an assertion that is not satisfied, the error message is displayed stating the problem.
+      </summary>
+    </member>
+    <member name="M:Failed">
+      <summary>
+        Write a failure message to the display. This function should only be called if something has already failed in the program. 
+      </summary>
+      <param name="message">Message to be displayed</param>
+    </member>
+    <member name="M:Equal">
+      <summary>
+        Make sure that two values are equal. For this test, even "True" and "tRue" are not considered equal.
+      </summary>
+      <param name="a">First value</param>
+      <param name="b">Second value</param>
+      <param name="message">Message that will be displayed if the assertion fails</param>
+    </member>
+    <member name="M:NotEqual">
+      <summary>
+        Make sure that two values are not equal. For this test, even "True" and "tRue" are not considered equal.
+      </summary>
+      <param name="a">First value</param>
+      <param name="b">Second value</param>
+      <param name="message">Message that will be displayed if the assertion fails</param>
+    </member>
+    <member name="M:Less">
+      <summary>
+        Make sure that the first number is less than the second.
+      </summary>
+      <param name="a">First value</param>
+      <param name="b">Second value</param>
+      <param name="message">Message that will be displayed if the assertion fails</param>
+    </member>
+    <member name="M:Greater">
+      <summary>
+        Make sure that the first number is greater than the second.
+      </summary>
+      <param name="a">First value</param>
+      <param name="b">Second value</param>
+      <param name="message">Message that will be displayed if the assertion fails</param>
+    </member>
+    <member name="M:LessEqual">
+      <summary>
+        Make sure that the first number is less than or equal to the second.
+      </summary>
+      <param name="a">First value</param>
+      <param name="b">Second value</param>
+      <param name="message">Message that will be displayed if the assertion fails</param>
+    </member>
+    <member name="M:GreaterEqual">
+      <summary>
+        Make sure that the first number is greater than or equal to the second.
+      </summary>
+      <param name="a">First value</param>
+      <param name="b">Second value</param>
+      <param name="message">Message that will be displayed if the assertion fails</param>
+    </member>
+    <member name="M:Near">
+      <summary>
+        Make sure that the two numbers are nearly identical. This can be used for fractional numbers with many decimal places where the computation could give slightly different results because of rounding issues.
+      </summary>
+      <param name="a">First value</param>
+      <param name="b">Second value</param>
+      <param name="message">Message that will be displayed if the assertion fails</param>
+    </member>
+  </members>
+</doc>

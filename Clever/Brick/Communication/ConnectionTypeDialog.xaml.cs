@@ -16,9 +16,12 @@
 */
 using Clever.ViewModel;
 using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.Net;
 using System.Windows;
 using System.Windows.Input;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Clever.Brick.Communication
 {
@@ -28,18 +31,16 @@ namespace Clever.Brick.Communication
     public partial class ConnectionTypeDialog : Window
     {
         private int[] usbdevices;
-        private String[] ports;
         private IPAddress[] addresses;
         private object selected;
+        private Dictionary<int, int> ports;
 
-        public ConnectionTypeDialog(int[] usbdevices, String[] ports, IPAddress[] addresses, String preferred)
+        public ConnectionTypeDialog(int[] usbdevices, IPAddress[] addresses)
         {
             this.usbdevices = usbdevices;
-            this.ports = ports;
             this.addresses = addresses;
             this.selected = null;
-
-            int pref = 0;
+            this.ports = new Dictionary<int, int>();
 
             InitializeComponent();
 
@@ -47,54 +48,59 @@ namespace Clever.Brick.Communication
             butCancel.Text = MainWindowVM.GetLocalization["dButCancel"];
             butRetry.Text = MainWindowVM.GetLocalization["dButRetry"];
 
+            int globInd = 0;
+            int curComInd = 0;
+            int curUsbInd = 0;
+            int curWifiInd = 0;
+
+            foreach (var p in ConObjList.ConCOMList)
+            {
+                PortList.Items.Add(p.Name);
+                ports.Add(globInd, curComInd);
+                globInd++;
+                curComInd++;
+            }
+
             foreach (int i in usbdevices)
             {
-                String txt = "USB " + i;
-                if (txt.Equals(preferred))
-                {
-                    pref = PortList.Items.Count;
-                }
+                string txt = "USB " + i;
                 PortList.Items.Add(txt);
+                ports.Add(globInd, curUsbInd);
+                globInd++;
+                curUsbInd++;
             }
-            foreach (String p in ports)
-            {
-                if (p.Equals(preferred))
-                {
-                    pref = PortList.Items.Count;
-                }
-                PortList.Items.Add(p);
-            }
+            
             foreach (IPAddress a in addresses)
             {
-                String txt = a.ToString();
-                if (txt.Equals(preferred))
-                {
-                    pref = PortList.Items.Count;
-                }
+                string txt = a.ToString();
                 PortList.Items.Add(txt);
+                ports.Add(globInd, curWifiInd);
+                globInd++;
+                curWifiInd++;
             }
 
             if (PortList.Items.Count > 0)
             {
                 PortList.Focus();
-                PortList.SelectedIndex = pref;
+                PortList.SelectedIndex = 0;
             }
         }
 
         public object GetSelectedPort()
         {
+            //MessageBox.Show("return - " + selected);
             return selected;
         }
 
         private void CancelButton_clicked(object sender, System.Windows.RoutedEventArgs e)
         {
+            selected = null;
             Close();
         }
 
         private void RetryButton_clicked(object sender, System.Windows.RoutedEventArgs e)
         {
-            selected = true;
-            Close();
+            SetSelected();
         }
 
         private void WiFiButton_clicked(object sender, System.Windows.RoutedEventArgs e)
@@ -112,30 +118,41 @@ namespace Clever.Brick.Communication
 
         private void PortList_selected(Object sender, EventArgs e)
         {
-            int idx = PortList.SelectedIndex;
-            if (idx >= 0 && idx < usbdevices.Length)
-            {
-                selected = usbdevices[idx];
-                Close();
-            }
-            else if (idx >= usbdevices.Length && idx < usbdevices.Length + ports.Length)
-            {
-                selected = ports[idx - usbdevices.Length];
-                Close();
-            }
-            else if (idx >= usbdevices.Length + ports.Length && idx < usbdevices.Length + ports.Length + addresses.Length)
-            {
-                selected = addresses[idx - usbdevices.Length - ports.Length];
-                Close();
-            }
+            SetSelected();
         }
 
         private void PortList_keydown(Object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
             {
-                PortList_selected(sender, e);
+                SetSelected();
             }
+        }
+
+        private void SetSelected()
+        {
+            int idx = PortList.SelectedIndex;
+
+            selected = null;
+
+            if (idx <= ports.Count)
+            {
+                if (idx >= 0 && idx < ConObjList.ConCOMList.Count)
+                {
+                    selected = ConObjList.ConCOMList[ports[idx]].ComPort;
+                }
+                else if (idx >= ConObjList.ConCOMList.Count && idx < usbdevices.Length + ConObjList.ConCOMList.Count)
+                {
+                    selected = usbdevices[ports[idx]];
+                }
+                else if (idx >= usbdevices.Length + ConObjList.ConCOMList.Count && idx < usbdevices.Length + ConObjList.ConCOMList.Count + addresses.Length)
+                {
+                    selected = addresses[ports[idx]];
+                }
+            }
+
+            Close();
+            
         }
     }
 }

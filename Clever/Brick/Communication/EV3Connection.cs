@@ -14,6 +14,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+using Clever.ViewModel;
 using System;
 
 namespace Clever.Brick.Communication
@@ -169,7 +170,7 @@ namespace Clever.Brick.Communication
         }
 
 
-        public void CreateEV3File(String fullname, byte[] content)
+        public void CreateEV3File(string fullname, byte[] content)
         {
 
             int chunksize = 900;
@@ -227,7 +228,7 @@ namespace Clever.Brick.Communication
             }
         }
 
-        public byte[] ReadEV3File(String fullname, ByteCodeBuffer pingercommand = null)
+        public byte[] ReadEV3File(string fullname, ByteCodeBuffer pingercommand = null)
         {
             long nextping = DateTime.Now.Ticks + 500;
             int chunksize = 900;
@@ -298,6 +299,93 @@ namespace Clever.Brick.Communication
             }
 
             return buffer;
+        }
+
+
+        internal string GetEV3DeviceName()
+        {
+            string devicename = "?";
+            try
+            {
+                ByteCodeBuffer c = new ByteCodeBuffer();
+                c.OP(0xD3);         // Com_Get
+                c.CONST(0x0D);      // GET_BRICKNAME = 0x0D
+                c.CONST(127);       // maximum string length
+                c.GLOBVAR(0);       // where to store name
+                byte[] response = DirectCommand(c, 128, 0);
+
+                
+                if (response != null && response.Length > 1)
+                {
+                    // find the null-termination
+                    for (int len = 0; len < response.Length; len++)
+                    {
+                        if (response[len] == 0)
+                        {
+                            // extract the message text
+                            char[] msg = new char[len];
+                            for (int i = 0; i < len; i++)
+                            {
+                                msg[i] = (char)response[i];
+                            }
+                            devicename = new string(msg);
+                            break;
+                        }
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                
+            }
+
+            return devicename;
+        }
+
+        internal string GetEV3BluetoothAdress()
+        {
+            string deviceID = "?";
+            try
+            {
+                ByteCodeBuffer c = new ByteCodeBuffer();
+                c.OP(0xD3);         // Com_Get
+                c.CONST(0x0C);      // GET_ID = 0x0C
+                //1: USB communication(Client interface)
+                //2: Bluetooth communication interface
+                //3: WiFi communication interface
+                c.CONST(0x02);      // Bluetooth
+                c.CONST(127);       // maximum string length
+                c.GLOBVAR(0);       // where to store name
+                byte[] response = DirectCommand(c, 128, 0);
+
+
+                if (response != null && response.Length > 1)
+                {
+                    // find the null-termination
+                    for (int len = 0; len < response.Length; len++)
+                    {
+                        if (response[len] == 0)
+                        {
+                            // extract the message text
+                            char[] msg = new char[len];
+                            for (int i = 0; i < len; i++)
+                            {
+                                msg[i] = (char)response[i];
+                            }
+                            deviceID = new string(msg);
+                            break;
+                        }
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            return deviceID;
         }
 
     }

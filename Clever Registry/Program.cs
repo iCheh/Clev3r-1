@@ -8,22 +8,26 @@ namespace Clever_Registry
 {
     class Program
     {
+        const string FILE_EXTENSION_1 = ".bp";
+        const string FILE_EXTENSION_2 = ".bpi";
+        const string FILE_EXTENSION_3 = ".bpm";
+        const string EXTENSION_1_OPEN_KEY = "bp_file";
+        const string EXTENSION_2_OPEN_KEY = "bpi_file";
+        const string EXTENSION_3_OPEN_KEY = "bpm_file";
+        const int SHCNE_ASSOCCHANGED = 0x8000000;
+        const uint SHCNF_IDLIST = 0x0U;
+        static string appName = "Clever";
+        static string appPath = "";
+        static string appGUID = "";
+        static string appMode = "";
+
+        static string bpIcon = "";
+        static string bpiIcon = "";
+        static string bpmIcon = "";
+
         static int Main(string[] args)
         {
-            const string FILE_EXTENSION_1 = ".bp";
-            const string FILE_EXTENSION_2 = ".bpi";
-            const string FILE_EXTENSION_3 = ".bpm";
-            const string EXTENSION_1_OPEN_KEY = "bp_file";
-            const string EXTENSION_2_OPEN_KEY = "bpi_file";
-            const string EXTENSION_3_OPEN_KEY = "bpm_file";
-            const int SHCNE_ASSOCCHANGED = 0x8000000;
-            const uint SHCNF_IDLIST = 0x0U;
-            string appName = "Clever";
-            string appPath = "";
-            string appGUID = "";
-            string appMode = "";
-
-            if (args.Length != 3)
+            if (args.Length > 3)
             {
                 for (int i = 0; i < args.Length; i++)
                 {
@@ -52,9 +56,9 @@ namespace Clever_Registry
                 appMode = args[2];
             }
 
-            string bpIcon = appPath.Replace("Clever.exe", "Icons\\bp.ico");
-            string bpiIcon = appPath.Replace("Clever.exe", "Icons\\bpi.ico");
-            string bpmIcon = appPath.Replace("Clever.exe", "Icons\\bpm.ico");
+            bpIcon = appPath.Replace("Clever.exe", "Icons\\bp.ico");
+            bpiIcon = appPath.Replace("Clever.exe", "Icons\\bpi.ico");
+            bpmIcon = appPath.Replace("Clever.exe", "Icons\\bpm.ico");
 
             FileInfo fiP = new FileInfo(appPath);
             FileInfo fiBp = new FileInfo(bpIcon);
@@ -128,201 +132,154 @@ namespace Clever_Registry
                 return 1;
             }
 
-            bool reg = true;
-            if (appMode == "r") { reg = true; }
-            else if (appMode == "u") { reg = false; }
-
             try
             {
-                if (reg)
+                var r = 0;
+                if (appMode == "r")
                 {
-
-                    using (RegistryKey key = Registry.ClassesRoot.OpenSubKey("", true))
-                    {
-                        key.CreateSubKey(FILE_EXTENSION_1).SetValue("", EXTENSION_1_OPEN_KEY);
-                        if (Registry.ClassesRoot.OpenSubKey(FILE_EXTENSION_1, false) != null)
-                        {
-                            Console.WriteLine(".bp key create in Registry.");
-                        }
-                        else
-                        {
-                            Console.WriteLine(".bp key not create in Registry.");
-                        }
-                        key.CreateSubKey(EXTENSION_1_OPEN_KEY).SetValue("", appName + " \"BP\"");
-                        if (Registry.ClassesRoot.OpenSubKey(EXTENSION_1_OPEN_KEY, false) != null)
-                        {
-                            Console.WriteLine("bp_file key create in Registry.");
-                        }
-                        else
-                        {
-                            Console.WriteLine("bp_file key not create in Registry.");
-                        }
-                        key.CreateSubKey(EXTENSION_1_OPEN_KEY + @"\DefaultIcon").SetValue("", ToShortPathName(bpIcon));
-                        if (Registry.ClassesRoot.OpenSubKey(EXTENSION_1_OPEN_KEY + @"\DefaultIcon", false) != null)
-                        {
-                            Console.WriteLine("Icon .bp path create in Registry.");
-                        }
-                        else
-                        {
-                            Console.WriteLine("Icon .bp path not create in Registry.");
-                        }
-                        key.CreateSubKey(EXTENSION_1_OPEN_KEY + @"\Shell\Open\Command").SetValue("", ToShortPathName(appPath) + " \"%1\"");
-                        if (Registry.ClassesRoot.OpenSubKey(EXTENSION_1_OPEN_KEY + @"\Shell\Open\Command", false) != null)
-                        {
-                            Console.WriteLine("Command for open .bp file create in Registry.");
-                        }
-                        else
-                        {
-                            Console.WriteLine("Command for open .bp file not create in Registry.");
-                        }
-
-                        key.CreateSubKey(FILE_EXTENSION_2).SetValue("", EXTENSION_2_OPEN_KEY);
-                        if (Registry.ClassesRoot.OpenSubKey(FILE_EXTENSION_2, false) != null)
-                        {
-                            Console.WriteLine(".bpi key create in Registry.");
-                        }
-                        else
-                        {
-                            Console.WriteLine(".bpi key not create in Registry.");
-                        }
-                        key.CreateSubKey(EXTENSION_2_OPEN_KEY).SetValue("", appName + " \"BPI\"");
-                        if (Registry.ClassesRoot.OpenSubKey(EXTENSION_2_OPEN_KEY, false) != null)
-                        {
-                            Console.WriteLine("bpi_file key create in Registry.");
-                        }
-                        else
-                        {
-                            Console.WriteLine("bpi_file key not create in Registry.");
-                        }
-                        key.CreateSubKey(EXTENSION_2_OPEN_KEY + @"\DefaultIcon").SetValue("", ToShortPathName(bpiIcon));
-                        if (Registry.ClassesRoot.OpenSubKey(EXTENSION_2_OPEN_KEY + @"\DefaultIcon", false) != null)
-                        {
-                            Console.WriteLine("Icon .bpi path create in Registry.");
-                        }
-                        else
-                        {
-                            Console.WriteLine("Icon .bpi path not create in Registry.");
-                        }
-                        key.CreateSubKey(EXTENSION_2_OPEN_KEY + @"\Shell\Open\Command").SetValue("", ToShortPathName(appPath) + " \"%1\"");
-                        if (Registry.ClassesRoot.OpenSubKey(EXTENSION_2_OPEN_KEY + @"\Shell\Open\Command", false) != null)
-                        {
-                            Console.WriteLine("Command for open .bpi file create in Registry.");
-                        }
-                        else
-                        {
-                            Console.WriteLine("Command for open .bpi file not create in Registry.");
-                        }
-
-                        key.CreateSubKey(FILE_EXTENSION_3).SetValue("", EXTENSION_3_OPEN_KEY);
-                        if (Registry.ClassesRoot.OpenSubKey(FILE_EXTENSION_3, false) != null)
-                        {
-                            Console.WriteLine(".bpm key create in Registry.");
-                        }
-                        else
-                        {
-                            Console.WriteLine(".bpm key not create in Registry.");
-                        }
-                        key.CreateSubKey(EXTENSION_3_OPEN_KEY).SetValue("", appName + " \"BPM\"");
-                        if (Registry.ClassesRoot.OpenSubKey(EXTENSION_3_OPEN_KEY, false) != null)
-                        {
-                            Console.WriteLine("bpm_file key create in Registry.");
-                        }
-                        else
-                        {
-                            Console.WriteLine("bpm_file key not create in Registry.");
-                        }
-                        key.CreateSubKey(EXTENSION_3_OPEN_KEY + @"\DefaultIcon").SetValue("", ToShortPathName(bpmIcon));
-                        if (Registry.ClassesRoot.OpenSubKey(EXTENSION_3_OPEN_KEY + @"\DefaultIcon", false) != null)
-                        {
-                            Console.WriteLine("Icon .bpm path create in Registry.");
-                        }
-                        else
-                        {
-                            Console.WriteLine("Icon .bpm path not create in Registry.");
-                        }
-                        key.CreateSubKey(EXTENSION_3_OPEN_KEY + @"\Shell\Open\Command").SetValue("", ToShortPathName(appPath) + " \"%1\"");
-                        if (Registry.ClassesRoot.OpenSubKey(EXTENSION_3_OPEN_KEY + @"\Shell\Open\Command", false) != null)
-                        {
-                            Console.WriteLine("Command for open .bpm file create in Registry.");
-                        }
-                        else
-                        {
-                            Console.WriteLine("Command for open .bpm file not create in Registry.");
-                        }
-
-                        SHChangeNotify(SHCNE_ASSOCCHANGED, SHCNF_IDLIST, IntPtr.Zero, IntPtr.Zero);
-                        Console.WriteLine("");
-                        Console.WriteLine("For exit press any key.");
-                        Console.ReadKey();
-                        return 0;
-                    }
+                    r = Reg();
                 }
-                else
+                else if (appMode == "u")
                 {
+                    r = UnReg();
+                }
+                else if (appMode == "a")
+                {
+                    r = UnReg();
+                    if (r == 0)
+                        r = Reg();
+                }
+                return r;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                Console.ReadLine();
+                return 1;
+            }
+        }
+
+        private static int Reg()
+        {
+            try
+            {
+                using (RegistryKey key = Registry.ClassesRoot.OpenSubKey("", true))
+                {
+                    key.CreateSubKey(FILE_EXTENSION_1).SetValue("", EXTENSION_1_OPEN_KEY);
                     if (Registry.ClassesRoot.OpenSubKey(FILE_EXTENSION_1, false) != null)
                     {
-                        Registry.ClassesRoot.DeleteSubKeyTree(FILE_EXTENSION_1);
-                        Console.WriteLine(".bp key delete in Registry.");
+                        Console.WriteLine(".bp key create in Registry.");
                     }
                     else
                     {
-                        Console.WriteLine(".bp key not found in Registry.");
+                        Console.WriteLine(".bp key not create in Registry.");
                     }
-
-                    if (Registry.ClassesRoot.OpenSubKey(FILE_EXTENSION_2, false) != null)
-                    {
-                        Registry.ClassesRoot.DeleteSubKeyTree(FILE_EXTENSION_2);
-                        Console.WriteLine(".bpi key delete in Registry.");
-                    }
-                    else
-                    {
-                        Console.WriteLine(".bpi key not found in Registry.");
-                    }
-
-                    if (Registry.ClassesRoot.OpenSubKey(FILE_EXTENSION_3, false) != null)
-                    {
-                        Registry.ClassesRoot.DeleteSubKeyTree(FILE_EXTENSION_3);
-                        Console.WriteLine(".bpm key delete in Registry.");
-                    }
-                    else
-                    {
-                        Console.WriteLine(".bpm key not found in Registry.");
-                    }
-
+                    key.CreateSubKey(EXTENSION_1_OPEN_KEY).SetValue("", appName + " \"BP\"");
                     if (Registry.ClassesRoot.OpenSubKey(EXTENSION_1_OPEN_KEY, false) != null)
                     {
-                        Registry.ClassesRoot.DeleteSubKeyTree(EXTENSION_1_OPEN_KEY);
-                        Console.WriteLine("bp_file key delete in Registry.");
+                        Console.WriteLine("bp_file key create in Registry.");
                     }
                     else
                     {
-                        Console.WriteLine("bp_file key not found in Registry.");
+                        Console.WriteLine("bp_file key not create in Registry.");
+                    }
+                    key.CreateSubKey(EXTENSION_1_OPEN_KEY + @"\DefaultIcon").SetValue("", ToShortPathName(bpIcon));
+                    if (Registry.ClassesRoot.OpenSubKey(EXTENSION_1_OPEN_KEY + @"\DefaultIcon", false) != null)
+                    {
+                        Console.WriteLine("Icon .bp path create in Registry.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Icon .bp path not create in Registry.");
+                    }
+                    key.CreateSubKey(EXTENSION_1_OPEN_KEY + @"\Shell\Open\Command").SetValue("", ToShortPathName(appPath) + " \"%1\"");
+                    if (Registry.ClassesRoot.OpenSubKey(EXTENSION_1_OPEN_KEY + @"\Shell\Open\Command", false) != null)
+                    {
+                        Console.WriteLine("Command for open .bp file create in Registry.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Command for open .bp file not create in Registry.");
                     }
 
+                    key.CreateSubKey(FILE_EXTENSION_2).SetValue("", EXTENSION_2_OPEN_KEY);
+                    if (Registry.ClassesRoot.OpenSubKey(FILE_EXTENSION_2, false) != null)
+                    {
+                        Console.WriteLine(".bpi key create in Registry.");
+                    }
+                    else
+                    {
+                        Console.WriteLine(".bpi key not create in Registry.");
+                    }
+                    key.CreateSubKey(EXTENSION_2_OPEN_KEY).SetValue("", appName + " \"BPI\"");
                     if (Registry.ClassesRoot.OpenSubKey(EXTENSION_2_OPEN_KEY, false) != null)
                     {
-                        Registry.ClassesRoot.DeleteSubKeyTree(EXTENSION_2_OPEN_KEY);
-                        Console.WriteLine("bpi_file key delete in Registry.");
+                        Console.WriteLine("bpi_file key create in Registry.");
                     }
                     else
                     {
-                        Console.WriteLine("bpi_file not found in Registry.");
+                        Console.WriteLine("bpi_file key not create in Registry.");
+                    }
+                    key.CreateSubKey(EXTENSION_2_OPEN_KEY + @"\DefaultIcon").SetValue("", ToShortPathName(bpiIcon));
+                    if (Registry.ClassesRoot.OpenSubKey(EXTENSION_2_OPEN_KEY + @"\DefaultIcon", false) != null)
+                    {
+                        Console.WriteLine("Icon .bpi path create in Registry.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Icon .bpi path not create in Registry.");
+                    }
+                    key.CreateSubKey(EXTENSION_2_OPEN_KEY + @"\Shell\Open\Command").SetValue("", ToShortPathName(appPath) + " \"%1\"");
+                    if (Registry.ClassesRoot.OpenSubKey(EXTENSION_2_OPEN_KEY + @"\Shell\Open\Command", false) != null)
+                    {
+                        Console.WriteLine("Command for open .bpi file create in Registry.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Command for open .bpi file not create in Registry.");
                     }
 
+                    key.CreateSubKey(FILE_EXTENSION_3).SetValue("", EXTENSION_3_OPEN_KEY);
+                    if (Registry.ClassesRoot.OpenSubKey(FILE_EXTENSION_3, false) != null)
+                    {
+                        Console.WriteLine(".bpm key create in Registry.");
+                    }
+                    else
+                    {
+                        Console.WriteLine(".bpm key not create in Registry.");
+                    }
+                    key.CreateSubKey(EXTENSION_3_OPEN_KEY).SetValue("", appName + " \"BPM\"");
                     if (Registry.ClassesRoot.OpenSubKey(EXTENSION_3_OPEN_KEY, false) != null)
                     {
-                        Registry.ClassesRoot.DeleteSubKeyTree(EXTENSION_3_OPEN_KEY);
-                        Console.WriteLine("bpm_file key delete in Registry.");
+                        Console.WriteLine("bpm_file key create in Registry.");
                     }
                     else
                     {
-                        Console.WriteLine("bpm_file key not found in Registry.");
+                        Console.WriteLine("bpm_file key not create in Registry.");
+                    }
+                    key.CreateSubKey(EXTENSION_3_OPEN_KEY + @"\DefaultIcon").SetValue("", ToShortPathName(bpmIcon));
+                    if (Registry.ClassesRoot.OpenSubKey(EXTENSION_3_OPEN_KEY + @"\DefaultIcon", false) != null)
+                    {
+                        Console.WriteLine("Icon .bpm path create in Registry.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Icon .bpm path not create in Registry.");
+                    }
+                    key.CreateSubKey(EXTENSION_3_OPEN_KEY + @"\Shell\Open\Command").SetValue("", ToShortPathName(appPath) + " \"%1\"");
+                    if (Registry.ClassesRoot.OpenSubKey(EXTENSION_3_OPEN_KEY + @"\Shell\Open\Command", false) != null)
+                    {
+                        Console.WriteLine("Command for open .bpm file create in Registry.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Command for open .bpm file not create in Registry.");
                     }
 
+                    SHChangeNotify(SHCNE_ASSOCCHANGED, SHCNF_IDLIST, IntPtr.Zero, IntPtr.Zero);
                     Console.WriteLine("");
                     Console.WriteLine("For exit press any key.");
                     Console.ReadKey();
-
                     return 0;
                 }
             }
@@ -332,6 +289,75 @@ namespace Clever_Registry
                 Console.ReadLine();
                 return 1;
             }
+        }
+
+        private static int UnReg()
+        {
+            if (Registry.ClassesRoot.OpenSubKey(FILE_EXTENSION_1, false) != null)
+            {
+                Registry.ClassesRoot.DeleteSubKeyTree(FILE_EXTENSION_1);
+                Console.WriteLine(".bp key delete in Registry.");
+            }
+            else
+            {
+                Console.WriteLine(".bp key not found in Registry.");
+            }
+
+            if (Registry.ClassesRoot.OpenSubKey(FILE_EXTENSION_2, false) != null)
+            {
+                Registry.ClassesRoot.DeleteSubKeyTree(FILE_EXTENSION_2);
+                Console.WriteLine(".bpi key delete in Registry.");
+            }
+            else
+            {
+                Console.WriteLine(".bpi key not found in Registry.");
+            }
+
+            if (Registry.ClassesRoot.OpenSubKey(FILE_EXTENSION_3, false) != null)
+            {
+                Registry.ClassesRoot.DeleteSubKeyTree(FILE_EXTENSION_3);
+                Console.WriteLine(".bpm key delete in Registry.");
+            }
+            else
+            {
+                Console.WriteLine(".bpm key not found in Registry.");
+            }
+
+            if (Registry.ClassesRoot.OpenSubKey(EXTENSION_1_OPEN_KEY, false) != null)
+            {
+                Registry.ClassesRoot.DeleteSubKeyTree(EXTENSION_1_OPEN_KEY);
+                Console.WriteLine("bp_file key delete in Registry.");
+            }
+            else
+            {
+                Console.WriteLine("bp_file key not found in Registry.");
+            }
+
+            if (Registry.ClassesRoot.OpenSubKey(EXTENSION_2_OPEN_KEY, false) != null)
+            {
+                Registry.ClassesRoot.DeleteSubKeyTree(EXTENSION_2_OPEN_KEY);
+                Console.WriteLine("bpi_file key delete in Registry.");
+            }
+            else
+            {
+                Console.WriteLine("bpi_file not found in Registry.");
+            }
+
+            if (Registry.ClassesRoot.OpenSubKey(EXTENSION_3_OPEN_KEY, false) != null)
+            {
+                Registry.ClassesRoot.DeleteSubKeyTree(EXTENSION_3_OPEN_KEY);
+                Console.WriteLine("bpm_file key delete in Registry.");
+            }
+            else
+            {
+                Console.WriteLine("bpm_file key not found in Registry.");
+            }
+
+            Console.WriteLine("");
+            Console.WriteLine("For exit press any key.");
+            Console.ReadKey();
+
+            return 0;
         }
 
         [DllImport("shell32.dll", SetLastError = true)]

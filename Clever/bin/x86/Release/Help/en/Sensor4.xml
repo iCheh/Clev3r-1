@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<doc>
+  <members>
+    <member name="T:Sensor4">
+      <summary>
+        Access sensors that are attached to the brick.
+        To specify the sensor use the port number which is printed below the socket on the brick (for example 1).
+        To access sensors of further bricks that are connected via daisy-chaining, use the next higher numbers instead (5 - 8 will access the sensors on the first daisy-chained brick, 9-12 the sensors on the next one and so on).
+      </summary>
+    </member>
+    <member name="M:Raw1">
+      <summary>
+        Similar to ReadRawValue, but returns only a first raw value for port 4. Has a high data return rate.
+      </summary>
+      <returns>First element of a raw sensor reading</returns>
+    </member>
+    <member name="M:Raw3">
+      <summary>
+        Gets three raw values for port 4
+      </summary>
+      <param name="var1">The variable in which the first value will be written.</param>
+      <param name="var2">The variable in which the second value will be written.</param>
+      <param name="var3">The variable in which the third value will be written.</param>
+    </member>
+  </members>
+</doc>

@@ -181,6 +181,7 @@ namespace Clever.Model.Bplus
             HotKeyManager.AddHotKey(textArea, CommentFile, Keys.Q, true);
             HotKeyManager.AddHotKey(textArea, UnCommentFile, Keys.W, true);
             HotKeyManager.AddHotKey(textArea, FoldAll, Keys.G, true);
+            HotKeyManager.AddHotKey(textArea, FoldFunc, Keys.D, true);
             HotKeyManager.AddHotKey(textArea, context.FileNew, Keys.N, true);
             HotKeyManager.AddHotKey(textArea, context.FileOpen, Keys.O, true);
             HotKeyManager.AddHotKey(textArea, context.FileSave, Keys.S, true);
@@ -200,6 +201,7 @@ namespace Clever.Model.Bplus
             textArea.ClearCmdKey(Keys.Control | Keys.Shift | Keys.B);
             textArea.ClearCmdKey(Keys.Control | Keys.E);
             textArea.ClearCmdKey(Keys.Control | Keys.G);
+            textArea.ClearCmdKey(Keys.Control | Keys.D);
             textArea.ClearCmdKey(Keys.Control | Keys.A);
             textArea.ClearCmdKey(Keys.Control | Keys.Q);
             textArea.ClearCmdKey(Keys.Control | Keys.U);
@@ -395,6 +397,22 @@ namespace Clever.Model.Bplus
                 if (line.FoldLevelFlags == FoldLevelFlags.Header)
                 {
                     Lexer.FoldLine(line.Position);
+                }
+            }
+        }
+
+        public void FoldFunc()
+        {
+            foreach (var line in textArea.Lines)
+            {
+                if (line.FoldLevelFlags == FoldLevelFlags.Header)
+                {
+                    var lineNum = textArea.LineFromPosition(line.Position);
+                    var text = textArea.Lines[lineNum].Text.Trim().ToLower();
+                    if (text.IndexOf("function ") == 0 || text.IndexOf("sub ") == 0)
+                    {
+                        Lexer.FoldLine(line.Position);
+                    }
                 }
             }
         }

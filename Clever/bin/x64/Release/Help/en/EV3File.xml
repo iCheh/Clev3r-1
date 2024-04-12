@@ -1,0 +1,100 @@
+<?xml version="1.0"?>
+<doc>
+  <members>
+    <member name="T:EV3File">
+      <summary>
+        Access the file system on the EV3 brick to read or write data.
+        File names can be given either absolute (with a leading '/') to reach any file in the system, or relative to the 'prjs' folder.
+      </summary>
+    </member>
+    <member name="M:OpenWrite">
+      <summary>
+        Open a file for writing. When the file already exists, it will be overwritten.
+      </summary>
+      <param name="filename">Name of the file to create/overwrite</param>
+      <returns>A number that identifies this open file (a.k.a. file handle)</returns>
+    </member>
+    <member name="M:OpenAppend">
+      <summary>
+        Open a file for adding data. When the file does not exist, it will be created.
+      </summary>
+      <param name="filename">Name of the file to create/extend</param>
+      <returns>A number that identifies this open file (a.k.a. file handle)</returns>
+    </member>
+    <member name="M:OpenRead">
+      <summary>
+        Open a file for reading data. When the file does not exist, a 0 is returned.
+      </summary>
+      <param name="filename">Name of the file to read from</param>
+      <returns>A number that identifies this open file (a.k.a. file handle) or 0 if file does not exist</returns>
+    </member>
+    <member name="M:Close">
+      <summary>
+        Close an open file.
+      </summary>
+      <param name="handle">The file handle (previously obtained from an Open... call)</param>
+    </member>
+    <member name="M:WriteLine">
+      <summary>
+        Write one line of text to the file. The line will be encoded with ISO-8859-1 encoding and will be terminated with a newline-character (code 10).
+      </summary>
+      <param name="handle">The file handle (previously obtained from an Open... call)</param>
+      <param name="text">The text to write to the file</param>
+    </member>
+    <member name="M:WriteByte">
+      <summary>
+        Write a single byte of data to the file.
+      </summary>
+      <param name="handle">The file handle (previously obtained from an Open... call)</param>
+      <param name="data">One byte to write (value of 0 - 255)</param>
+    </member>
+    <member name="M:ReadLine">
+      <summary>
+        Read one line of text from the file. The line will be decoded using the ISO-8859-1 encoding and must be terminated with a newline-character (code 10).
+      </summary>
+      <param name="handle">The file handle (previously obtained from an Open... call)</param>
+      <returns>The text from the current line in the file</returns>
+    </member>
+    <member name="M:ReadByte">
+      <summary>
+        Read one byte of data from the file.
+      </summary>
+      <param name="handle">The file handle (previously obtained from an Open... call)</param>
+      <returns>The next byte from the file</returns>
+    </member>
+    <member name="M:ReadNumberArray">
+      <summary>
+        Read a whole array of numbers in binary form from the file. The numbers are encoded in IEEE single precision floating point representation.
+      </summary>
+      <param name="handle">The file handle (previously obtained from an Open... call)</param>
+      <param name="size">Number of values to read</param>
+      <returns>An array of size elements holding the values</returns>
+    </member>
+    <member name="M:WriteNumberArray">
+      <summary>
+        Write a whole array of numbers in binary fom to the file. The numbers are encoded in IEEE single precision floating point representation.
+      </summary>
+      <param name="handle">The file handle (previously obtained from an Open... call)</param>
+      <param name="size">Number of values to write</param>
+      <param name="data">Array holding the values</param>
+    </member>
+    <member name="M:ConvertToNumber">
+      <summary>
+        Utility function to convert a text to a number. 
+      </summary>
+      <param name="text">A text holding a number in decimal representation (with optional fractional digits)</param>
+      <returns>The number</returns>
+    </member>
+    <member name="M:TableLookup">
+      <summary>
+        Utility function to read bytes from potentially huge data files that are too big to be transfered to memory as a whole.
+        Because the file could be so big that the numerical precision of the normal numbers is not enough, a row/column addressing is possible.
+      </summary>
+      <param name="filename">The name of the file</param>
+      <param name="bytes_per_row">When the file has a row/column structure, this is the number of bytes in one row. Use 1 if not applicable.</param>
+      <param name="row">Which row to access (start with 0)</param>
+      <param name="column">Which column to access (start with 0)</param>
+      <returns>The byte on the denoted position</returns>
+    </member>
+  </members>
+</doc>

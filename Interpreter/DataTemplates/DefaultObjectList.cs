@@ -296,7 +296,7 @@ namespace Interpreter.DataTemplates
             Objects.Add("text.getsubtext", new DefaultSignature(ObjectType.METHOD, 3, new List<VariableType> { VariableType.ANY, VariableType.NUMBER, VariableType.NUMBER }, VariableType.STRING));
             Objects.Add("text.getsubtexttoend", new DefaultSignature(ObjectType.METHOD, 2, new List<VariableType> { VariableType.ANY, VariableType.NUMBER }, VariableType.STRING));
             Objects.Add("text.converttolowercase", new DefaultSignature(ObjectType.METHOD, 1, new List<VariableType> { VariableType.ANY }, VariableType.STRING));
-            Objects.Add("text.converttoappercase", new DefaultSignature(ObjectType.METHOD, 1, new List<VariableType> { VariableType.ANY }, VariableType.STRING));
+            Objects.Add("text.converttouppercase", new DefaultSignature(ObjectType.METHOD, 1, new List<VariableType> { VariableType.ANY }, VariableType.STRING));
             Objects.Add("text.getcharacter", new DefaultSignature(ObjectType.METHOD, 1, new List<VariableType> { VariableType.NUMBER }, VariableType.STRING));
             Objects.Add("text.getcharactercode", new DefaultSignature(ObjectType.METHOD, 1, new List<VariableType> { VariableType.ANY }, VariableType.NUMBER));
             Objects.Add("text.getindexof", new DefaultSignature(ObjectType.METHOD, 2, new List<VariableType> { VariableType.ANY, VariableType.ANY }, VariableType.NUMBER));

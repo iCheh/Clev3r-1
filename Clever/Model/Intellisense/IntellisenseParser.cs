@@ -708,7 +708,9 @@ namespace Clever.Model.Intellisense
                 "string[]",
                 "region",
                 "endregion",
-                "private"
+                "private",
+                "break",
+                "continue"
             };
 
             BPObjects = new HashSet<string>()

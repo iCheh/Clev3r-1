@@ -305,6 +305,25 @@ namespace Interpreter
             return Data.Project.FileFullName;
         }
 
+        public List<string> GetPrograms()
+        {
+            var outRes = new List<string>();
+
+            outRes.Add(Data.Project.Main.FullName);
+
+            foreach (var curPrg in Data.Project.Includes)
+            {
+                outRes.Add(curPrg.Value.FullName);
+            }
+
+            foreach (var curPrg in Data.Project.Modules)
+            {
+                outRes.Add(curPrg.Value.FullName);
+            }
+
+            return outRes;
+        }
+
         private void WriteToStream(List<string> outFile, Stream stream)
         {
             try

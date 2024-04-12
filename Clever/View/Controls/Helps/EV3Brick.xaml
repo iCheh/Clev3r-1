@@ -27,7 +27,7 @@
         </Grid>
 
         <StackPanel Orientation="Horizontal" Grid.Row="1" Height="19">
-            <brick_but:BrickFolderUp2 Margin="5,0,0,0" x:Name="EV3NavigateUp" PreviewMouseLeftButtonDown="EV3NavigateUp_PreviewMouseLeftButtonDown" VerticalAlignment="Center"/>
+            <brick_but:BrickFolderUp2 Margin="5,0,0,0" x:Name="EV3NavigateUp" PreviewMouseLeftButtonUp="EV3NavigateUp_PreviewMouseLeftButtonDown" VerticalAlignment="Center"/>
             <TextBlock x:Name="EV3Path" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Margin="2,0,0,0" ToolTip="{Binding Path=GetLocalization[tBrkCurDir]}" FontSize="12" FontFamily="Calibri" Foreground="{StaticResource text_current_path}"/>
         </StackPanel>
 
@@ -47,16 +47,16 @@
         <TextBlock x:Name="BrickNotFound" TextWrapping="Wrap" Text="" Margin="0" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
         <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Row="3" Margin="0,0,0,10">
-            <brick_but:BrickFolderUp1 Margin="10,0,0,0" x:Name="EV3NavigateUp2" PreviewMouseLeftButtonDown="EV3NavigateUp_PreviewMouseLeftButtonDown"/>
-            <brick_but:BrickNewFolder Margin="4,0,0,0" x:Name="NewFolder" PreviewMouseLeftButtonDown="NewFolder_PreviewMouseLeftButtonDown"/>
-            <brick_but:BrickDelete Margin="4,0,0,0" x:Name="DeleteFile" PreviewMouseLeftButtonDown="DeleteFile_PreviewMouseLeftButtonDown"/>
-            <brick_but:BrickUpload1 Margin="4,0,0,0" x:Name="Upload" PreviewMouseLeftButtonDown="Upload_PreviewMouseLeftButtonDown"/>
-            <brick_but:BrickPreview Margin="4,0,0,0" x:Name="Preview" PreviewMouseLeftButtonDown="Preview_PreviewMouseLeftButtonDown"/>
-            <brick_but:BrickDownload Margin="4,0,0,0" x:Name="Download" PreviewMouseLeftButtonDown="Download_PreviewMouseLeftButtonDown"/>
-            <brick_but:BrickCompile Margin="4,0,0,0" x:Name="Compile" PreviewMouseLeftButtonDown="Compile_PreviewMouseLeftButtonDown"/>
-            <brick_but:BrickCompileAndRun Margin="4,0,0,0" x:Name="CompileAndRun" PreviewMouseLeftButtonDown="CompileAndRun_PreviewMouseLeftButtonDown"/>
+            <brick_but:BrickFolderUp1 Margin="10,0,0,0" x:Name="EV3NavigateUp2" PreviewMouseLeftButtonUp="EV3NavigateUp_PreviewMouseLeftButtonDown"/>
+            <brick_but:BrickNewFolder Margin="4,0,0,0" x:Name="NewFolder" PreviewMouseLeftButtonUp="NewFolder_PreviewMouseLeftButtonDown"/>
+            <brick_but:BrickDelete Margin="4,0,0,0" x:Name="DeleteFile" PreviewMouseLeftButtonUp="DeleteFile_PreviewMouseLeftButtonDown"/>
+            <brick_but:BrickUpload1 Margin="4,0,0,0" x:Name="Upload" PreviewMouseLeftButtonUp="Upload_PreviewMouseLeftButtonDown"/>
+            <brick_but:BrickPreview Margin="4,0,0,0" x:Name="Preview" PreviewMouseLeftButtonUp="Preview_PreviewMouseLeftButtonDown"/>
+            <brick_but:BrickDownload Margin="4,0,0,0" x:Name="Download" PreviewMouseLeftButtonUp="Download_PreviewMouseLeftButtonDown"/>
+            <brick_but:BrickCompile Margin="4,0,0,0" x:Name="Compile" PreviewMouseLeftButtonUp="Compile_PreviewMouseLeftButtonDown"/>
+            <brick_but:BrickCompileAndRun Margin="4,0,0,0" x:Name="CompileAndRun" PreviewMouseLeftButtonUp="CompileAndRun_PreviewMouseLeftButtonDown"/>
             <brick_but:BrickRun Margin="4,0,0,0" x:Name="RunFile" PreviewMouseLeftButtonDown="RunFile_PreviewMouseLeftButtonDown" IsEnabled="{Binding Path=CompileProgram}"/>
-            <brick_but:BrickStop Margin="4,0,0,0" x:Name="StopPrg" PreviewMouseLeftButtonDown="BrickStop_PreviewMouseLeftButtonDown"/>
+            <brick_but:BrickStop Margin="4,0,0,0" x:Name="StopPrg" PreviewMouseLeftButtonUp="BrickStop_PreviewMouseLeftButtonDown"/>
         </WrapPanel>
 
         <Popup PlacementTarget="{Binding ElementName=EV3Directory}" x:Name="menuPopup" StaysOpen="False" Placement="MousePoint" Width="{StaticResource brk_menu_width}" Height="{StaticResource brk_menu_height_all}">

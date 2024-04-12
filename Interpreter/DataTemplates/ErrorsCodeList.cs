@@ -172,6 +172,11 @@ namespace Interpreter.DataTemplate
             Errors.Add(1910, "В логическом выражении отсутствует левая часть");
             Errors.Add(1911, "В логическом выражении отсутствует правая часть");
             Errors.Add(1912, "В логическом выражении должно быть два операнда");
+
+            Errors.Add(1913, "В строке может быть только одно ключевое слово Break");
+            Errors.Add(1914, "Ключевое слово Break можно использовать только внутри For...EndFor и While...EndWhile");
+            Errors.Add(1915, "В строке может быть только одно ключевое слово Continue");
+            Errors.Add(1916, "Ключевое слово Continue можно использовать только внутри For...EndFor и While...EndWhile");
             // Коды Import module
             Errors.Add(2001, "Файл не найден");
             Errors.Add(2002, "Отсутствует имя импортируемого файла модуля");
@@ -368,6 +373,11 @@ namespace Interpreter.DataTemplate
             Errors.Add(1909, "Не можна використовувати два логічних оператора поспіль");
             Errors.Add(1910, "У логічному вираженні відсутня ліва частина");
             Errors.Add(1911, "У логічному вираженні відсутня права частина");
+
+            Errors.Add(1913, "У рядку може бути лише одне ключове слово Break");
+            Errors.Add(1914, "Ключове слово Break можна використовувати лише усередині For...EndFor і While...EndWhile");
+            Errors.Add(1915, "У рядку може бути лише одне ключове слово Continue");
+            Errors.Add(1916, "Ключове слово Continue можна використовувати лише усередині For...EndFor і While...EndWhile");
             // Коди Import module
             Errors.Add(2001, "Файл не знайдено");
             Errors.Add(2002, "Відсутня ім'я файла модуля, що імпортується");
@@ -564,6 +574,11 @@ namespace Interpreter.DataTemplate
             Errors.Add(1909, "You cannot use two logical operators in a row");
             Errors.Add(1910, "Boolean expression missing left side");
             Errors.Add(1911, "Boolean expression missing right side");
+
+            Errors.Add(1913, "There can only be one keyword \"Break\" per line");
+            Errors.Add(1914, "Keyword \"Break\" can be used in the middle of For...EndFor and While...EndWhile");
+            Errors.Add(1915, "There can only be one keyword \"Continue\" per line");
+            Errors.Add(1916, "Keyword \"Continue\" can be used in the middle of For...EndFor and While...EndWhile");
             // Import module codes
             Errors.Add(2001, "File not found");
             Errors.Add(2002, "Missing imported module file name");

@@ -17,6 +17,7 @@
 using System;
 using System.IO;
 using System.IO.Ports;
+using System.Windows;
 
 namespace Clever.Brick.Communication
 {
@@ -35,7 +36,8 @@ namespace Clever.Brick.Communication
         {
             try
             {
-                _serialPort = new SerialPort(port);
+                _serialPort = new SerialPort(port, 115200);
+                _serialPort.Close();
                 _serialPort.Open();
             }
             catch (Exception e)
@@ -43,7 +45,7 @@ namespace Clever.Brick.Communication
                 // do a workaround for previous bug where port name got an extra letter of garbage
                 if (port.StartsWith("COM") && port.Length > 4)
                 {
-                    _serialPort = new SerialPort(port.Substring(0, port.Length - 1));
+                    _serialPort = new SerialPort(port.Substring(0, port.Length - 1), 115200);
                     _serialPort.Open();
                 }
                 else

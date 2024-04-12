@@ -1,0 +1,31 @@
+LCD.Clear()
+LCD.Text(1, 0,30, 1, "Control motors with")
+LCD.Text(1, 0,45, 1, "button clicks")
+LCD.Text(1, 0,70, 1, "Left/Right: Motor A")
+LCD.Text(1, 0,85, 1, "Up/Down: Motor B")
+
+While "True"
+  
+  EV3.SetLEDColor("RED", "NORMAL")
+  Buttons.Wait()
+  EV3.SetLEDColor("OFF", "NORMAL")
+  
+  K = Buttons.GetClicks()
+  If Text.IsSubText(K,"U") = "True" Then
+    Motor.MovePower("A", 100, 500, "True")
+  elseIf Text.IsSubText(K,"D") then
+    Motor.MovePower("A", -100, 500, "True")
+  EndIf
+  If Text.IsSubText(K,"L") = "True" Then
+    Motor.MovePower("B", 100, 500, "True")
+  elseIf Text.IsSubText(K,"R") then
+    Motor.MovePower("B", -100, 500, "True")
+  EndIf
+  
+  If Text.ISSubText(Buttons.Current, "E") Then  
+    Buttons.Flush()
+  endif
+      
+EndWhile
+
+  

@@ -358,7 +358,7 @@ namespace Interpreter.Utils
                     {
                         type = LineType.STRINGARRAYINIT;
                     }
-                    else if (firstWord.ToLower() == "endfor" || firstWord.ToLower() == "endif" || firstWord.ToLower() == "endwhile" || firstWord.ToLower() == "endsub" || firstWord.ToLower() == "endfunction" || firstWord.ToLower() == "else" || firstWord.ToLower() == "private")
+                    else if (firstWord.ToLower() == "endfor" || firstWord.ToLower() == "endif" || firstWord.ToLower() == "endwhile" || firstWord.ToLower() == "endsub" || firstWord.ToLower() == "endfunction" || firstWord.ToLower() == "else" || firstWord.ToLower() == "private" || firstWord.ToLower() == "break" || firstWord.ToLower() == "continue")
                     {
                         type = LineType.ONEKEYWORD;
                     }

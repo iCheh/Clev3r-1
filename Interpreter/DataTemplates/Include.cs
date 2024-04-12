@@ -25,7 +25,7 @@ namespace Interpreter.DataTemplates
         {
             get
             {
-                return Path + Name + Ext;
+                return Path + Name.Replace(".bpi", "") + Ext;
             }
         }
     }

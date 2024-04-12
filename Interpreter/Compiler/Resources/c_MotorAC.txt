@@ -38,7 +38,7 @@ inline MOTORAC.STARTPOWER   // FV
 	OUTPUT_START 0 5
 }
 
-inline MOTORAB.START   // V
+inline MOTORAC.START   // V
 {
 	OUTPUT_START 0 5
 }

@@ -33,11 +33,13 @@
         <Grid Margin="10,15,10,10">
             <TextBlock x:Name="headerText"  Margin="1,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Calibri" FontSize="14" Foreground="#000000" Height="40" Text="Please select the connection to access the EV3 brick."/>
             <ListBox x:Name="PortList" KeyDown="PortList_keydown" Margin="1,50,0,35" VerticalContentAlignment="Bottom" Cursor="Arrow" BorderThickness="1" FontWeight="Bold" FontFamily="Calibri" FontSize="14" Foreground="#000000" Background="{StaticResource about_bgd}">
+
                 <ListBox.ItemContainerStyle>
                     <Style TargetType="ListBoxItem">
                         <EventSetter Event="PreviewMouseLeftButtonUp" Handler="PortList_selected"/>
                     </Style>
                 </ListBox.ItemContainerStyle>
+
             </ListBox>
             <Button Style="{StaticResource win_button}" Click="WiFiButton_clicked" HorizontalAlignment="Right" Margin="0,0,180,0" VerticalAlignment="Bottom" Width="80" Height="20">
                 <TextBlock x:Name="butWiFi" Text="WiFi..." FontFamily="Calibri" FontSize="14" Foreground="#000000" VerticalAlignment="Center" HorizontalAlignment="Center"/>

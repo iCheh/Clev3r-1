@@ -1,0 +1,166 @@
+<?xml version="1.0"?>
+<doc>
+  <members>
+    <member name="T:Text">
+      <summary>
+        Данные команды позволяют производить различные операции с текстовыми данными. В качестве параметров может быть указан как текст, так и текстовые перменные.
+      </summary>
+    </member>
+    <member name="M:Append">
+      <summary>
+        Производит конкатенацию (слияние) двух фрагментов текста.
+      </summary>
+      <param name="text1">
+        Первый фрагмент текста
+      </param>
+      <param name="text2">
+        Второй фрагмент текста
+      </param>
+      <returns>
+        Результат слияния фрагментов текста
+      </returns>
+    </member>
+    <member name="M:GetLength">
+      <summary>
+        Получает длину (количество символов) указанного текста.
+      </summary>
+      <param name="text">
+        Текст
+      </param>
+      <returns>
+        Размер в виде числа
+      </returns>
+    </member>
+    <member name="M:IsSubText">
+      <summary>
+        Проверяет, является ли указанный фрагмент текста частью другого текста.
+      </summary>
+      <param name="text">
+        Текст, в котором будет произведен поиск
+      </param>
+      <param name="subText">
+        Искомый фрагмент текста
+      </param>
+      <returns>
+        Возвращает "True", если фрагмент найден
+      </returns>
+    </member>
+    <member name="M:EndsWith">
+      <summary>
+        Проверяет, заканчивается ли указанный текст указанным фрагментом.
+      </summary>
+      <param name="text">
+        Текст, в котором будет произведен поиск
+      </param>
+      <param name="subText">
+        Искомый фрагмент текста
+      </param>
+      <returns>
+        Возвращает "True", если фрагмент найден в конце указанного текста
+      </returns>
+    </member>
+    <member name="M:StartsWith">
+      <summary>
+        Проверяет, начинается ли указанный текст определенным фграгментов.
+      </summary>
+      <param name="text">
+        Текст, в котором будет произведен поиск
+      </param>
+      <param name="subText">
+        Искомый фрагмент текста
+      </param>
+      <returns>
+        Возвращает "True", если фрагмент найдена в начале указанного текста
+      </returns>
+    </member>
+    <member name="M:GetSubText">
+      <summary>
+        Вычленяет фрагмент нужного размера из искомого текста.
+      </summary>
+      <param name="text">
+        Текст, из которого надо извлечь фрагмент
+      </param>
+      <param name="start">
+        Начальная позиция (порядковый номер символа в тексте)
+      </param>
+      <param name="length">
+        Длина символьной последовательности
+      </param>
+      <returns>
+        Извлеченный фрагмент
+      </returns>
+    </member>
+    <member name="M:GetSubTextToEnd">
+      <summary>
+        Считывает фрагмент искомого текста, начиная с заданной позиции.
+      </summary>
+      <param name="text">
+        Текст, из которого надо извлечь фрагмент
+      </param>
+      <param name="start">
+        Начальная позиция (порядковый номер символа в тексте)
+      </param>
+      <returns>
+        Извлеченный фрагмент
+      </returns>
+    </member>
+    <member name="M:GetIndexOf">
+      <summary>
+        Находит позицию в тексте, с которой начинается указанный фрагмент.
+      </summary>
+      <param name="text">
+        Текст, в котором осуществляется поиск
+      </param>
+      <param name="subText">
+        Искомый фрагмент
+      </param>
+      <returns>
+        Позиция в тексте, с которой начинается указанный фрагмент. Если фрагмент не найден, возвращается ноль.
+      </returns>
+    </member>
+    <member name="M:ConvertToLowerCase">
+      <summary>
+        Конвертирует все символы указанного текста в нижний регистр.
+      </summary>
+      <param name="text">
+        Текст для преобразования в нижний регистр
+      </param>
+      <returns>
+        Текст, преобразованный в нижний регистр
+      </returns>
+    </member>
+    <member name="M:ConvertToUpperCase">
+      <summary>
+        Конвертирует все символы указанного текста в верхний регистр.
+      </summary>
+      <param name="text">
+        Текст для преобразования в верхний регистр
+      </param>
+      <returns>
+        Текст, преобразованный в верхний регистр
+      </returns>
+    </member>
+    <member name="M:GetCharacter">
+      <summary>
+        Возвращает символ по коду в формате Unicode.
+      </summary>
+      <param name="characterCode">
+        Unicode-представление символа
+      </param>
+      <returns>
+        Символ, которому соответствует указанный код 
+      </returns>
+    </member>
+    <member name="M:GetCharacterCode">
+      <summary>
+        Получает код в формате Unicode  для указанного символа.
+      </summary>
+      <param name="character">
+        Символ, для которого необходимо получить Unicode-предствление
+      </param>
+      <returns>
+        Код в формате Unicode
+      </returns>
+    </member>
+  </members>
+</doc>

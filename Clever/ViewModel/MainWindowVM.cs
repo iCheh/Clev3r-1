@@ -47,6 +47,8 @@ namespace Clever.ViewModel
         public ICommand EditUnCommentCommand { get; set; }
         public ICommand EditFoldAllCommand { get; set; }
         public ICommand EditUnFoldAllCommand { get; set; }
+        public ICommand EditFoldFuncCommand { get; set; }
+        public ICommand EditUnFoldFuncCommand { get; set; }
         public ICommand CloseProgramCommand { get; set; }
         
         public ICommand FindCommand { get; set; }
@@ -102,8 +104,10 @@ namespace Clever.ViewModel
             EditUnCommentCommand = new RelayCommand(param => EditUnComment(), true);
             EditFoldAllCommand = new RelayCommand(param => EditFoldAll(), true);
             EditUnFoldAllCommand = new RelayCommand(param => EditUnFoldAll(), true);
+            EditFoldFuncCommand = new RelayCommand(param => EditFoldFunc(), true);
+            EditUnFoldFuncCommand = new RelayCommand(param => EditUnFoldFunc(), true);
 
-            
+
             CloseProgramCommand = new RelayCommand(param => CloseProgram(), true);
             FindCommand = new RelayCommand(param => FindText(), true);
             GetProgramNamesCommand = new RelayCommand(param => SetProgramName(), true);
@@ -1003,6 +1007,26 @@ namespace Clever.ViewModel
                 data.Menu.IsOpen = false;
             }
         }
+
+        private void EditFoldFunc()
+        {
+            var data = Project.GetProgramData(CurrentProgram);
+            if (data != null)
+            {
+                data.Editor.FoldFunc();
+                data.Menu.IsOpen = false;
+            }
+        }
+        private void EditUnFoldFunc()
+        {
+            var data = Project.GetProgramData(CurrentProgram);
+            if (data != null)
+            {
+                data.Editor.FoldFunc();
+                data.Menu.IsOpen = false;
+            }
+        }
+
         public void FindNext()
         {
             var data = Project.GetProgramData(CurrentProgram);

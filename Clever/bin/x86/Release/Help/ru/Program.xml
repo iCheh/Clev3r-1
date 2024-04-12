@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<doc>
+  <members>
+    <member name="T:Program">
+            <summary>
+            Класс Program предоставляет вспомогательные методы для контроля выполнения программы.
+            </summary>
+        </member>
+        <member name="M:Delay">
+            <summary>
+            Задерживает выполнение программы на указанное число миллисекунд.
+            </summary>
+            <param name="milliSeconds">
+            Время задержки
+            </param>
+        </member>
+        <member name="M:End">
+            <summary>
+            Завершает программу.
+            </summary>
+        </member>
+        <member name="M:GetArgument">
+            <summary>
+            Возвращает указанный аргумент из тех, что были переданы в текущую программу.
+            </summary>
+            <param name="index">
+            Индекс (порядковый номер) аргумента
+            </param>
+            <returns>
+            Аргумент командной строки, расположенный по указанному индексу
+            </returns>
+        </member>
+        <member name="P:ArgumentCount">
+            <summary>
+            Получает количество аргументов командной строки, переданных программе.
+            </summary>
+        </member>
+        <member name="P:Directory">
+            <summary>
+            Возвращает название папки, из которой для запущена программа
+            </summary>
+        </member>
+  </members>
+</doc>

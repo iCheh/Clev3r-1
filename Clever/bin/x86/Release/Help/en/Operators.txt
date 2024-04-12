@@ -1,0 +1,58 @@
+﻿+ addition
+a = 2 + 1
+
+- subtraction
+a = 5 - 2
+
+multiplication
+a = 1 * 1
+
+/ division
+a = 10 / 2
+
+= equal to
+is used as an assignment operator
+a = 2 (a is equal to 2)
+or as a comparison operator
+If a = 2 Then (if a is equal to 2, then)
+
+++ increment
+increase of variable value by 1
+a++ (is equal to a = a + 1)
+
+-- decrement
+decrease of variable value by 1
+a-- (is equal to a = a - 1)
+
++= assignment with addition
+a += 2 (is equal to a = a + 2)
+
+-= assignment with subtraction
+a -= 5 (is equal to a = a - 5)
+
+*= assignment with multiplication
+a *= 4 (is equal to a = a * 4)
+
+/= assignment with division
+a /= b (is equal to a = a / b)
+
+> greater than
+If a > 2 Then (if a is greater than 2, then)
+
+>= greater than or equal to
+If a >= 2 Then (if a is greater than or equal to 2, then)
+
+<= less than or equal to
+If a <= 2 Then (if a is less than or equal to 2, then)
+
+<> not equal to
+If a <> 2 Then (if a is not equal to 2, then)
+
+@ link to global variable
+is used inside functions if you need to get the value of global variable from the main program without transferring it through input parameters
+a = 10
+Function Test()
+  b = @a
+EndFunction
+(result b = 10)
+

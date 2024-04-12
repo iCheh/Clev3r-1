@@ -1,0 +1,109 @@
+<?xml version="1.0"?>
+<doc>
+  <members>
+    <member name="T:Time">
+      <summary>
+        Methods for working with timer
+      </summary>
+    </member>
+    <member name="M:Get1">
+      <summary>
+        The time in milliseconds. Timer number 1
+      </summary>
+      <returns>Milliseconds</returns>
+    </member>
+    <member name="M:Get2">
+      <summary>
+        The time in milliseconds. Timer number 2
+      </summary>
+      <returns>Milliseconds</returns>
+    </member>
+    <member name="M:Get3">
+      <summary>
+        The time in milliseconds. Timer number 3
+      </summary>
+      <returns>Milliseconds</returns>
+    </member>
+    <member name="M:Get4">
+      <summary>
+        The time in milliseconds. Timer number 4
+      </summary>
+      <returns>Milliseconds</returns>
+    </member>
+    <member name="M:Get5">
+      <summary>
+        The time in milliseconds. Timer number 5
+      </summary>
+      <returns>Milliseconds</returns>
+    </member>
+    <member name="M:Get6">
+      <summary>
+        The time in milliseconds. Timer number 6
+      </summary>
+      <returns>Milliseconds</returns>
+    </member>
+    <member name="M:Get7">
+      <summary>
+        The time in milliseconds. Timer number 7
+      </summary>
+      <returns>Milliseconds</returns>
+    </member>
+    <member name="M:Get8">
+      <summary>
+        The time in milliseconds. Timer number 8
+      </summary>
+      <returns>Milliseconds</returns>
+    </member>
+    <member name="M:Get9">
+      <summary>
+        The time in milliseconds. Timer number 9
+      </summary>
+      <returns>Milliseconds</returns>
+    </member>
+    <member name="M:Reset1">
+      <summary>
+        Reset timer number 1 to 0
+      </summary>
+    </member>
+    <member name="M:Reset2">
+      <summary>
+        Reset timer number 2 to 0
+      </summary>
+    </member>
+    <member name="M:Reset3">
+      <summary>
+        Reset timer number 3 to 0
+      </summary>
+    </member>
+    <member name="M:Reset4">
+      <summary>
+        Reset timer number 4 to 0
+      </summary>
+    </member>
+    <member name="M:Reset5">
+      <summary>
+        Reset timer number 5 to 0
+      </summary>
+    </member>
+    <member name="M:Reset6">
+      <summary>
+        Reset timer number 6 to 0
+      </summary>
+    </member>
+    <member name="M:Reset7">
+      <summary>
+        Reset timer number 7 to 0
+      </summary>
+    </member>
+    <member name="M:Reset8">
+      <summary>
+        Reset timer number 8 to 0
+      </summary>
+    </member>
+    <member name="M:Reset9">
+      <summary>
+        Reset timer number 9 to 0
+      </summary>
+    </member>
+  </members>
+</doc>

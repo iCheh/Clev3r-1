@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<doc>
+  <members>
+    <member name="T:Speaker">
+      <summary>
+        Use the brick's built-in speaker to play tones or sound files.
+      </summary>
+    </member>
+    <member name="M:Stop">
+      <summary>
+        Stop any currently playing sound or tone.
+      </summary>
+    </member>
+    <member name="M:Tone">
+      <summary>
+        Start playing a simple tone of defined frequency.
+      </summary>
+      <param name="volume">Volume can be 0 - 100</param>
+      <param name="frequency">Frequency in Hz can be 250 - 10000</param>
+      <param name="duration">Duration of the tone in milliseconds</param>
+    </member>
+    <member name="M:Note">
+      <summary>
+        Start playing a simple tone defined by its text representation.
+      </summary>
+      <param name="volume">Volume can be 0 - 100</param>
+      <param name="note">Text defining a note "C4" to "B7" or halftones like "C#5"</param>
+      <param name="duration">Duration of the tone in milliseconds</param>
+    </member>
+    <member name="M:Play">
+      <summary>
+        Start playing a sound from a sound file stored on the brick. Only files in .rsf format are supported. 
+      </summary>
+      <param name="volume">Volume can be 0 - 100</param>
+      <param name="filename">Name of the sound file without the .rsf extension. This filename can be relative to the 'prjs' folder or an absolute path (when starting with '/').</param>
+    </member>
+    <member name="M:IsBusy">
+      <summary>
+        Check whether the speaker is still busy playing a previous sound.
+      </summary>
+      <returns>"True", if there is a sound still playing, "False" otherwise</returns>
+    </member>
+    <member name="M:Wait">
+      <summary>
+        Wait until the current sound has finished playing.
+        When no sound is playing, this function returns immediately.
+      </summary>
+    </member>
+  </members>
+</doc>

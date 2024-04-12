@@ -84,7 +84,7 @@
     <SolidColorBrush x:Key="preview_menu_foreground" Color="#000000"/>
 
     <!-- Стили Text Edit menu -->
-    <sys:Double x:Key="te_menu_height_all">311</sys:Double>
+    <sys:Double x:Key="te_menu_height_all">363</sys:Double>
     <sys:Double x:Key="te_menu_height_one">26</sys:Double>
     <sys:Double x:Key="te_menu_width">225</sys:Double>
     <GridLength x:Key="te_menu_c0_width">5</GridLength>

@@ -19,6 +19,7 @@ tStartScreen = Щоб продовжити роботу, створіть нов
 About = Про програму
 Lang = Мова
 Association = Асоціація
+Setting = Налаштування
 lRu = Російська - Русский
 lEn = Англійська - English
 lUa = Українська
@@ -48,6 +49,8 @@ tComment = Закоментувати
 tUnComment = Розкоментувати
 tFoldAll = Згорнути все
 tUnFoldAll = Розгорнути все
+tFoldFunc = Згорнути функцію
+tUnFoldFunc = Розгорнути функцію
 tHeaderToolTip = Файл не збережений
 
 tBrkCompile = Компілювати
@@ -87,7 +90,7 @@ brkDone = Готово
 brkFindErr = Знайдено помилки
 brkExcept = Виняток
 brkRefresh = Обновить
-brkViewFileExt = Можна відкрити тільки .rtf .txt файли
+brkViewFileExt = Можна відкрити тільки .rtf .txt .bp .bpm .bpi файли
 
 dButClose = Закрити
 dButYes = Зберегти

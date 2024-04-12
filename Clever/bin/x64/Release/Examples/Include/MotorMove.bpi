@@ -1,0 +1,7 @@
+Power = 50
+
+MotorA.IsMedium()
+MotorB.IsMedium()
+MotorAB.OffAndBrake()
+MotorAB.Start()
+MotorAB.SetPower(Power)

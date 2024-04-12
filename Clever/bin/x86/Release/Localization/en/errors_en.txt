@@ -1,0 +1,5 @@
+﻿eImportFNF1 = File
+eImportFNF2 = not found.
+
+ePrjDataAdd = Failed to add new program to the project. Error = 
+ePrjDataRemove = Failed to delete new program from the project. Error = 

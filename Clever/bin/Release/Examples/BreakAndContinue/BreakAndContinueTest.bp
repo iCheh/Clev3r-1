@@ -1,0 +1,31 @@
+y = 0
+
+For i = 0 To 10 Step 1
+  
+  If i = 5 Then
+    Break
+  EndIf
+
+  For j = 0 To 10 Step 1
+    If j < 7 Then
+      continue
+    Else
+      break
+    EndIf
+  EndFor
+
+  While "True"  
+    If y > 10 Then
+      break
+    Else
+      y++
+    EndIf
+  EndWhile
+
+  For b = 0 To 10 Step 1
+    If b = 7 Then
+      Break
+    EndIf
+  EndFor
+
+EndFor

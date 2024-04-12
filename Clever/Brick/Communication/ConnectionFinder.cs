@@ -14,6 +14,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+using Clever.CommonData;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -22,6 +23,8 @@ using System.Net;
 using System.Threading;
 using System.Windows;
 using System.Windows.Threading;
+using System.Management;
+using System.Drawing;
 
 namespace Clever.Brick.Communication
 {
@@ -30,48 +33,55 @@ namespace Clever.Brick.Communication
 
         public static EV3Connection CreateConnection(bool isUIThread, bool automaticallyUseSingleUSB)
         {
+            //Dictionary<string, string> btDict = null;
+            //Dictionary<string, string> objDict = null;
+            EV3Connection c = null;
+            ConObjList.CreateList();
 
-            //            return new EV3ConnectionWiFi("10.0.0.140");
+            //return new EV3ConnectionWiFi("10.0.0.140");
 
             // retry multiple times to open connection
             for (; ; )
             {
+                if (c != null && c.IsOpen())
+                {
+                    c.Close();
+                    c = null;
+                }
+
                 // check which EV3 devices are connected via USB
                 int[] usbdevices = EV3ConnectionUSB.FindEV3s();
 
                 // if there is exactly one, try to open it
                 if (automaticallyUseSingleUSB && usbdevices.Length == 1)
+                {
                     try
                     {
                         return TestConnection(new EV3ConnectionUSB(usbdevices[0]));
                     }
                     catch (Exception)
-                    { }
+                    { 
+                    }
+                }
 
-                // when not able to open the one single USB connection, try also the serial ports
-                String[] ports = System.IO.Ports.SerialPort.GetPortNames();
+                //Попытка авто подключения к через COM Bluetooth
+                if (ConObjList.ConCOMList.Count == 1)
+                {
+                    var tmpPort = ConObjList.ConCOMList[0].ComPort.ToUpper();
+                    c = TestConnection(new EV3ConnectionBluetooth(tmpPort));
+                    if (c != null && c.IsOpen())
+                    {
+                        return c;
+                    }
+                }
+                
 
                 // in this case also check if there are some IP addresses configured as possible connection targets
                 IPAddress[] addresses = LoadPossibleIPAddresses();
 
-                // because of a strange bug in .net 3.5, sometimes the port name gets an extra letter of unpredicable content  - try to fix it in some cases
-                for (int i = 0; i < ports.Length; i++)
-                {
-                    String n = ports[i];
-                    if (n.StartsWith("COM"))
-                    {
-                        char last = n[n.Length - 1];        // trim away last letter if it is not a digit (but this does not always help)
-                        if (last < '0' || last > '9')
-                        {
-                            ports[i] = n.Substring(0, n.Length - 1);
-                        }
-                    }
-                }
-
-                Array.Sort(ports, StringComparer.InvariantCulture);
 
                 // Create and show the window to select one of the connection possibilities
-                object port_or_device = DoModalConnectionTypeDialog(isUIThread, usbdevices, ports, addresses);
+                object port_or_device = DoModalConnectionTypeDialog(isUIThread, usbdevices, addresses);
 
                 if (port_or_device == null)
                 {
@@ -79,27 +89,24 @@ namespace Clever.Brick.Communication
                 }
                 try
                 {
-                    if (port_or_device is String)
+                    if (port_or_device is string)
                     {
-                        EV3Connection c = TestConnection(new EV3ConnectionBluetooth((String)port_or_device));
-                        SavePreferredConnection((String)port_or_device);
+                        c = TestConnection(new EV3ConnectionBluetooth((string)port_or_device));
                         return c;
                     }
                     else if (port_or_device is int)
                     {
-                        EV3Connection c = TestConnection(new EV3ConnectionUSB((int)port_or_device));
-                        SavePreferredConnection("USB " + port_or_device);
+                        c = TestConnection(new EV3ConnectionUSB((int)port_or_device));
                         return c;
                     }
                     else if (port_or_device is IPAddress)
                     {
                         IPAddress addr = (IPAddress)port_or_device;
-                        EV3Connection c = TestConnection(new EV3ConnectionWiFi(addr));
-                        if (!addresses.Contains(addr))
+                        c = TestConnection(new EV3ConnectionWiFi(addr));
+                        if (!addresses.Contains(addr) && c.IsOpen())
                         {
                             AddPossibleIPAddress(addr);
                         }
-                        SavePreferredConnection(addr.ToString());
                         return c;
                     }
                 }
@@ -131,14 +138,15 @@ namespace Clever.Brick.Communication
             }
         }
 
-        private static object DoModalConnectionTypeDialog(bool isUIThread, int[] usbdevices, String[] ports, IPAddress[] addresses)
+        private static object DoModalConnectionTypeDialog(bool isUIThread, int[] usbdevices, IPAddress[] addresses)
         {
             Window dialog = null;
+            
 
             // simple operation when called from an UI thread
             if (isUIThread)
             {
-                dialog = new ConnectionTypeDialog(usbdevices, ports, addresses, LoadPreferredConnection());
+                dialog = new ConnectionTypeDialog(usbdevices, addresses);
                 dialog.ShowDialog();
             }
             // when being called from a non-UI-thread, must create an own thread here
@@ -147,7 +155,7 @@ namespace Clever.Brick.Communication
                 // Create an extra thread for the dialog window
                 Thread newWindowThread = new Thread(new ThreadStart(() =>
                 {
-                    Window window = (Window)new ConnectionTypeDialog(usbdevices, ports, addresses, LoadPreferredConnection());
+                    Window window = (Window)new ConnectionTypeDialog(usbdevices, addresses);
                     // When the window closes, shut down the dispatcher
                     window.Closed += (s, e) =>
                        Dispatcher.CurrentDispatcher.BeginInvokeShutdown(DispatcherPriority.Background);
@@ -179,11 +187,18 @@ namespace Clever.Brick.Communication
         {
             List<IPAddress> addresses = new List<IPAddress>();
 
+            string fileName = Configurations.Get.ConfigNameWifi;
+
+            if (!File.Exists(fileName))
+            {
+                return addresses.ToArray();
+            }
+
             try
             {
-                string fileName = Path.Combine(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Clever"), "ipaddresses.txt");
-                System.IO.StreamReader file = new System.IO.StreamReader(fileName);
-                String line;
+                //string fileName = Path.Combine(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Clever"), "ipaddresses.txt");
+                StreamReader file = new StreamReader(fileName);
+                string line;
                 while ((line = file.ReadLine()) != null)
                 {
                     try
@@ -194,65 +209,34 @@ namespace Clever.Brick.Communication
                 }
                 file.Close();
             }
-            catch (Exception) { }
+            catch (Exception)
+            {
+                Status.Add(GUILanguage.GetItem("prepRead1") + " " + fileName + " " + GUILanguage.GetItem("prepRead2"));
+            }
 
             return addresses.ToArray();
         }
 
         private static void AddPossibleIPAddress(IPAddress a)
         {
+            string fileName = Configurations.Get.ConfigNameWifi;
+
             try
             {
-                string dir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Clever");
+                string dir = Configurations.Get.FullPath;
                 if (!Directory.Exists(dir))
                 {
                     Directory.CreateDirectory(dir);
                 }
-                string fileName = Path.Combine(dir, "ipaddresses.txt");
-                System.IO.StreamWriter file = new System.IO.StreamWriter(fileName, true);
+
+                StreamWriter file = new StreamWriter(fileName, true);
                 file.WriteLine(a.ToString());
                 file.Close();
             }
-            catch (Exception) { }
-
-
-        }
-
-        private static String LoadPreferredConnection()
-        {
-            String p = "";
-            try
+            catch (Exception)
             {
-                string fileName = Path.Combine(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Clever"), "preferred.txt");
-                System.IO.StreamReader file = new System.IO.StreamReader(fileName);
-                String line;
-                while ((line = file.ReadLine()) != null)
-                {
-                    p = line;
-                }
-                file.Close();
+                Status.Add(GUILanguage.GetItem("prepRead1") + " " + fileName + " " + GUILanguage.GetItem("prepRead2"));
             }
-            catch (Exception) { }
-
-            return p;
         }
-
-        private static void SavePreferredConnection(String con)
-        {
-            try
-            {
-                string dir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Clever");
-                if (!Directory.Exists(dir))
-                {
-                    Directory.CreateDirectory(dir);
-                }
-                string fileName = Path.Combine(dir, "preferred.txt");
-                System.IO.StreamWriter file = new System.IO.StreamWriter(fileName);
-                file.WriteLine(con);
-                file.Close();
-            }
-            catch (Exception) { }
-        }
-
     }
 }

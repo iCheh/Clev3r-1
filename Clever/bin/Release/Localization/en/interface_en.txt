@@ -19,6 +19,7 @@ tStartScreen = To continue, create a new program or open an existing one.
 About = About...
 Lang = Language
 Association = Association
+Setting = Setting
 lRu = Russian - Русский
 lEn = English
 lUa = Ukrainian - Українська
@@ -48,6 +49,8 @@ tComment = Comment
 tUnComment = Uncomment
 tFoldAll = Collapse all
 tUnFoldAll = Expand all
+tFoldFunc = Collapse function
+tUnFoldFunc = Expand function
 tHeaderToolTip = File not saved
 
 tBrkCompile = Compile
@@ -87,7 +90,7 @@ brkDone = Done
 brkFindErr = Errors found
 brkExcept = Exception
 brkRefresh = Refresh
-brkViewFileExt = Only .rtf and .txt files can be opened
+brkViewFileExt = Only .rtf and .txt .bp .bpm .bpi files can be opened
 
 dButClose = Close
 dButYes = Save

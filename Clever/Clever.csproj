@@ -46,6 +46,37 @@
     <GenerateManifests>false</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>none</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>none</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <PlatformTarget>x86</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>none</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <PlatformTarget>x86</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>none</ErrorReport>
+    <WarningLevel>3</WarningLevel>
+  </PropertyGroup>
   <!--
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Clever|AnyCPU'">
     <OutputPath>bin\Clever\</OutputPath>
@@ -85,6 +116,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Brick\Communication\ConnectionObject.cs" />
+    <Compile Include="Brick\Communication\ConObjList.cs" />
     <Compile Include="CommonData\GUILanguage.cs" />
     <Compile Include="CommonData\Configurations.cs" />
     <Compile Include="Model\BaseM\BaseModel.cs" />
@@ -96,6 +129,7 @@
     <Compile Include="Model\Colorizer\ColorItem.cs" />
     <Compile Include="Model\Enums\BPType.cs" />
     <Compile Include="Model\Enums\ColorType.cs" />
+    <Compile Include="Model\Enums\ConnectionObjectType.cs" />
     <Compile Include="Model\Intellisense\IntellisenseParser.cs" />
     <Compile Include="Model\Utils\Converter.cs" />
     <Compile Include="Model\Utils\HelpToolTipModel.cs" />
@@ -1357,6 +1391,10 @@
     <Resource Include="Resources\Media\wav\Zero.wav" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Clever Registry\Clever Registry.csproj">
+      <Project>{78e56af8-91a8-42b1-8ee9-80c689d20a3c}</Project>
+      <Name>Clever Registry</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Interpreter\Interpreter.csproj">
       <Project>{635c6198-b007-4c73-869b-27325f584c4c}</Project>
       <Name>Interpreter</Name>

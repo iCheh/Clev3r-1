@@ -10,7 +10,7 @@
         xmlns:panel="clr-namespace:Clever.View.Panels"
         xmlns:config="clr-namespace:Clever.CommonData"
         mc:Ignorable="d"
-        Title="CLEVƎR v1.6.8.9" 
+        Title="CLEVƎR v1.7" 
         Height="{Binding Source={x:Static config:Configurations.Get}, Path=Window_Height, Mode=TwoWay}"
         MinHeight="440"
         Width="{Binding Source={x:Static config:Configurations.Get}, Path=Window_Width, Mode=TwoWay}"
@@ -21,6 +21,10 @@
         Closing="Window_Closing" 
         PreviewKeyDown="WindowWPF_PreviewKeyDown">
     <Grid x:Name="mainGrid" Background="#414659">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="133*"/>
+            <ColumnDefinition Width="601*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" MinHeight="65"/>
             <RowDefinition Height="{Binding Source={x:Static config:Configurations.Get}, Path=Grid_Row1, Mode=TwoWay}" MinHeight="300"/>
@@ -28,9 +32,9 @@
             <RowDefinition Height="{Binding Source={x:Static config:Configurations.Get}, Path=Grid_Row3, Mode=TwoWay}" MinHeight="30"/>
         </Grid.RowDefinitions>
 
-        <control:ButtonsPanel Grid.Row="0" Margin="0,0,0,0"/>
+        <control:ButtonsPanel Grid.Row="0" Grid.ColumnSpan="2"/>
 
-        <DockPanel x:Name="dockPanel" Grid.Row="1" Margin="0,0,0,0" Background="#7A8193">
+        <DockPanel x:Name="dockPanel" Grid.Row="1" Background="#7A8193" Grid.ColumnSpan="2">
             <Grid x:Name="docGrid">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="{Binding Source={x:Static config:Configurations.Get}, Path=Grid_Column0, Mode=TwoWay}" MinWidth="400"/>
@@ -42,7 +46,7 @@
                 <GridSplitter Grid.Column="1" Width="4" VerticalAlignment="Stretch" HorizontalAlignment="Center" Margin="0,29,0,0" BorderThickness="0" BorderBrush="White" Background="#7a8193"/>
             </Grid>
         </DockPanel>
-        <GridSplitter Grid.Row="2" Height="10" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="5,0,5,0" BorderThickness="0" BorderBrush="White" Background="#414659"/>
-        <panel:StatusPanel Grid.Row="3" Margin="0"/>
+        <GridSplitter Grid.Row="2" Height="10" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="5,0,5,0" BorderThickness="0" BorderBrush="White" Background="#414659" Grid.ColumnSpan="2"/>
+        <panel:StatusPanel Grid.Row="3" Grid.ColumnSpan="2"/>
     </Grid>
 </Window>

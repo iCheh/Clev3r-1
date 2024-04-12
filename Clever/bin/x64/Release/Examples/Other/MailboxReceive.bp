@@ -1,0 +1,10 @@
+' This example create a mailbox named "Box" and waits for messages
+' arrive which are then written to the LCD.
+' This brick should be named "Bob" so it will work with the send example.
+
+id = Mailbox.Create("Box")
+While "True"
+  msg = Mailbox.Receive(id)
+  LCD.Clear()
+  LCD.Write(0,40,msg)
+EndWhile

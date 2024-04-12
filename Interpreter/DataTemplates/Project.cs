@@ -36,6 +36,7 @@ namespace Interpreter.DataTemplates
             Folder = "prjs";
             ProjectName = "";
             MainName = "";
+            BreakPoint = 0;
         }
         internal string MainName { get; set; }
         internal ProjectType Type { get; set; }
@@ -68,5 +69,8 @@ namespace Interpreter.DataTemplates
 
         internal string Folder { get; set; }
         internal string ProjectName { get; set; }
+
+        // Поле для подсчета количества меток ключевого слова Break
+        internal int BreakPoint { get; set; }
     }
 }

@@ -1,0 +1,112 @@
+<?xml version="1.0"?>
+<doc>
+  <members>
+    <member name="T:Byte">
+      <summary>
+        Manipulate individual bits of an 8-bit numerical quantity.
+        This library lets you treat Small Basic numbers as if they were organized as 8-bit integer values (a.k.a. "bytes"). To do so, the parameter values are always converted to plain bytes, then the requested operation is performed and then the result is converted back to a Small Basic number.
+        The usual bit operations are supported: AND, OR, NOT, XOR, various shifts and data conversion operations. Note that the identifiers AND and OR are reserved words of Small Basic and so these operations are named AND_ and OR_ instead. For further information see https://en.wikipedia.org/wiki/Bitwise_operation .
+      </summary>
+    </member>
+    <member name="M:NOT">
+      <summary>
+        Bitwise negation. 
+      </summary>
+      <param name="value">Number to negate</param>
+      <returns>The number you get when every bit of the input byte is individually inverted</returns>
+    </member>
+    <member name="M:AND_">
+      <summary>
+        Bitwise AND operation. 
+      </summary>
+      <param name="a">First operand</param>
+      <param name="b">Second operand</param>
+      <returns>The number you get when merging the two input bytes a and b by doing a binary AND operation on their individual bits</returns>
+    </member>
+    <member name="M:OR_">
+      <summary>
+        Bitwise OR operation. 
+      </summary>
+      <param name="a">First operand</param>
+      <param name="b">Second operand</param>
+      <returns>The number you get when merging the two input bytes a and b by doing a binary OR operation on their individual bits</returns>
+    </member>
+    <member name="M:XOR">
+      <summary>
+        Bitwise XOR operation. 
+      </summary>
+      <param name="a">First operand</param>
+      <param name="b">Second operand</param>
+      <returns>The number you get when merging the two input bytes a and b by doing a binary XOR operation on their individual bits</returns>
+    </member>
+    <member name="M:BIT">
+      <summary>
+        Extract a single bit from a 
+      </summary>
+      <param name="value">The byte number from where to extract the bit</param>
+      <param name="index">Position of the bit inside the byte</param>
+      <returns>The bit on the specified position which is either 0 or 1</returns>
+    </member>
+    <member name="M:SHL">
+      <summary>
+        Perform a bitwise shift operation to the left.
+      </summary>
+      <param name="value">The byte whose bits will be shifted</param>
+      <param name="distance">By how many positions to shift the bits</param>
+      <returns>The number you get after moving every bit of the input value towards the more significant positions</returns>
+    </member>
+    <member name="M:SHR">
+      <summary>
+        Perform a bitwise shift operation to the right.
+      </summary>
+      <param name="value">The byte whose bits will be shifted</param>
+      <param name="distance">By how many positions to shift the bits</param>
+      <returns>The number you get after moving every bit of the input value towards the less significant positions</returns>
+    </member>
+    <member name="M:ToHex">
+      <summary>
+        Convert an 8-bit byte to its 2-digit hexadecimal string representation.
+      </summary>
+      <param name="value">The byte to convert into a string</param>
+      <returns>A string holding 2 hexadecimal digits</returns>
+    </member>
+    <member name="M:ToBinary">
+      <summary>
+        Convert an 8-bit byte to its 8-digit binary string representation.
+      </summary>
+      <param name="value">The byte to convert into a string</param>
+      <returns>A string holding 8 binary digits</returns>
+    </member>
+    <member name="M:ToLogic">
+      <summary>
+        Convert a number (can be a 8-bit byte or any other number) to a logic value of either "True" or "False".
+        This value can then be used for the condition in If or While or any other purpose.
+        Note that any input value greater than 0 results in a "True" while an input value of 0 or any negative value results in "False".
+        This specific behaviour allows some weird and wonderful things to be done with this command. Refer to the appendix for advanced logic operations.
+      </summary>
+      <param name="value">The numeric value to be converted into its corresponding logic value</param>
+      <returns>Either "True" or "False"</returns>
+    </member>
+    <member name="M:H">
+      <summary>
+        Convert a string that contains a hexadecimal value into a number.
+      </summary>
+      <param name="value">The string holding a byte in hexadecimal form (for example: "4F")</param>
+      <returns>The byte as number</returns>
+    </member>
+    <member name="M:B">
+      <summary>
+        Convert a string that contains a binary value into a number.
+      </summary>
+      <param name="value">The string holding a byte in binary form (for example: "01001111")</param>
+      <returns>The byte as number</returns>
+    </member>
+    <member name="M:L">
+      <summary>
+        Convert a string that contains a logic value into a numerical 0 or 1.
+      </summary>
+      <param name="value">The string holding a logic value. All case-insensitive variants of "True" ("TRUE","TrUe", "truE", etc.) are considered the same. Everything else is treated as "False".</param>
+      <returns>0 or 1</returns>
+    </member>
+  </members>
+</doc>

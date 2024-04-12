@@ -60,7 +60,7 @@
                 </Grid.ColumnDefinitions>
                 <Label Grid.Column="1" Height="{StaticResource home_menu_height_one}" Width="{StaticResource home_menu_label_width}">
                     <Hyperlink TextDecorations="None" Click="Config_Click">
-                        <TextBlock Text="Setting" VerticalAlignment="Stretch"  FontFamily="{StaticResource home_menu_fontfamily}" FontSize="{StaticResource home_menu_fontsize}" Foreground="{StaticResource home_menu_foreground}" Height="26" Width="{StaticResource home_menu_text_width}"/>
+                        <TextBlock Text="{Binding Path=GetLocalization[Setting]}" VerticalAlignment="Stretch"  FontFamily="{StaticResource home_menu_fontfamily}" FontSize="{StaticResource home_menu_fontsize}" Foreground="{StaticResource home_menu_foreground}" Height="26" Width="{StaticResource home_menu_text_width}"/>
                     </Hyperlink>
                 </Label>
             </Grid>

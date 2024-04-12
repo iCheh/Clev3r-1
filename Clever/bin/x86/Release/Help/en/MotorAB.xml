@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<doc>
+  <members>
+    <member name="T:MotorAB">
+      <summary>
+        A set of quick methods for a motors connected to ports A and B.
+      </summary>
+    </member>
+    <member name="M:Off">
+      <summary>
+        Stop motor ports AB. This will also cancel any scheduled movement for this motors.
+        Motors will continue to rotate by inertia
+      </summary>
+    </member>
+    <member name="M:OffAndBrake">
+      <summary>
+        Stop motors port AB. This will also cancel any scheduled movement for this motors.
+        Motors will stop completely
+      </summary>
+    </member>
+    <member name="M:SetSpeed">
+      <summary>
+        Set motors speed to port AB.
+      </summary>
+      <param name="speed">Speed value from -100 (full reverse) to 100 (full forward)</param>
+    </member>
+    <member name="M:SetPower">
+      <summary>
+        Set motors power to ports AB.
+      </summary>
+      <param name="power">Speed value from -100 (full reverse) to 100 (full forward)</param>
+    </member>
+    <member name="M:Start">
+      <summary>
+        Start motors to pirts AB
+      </summary>
+    </member>
+    <member name="M:StartSpeed">
+      <summary>
+        Set motors speed to ports AB, then start motors.
+      </summary>
+      <param name="speed">Speed value from -100 (full reverse) to 100 (full forward)</param>
+    </member>
+    <member name="M:StartPower">
+      <summary>
+        Set motors power to ports AB, then start motors.
+      </summary>
+      <param name="power">Speed value from -100 (full reverse) to 100 (full forward)</param>
+    </member>
+  </members>
+</doc>

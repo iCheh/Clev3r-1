@@ -40,23 +40,72 @@
             </Setter>
         </Style>
     </UserControl.Resources>
-    <Grid SizeChanged="Grid_SizeChanged">
-        <TabControl x:Name="TcHelps" BorderBrush="{StaticResource tc_brk_st}" BorderThickness="1" Background="{StaticResource tc_brk_st}" SelectionChanged="TabControl_SelectionChanged">
-            <TabItem x:Name="TiBrick" Header="{Binding Path=GetLocalization[Brick]}" Style="{StaticResource RoundedTabItemH}" Margin="-3,0,1,0" Height="26" Width="65" FontFamily="Calibri" FontSize="14" VerticalAlignment="Bottom">
+    <Grid x:Name="TabGrid"
+          SizeChanged="Grid_SizeChanged">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="2"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="2"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="2"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid x:Name="TabGrid_1" Grid.Column="0"/>
+        <Grid x:Name="TabGrid_2" Grid.Column="2"/>
+        <Grid x:Name="TabGrid_3" Grid.Column="4"/>
+        <Grid x:Name="TabGrid_4" Grid.Column="6"/>
+        <TabControl x:Name="TcHelps"
+                    BorderBrush="{StaticResource tc_brk_st}"
+                    BorderThickness="1"
+                    Background="{StaticResource tc_brk_st}"
+                    SelectionChanged="TabControl_SelectionChanged"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="7">
+            <TabItem x:Name="TiBrick"
+                     Header="{Binding Path=GetLocalization[Brick]}"
+                     Style="{StaticResource RoundedTabItemH}"
+                     Margin="-4,0,0,0"
+                     Height="26"
+                     Width="{Binding ActualWidth, ElementName=TabGrid_1}"
+                     FontFamily="Calibri"
+                     FontSize="14"
+                     VerticalAlignment="Bottom">
                 <helps:EV3Brick Margin="0,0,-1,0"/>
             </TabItem>
-            <TabItem x:Name="TiHelp"  Header="{Binding Path=GetLocalization[Help]}" Style="{StaticResource RoundedTabItemH}" Margin="-1,0,1,0" Height="26" Width="65" FontFamily="Calibri" FontSize="14" VerticalAlignment="Bottom">
-
+            <TabItem x:Name="TiHelp"
+                     Header="{Binding Path=GetLocalization[Help]}"
+                     Style="{StaticResource RoundedTabItemH}"
+                     Margin="0,0,0,0"
+                     Height="26"
+                     Width="{Binding ActualWidth, ElementName=TabGrid_2}"
+                     FontFamily="Calibri"
+                     FontSize="14"
+                     VerticalAlignment="Bottom">
                 <panel:HelperPanel Margin="0"/>
-
-                <!--
-                <helps:Help/>
-                -->
             </TabItem>
-            <TabItem x:Name="TiView" Header="{Binding Path=GetLocalization[View]}" Style="{StaticResource RoundedTabItemH}" Margin="0,0,1,0" Height="26" Width="65" FontFamily="Calibri" FontSize="14" VerticalAlignment="Bottom">
+            <TabItem x:Name="TiView"
+                     Header="{Binding Path=GetLocalization[View]}"
+                     Style="{StaticResource RoundedTabItemH}"
+                     Margin="2,0,-2,0"
+                     Height="26"
+                     Width="{Binding ActualWidth, ElementName=TabGrid_3}"
+                     FontFamily="Calibri"
+                     FontSize="14"
+                     VerticalAlignment="Bottom">
                 <helps:View/>
             </TabItem>
-            <TabItem x:Name="TiMedia" Header="{Binding Path=GetLocalization[Media]}" Style="{StaticResource RoundedTabItemH}" Margin="0,0,1,0" Height="26" Width="65" FontFamily="Calibri" FontSize="14" VerticalAlignment="Bottom" BorderThickness="0" BorderBrush="#00000000">
+            <TabItem x:Name="TiMedia"
+                     Header="{Binding Path=GetLocalization[Media]}"
+                     Style="{StaticResource RoundedTabItemH}"
+                     Margin="4,0,-4,0"
+                     Height="26"
+                     Width="{Binding ActualWidth, ElementName=TabGrid_4}"
+                     FontFamily="Calibri"
+                     FontSize="14"
+                     VerticalAlignment="Bottom"
+                     BorderThickness="0"
+                     BorderBrush="#00000000">
                 <panel:MediaPanel/>
             </TabItem>
         </TabControl>

@@ -12,6 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -1030,6 +1031,7 @@ namespace Clever.View.Controls.Helps
 
             var programs = MainWindowVM.ProgramNameList;
             var listCur = new List<ProgramData>();
+            var listPrograms = new List<string>();
             var current = MainWindowVM.Project.GetProgramData(MainWindowVM.CurrentProgram);
             //Status.Add("===> " + programs.Count.ToString());
 
@@ -1173,6 +1175,9 @@ namespace Clever.View.Controls.Helps
                         Keys.FolderName = "";
                     }
 
+                    // Список всех программ проекта
+                    listPrograms = builder.GetPrograms();
+
                     // Проверим, что собранный файл ~... .bp открыт и его надо изменить
                     MainWindowVM.FindAndReplaceFile(GetName(pcfile.FullName), GetPath(pcfile.FullName));
                     // ===========================================
@@ -1232,6 +1237,7 @@ namespace Clever.View.Controls.Helps
                     try
                     {
                         string newPath = "";
+                        string pathForRun = "";
 
                         if (Keys.FolderName != "")
                         {
@@ -1286,10 +1292,9 @@ namespace Clever.View.Controls.Helps
                             }
                             ReadEV3Directory(false);
                             AdjustDisabledStates();
-                            if (run)
-                            {
-                                RunEV3File(targetfilename, newPath + "/");
-                            }
+
+                            pathForRun = newPath + "/";
+                            
                         }
                         else
                         {
@@ -1297,11 +1302,21 @@ namespace Clever.View.Controls.Helps
                             //Status.Add(internalPath(ev3path) + targetfilename);
                             ReadEV3Directory(false);
                             AdjustDisabledStates();
-                            if (run)
-                            {
-                                RunEV3File(targetfilename, ev3path);
-                            }
+                            pathForRun = ev3path;
                         }
+
+                        // Попытка копирования файлов программы в блок
+                        BinaryBuffer sourceBF = new BinaryBuffer();
+                        sourceBF.AppendZeroTerminated(internalPath(pathForRun + "/Source/"));
+                        connection.SystemCommand(EV3Connection.CREATE_DIR, sourceBF);
+                        DownloadSourceFiles(listPrograms, pathForRun + "/Source/");
+
+                        // Попытка запуска программы
+                        if (run)
+                        {
+                            RunEV3File(targetfilename, pathForRun);
+                        }
+
                     }
                     catch (Exception ex)
                     {
@@ -1359,7 +1374,7 @@ namespace Clever.View.Controls.Helps
                         ev3fileB = null;
                         ev3fileB = connection.ReadEV3File(internalPath(ev3path) + de.FileName);
 
-                        if (de.FileName.IndexOf(".rtf") == -1 && de.FileName.IndexOf(".txt") == -1 && de.FileName.IndexOf(".rcf") == -1)
+                        if (de.FileName.IndexOf(".rtf") == -1 && de.FileName.IndexOf(".txt") == -1 && de.FileName.IndexOf(".rcf") == -1 && de.FileName.IndexOf(".bp") == -1 && de.FileName.IndexOf(".bpm") == -1 && de.FileName.IndexOf(".bpi") == -1)
                         {
                             Status.Clear();
                             Status.Add(MainWindowVM.GetLocalization["brkViewFileExt"]);
@@ -1715,6 +1730,44 @@ namespace Clever.View.Controls.Helps
             }
         }
 
+        private void DownloadSourceFiles(List<string> files, string path)
+        {
+            try
+            {
+                foreach (var curPrg in files)
+                {
+                    //Status.Add(cur.FullPath);
+                    if (!File.Exists(curPrg))
+                    {
+                        Status.Add(MainWindowVM.GetLocalization["prepRead1"] + " " + curPrg + " " + MainWindowVM.GetLocalization["prepRead2"]);
+                        return;
+                    }
+                    FileInfo fi = new FileInfo(curPrg);
+                    byte[] content = new byte[fi.Length];
+                    FileStream fs = new FileStream(fi.FullName, FileMode.Open, FileAccess.Read);
+                    int pos = 0;
+                    while (pos < content.Length)
+                    {
+                        int didread = fs.Read(content, pos, content.Length - pos);
+                        if (didread <= 0)
+                        {
+                            throw new Exception("Unexpected end of file");
+                        }
+                        pos += didread;
+                    }
+                    fs.Close();
+                    connection.CreateEV3File(internalPath(path) + fi.Name, content);
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Status.Clear();
+                Status.Add(MainWindowVM.GetLocalization["brkExcept"] + " " + ex.Message);
+                Reconnect();
+            }
+        }
+
         private string GetPath(string str)
         {
             string path = "";
@@ -1735,5 +1788,6 @@ namespace Clever.View.Controls.Helps
             }
             return name;
         }
+
     }
 }

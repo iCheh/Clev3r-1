@@ -1,0 +1,247 @@
+﻿<?xml version="1.0"?>
+<doc>
+  <members>
+    <member name="T:Math">
+      <summary>
+        Клас Math надає багато корисних методів для математичних операцій.
+      </summary>
+    </member>
+    <member name="M:Abs">
+      <summary>
+        Обчислює модуль (додатне значення) заданого числа. Наприклад, для -32.233 метод поверне 32.233.
+      </summary>
+      <param name="number">
+        Задане число
+      </param>
+      <returns>
+        Абсолютне значення заданого числа
+      </returns>
+    </member>
+    <member name="M:Ceiling">
+      <summary>
+        Округляє задане десяткове значення до більшого або рівного цілого числа. Наприклад, для 32,233 метод поверне 33.
+      </summary>
+      <param name="number">
+        Задане число
+      </param>
+      <returns>
+        Число, округлене в більшу сторону
+      </returns>
+    </member>
+    <member name="M:Floor">
+      <summary>
+        Округлює задане десяткове значення до меншого або рівного цілого числа. Наприклад, для 32,233 метод поверне 32.
+      </summary>
+      <param name="number">
+        Задане число
+      </param>
+      <returns>
+        Число, округлене в меншу сторону
+      </returns>
+    </member>
+    <member name="M:NaturalLog">
+      <summary>
+        Обчислює натуральний логарифм для заданого числа.
+      </summary>
+      <param name="number">
+        Задане число
+      </param>
+      <returns>
+        Значення натурального логарифму для заданого числа
+      </returns>
+    </member>
+    <member name="M:Log">
+      <summary>
+        Обчислює десятковий логарифм для заданого числа.
+      </summary>
+      <param name="number">
+        Задане число
+      </param>
+      <returns>
+        Значення десяткового логарифму для зазначеного числа
+      </returns>
+    </member>
+    <member name="M:Cos">
+      <summary>
+        Обчислює значення косинуса для заданого в радіанах кута.
+      </summary>
+      <param name="angle">
+        Значення кута в радіанах
+      </param>
+      <returns>
+        Значення косинуса даного кута
+      </returns>
+    </member>
+    <member name="M:Sin">
+      <summary>
+        Обчислює значення синуса для заданого в радіанах кута.
+      </summary>
+      <param name="angle">
+        Значення кута в радіанах
+      </param>
+      <returns>
+        Значення синуса для заданого кута
+      </returns>
+    </member>
+    <member name="M:Tan">
+      <summary>
+        Обчислює значення тангенса для заданого в радіанах кута.
+      </summary>
+      <param name="angle">
+        Значення кута в радіанах
+      </param>
+      <returns>
+        Значення тангенса для заданого кута
+      </returns>
+    </member>
+    <member name="M:ArcSin">
+      <summary>
+        Повертає значення кута в радіанах для заданого значення синуса.
+      </summary>
+      <param name="sinValue">
+        Значення синуса, для якого треба кут
+      </param>
+      <returns>
+        Кут в радіанах
+      </returns>
+    </member>
+    <member name="M:ArcCos">
+      <summary>
+        Повертає значення кута в радіанах для заданого значення косинуса.
+      </summary>
+      <param name="cosValue">
+        Значення косинуса, для якого треба отримати кут
+      </param>
+      <returns>
+        Кут в радіанах
+      </returns>
+    </member>
+    <member name="M:ArcTan">
+      <summary>
+        Повертає значення кута в радіанах для заданого значення тангенса.
+      </summary>
+      <param name="tanValue">
+        Значення тангенса, для якого треба отримати кут
+      </param>
+      <returns>
+        Кут в радіанах
+      </returns>
+    </member>
+    <member name="M:GetDegrees">
+      <summary>
+        Конвертує заданий кут з радіан в градуси.
+      </summary>
+      <param name="angle">
+        Значення кута в радіанах
+      </param>
+      <returns>
+        Значення кута, переведене в градуси
+      </returns>
+    </member>
+    <member name="M:GetRadians">
+      <summary>
+        Конвертує заданий кут з градусів в радіани.
+      </summary>
+      <param name="angle">
+        Значення кута в градусах.
+      </param>
+      <returns>
+        Значення кута, переведене в радіани
+      </returns>
+    </member>
+    <member name="M:SquareRoot">
+      <summary>
+        Обчислює квадратний корінь для заданого числа.
+      </summary>
+      <param name="number">
+        Задане число
+      </param>
+      <returns>
+        Квадратний корінь для заданого числа
+      </returns>
+    </member>
+    <member name="M:Power">
+      <summary>
+        Зводить число в зазначену ступінь.
+      </summary>
+      <param name="baseNumber">
+        Задане число
+      </param>
+      <param name="exponent">
+        Ступінь, в яку треба звести число
+      </param>
+      <returns>
+        Число, зведене в зазначену ступінь
+      </returns>
+    </member>
+    <member name="M:Round">
+      <summary>
+        Округлює задане десяткове значення до найближчого цілого числа. Наприклад, 32.233 буде округлено до 32.0, а 32.566 до 33.
+      </summary>
+      <param name="number">
+        Задане число
+      </param>
+      <returns>
+        Округлене значення заданого числа.
+      </returns>
+    </member>
+    <member name="M:Max">
+      <summary>
+        Порівнює два значення і повертає більше з них.
+      </summary>
+      <param name="number1">
+        Перше з порівнюваних чисел
+      </param>
+      <param name="number2">
+        Друге з порівнюваних чисел
+      </param>
+      <returns>
+        Найбільше значення з двох заданих чисел
+      </returns>
+    </member>
+    <member name="M:Min">
+      <summary>
+        Порівнює два значення і повертає менше з них.
+      </summary>
+      <param name="number1">
+        Перше з порівнюваних чисел
+      </param>
+      <param name="number2">
+        Друге з порівнюваних чисел
+      </param>
+      <returns>
+        Найменше значення з двох заданих чисел
+      </returns>
+    </member>
+    <member name="M:Remainder">
+      <summary>
+        Ділить перше число на друге і повертає остачу.
+      </summary>
+      <param name="dividend">
+        Подільне
+      </param>
+      <param name="divisor">
+        Дільник
+      </param>
+      <returns>
+        Остача від ділення
+      </returns>
+    </member>
+    <member name="M:GetRandomNumber">
+      <summary>
+        Повертає випадкове число в діапазоні між 1 і числом, заданим в параметрі maxNumber (включно).
+      </summary>
+      <param name="maxNumber">
+        Максимальне значення для діапазону випадкових чисел
+      </param>
+      <returns>
+        Випадкове число, яке менше або дорівнює вказаному максимальному значенню
+      </returns>
+    </member>
+    <member name="P:Pi">
+      <summary>
+        Отримує значення числа Pi.
+      </summary>
+    </member>
+  </members>
+</doc>
