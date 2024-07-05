@@ -197,6 +197,7 @@ namespace Interpreter.DataTemplate
             Errors.Add(2017, "Вызов приватного свойства допустим только в модуле владельце этого свойства");
             Errors.Add(2018, "Вызов приватного метода допустим только в модуле владельце этого метода");
             Errors.Add(2019, "Имя переменной в описании функции модуля совпадает с именем свойства модуля");
+            Errors.Add(2020, "Свойство с таким именем не определено в модуле");
 
             // Отладка
             Errors.Add(4001, "===> 1 <===");
@@ -398,6 +399,7 @@ namespace Interpreter.DataTemplate
             Errors.Add(2017, "Виклик приватного властивості допустимо тільки в модулі власника цієї властивості");
             Errors.Add(2018, "Виклик приватного методу допустимо тільки в модулі власника цього методу");
             Errors.Add(2019, "Ім'я змінної в описі функції модуля збігається з ім'ям властивості модуля");
+            Errors.Add(2020, "Властивість з такою назвою не визначена в модулі");
 
             // Отладка
             Errors.Add(4001, "===> 1 <===");
@@ -599,6 +601,7 @@ namespace Interpreter.DataTemplate
             Errors.Add(2017, "Calling a private property is allowed only in the module that owns this property");
             Errors.Add(2018, "Calling a private method is allowed only in the module owner of this method");
             Errors.Add(2019, "The variable name in the module function description is the same as the module property name");
+            Errors.Add(2020, "A property with this name is not defined in the module");
 
             // Отладка
             Errors.Add(4001, "===> 1 <===");

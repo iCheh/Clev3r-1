@@ -12,7 +12,7 @@ namespace Interpreter.Utils
     {
         private static Dictionary<string, HashSet<string>> _modulesCalling;
         //private static Dictionary<string, HashSet<string>> _propertysCalling;
-        private static HashSet<string> _propertys;
+        private static Dictionary<string, Line> _propertys;
 
         internal static void Start()
         {
@@ -450,7 +450,7 @@ namespace Interpreter.Utils
             var mLines = Data.Project.MainText;
             var fLines = Data.Project.ModuleMethodsText;
 
-            _propertys = new HashSet<string>();
+            _propertys = new Dictionary<string, Line>();
 
             var glogalVarsPref = "gv_";
             var glogalLabelsPref = "gl_";
@@ -528,9 +528,9 @@ namespace Interpreter.Utils
                     else if (word.Token == Tokens.MODULEPROPERTY)
                     {
                         var name = word.ToLower().Replace(".", "_");
-                        if (!_propertys.Contains(name))
+                        if (!_propertys.ContainsKey(name))
                         {
-                            _propertys.Add(name);
+                            _propertys.Add(name, line);
                         }
                         word.Token = Tokens.VARIABLE;
                         word.Text = propertyPref + name;
@@ -608,9 +608,9 @@ namespace Interpreter.Utils
                     else if (word.Token == Tokens.MODULEPROPERTY)
                     {
                         var name = word.ToLower().Replace(".", "_");
-                        if (!_propertys.Contains(name))
+                        if (!_propertys.ContainsKey(name))
                         {
-                            _propertys.Add(name);
+                            _propertys.Add(name, line);
                         }
                         word.Token = Tokens.VARIABLE;
                         word.Text = propertyPref + name;
@@ -790,50 +790,69 @@ namespace Interpreter.Utils
             var modules = Data.Project.Modules;
             var propertyPref = "pr_";
 
+            var moduleProperties = new Dictionary<string, Line>();
             foreach (var module in modules)
             {
                 var propertys = module.Value.Propertys;
 
                 foreach (var property in propertys)
                 {
-                    if (_propertys.Contains(property.Key))
+                    moduleProperties.Add(property.Key, property.Value.Item1);
+                }
+            }
+
+            foreach (var property in _propertys)
+            {
+                Line definitionLine;
+                var propertyName = property.Key;
+                var propertyLine = property.Value;
+                if (moduleProperties.TryGetValue(propertyName, out definitionLine))
+                {
+                    var varType = VariableType.NUMBER;
+                    var newWords = new List<Word>();
+                    var type = LineType.VARINIT;
+                    newWords.Add(new Word() { Text = propertyPref + definitionLine.Words[1].ToLower(), OriginText = definitionLine.Words[1].OriginText, Token = Tokens.VARIABLE });
+
+                    if (definitionLine.Words[0].ToLower() == "number")
                     {
-                        var line = property.Value.Item1;
-                        var newWords = new List<Word>();;
-                        var type = LineType.VARINIT;
-                        newWords.Add(new Word() { Text = propertyPref + line.Words[1].ToLower(), OriginText = line.Words[1].OriginText, Token = Tokens.VARIABLE });
-
-                        if (line.Words[0].ToLower() == "number")
-                        {
-                            newWords.Add(new Word() { Text = "=", OriginText = "=", Token = Tokens.EQU });
-                            newWords.Add(new Word() { Text = "0", OriginText = "0", Token = Tokens.NUMBER });
-                        }
-                        else if (line.Words[0].ToLower() == "number[]")
-                        {
-                            type = LineType.VARARRAYINIT;
-                            newWords.Add(new Word() { Text = "[", OriginText = "[", Token = Tokens.BRACKETLEFTARRAY });
-                            newWords.Add(new Word() { Text = "0", OriginText = "0", Token = Tokens.NUMBER });
-                            newWords.Add(new Word() { Text = "]", OriginText = "]", Token = Tokens.BRACKETRIGHTARRAY });
-                            newWords.Add(new Word() { Text = "=", OriginText = "=", Token = Tokens.EQU });
-                            newWords.Add(new Word() { Text = "0", OriginText = "0", Token = Tokens.NUMBER });
-                        }
-                        else if (line.Words[0].ToLower() == "string")
-                        {
-                            newWords.Add(new Word() { Text = "=", OriginText = "=", Token = Tokens.EQU });
-                            newWords.Add(new Word() { Text = "\"\"", OriginText = "\"\"", Token = Tokens.STRING });
-                        }
-                        else if (line.Words[0].ToLower() == "string[]")
-                        {
-                            type = LineType.VARARRAYINIT;
-                            newWords.Add(new Word() { Text = "[", OriginText = "[", Token = Tokens.BRACKETLEFTARRAY });
-                            newWords.Add(new Word() { Text = "0", OriginText = "0", Token = Tokens.NUMBER });
-                            newWords.Add(new Word() { Text = "]", OriginText = "]", Token = Tokens.BRACKETRIGHTARRAY });
-                            newWords.Add(new Word() { Text = "=", OriginText = "=", Token = Tokens.EQU });
-                            newWords.Add(new Word() { Text = "\"\"", OriginText = "\"\"", Token = Tokens.STRING });
-                        }
-
-                        Data.Project.Propertys.Add(new Line(newWords, "") { Type = type, Number = line.Number, FileName = line.FileName });
+                        newWords.Add(new Word() { Text = "=", OriginText = "=", Token = Tokens.EQU });
+                        newWords.Add(new Word() { Text = "0", OriginText = "0", Token = Tokens.NUMBER });
                     }
+                    else if (definitionLine.Words[0].ToLower() == "number[]")
+                    {
+                        type = LineType.VARARRAYINIT;
+                        varType = VariableType.NUMBER_ARRAY;
+                        newWords.Add(new Word() { Text = "[", OriginText = "[", Token = Tokens.BRACKETLEFTARRAY });
+                        newWords.Add(new Word() { Text = "0", OriginText = "0", Token = Tokens.NUMBER });
+                        newWords.Add(new Word() { Text = "]", OriginText = "]", Token = Tokens.BRACKETRIGHTARRAY });
+                        newWords.Add(new Word() { Text = "=", OriginText = "=", Token = Tokens.EQU });
+                        newWords.Add(new Word() { Text = "0", OriginText = "0", Token = Tokens.NUMBER });
+                    }
+                    else if (definitionLine.Words[0].ToLower() == "string")
+                    {
+                        varType = VariableType.STRING;
+                        newWords.Add(new Word() { Text = "=", OriginText = "=", Token = Tokens.EQU });
+                        newWords.Add(new Word() { Text = "\"\"", OriginText = "\"\"", Token = Tokens.STRING });
+                    }
+                    else if (definitionLine.Words[0].ToLower() == "string[]")
+                    {
+                        type = LineType.VARARRAYINIT;
+                        varType = VariableType.STRING_ARRAY;
+                        newWords.Add(new Word() { Text = "[", OriginText = "[", Token = Tokens.BRACKETLEFTARRAY });
+                        newWords.Add(new Word() { Text = "0", OriginText = "0", Token = Tokens.NUMBER });
+                        newWords.Add(new Word() { Text = "]", OriginText = "]", Token = Tokens.BRACKETRIGHTARRAY });
+                        newWords.Add(new Word() { Text = "=", OriginText = "=", Token = Tokens.EQU });
+                        newWords.Add(new Word() { Text = "\"\"", OriginText = "\"\"", Token = Tokens.STRING });
+                    }
+
+                    Data.Project.Propertys.Add(new Line(newWords, "") { Type = type, Number = definitionLine.Number, FileName = definitionLine.FileName });
+
+                    var variable = new Variable("pr_" + propertyName) { Init = true, Type = varType };
+                    Data.Project.Variables.Add(variable.Name, variable);
+                }
+                else
+                {
+                    Data.Errors.Add(new Errore(propertyLine.Number, propertyLine.FileName, 2020, propertyName));
                 }
             }
         }

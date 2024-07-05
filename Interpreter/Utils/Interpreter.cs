@@ -609,6 +609,11 @@ namespace Interpreter.Utils
 
             foreach (var v in variables)
             {
+                // В списке переменных могут быть свойства из методов - их добавлять в список varInit не нужно
+                if (v.Value.Line == null)
+                {
+                    continue;
+                }
                 var newWords = new List<Word>();
                 var type = LineType.VARINIT;
                 newWords.Add(new Word() { Text = v.Key, OriginText = v.Key, Token = Tokens.VARIABLE });
