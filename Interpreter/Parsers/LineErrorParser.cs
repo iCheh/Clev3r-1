@@ -112,9 +112,10 @@ namespace Interpreter.Parsers
                 }
             }
 
-            ParseJupmOperatorsErrore(lines);
+            ParseJumpOperatorsErrore(lines);
             ParseJumpOperators(lines, LineType.FORINIT);
             ParseJumpOperators(lines, LineType.WHILEINIT);
+            ParseJumpOperators(lines, LineType.SUBINIT);
         }
 
         private static bool ParseMethodError(int startPos, string methodName, Line line)
@@ -142,6 +143,10 @@ namespace Interpreter.Parsers
             {
                 lastWord = "endwhile";
             }
+            else if (type == LineType.SUBINIT)
+            {
+                lastWord = "endsub";
+            }
 
             for (int i = 0; i < lines.Count; i++)
             {
@@ -167,12 +172,21 @@ namespace Interpreter.Parsers
 
                                 if (start != -1 && stop != -1 && stop > start)
                                 {
-                                    ParseBrakeAndContinue(lines, start, stop, lastWord, "continue");
-                                    if (Data.Errors.Count > 0)
-                                        return;
-                                    ParseBrakeAndContinue(lines, start, stop, lastWord, "break");
-                                    if (Data.Errors.Count > 0)
-                                        return;
+                                    if (type == LineType.SUBINIT)
+                                    {
+                                        ParseBrakeAndContinue(lines, start, stop, lastWord, "return");
+                                        if (Data.Errors.Count > 0)
+                                            return;
+                                    }
+                                    else
+                                    {
+                                        ParseBrakeAndContinue(lines, start, stop, lastWord, "continue");
+                                        if (Data.Errors.Count > 0)
+                                            return;
+                                        ParseBrakeAndContinue(lines, start, stop, lastWord, "break");
+                                        if (Data.Errors.Count > 0)
+                                            return;
+                                    }
                                 }
 
                                 start = -1;
@@ -194,19 +208,17 @@ namespace Interpreter.Parsers
             var flagLabelName = false;
             var labelName = "";
 
-            for (int i = start; i < stop; i++)
+            for (int i = start + 1; i < stop; i++)
             {
-                if (i == start)
-                    continue;
-
                 if (lines[i].Type == LineType.FORINIT || lines[i].Type == LineType.WHILEINIT)
                 {
                     flagLoop++;
                 }
 
-                if (flagLoop == 0)
+                if (flagLoop == 0 || jumpWord == "return")
                 {
-                    if (lines[i].Type == LineType.ONEKEYWORD && lines[i].Words[0].ToLower() == jumpWord)
+                    if ((lines[i].Type == LineType.ONEKEYWORD)
+                        && lines[i].Words[0].ToLower() == jumpWord)
                     {
                         if (!flagLabelName)
                         {
@@ -224,7 +236,7 @@ namespace Interpreter.Parsers
                     }
                 }
 
-                if (lines[i].Type == LineType.ONEKEYWORD && lines[i].Words[0].ToLower() == lastWord)
+                if (lines[i].Type == LineType.ONEKEYWORD && (lines[i].Words[0].ToLower() == "endfor" || lines[i].Words[0].ToLower() == "endwhile"))
                 {
                     flagLoop--;
                 }
@@ -232,7 +244,7 @@ namespace Interpreter.Parsers
 
             if (flagLabelName)
             {
-                if (jumpWord == "continue")
+                if (jumpWord == "continue" || jumpWord == "return")
                 {
                     var tmpWords = new List<Word>();
                     var tmpText = labelName + ":";
@@ -256,12 +268,12 @@ namespace Interpreter.Parsers
                     lines[stop].OutLines.Add(new Line(tmpWords, tmpText));
                 }
             }
-            
         }
 
-        private static void ParseJupmOperatorsErrore(List<Line> lines)
+        private static void ParseJumpOperatorsErrore(List<Line> lines)
         {
             var flagForWhile = 0;
+            var flagForSub = 0;
             foreach (var line in lines)
             {
                 if (line.Type == LineType.FORINIT)
@@ -273,6 +285,11 @@ namespace Interpreter.Parsers
                 {
                     // Изменим состояния флага структуры For ... EndFor или While ... EndWhile
                     flagForWhile++;
+                }
+                else if (line.Type == LineType.SUBINIT)
+                {
+                    // Изменим состояния флага структуры Sub ... EndSub или Function ... EndFunction
+                    flagForSub++;
                 }
                 else if (line.Type == LineType.ONEKEYWORD)
                 {
@@ -308,9 +325,29 @@ namespace Interpreter.Parsers
                             return;
                         }
                     }
+                    else if (line.Words[0].ToLower() == "return")
+                    {
+                        if (line.Count > 1)
+                        {
+                            // Ошибка, в строке не может быть других слов
+                            Data.Errors.Add(new Errore(line.Number, line.FileName, 1917, ""));
+                            return;
+                        }
+
+                        if (flagForSub == 0)
+                        {
+                            // Ошибка, ключевое слово Return используется только в структурах Sub ... EndSub или Function ... EndFunction
+                            Data.Errors.Add(new Errore(line.Number, line.FileName, 1918, ""));
+                            return;
+                        }
+                    }
                     else if (line.Words[0].ToLower() == "endfor" || line.Words[0].ToLower() == "endwhile")
                     {
                         flagForWhile--;
+                    }
+                    else if (line.Words[0].ToLower() == "endsub")
+                    {
+                        flagForSub--;
                     }
                 }
             }

@@ -177,6 +177,8 @@ namespace Interpreter.DataTemplate
             Errors.Add(1914, "Ключевое слово Break можно использовать только внутри For...EndFor и While...EndWhile");
             Errors.Add(1915, "В строке может быть только одно ключевое слово Continue");
             Errors.Add(1916, "Ключевое слово Continue можно использовать только внутри For...EndFor и While...EndWhile");
+            Errors.Add(1917, "В строке может быть только одно ключевое слово Return");
+            Errors.Add(1918, "Ключевое слово Return можно использовать только внутри Sub...EndSub и Function...EndFunction");
             // Коды Import module
             Errors.Add(2001, "Файл не найден");
             Errors.Add(2002, "Отсутствует имя импортируемого файла модуля");
@@ -379,6 +381,8 @@ namespace Interpreter.DataTemplate
             Errors.Add(1914, "Ключове слово Break можна використовувати лише усередині For...EndFor і While...EndWhile");
             Errors.Add(1915, "У рядку може бути лише одне ключове слово Continue");
             Errors.Add(1916, "Ключове слово Continue можна використовувати лише усередині For...EndFor і While...EndWhile");
+            Errors.Add(1917, "У рядку може бути лише одне ключове слово Return");
+            Errors.Add(1918, "Ключове слово Return можна використовувати лише усередині  Sub...EndSub і Function...EndFunction");
             // Коди Import module
             Errors.Add(2001, "Файл не знайдено");
             Errors.Add(2002, "Відсутня ім'я файла модуля, що імпортується");
@@ -581,6 +585,8 @@ namespace Interpreter.DataTemplate
             Errors.Add(1914, "Keyword \"Break\" can be used in the middle of For...EndFor and While...EndWhile");
             Errors.Add(1915, "There can only be one keyword \"Continue\" per line");
             Errors.Add(1916, "Keyword \"Continue\" can be used in the middle of For...EndFor and While...EndWhile");
+            Errors.Add(1917, "There can only be one keyword \"Return\" per line");
+            Errors.Add(1918, "Keyword \"Return\" can be used in the middle of Sub...EndSub and Function...EndFunction");
             // Import module codes
             Errors.Add(2001, "File not found");
             Errors.Add(2002, "Missing imported module file name");
