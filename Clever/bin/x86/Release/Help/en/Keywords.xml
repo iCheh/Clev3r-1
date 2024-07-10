@@ -288,5 +288,10 @@
         Starts a new iteration of the nearest outer For or While loop. Applies only within these loops.
       </summary>
     </member>
+    <member name="K:return">
+      <summary>
+        Immediate exit from a function or procedure. Applies only within Subs or Functions.
+      </summary>
+    </member>
   </members>
 </doc>
